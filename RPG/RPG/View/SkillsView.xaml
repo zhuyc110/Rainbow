@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="RPG.View.SkillsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RPG.View"
+             xmlns:vm="clr-namespace:RPG.ViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance vm:SkillsViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="SkillImageColumn" >
+            <Image Source="{Binding Path=Icon}" Width="16" Height="16"></Image>
+        </DataTemplate>
+    </UserControl.Resources>
+    <DataGrid HeadersVisibility="None" ItemsSource="{Binding Path=Skills}" AutoGenerateColumns="False">
+        <DataGrid.Columns>
+            <DataGridTemplateColumn CellTemplate="{StaticResource SkillImageColumn}"/>
+            <DataGridTextColumn Binding="{Binding Path=Name}"></DataGridTextColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>
