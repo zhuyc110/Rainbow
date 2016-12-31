@@ -76,6 +76,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Skills\AbstractSkill.cs" />
+    <Compile Include="Model\Skills\Fireball.cs" />
+    <Compile Include="Model\Skills\Fury.cs" />
     <Compile Include="Model\Skills\HeavyStrike.cs" />
     <Compile Include="Module\BackpackModule.cs" />
     <Compile Include="ViewModel\SkillsViewModel.cs" />

@@ -14,12 +14,16 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class SkillsViewModel : BindableBase
     {
-        [ImportMany]
-        public IEnumerable<ISkill> Skills { get; set; }
+        public ObservableCollection<ISkill> Skills { get; set; }
 
         [ImportingConstructor]
-        public SkillsViewModel()
+        public SkillsViewModel([ImportMany]IEnumerable<ISkill> skills)
         {
+            Skills = new ObservableCollection<ISkill>();
+            foreach (var skill in skills.OrderBy(x=>x.LevelRequirement))
+            {
+                Skills.Add(skill);
+            }
         }
     }
 }

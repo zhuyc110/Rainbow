@@ -12,11 +12,26 @@
         <DataTemplate x:Key="SkillImageColumn" >
             <Image Source="{Binding Path=Icon}" Width="16" Height="16"></Image>
         </DataTemplate>
+        <DataTemplate x:Key="SkillDescriptionColumn" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" FontSize="15" Text="{Binding Path=Name}"></TextBlock>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="{Binding Path=LevelRequirement, StringFormat='等级 \{0\}'}"></TextBlock>
+                <TextBlock Grid.Row="1" Text="{Binding Path=Content}"></TextBlock>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="SkillCheckedColumn" >
+            <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay}" Width="16" Height="16"></CheckBox>
+        </DataTemplate>
     </UserControl.Resources>
     <DataGrid HeadersVisibility="None" ItemsSource="{Binding Path=Skills}" AutoGenerateColumns="False">
         <DataGrid.Columns>
             <DataGridTemplateColumn CellTemplate="{StaticResource SkillImageColumn}"/>
-            <DataGridTextColumn Binding="{Binding Path=Name}"></DataGridTextColumn>
+            <DataGridTemplateColumn CellTemplate="{StaticResource SkillDescriptionColumn}"/>
+            <DataGridTemplateColumn CellTemplate="{StaticResource SkillCheckedColumn}"/>
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>
