@@ -1,14 +1,13 @@
 ﻿using Prism.Mvvm;
 using RPG.Model.Interfaces;
-using System.Windows.Media;
 
 namespace RPG.Model.Skills
 {
-    public abstract class AbstractSkill : BindableBase, ISkill
+    public abstract class SkillBase : BindableBase, ISkill
     {
         public string Content { get; protected set; }
 
-        public ImageSource Icon { get; protected set; }
+        public string IconResource { get; protected set; }
 
         public bool IsChecked
         {

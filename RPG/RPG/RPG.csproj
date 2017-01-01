@@ -76,10 +76,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Skills\AbstractSkill.cs" />
+    <Compile Include="Infrastructure\Implementation\IOService.cs" />
+    <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
+    <Compile Include="Infrastructure\ResourceKeyToImageConverter.cs" />
+    <Compile Include="Model\Skills\SkillBase.cs" />
     <Compile Include="Model\Skills\Fireball.cs" />
     <Compile Include="Model\Skills\Fury.cs" />
     <Compile Include="Model\Skills\HeavyStrike.cs" />
+    <Compile Include="Model\Skills\Whirlwind.cs" />
     <Compile Include="Module\BackpackModule.cs" />
     <Compile Include="ViewModel\SkillsViewModel.cs" />
     <Compile Include="View\SkillsView.xaml.cs">
@@ -98,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resource\IconDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SkillsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,7 +140,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\Icons\A Sealed Note.ico" />
+    <EmbeddedResource Include="Resource\Icons\Alliance Banner.ico" />
+    <EmbeddedResource Include="Resource\Icons\Defias Script.ico" />
+    <EmbeddedResource Include="Resource\Icons\Document.ico" />
+    <EmbeddedResource Include="Resource\Icons\Fire Elemental.ico" />
+    <EmbeddedResource Include="Resource\Icons\Horde Banner.ico" />
+    <EmbeddedResource Include="Resource\Icons\Plain Letter.ico" />
+    <EmbeddedResource Include="Resource\Icons\Sealed Recruitment Letter.ico" />
+    <EmbeddedResource Include="Resource\Icons\Solid Iron Chest.ico" />
+    <EmbeddedResource Include="Resource\Icons\World of Warcraft App.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Media;
 
 namespace RPG.Model.Interfaces
 {
@@ -9,7 +8,7 @@ namespace RPG.Model.Interfaces
         string Name { get; }
         string Content { get; }
         int LevelRequirement { get; }
-        ImageSource Icon { get; }
-        bool IsChecked { get; }
+        string IconResource { get; }
+        bool IsChecked { get; set; }
     }
 }

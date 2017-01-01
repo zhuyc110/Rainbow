@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RPG.View"
              xmlns:vm="clr-namespace:RPG.ViewModel"
+             xmlns:infra="clr-namespace:RPG.Infrastructure"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:SkillsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
+        <infra:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"></infra:ResourceKeyToImageConverter>
         <DataTemplate x:Key="SkillImageColumn" >
-            <Image Source="{Binding Path=Icon}" Width="16" Height="16"></Image>
+            <Image Source="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" Width="16" Height="16"></Image>
         </DataTemplate>
         <DataTemplate x:Key="SkillDescriptionColumn" >
             <Grid>
@@ -23,15 +25,12 @@
                 <TextBlock Grid.Row="1" Text="{Binding Path=Content}"></TextBlock>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="SkillCheckedColumn" >
-            <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay}" Width="16" Height="16"></CheckBox>
-        </DataTemplate>
     </UserControl.Resources>
     <DataGrid HeadersVisibility="None" ItemsSource="{Binding Path=Skills}" AutoGenerateColumns="False">
         <DataGrid.Columns>
             <DataGridTemplateColumn CellTemplate="{StaticResource SkillImageColumn}"/>
             <DataGridTemplateColumn CellTemplate="{StaticResource SkillDescriptionColumn}"/>
-            <DataGridTemplateColumn CellTemplate="{StaticResource SkillCheckedColumn}"/>
+            <DataGridCheckBoxColumn Binding="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>
