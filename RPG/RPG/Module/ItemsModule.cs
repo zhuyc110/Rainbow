@@ -6,20 +6,20 @@ using System.ComponentModel.Composition;
 
 namespace RPG.Module
 {
-    [ModuleExport(typeof(BackpackModule))]
-    public class BackpackModule : IModule
+    [ModuleExport(typeof(ItemsModule))]
+    public class ItemsModule : IModule
     {
         private IRegionManager _regionManager;
 
         [ImportingConstructor]
-        public BackpackModule(IRegionManager regionManager)
+        public ItemsModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion(nameof(BackpackModule), typeof(SkillsView));
+            _regionManager.RegisterViewWithRegion(nameof(ItemsModule), typeof(ItemsView));
         }
     }
 }

@@ -10,9 +10,11 @@
     <TabControl>
         <TabItem Header="主页"></TabItem>
         <TabItem Header="角色"></TabItem>
-        <TabItem Header="背包"></TabItem>
+        <TabItem Header="背包">
+            <ContentControl prism:RegionManager.RegionName="ItemsModule" Margin="5"></ContentControl>
+        </TabItem>
         <TabItem Header="技能">
-            <ContentControl prism:RegionManager.RegionName="BackpackModule" Margin="5"></ContentControl>
+            <ContentControl prism:RegionManager.RegionName="SkillsModule" Margin="5"></ContentControl>
         </TabItem>
         <TabItem Header="其他"></TabItem>
     </TabControl>

@@ -78,14 +78,23 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
-    <Compile Include="Infrastructure\ResourceKeyToImageConverter.cs" />
+    <Compile Include="Model\Interfaces\IItem.cs" />
+    <Compile Include="Model\Items\ItemBase.cs" />
+    <Compile Include="Model\Items\Stone.cs" />
+    <Compile Include="Model\Rarity.cs" />
+    <Compile Include="Module\ItemsModule.cs" />
+    <Compile Include="Resource\ResourceKeyToImageConverter.cs" />
     <Compile Include="Model\Skills\SkillBase.cs" />
     <Compile Include="Model\Skills\Fireball.cs" />
     <Compile Include="Model\Skills\Fury.cs" />
     <Compile Include="Model\Skills\HeavyStrike.cs" />
     <Compile Include="Model\Skills\Whirlwind.cs" />
-    <Compile Include="Module\BackpackModule.cs" />
+    <Compile Include="Module\SkillsModule.cs" />
+    <Compile Include="ViewModel\ItemsViewModel.cs" />
     <Compile Include="ViewModel\SkillsViewModel.cs" />
+    <Compile Include="View\ItemsView.xaml.cs">
+      <DependentUpon>ItemsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SkillsView.xaml.cs">
       <DependentUpon>SkillsView.xaml</DependentUpon>
     </Compile>
@@ -102,7 +111,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resource\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resource\IconDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,16 +158,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resource\Icons\A Sealed Note.ico" />
-    <EmbeddedResource Include="Resource\Icons\Alliance Banner.ico" />
-    <EmbeddedResource Include="Resource\Icons\Defias Script.ico" />
-    <EmbeddedResource Include="Resource\Icons\Document.ico" />
-    <EmbeddedResource Include="Resource\Icons\Fire Elemental.ico" />
-    <EmbeddedResource Include="Resource\Icons\Horde Banner.ico" />
-    <EmbeddedResource Include="Resource\Icons\Plain Letter.ico" />
-    <EmbeddedResource Include="Resource\Icons\Sealed Recruitment Letter.ico" />
-    <EmbeddedResource Include="Resource\Icons\Solid Iron Chest.ico" />
-    <EmbeddedResource Include="Resource\Icons\World of Warcraft App.ico" />
+    <Resource Include="Resource\Icons\BTNFireBolt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNCleavingAttack.jpg" />
+    <Resource Include="Resource\Icons\BTNStormBolt.jpg" />
+    <Resource Include="Resource\Icons\BTNUnholyFrenzy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNGolemStormBolt.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="RPG.View.ItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RPG.View"
+             xmlns:vm="clr-namespace:RPG.ViewModel"
+             xmlns:res="clr-namespace:RPG.Resource"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance vm:ItemsViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="200" d:DesignWidth="300">
+    <UserControl.Resources>
+        <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+    </UserControl.Resources>
+
+    <ListBox ItemsSource="{Binding Path=Items}">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <VirtualizingStackPanel Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Image Grid.RowSpan="2" Width="32" Height="32" Source="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}"></Image>
+                    <TextBlock Grid.Row="1" Foreground="White" Text="{Binding Path=Amount}" HorizontalAlignment="Right"></TextBlock>
+                    <TextBlock Grid.Row="2" Text="{Binding Path=Name}" HorizontalAlignment="Center"></TextBlock>
+                </Grid>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+
+</UserControl>

@@ -7,9 +7,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace RPG.ViewModel
 {
@@ -31,7 +28,7 @@ namespace RPG.ViewModel
                 Skills.Add(skill);
             }
         }
-        
+
         [Obsolete("This is ONLY used for Design view")]
         public SkillsViewModel()
         {

@@ -1,35 +1,45 @@
 ﻿<UserControl x:Class="RPG.View.SkillsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RPG.View"
              xmlns:vm="clr-namespace:RPG.ViewModel"
-             xmlns:infra="clr-namespace:RPG.Infrastructure"
-             mc:Ignorable="d" 
+             xmlns:res="clr-namespace:RPG.Resource"
+             mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:SkillsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <infra:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"></infra:ResourceKeyToImageConverter>
-        <DataTemplate x:Key="SkillImageColumn" >
-            <Image Source="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" Width="16" Height="16"></Image>
-        </DataTemplate>
-        <DataTemplate x:Key="SkillDescriptionColumn" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="15" Text="{Binding Path=Name}"></TextBlock>
-                <TextBlock Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="{Binding Path=LevelRequirement, StringFormat='等级 \{0\}'}"></TextBlock>
-                <TextBlock Grid.Row="1" Text="{Binding Path=Content}"></TextBlock>
-            </Grid>
-        </DataTemplate>
+        <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
     </UserControl.Resources>
+
     <DataGrid HeadersVisibility="None" ItemsSource="{Binding Path=Skills}" AutoGenerateColumns="False">
         <DataGrid.Columns>
-            <DataGridTemplateColumn CellTemplate="{StaticResource SkillImageColumn}"/>
-            <DataGridTemplateColumn CellTemplate="{StaticResource SkillDescriptionColumn}"/>
+            <DataGridTemplateColumn IsReadOnly="True">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Source="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" Width="32" Height="32"></Image>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" FontSize="15" Text="{Binding Path=Name}"></TextBlock>
+                            <TextBlock Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="{Binding Path=LevelRequirement, StringFormat='等级 \{0\}'}"></TextBlock>
+                            <TextBlock Grid.Row="1" Text="{Binding Path=Content}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
             <DataGridCheckBoxColumn Binding="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </DataGrid.Columns>
     </DataGrid>

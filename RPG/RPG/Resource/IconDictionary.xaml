@@ -2,5 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RPG.Resource"
                     x:Name="IconResourceDictionary">
-    <BitmapImage x:Key="Chest" UriSource="Icons\Solid Iron Chest.ico"></BitmapImage>
+    <BitmapImage x:Key="BTNCleavingAttack" UriSource="Icons/BTNCleavingAttack.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNFireBolt" UriSource="Icons/BTNFireBolt.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNGolemStormBolt" UriSource="Icons/BTNGolemStormBolt.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNStormBolt" UriSource="Icons/BTNStormBolt.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNUnholyFrenzy" UriSource="Icons/BTNUnholyFrenzy.jpg"></BitmapImage>
 </ResourceDictionary>
