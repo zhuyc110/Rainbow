@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="RPG.Controls.IconItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RPG.Controls"
+             xmlns:res="clr-namespace:RPG.Resource"
+             mc:Ignorable="d"
+             d:DesignHeight="36" d:DesignWidth="36">
+    <UserControl.Resources>
+        <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        <res:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.RowSpan="2" Width="36" Height="36" Background="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconItem}}}">
+            <Image Margin="2" Source="{Binding Path=Icon, RelativeSource={RelativeSource AncestorType={x:Type local:IconItem}}}"></Image>
+        </DockPanel>
+        <TextBlock Grid.Row="1" Margin="0,0,1,0" Foreground="White" Text="{Binding Path=Amount, RelativeSource={RelativeSource AncestorType={x:Type local:IconItem}}}" HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="2" Text="{Binding Path=ItemName, RelativeSource={RelativeSource AncestorType={x:Type local:IconItem}}}" HorizontalAlignment="Center"></TextBlock>
+    </Grid>
+</UserControl>

@@ -22,9 +22,9 @@ namespace RPG.Model.Items
 
         public string Content { get; protected set; }
 
-        public string IconResource { get; protected set; }
+        public string IconResource { get; set; }
 
-        public string Name { get; protected set; }
+        public string Name { get; set; }
 
         public Rarity Rarity { get; protected set; }
 

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:RPG.View"
              xmlns:vm="clr-namespace:RPG.ViewModel"
              xmlns:res="clr-namespace:RPG.Resource"
+             xmlns:control="clr-namespace:RPG.Controls"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:ItemsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="200" d:DesignWidth="300">
@@ -13,24 +14,19 @@
         <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
     </UserControl.Resources>
 
-    <ListBox ItemsSource="{Binding Path=Items}">
+    <ListBox ItemsSource="{Binding Path=Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
-                <VirtualizingStackPanel Orientation="Horizontal"/>
+                <WrapPanel/>
             </ItemsPanelTemplate>
         </ListBox.ItemsPanel>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Image Grid.RowSpan="2" Width="32" Height="32" Source="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}"></Image>
-                    <TextBlock Grid.Row="1" Foreground="White" Text="{Binding Path=Amount}" HorizontalAlignment="Right"></TextBlock>
-                    <TextBlock Grid.Row="2" Text="{Binding Path=Name}" HorizontalAlignment="Center"></TextBlock>
-                </Grid>
+                <control:IconItem Amount="{Binding Path=Amount}" 
+                                  Rarity="{Binding Path=Rarity}"
+                                  Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
+                                  ItemName="{Binding Path=Name}">                    
+                </control:IconItem>
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>

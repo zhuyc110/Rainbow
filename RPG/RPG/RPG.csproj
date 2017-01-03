@@ -76,13 +76,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\IconItem.xaml.cs">
+      <DependentUpon>IconItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
+    <Compile Include="Model\Items\Gemstone.cs" />
     <Compile Include="Model\Items\ItemBase.cs" />
     <Compile Include="Model\Items\Stone.cs" />
     <Compile Include="Model\Rarity.cs" />
     <Compile Include="Module\ItemsModule.cs" />
+    <Compile Include="Resource\RarityToBrushConverter.cs" />
     <Compile Include="Resource\ResourceKeyToImageConverter.cs" />
     <Compile Include="Model\Skills\SkillBase.cs" />
     <Compile Include="Model\Skills\Fireball.cs" />
@@ -98,6 +103,10 @@
     <Compile Include="View\SkillsView.xaml.cs">
       <DependentUpon>SkillsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\IconItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -167,6 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Icons\BTNGolemStormBolt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNGem.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

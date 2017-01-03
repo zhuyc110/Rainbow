@@ -29,6 +29,13 @@ namespace RPG.ViewModel
         {
             Items = new ObservableCollection<IItem>
             {
+                new Model.Items.Stone(),
+                new Model.Items.Stone(),
+                new Model.Items.Stone(),
+                new Model.Items.Stone(),
+                new Model.Items.Stone(),
+                new Model.Items.Stone(),
+                new Model.Items.Stone(),
                 new Model.Items.Stone()
             };
         }
