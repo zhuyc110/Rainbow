@@ -5,19 +5,13 @@ namespace RPG.Model.Items
 {
     public abstract class ItemBase : BindableBase, IItem
     {
-        private int _amount = 0;
+        private int _amount;
 
         public int Amount
         {
-            get
-            {
-                return _amount;
-            }
+            get { return _amount; }
 
-            set
-            {
-                SetProperty(ref _amount, value);
-            }
+            set { SetProperty(ref _amount, value); }
         }
 
         public string Content { get; protected set; }

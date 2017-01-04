@@ -6,20 +6,20 @@ using RPG.View;
 
 namespace RPG.Module
 {
-    [ModuleExport(typeof (ItemsModule))]
-    public class ItemsModule : IModule
+    [ModuleExport(typeof (SkillsModule))]
+    public class SkillsModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         [ImportingConstructor]
-        public ItemsModule(IRegionManager regionManager)
+        public SkillsModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion(nameof(ItemsModule), typeof (ItemsView));
+            _regionManager.RegisterViewWithRegion(nameof(SkillsModule), typeof (SkillsView));
         }
     }
 }

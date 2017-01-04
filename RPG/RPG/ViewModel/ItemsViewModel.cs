@@ -1,10 +1,11 @@
-﻿using Prism.Mvvm;
-using RPG.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Prism.Mvvm;
+using RPG.Model.Interfaces;
+using RPG.Model.Items;
 
 namespace RPG.ViewModel
 {
@@ -12,10 +13,8 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ItemsViewModel : BindableBase
     {
-        public ObservableCollection<IItem> Items { get; private set; }
-
         [ImportingConstructor]
-        public ItemsViewModel([ImportMany]IEnumerable<IItem> items)
+        public ItemsViewModel([ImportMany] IEnumerable<IItem> items)
         {
             Items = new ObservableCollection<IItem>();
             foreach (var item in items.OrderBy(x => x.Rarity))
@@ -29,15 +28,17 @@ namespace RPG.ViewModel
         {
             Items = new ObservableCollection<IItem>
             {
-                new Model.Items.Stone(),
-                new Model.Items.Stone(),
-                new Model.Items.Stone(),
-                new Model.Items.Stone(),
-                new Model.Items.Stone(),
-                new Model.Items.Stone(),
-                new Model.Items.Stone(),
-                new Model.Items.Stone()
+                new Stone(),
+                new Stone(),
+                new Stone(),
+                new Stone(),
+                new Stone(),
+                new Stone(),
+                new Stone(),
+                new Stone()
             };
         }
+
+        public ObservableCollection<IItem> Items { get; }
     }
 }

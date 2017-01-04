@@ -1,6 +1,5 @@
 ﻿using RPG.Model;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace RPG.Controls
@@ -8,7 +7,7 @@ namespace RPG.Controls
     /// <summary>
     /// IconItem.xaml 的交互逻辑
     /// </summary>
-    public partial class IconItem : UserControl
+    public partial class IconItem
     {
         public static DependencyProperty AmountProperty =
             DependencyProperty.Register(nameof(Amount), typeof(int), typeof(IconItem), new FrameworkPropertyMetadata(0));

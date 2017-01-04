@@ -8,7 +8,6 @@
              mc:Ignorable="d"
              d:DesignHeight="36" d:DesignWidth="36">
     <UserControl.Resources>
-        <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
         <res:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
     </UserControl.Resources>
 
