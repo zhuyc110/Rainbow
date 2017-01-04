@@ -50,10 +50,12 @@ namespace RPG.ViewModel
                 return;
             }
 
-            if (Skills.Count(x => x.IsChecked) <= 3) return;
+            if (Skills.Count(x => x.IsChecked) <= 3)
             {
-                _ioService.ShowDialog("提示", "最多只能同时装备三个技能");
+                return;
             }
+
+            _ioService.ShowDialog("提示", "最多只能同时装备三个技能");
             var skill = sender as ISkill;
             if (skill != null)
             {
