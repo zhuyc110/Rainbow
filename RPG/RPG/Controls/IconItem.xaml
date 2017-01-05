@@ -23,4 +23,14 @@
         <TextBlock Grid.Row="1" Margin="0,0,1,0" Foreground="White" Text="{Binding Path=Amount, ElementName=IconItemControl}" HorizontalAlignment="Right"></TextBlock>
         <TextBlock Grid.Row="2" Text="{Binding Path=ItemName, ElementName=IconItemControl}" HorizontalAlignment="Center"></TextBlock>
     </Grid>
+    <UserControl.ToolTip>
+        <TextBlock TextWrapping="Wrap">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} * {1}">
+                    <Binding Path="ItemName"></Binding>
+                    <Binding Path="Amount"></Binding>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </UserControl.ToolTip>
 </UserControl>

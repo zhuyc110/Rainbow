@@ -25,17 +25,7 @@
                 <control:IconItem Amount="{Binding Path=Amount}" 
                                   Rarity="{Binding Path=Rarity}"
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
-                                  ItemName="{Binding Path=Name}">
-                    <control:IconItem.ToolTip>
-                        <TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0} * {1}">
-                                    <Binding Path="Name"></Binding>
-                                    <Binding Path="Amount"></Binding>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </control:IconItem.ToolTip>
+                                  ItemName="{Binding Path=ItemName}">
                 </control:IconItem>
             </DataTemplate>
         </ListView.ItemTemplate>

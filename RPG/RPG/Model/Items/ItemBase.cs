@@ -18,7 +18,7 @@ namespace RPG.Model.Items
 
         public string IconResource { get; set; }
 
-        public string Name { get; set; }
+        public string ItemName { get; set; }
 
         public Rarity Rarity { get; protected set; }
 

@@ -5,7 +5,7 @@ namespace RPG.Model.Interfaces
     [InheritedExport(typeof(IItem))]
     public interface IItem
     {
-        string Name { get; set; }
+        string ItemName { get; set; }
 
         string Content { get; }
 
