@@ -2,22 +2,19 @@
 using RPG.Model.Interfaces;
 using System.ComponentModel.Composition;
 
-namespace RPG.Model.Items
+namespace RPG.Model.Equipment
 {
-    [InheritedExport(typeof(ItemBase))]
-    public abstract class ItemBase : BindableBase, IItem
+    [InheritedExport(typeof(EquipmentBase))]
+    public abstract class EquipmentBase : BindableBase, IItem
     {
-        private int _amount;
-
-        public int Amount
+        private int _id;
+        public int Id
         {
-            get { return _amount; }
-
-            set
-            {
-                SetProperty(ref _amount, value > 99 ? 99 : value);
-            }
+            get { return _id; }
+            set { SetProperty(ref _id, value); }
         }
+
+        public int Amount => 1;
 
         public string Content { get; protected set; }
 

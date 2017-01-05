@@ -1,0 +1,44 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RPG.View"
+             xmlns:Resource="clr-namespace:RPG.Resource" x:Class="RPG.View.MainPage"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"/>
+    </UserControl.Resources>
+    <Grid x:Name="ContainerGrid" Width="400" Height="600" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.RowSpan="4" Source="..\Resource\Icons\Background-a.png" Stretch="Fill"></Image>
+        <Button Grid.Row="0" Content="角色强化" HorizontalAlignment="Left" Height="25" Width="75" Margin="5"/>
+        <Button Grid.Row="0" Content="公告" HorizontalAlignment="Right" Height="25" Width="75" Margin="5"/>
+        <Button Grid.Row="1" Content="黑市" HorizontalAlignment="Left" Height="50" Width="75" Margin="5"/>
+        <Button Grid.Row="1" Content="铁匠铺" HorizontalAlignment="Center" Height="50" Width="75" Margin="5"/>
+        <Button Grid.Row="1" Content="成就" HorizontalAlignment="Right" Height="50" Width="75" Margin="5"/>
+        <Button Grid.Row="2" Content="冒险" HorizontalAlignment="Left" Height="50" Width="75" Margin="5"/>
+        <Button Grid.Row="2" Content="副本" HorizontalAlignment="Center" Height="50" Width="75" Margin="5"/>
+        <Button Grid.Row="2" Content="深渊" HorizontalAlignment="Right" Height="50" Width="75" Margin="5"/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="提示" Height="25"  Margin="5"/>
+            <Button Grid.Column="1" Content="任务" Height="25"  Margin="5"/>
+            <Button Grid.Column="2" Content="礼包" Height="25"  Margin="5"/>
+            <Button Grid.Column="3" Content="兑换" Height="25"  Margin="5"/>
+            <Button Grid.Column="4" Content="更多" Height="25"  Margin="5"/>
+        </Grid>
+    </Grid>
+</UserControl>

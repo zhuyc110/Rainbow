@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="RPG.View.EquipmentView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:RPG.ViewModel"
+      xmlns:local="clr-namespace:RPG.View"
+      xmlns:res="clr-namespace:RPG.Resource"
+      xmlns:control="clr-namespace:RPG.Controls"
+      xmlns:model="clr-namespace:RPG.Model.Equipment"
+      mc:Ignorable="d" 
+      d:DataContext="{d:DesignInstance vm:EquipmentViewModel, IsDesignTimeCreatable=True}"
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+    </UserControl.Resources>
+
+    <ListView ItemsSource="{Binding Path=Equipments}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel/>
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+        <ListView.ItemTemplate>
+            <DataTemplate DataType="{x:Type model:EquipmentBase}">
+                <control:IconItem Amount="{Binding Path=Amount}" 
+                                  Rarity="{Binding Path=Rarity}"
+                                  ShowAmount="False"
+                                  Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
+                                  ItemName="{Binding Path=ItemName}">
+                </control:IconItem>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</UserControl>

@@ -81,12 +81,16 @@
     </Compile>
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
+    <Compile Include="Model\Equipment\BasicLance.cs" />
+    <Compile Include="Model\Equipment\EquipmentBase.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Items\Gemstone.cs" />
     <Compile Include="Model\Items\ItemBase.cs" />
     <Compile Include="Model\Items\Stone.cs" />
     <Compile Include="Model\Rarity.cs" />
+    <Compile Include="Module\EquipmentModule.cs" />
     <Compile Include="Module\ItemsModule.cs" />
+    <Compile Include="Module\MainModule.cs" />
     <Compile Include="Resource\RarityToBrushConverter.cs" />
     <Compile Include="Resource\ResourceKeyToImageConverter.cs" />
     <Compile Include="Model\Skills\SkillBase.cs" />
@@ -95,10 +99,17 @@
     <Compile Include="Model\Skills\HeavyStrike.cs" />
     <Compile Include="Model\Skills\Whirlwind.cs" />
     <Compile Include="Module\SkillsModule.cs" />
+    <Compile Include="ViewModel\EquipmentViewModel.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
     <Compile Include="ViewModel\SkillsViewModel.cs" />
+    <Compile Include="View\EquipmentView.xaml.cs">
+      <DependentUpon>EquipmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ItemsView.xaml.cs">
       <DependentUpon>ItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SkillsView.xaml.cs">
       <DependentUpon>SkillsView.xaml</DependentUpon>
@@ -128,7 +139,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\EquipmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +198,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Icons\BTNGem.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNSteelRanged.jpg" />
+    <Resource Include="Resource\Icons\BTNStrengthOfTheMoon.jpg" />
+    <Resource Include="Resource\Icons\BTNTheBlackArrow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Background-a.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

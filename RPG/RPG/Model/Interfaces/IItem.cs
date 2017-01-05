@@ -2,7 +2,6 @@
 
 namespace RPG.Model.Interfaces
 {
-    [InheritedExport(typeof(IItem))]
     public interface IItem
     {
         string ItemName { get; set; }
@@ -13,7 +12,7 @@ namespace RPG.Model.Interfaces
 
         int Worth { get; }
 
-        int Amount { get; set; }
+        int Amount { get; }
 
         string IconResource { get; set; }
     }

@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:res="clr-namespace:RPG.Resource"
+             xmlns:local="clr-namespace:RPG.Controls"
              mc:Ignorable="d"
              x:Name="IconItemControl"
              d:DesignHeight="36" d:DesignWidth="36">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <res:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
     </UserControl.Resources>
 
@@ -20,7 +22,9 @@
         <DockPanel Grid.RowSpan="2" Width="36" Height="36" Background="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}, ElementName=IconItemControl}">
             <Image Margin="2" Source="{Binding Path=Icon, ElementName=IconItemControl}"></Image>
         </DockPanel>
-        <TextBlock Grid.Row="1" Margin="0,0,1,0" Foreground="White" Text="{Binding Path=Amount, ElementName=IconItemControl}" HorizontalAlignment="Right"></TextBlock>
+        <TextBlock Grid.Row="1" Margin="0,0,1,0"
+                   Visibility="{Binding ShowAmount, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=IconItemControl}"
+                   Foreground="White" Text="{Binding Path=Amount, ElementName=IconItemControl}" HorizontalAlignment="Right"></TextBlock>
         <TextBlock Grid.Row="2" Text="{Binding Path=ItemName, ElementName=IconItemControl}" HorizontalAlignment="Center"></TextBlock>
     </Grid>
     <UserControl.ToolTip>

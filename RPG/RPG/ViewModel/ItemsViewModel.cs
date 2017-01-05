@@ -14,7 +14,7 @@ namespace RPG.ViewModel
     public class ItemsViewModel : BindableBase
     {
         [ImportingConstructor]
-        public ItemsViewModel([ImportMany] IEnumerable<IItem> items)
+        public ItemsViewModel([ImportMany] IEnumerable<ItemBase> items)
         {
             Items = new ObservableCollection<IItem>();
             foreach (var item in items.OrderBy(x => x.Rarity))
@@ -28,8 +28,8 @@ namespace RPG.ViewModel
         {
             Items = new ObservableCollection<IItem>
             {
-                new Stone(),
-                new Stone(),
+                new Stone { Amount = 100 },
+                new Stone { Amount = 10 },
                 new Stone(),
                 new Stone(),
                 new Stone(),
