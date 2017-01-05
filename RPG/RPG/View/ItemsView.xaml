@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:RPG.ViewModel"
              xmlns:res="clr-namespace:RPG.Resource"
              xmlns:control="clr-namespace:RPG.Controls"
+             xmlns:model="clr-namespace:RPG.Model.Items"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:ItemsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="200" d:DesignWidth="300">
@@ -13,21 +14,31 @@
         <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
     </UserControl.Resources>
 
-    <ListBox ItemsSource="{Binding Path=Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-        <ListBox.ItemsPanel>
+    <ListView ItemsSource="{Binding Path=Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+        <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel/>
             </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-        <ListBox.ItemTemplate>
-            <DataTemplate>
+        </ListView.ItemsPanel>
+        <ListView.ItemTemplate>
+            <DataTemplate DataType="{x:Type model:ItemBase}">
                 <control:IconItem Amount="{Binding Path=Amount}" 
                                   Rarity="{Binding Path=Rarity}"
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
-                                  ItemName="{Binding Path=Name}">                    
+                                  ItemName="{Binding Path=Name}">
+                    <control:IconItem.ToolTip>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} * {1}">
+                                    <Binding Path="Name"></Binding>
+                                    <Binding Path="Amount"></Binding>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </control:IconItem.ToolTip>
                 </control:IconItem>
             </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+        </ListView.ItemTemplate>
+    </ListView>
 
 </UserControl>

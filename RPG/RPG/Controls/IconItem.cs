@@ -1,5 +1,6 @@
 ﻿using RPG.Model;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace RPG.Controls
@@ -7,19 +8,19 @@ namespace RPG.Controls
     /// <summary>
     /// IconItem.xaml 的交互逻辑
     /// </summary>
-    public partial class IconItem
+    public class IconItem : UserControl
     {
         public static DependencyProperty AmountProperty =
-            DependencyProperty.Register(nameof(Amount), typeof(int), typeof(IconItem), new PropertyMetadata(default(int)));
+            DependencyProperty.Register(nameof(Amount), typeof(int), typeof(IconItem), new FrameworkPropertyMetadata(0));
 
         public static DependencyProperty IconProperty =
-            DependencyProperty.Register(nameof(Icon), typeof(ImageSource), typeof(IconItem), new PropertyMetadata(default(ImageSource)));
+            DependencyProperty.Register(nameof(Icon), typeof(ImageSource), typeof(IconItem), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static DependencyProperty ItemNameProperty =
-            DependencyProperty.Register(nameof(ItemName), typeof(string), typeof(IconItem), new PropertyMetadata(default(string)));
+            DependencyProperty.Register(nameof(ItemName), typeof(string), typeof(IconItem), new FrameworkPropertyMetadata(""));
 
         public static DependencyProperty RarityProperty =
-            DependencyProperty.Register(nameof(Rarity), typeof(Rarity), typeof(IconItem), new PropertyMetadata(default(Rarity)));
+            DependencyProperty.Register(nameof(Rarity), typeof(Rarity), typeof(IconItem), new FrameworkPropertyMetadata(Rarity.Normal, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public int Amount
         {
@@ -43,11 +44,6 @@ namespace RPG.Controls
         {
             get { return (Rarity)GetValue(RarityProperty); }
             set { SetValue(RarityProperty, value); }
-        }
-
-        public IconItem()
-        {
-            InitializeComponent();
         }
     }
 }

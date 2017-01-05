@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:RPG.Resource"
+                    xmlns:controls="clr-namespace:RPG.Controls">
+
+    <converters:RarityToBrushConverter x:Key="RarityToBrushConverter" />
+    
+    <ControlTemplate TargetType="controls:IconItem" x:Key="IconItemControlTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.RowSpan="2" Width="36" Height="36"
+                   Background="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:IconItem}}}">
+                <Image Margin="2"
+                   Source="{Binding Path=Icon, RelativeSource={RelativeSource AncestorType={x:Type controls:IconItem}}}" />
+            </DockPanel>
+            <TextBlock x:Name="Part_Amount" Grid.Row="1" Margin="0,0,1,0" Foreground="White"
+                   Text="{Binding Path=Amount, RelativeSource={RelativeSource AncestorType={x:Type controls:IconItem}}}"
+                   HorizontalAlignment="Right" />
+            <TextBlock x:Name="Part_ItemName" Grid.Row="2"
+                   Text="{Binding Path=ItemName, RelativeSource={RelativeSource AncestorType={x:Type controls:IconItem}}}"
+                   HorizontalAlignment="Center" />
+        </Grid>
+    </ControlTemplate>
+    
+    <Style TargetType="controls:IconItem">
+        <Setter Property="Template" Value="{StaticResource IconItemControlTemplate}"/>
+    </Style>
+    
+</ResourceDictionary>
