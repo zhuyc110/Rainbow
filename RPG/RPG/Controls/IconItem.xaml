@@ -22,19 +22,9 @@
         <DockPanel Grid.RowSpan="2" Width="36" Height="36" Background="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}, ElementName=IconItemControl}">
             <Image Margin="2" Source="{Binding Path=Icon, ElementName=IconItemControl}"></Image>
         </DockPanel>
-        <TextBlock Grid.Row="1" Margin="0,0,1,0"
+        <TextBlock Grid.Row="1" Margin="0,0,5,0"
                    Visibility="{Binding ShowAmount, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=IconItemControl}"
                    Foreground="White" Text="{Binding Path=Amount, ElementName=IconItemControl}" HorizontalAlignment="Right"></TextBlock>
-        <TextBlock Grid.Row="2" Text="{Binding Path=ItemName, ElementName=IconItemControl}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" TextAlignment="Center" Text="{Binding Path=ItemName, ElementName=IconItemControl}" HorizontalAlignment="Center" Width="48"></TextBlock>
     </Grid>
-    <UserControl.ToolTip>
-        <TextBlock TextWrapping="Wrap">
-            <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0} * {1}">
-                    <Binding Path="ItemName"></Binding>
-                    <Binding Path="Amount"></Binding>
-                </MultiBinding>
-            </TextBlock.Text>
-        </TextBlock>
-    </UserControl.ToolTip>
 </UserControl>

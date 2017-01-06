@@ -6,10 +6,33 @@
              xmlns:local="clr-namespace:RPG.View"
              xmlns:Resource="clr-namespace:RPG.Resource" x:Class="RPG.View.MainPage"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="400">
     <UserControl.Resources>
-        <Resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Resource\IconDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"/>
+            
+            <Style TargetType="Button" x:Key="BigButton">
+                <Setter Property="Width" Value="75"></Setter>
+                <Setter Property="Height" Value="75"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Rectangle Fill="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
+    
     <Grid x:Name="ContainerGrid" Width="400" Height="600" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -20,12 +43,54 @@
         <Image Grid.RowSpan="4" Source="..\Resource\Icons\Background-a.png" Stretch="Fill"></Image>
         <Button Grid.Row="0" Content="角色强化" HorizontalAlignment="Left" Height="25" Width="75" Margin="5"/>
         <Button Grid.Row="0" Content="公告" HorizontalAlignment="Right" Height="25" Width="75" Margin="5"/>
-        <Button Grid.Row="1" Content="黑市" HorizontalAlignment="Left" Height="50" Width="75" Margin="5"/>
-        <Button Grid.Row="1" Content="铁匠铺" HorizontalAlignment="Center" Height="50" Width="75" Margin="5"/>
-        <Button Grid.Row="1" Content="成就" HorizontalAlignment="Right" Height="50" Width="75" Margin="5"/>
-        <Button Grid.Row="2" Content="冒险" HorizontalAlignment="Left" Height="50" Width="75" Margin="5"/>
-        <Button Grid.Row="2" Content="副本" HorizontalAlignment="Center" Height="50" Width="75" Margin="5"/>
-        <Button Grid.Row="2" Content="深渊" HorizontalAlignment="Right" Height="50" Width="75" Margin="5"/>
+        <Button Grid.Row="1" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
+            <Button.Background>
+                <ImageBrush ImageSource="{StaticResource BTNTombOfRelics}"></ImageBrush>
+            </Button.Background>
+            <Button.Content>
+                <TextBlock Foreground="White" FontSize="15" Text="黑市"></TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource BigButton}">
+            <Button.Background>
+                <ImageBrush ImageSource="{StaticResource BTNBlacksmith}"></ImageBrush>
+            </Button.Background>
+            <Button.Content>
+                <TextBlock Foreground="White" FontSize="15" Text="铁匠铺"></TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="1" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
+            <Button.Background>
+                <ImageBrush ImageSource="{StaticResource BTNUndeadCaptureFlag}"></ImageBrush>
+            </Button.Background>
+            <Button.Content>
+                <TextBlock Foreground="White" FontSize="15" Text="成就"></TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
+            <Button.Background>
+                <ImageBrush ImageSource="{StaticResource BTNHoldPosition}"></ImageBrush>
+            </Button.Background>
+            <Button.Content>
+                <TextBlock Foreground="White" FontSize="15" Text="冒险"></TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource BigButton}">
+            <Button.Background>
+                <ImageBrush ImageSource="{StaticResource BTNDarkPortal}"></ImageBrush>
+            </Button.Background>
+            <Button.Content>
+                <TextBlock Foreground="White" FontSize="15" Text="副本"></TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
+            <Button.Background>
+                <ImageBrush ImageSource="{StaticResource BTNVengeanceIncarnate}"></ImageBrush>
+            </Button.Background>
+            <Button.Content>
+                <TextBlock Foreground="White" FontSize="15" Text="深渊"></TextBlock>
+            </Button.Content>
+        </Button>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

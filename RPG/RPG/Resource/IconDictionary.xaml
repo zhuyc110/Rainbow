@@ -1,14 +1,23 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RPG.Resource">
+    <BitmapImage x:Key="BTNSteelRanged" UriSource="Icons/Equipments/BTNSteelRanged.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNStrengthOfTheMoon" UriSource="Icons/Equipments/BTNStrengthOfTheMoon.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNTheBlackArrow" UriSource="Icons/Equipments/BTNTheBlackArrow.jpg"></BitmapImage>
+
+    <BitmapImage x:Key="BTNGem" UriSource="Icons/Items/BTNGem.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNGolemStormBolt" UriSource="Icons/Items/BTNGolemStormBolt.jpg"></BitmapImage>
+
     <BitmapImage x:Key="Background" UriSource="Icons/Background-a.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNBlacksmith" UriSource="Icons/BTNBlacksmith.jpg"></BitmapImage>
     <BitmapImage x:Key="BTNCleavingAttack" UriSource="Icons/BTNCleavingAttack.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNDarkPortal" UriSource="Icons/BTNDarkPortal.jpg"></BitmapImage>
     <BitmapImage x:Key="BTNFireBolt" UriSource="Icons/BTNFireBolt.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNGem" UriSource="Icons/BTNGem.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNGolemStormBolt" UriSource="Icons/BTNGolemStormBolt.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNSteelRanged" UriSource="Icons/BTNSteelRanged.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNHoldPosition" UriSource="Icons/BTNHoldPosition.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNMove" UriSource="Icons/BTNMove.jpg"></BitmapImage>
     <BitmapImage x:Key="BTNStormBolt" UriSource="Icons/BTNStormBolt.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNStrengthOfTheMoon" UriSource="Icons/BTNStrengthOfTheMoon.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNTheBlackArrow" UriSource="Icons/BTNTheBlackArrow.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNTombOfRelics" UriSource="Icons/BTNTombOfRelics.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNUndeadCaptureFlag" UriSource="Icons/BTNUndeadCaptureFlag.jpg"></BitmapImage>
     <BitmapImage x:Key="BTNUnholyFrenzy" UriSource="Icons/BTNUnholyFrenzy.jpg"></BitmapImage>
+    <BitmapImage x:Key="BTNVengeanceIncarnate" UriSource="Icons/BTNVengeanceIncarnate.jpg"></BitmapImage>
 </ResourceDictionary>

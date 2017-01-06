@@ -29,6 +29,9 @@
                                   ShowAmount="False"
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
                                   ItemName="{Binding Path=ItemName}">
+                    <control:IconItem.ToolTip>
+                        <TextBlock Text="{Binding ItemName}"/>
+                    </control:IconItem.ToolTip>
                 </control:IconItem>
             </DataTemplate>
         </ListView.ItemTemplate>

@@ -194,18 +194,35 @@
     <Resource Include="Resource\Icons\BTNUnholyFrenzy.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\BTNGolemStormBolt.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Icons\BTNGem.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Icons\BTNSteelRanged.jpg" />
-    <Resource Include="Resource\Icons\BTNStrengthOfTheMoon.jpg" />
-    <Resource Include="Resource\Icons\BTNTheBlackArrow.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\Icons\Background-a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Items\BTNGem.jpg" />
+    <Resource Include="Resource\Icons\Items\BTNGolemStormBolt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Equipments\BTNSteelRanged.jpg" />
+    <Resource Include="Resource\Icons\Equipments\BTNStrengthOfTheMoon.jpg" />
+    <Resource Include="Resource\Icons\Equipments\BTNTheBlackArrow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNTombOfRelics.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNBlacksmith.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNMove.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNUndeadCaptureFlag.jpg" />
+    <Resource Include="Resource\Icons\BTNVengeanceIncarnate.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNHoldPosition.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNDarkPortal.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

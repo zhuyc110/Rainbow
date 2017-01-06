@@ -27,6 +27,16 @@
                                   ShowAmount="True"
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
                                   ItemName="{Binding Path=ItemName}">
+                    <control:IconItem.ToolTip>
+                        <TextBlock TextWrapping="Wrap">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} * {1}">
+                                    <Binding Path="ItemName"></Binding>
+                                    <Binding Path="Amount"></Binding>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </control:IconItem.ToolTip>
                 </control:IconItem>
             </DataTemplate>
         </ListView.ItemTemplate>

@@ -4,8 +4,8 @@
     {
         public BasicLance()
         {
-            Content = "基础的矛";
-            ItemName = "长矛";
+            Content = "基础的长枪";
+            ItemName = "长枪";
             Rarity = Rarity.Normal;
             Worth = 2000;
             IconResource = "BTNSteelRanged";
