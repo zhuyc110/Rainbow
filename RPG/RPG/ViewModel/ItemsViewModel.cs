@@ -19,8 +19,21 @@ namespace RPG.ViewModel
             Items = new ObservableCollection<IItem>();
             foreach (var item in items.OrderBy(x => x.Rarity))
             {
+                item.OnItemSoldOut += Item_OnItemSoldOut;
                 Items.Add(item);
             }
+        }
+
+        private void Item_OnItemSoldOut(object sender, SellEventArgs e)
+        {
+            var item = e.Item as ItemBase;
+            if(item == null)
+            {
+                return;
+            }
+
+            item.OnItemSoldOut -= Item_OnItemSoldOut;
+            Items.Remove(item);
         }
 
         [Obsolete("This is ONLY used for Design view")]

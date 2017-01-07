@@ -79,13 +79,16 @@
     <Compile Include="Controls\IconItem.xaml.cs">
       <DependentUpon>IconItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Extension\EnumExtension.cs" />
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
     <Compile Include="Model\Equipment\BasicLance.cs" />
     <Compile Include="Model\Equipment\EquipmentBase.cs" />
+    <Compile Include="Model\Equipment\EquipmentPart.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Items\Gemstone.cs" />
     <Compile Include="Model\Items\ItemBase.cs" />
+    <Compile Include="Model\Items\SellEventArgs.cs" />
     <Compile Include="Model\Items\Stone.cs" />
     <Compile Include="Model\Rarity.cs" />
     <Compile Include="Module\EquipmentModule.cs" />

@@ -1,7 +1,9 @@
-﻿namespace RPG.Infrastructure.Interfaces
+﻿using System.Windows;
+
+namespace RPG.Infrastructure.Interfaces
 {
     public interface IIOService
     {
-        void ShowDialog(string title, string content);
+        MessageBoxResult ShowDialog(string title, string content);
     }
 }

@@ -30,7 +30,14 @@
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
                                   ItemName="{Binding Path=ItemName}">
                     <control:IconItem.ToolTip>
-                        <TextBlock Text="{Binding ItemName}"/>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0}: {1}">
+                                    <Binding Path="EquipmentPartString"></Binding>
+                                    <Binding Path="ItemName"></Binding>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </control:IconItem.ToolTip>
                 </control:IconItem>
             </DataTemplate>

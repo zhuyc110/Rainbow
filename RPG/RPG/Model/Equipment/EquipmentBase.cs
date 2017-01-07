@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using RPG.Infrastructure.Extension;
 using RPG.Model.Interfaces;
 using System.ComponentModel.Composition;
 
@@ -25,5 +26,9 @@ namespace RPG.Model.Equipment
         public Rarity Rarity { get; protected set; }
 
         public int Worth { get; protected set; }
+
+        protected EquipmentPart Part { get; set; }
+
+        public string EquipmentPartString => Part.GetDescription();
     }
 }

@@ -8,9 +8,9 @@ namespace RPG.Infrastructure.Implementation
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class IOService : IIOService
     {
-        public void ShowDialog(string title, string content)
+        public MessageBoxResult ShowDialog(string title, string content)
         {
-            MessageBox.Show(content, title);
+            return MessageBox.Show(content, title, MessageBoxButton.YesNo);
         }
     }
 }

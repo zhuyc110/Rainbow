@@ -12,6 +12,14 @@
              d:DesignHeight="200" d:DesignWidth="300">
     <UserControl.Resources>
         <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        <Style x:Key="iconItemStyle" TargetType="control:IconItem">
+            <Setter Property="Visibility" Value="Visible"></Setter>
+            <Style.Triggers>
+                <Trigger Property="Amount" Value="0">
+                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <ListView ItemsSource="{Binding Path=Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
@@ -22,7 +30,7 @@
         </ListView.ItemsPanel>
         <ListView.ItemTemplate>
             <DataTemplate DataType="{x:Type model:ItemBase}">
-                <control:IconItem Amount="{Binding Path=Amount}" 
+                <control:IconItem Amount="{Binding Path=Amount}" Style="{StaticResource iconItemStyle}"
                                   Rarity="{Binding Path=Rarity}"
                                   ShowAmount="True"
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
@@ -37,6 +45,12 @@
                             </TextBlock.Text>
                         </TextBlock>
                     </control:IconItem.ToolTip>
+                    <control:IconItem.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="出售" Command="{Binding Path=SellSelf}"></MenuItem>
+                            <MenuItem Header="出售全部" Command="{Binding Path=SellAll}"></MenuItem>
+                        </ContextMenu>
+                    </control:IconItem.ContextMenu>
                 </control:IconItem>
             </DataTemplate>
         </ListView.ItemTemplate>

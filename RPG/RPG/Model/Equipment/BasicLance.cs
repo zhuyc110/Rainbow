@@ -9,6 +9,7 @@
             Rarity = Rarity.Normal;
             Worth = 2000;
             IconResource = "BTNSteelRanged";
+            Part = EquipmentPart.Weapon;
         }
     }
 }
