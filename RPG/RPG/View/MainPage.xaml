@@ -36,14 +36,46 @@
     <Grid x:Name="ContainerGrid" Width="400" Height="600" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Image Grid.RowSpan="4" Source="..\Resource\Icons\Background-a.png" Stretch="Fill"></Image>
-        <Button Grid.Row="0" Content="角色强化" HorizontalAlignment="Left" Height="25" Width="75" Margin="5"/>
-        <Button Grid.Row="0" Content="公告" HorizontalAlignment="Right" Height="25" Width="75" Margin="5"/>
-        <Button Grid.Row="1" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
+        <Image Grid.RowSpan="5" Source="..\Resource\Icons\Background-a.png" Stretch="Fill"></Image>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="0" Text="称号" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="15" Foreground="White" Grid.Column="1" Grid.Row="0" Text="能虐老韩的sky" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="1" Text="等级" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="15" Foreground="White" Grid.Column="1" Grid.Row="1" Text="233" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                <Image Source="{StaticResource BTNChestOfGold}" Width="28" Height="28"></Image>
+                <TextBlock Margin="5" Foreground="White" VerticalAlignment="Center">10000</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                <Image Source="{StaticResource BTNEnchantedGemstone}" Width="28" Height="28"></Image>
+                <TextBlock Margin="5" Foreground="White" VerticalAlignment="Center">200</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <TextBlock Foreground="White" Text="经验" VerticalAlignment="Center"></TextBlock>
+                <Grid  Margin="15,0,0,0">
+                    <Rectangle Width="150" Height="10" Fill="#FEDFE1" HorizontalAlignment="Left"></Rectangle>
+                    <Rectangle Width="50" Height="10" Fill="#1B813E" HorizontalAlignment="Left"></Rectangle>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="1" Content="角色强化" HorizontalAlignment="Left" Height="25" Width="75" Margin="5"/>
+        <Button Grid.Row="1" Content="公告" HorizontalAlignment="Right" Height="25" Width="75" Margin="5"/>
+        <Button Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNTombOfRelics}"></ImageBrush>
             </Button.Background>
@@ -51,7 +83,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="黑市"></TextBlock>
             </Button.Content>
         </Button>
-        <Button Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource BigButton}">
+        <Button Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource BigButton}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNBlacksmith}"></ImageBrush>
             </Button.Background>
@@ -59,7 +91,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="铁匠铺"></TextBlock>
             </Button.Content>
         </Button>
-        <Button Grid.Row="1" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
+        <Button Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNUndeadCaptureFlag}"></ImageBrush>
             </Button.Background>
@@ -67,7 +99,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="成就"></TextBlock>
             </Button.Content>
         </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
+        <Button Grid.Row="3" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNHoldPosition}"></ImageBrush>
             </Button.Background>
@@ -75,7 +107,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="冒险"></TextBlock>
             </Button.Content>
         </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource BigButton}">
+        <Button Grid.Row="3" HorizontalAlignment="Center" Style="{StaticResource BigButton}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNDarkPortal}"></ImageBrush>
             </Button.Background>
@@ -83,7 +115,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="副本"></TextBlock>
             </Button.Content>
         </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
+        <Button Grid.Row="3" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNVengeanceIncarnate}"></ImageBrush>
             </Button.Background>
@@ -91,7 +123,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="深渊"></TextBlock>
             </Button.Content>
         </Button>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

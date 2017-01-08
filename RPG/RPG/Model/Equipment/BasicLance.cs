@@ -8,7 +8,7 @@
             ItemName = "长枪";
             Rarity = Rarity.Normal;
             Worth = 2000;
-            IconResource = "BTNSteelRanged";
+            IconResource = "INV_Spear_05";
             Part = EquipmentPart.Weapon;
         }
     }

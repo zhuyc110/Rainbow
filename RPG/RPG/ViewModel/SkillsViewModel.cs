@@ -55,7 +55,7 @@ namespace RPG.ViewModel
                 return;
             }
 
-            _ioService.ShowDialog("提示", "最多只能同时装备三个技能");
+            _ioService.ShowMessage("提示", "最多只能同时装备三个技能");
             var skill = sender as ISkill;
             if (skill != null)
             {

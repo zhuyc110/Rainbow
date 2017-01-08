@@ -85,8 +85,9 @@
     <Compile Include="Model\Equipment\BasicLance.cs" />
     <Compile Include="Model\Equipment\EquipmentBase.cs" />
     <Compile Include="Model\Equipment\EquipmentPart.cs" />
+    <Compile Include="Model\Equipment\UltimateChestPlate.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
-    <Compile Include="Model\Items\Gemstone.cs" />
+    <Compile Include="Model\Items\Beryl.cs" />
     <Compile Include="Model\Items\ItemBase.cs" />
     <Compile Include="Model\Items\SellEventArgs.cs" />
     <Compile Include="Model\Items\Stone.cs" />
@@ -204,11 +205,6 @@
     <Resource Include="Resource\Icons\Items\BTNGolemStormBolt.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\Equipments\BTNSteelRanged.jpg" />
-    <Resource Include="Resource\Icons\Equipments\BTNStrengthOfTheMoon.jpg" />
-    <Resource Include="Resource\Icons\Equipments\BTNTheBlackArrow.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\Icons\BTNTombOfRelics.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +222,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Icons\BTNDarkPortal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Equipments\INV_Chest_Plate14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Equipments\INV_Chest_Plate03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Equipments\INV_Spear_05.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Items\INV_Misc_Gem_Emerald_02.jpg" />
+    <Resource Include="Resource\Icons\Items\INV_Stone_06.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNChestOfGold.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\BTNEnchantedGemstone.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,7 +9,7 @@
             ItemName = "石头";
             Rarity = Rarity.Normal;
             Worth = 200;
-            IconResource = "BTNGolemStormBolt";
+            IconResource = "INV_Stone_06";
         }
     }
 }

@@ -2,7 +2,44 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:control="clr-namespace:RPG.Controls"
                     xmlns:local="clr-namespace:RPG.Resource">
-    <!--<Style TargetType="{x:Type control:IconItem}">
-        
-    </Style>-->
+    <Style x:Key="CheckBoxBaseStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Width="25" Height="25" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="checkedPath" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2" Visibility="Collapsed" Data="M2,10 L8,16 18,4">
+                                </Path>
+                                <Rectangle x:Name="nullRec" Width="8" Height="8" Fill="{TemplateBinding BorderBrush}" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                                </Rectangle>
+                            </Grid>
+                            <!--<Border.RenderTransform>
+                                <RotateTransform Angle="45" CenterX="12.5" CenterY="12.5" />
+                            </Border.RenderTransform>-->
+                        </Border>
+                        <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="checkedPath" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="nullRec" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="HasContent" Value="true">
+                            <Setter Property="Padding" Value="4,0,0,0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
