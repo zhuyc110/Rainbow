@@ -2,9 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RPG.View"
-             xmlns:Resource="clr-namespace:RPG.Resource" x:Class="RPG.View.MainPage"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:resource="clr-namespace:RPG.Resource" x:Class="RPG.View.MainPage"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="400">
     <UserControl.Resources>
@@ -12,8 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="..\Resource\IconDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <Resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"/>
-            
+
             <Style TargetType="Button" x:Key="BigButton">
                 <Setter Property="Width" Value="75"></Setter>
                 <Setter Property="Height" Value="75"></Setter>
@@ -53,10 +51,10 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="0" Text="称号" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock FontSize="15" Foreground="White" Grid.Column="1" Grid.Row="0" Text="能虐老韩的sky" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="1" Text="等级" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock FontSize="15" Foreground="White" Grid.Column="1" Grid.Row="1" Text="233" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="0" Text="称号" Margin="5" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+            <TextBlock FontSize="15" Foreground="#1B813E" Grid.Column="1" Grid.Row="0" Text="能虐老韩的sky" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="1" Text="等级" Margin="5" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+            <TextBlock FontSize="15" Foreground="#FEDFE1" Grid.Column="1" Grid.Row="1" Text="233" Margin="5" VerticalAlignment="Center"></TextBlock>
             <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
                 <Image Source="{StaticResource BTNChestOfGold}" Width="28" Height="28"></Image>
                 <TextBlock Margin="5" Foreground="White" VerticalAlignment="Center">10000</TextBlock>

@@ -87,11 +87,17 @@
     <Compile Include="Model\Equipment\EquipmentPart.cs" />
     <Compile Include="Model\Equipment\UltimateChestPlate.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
+    <Compile Include="Model\Interfaces\ITitleManager.cs" />
+    <Compile Include="Model\Interfaces\IUserProperty.cs" />
+    <Compile Include="Model\Interfaces\IUserState.cs" />
     <Compile Include="Model\Items\Beryl.cs" />
     <Compile Include="Model\Items\ItemBase.cs" />
     <Compile Include="Model\Items\SellEventArgs.cs" />
     <Compile Include="Model\Items\Stone.cs" />
     <Compile Include="Model\Rarity.cs" />
+    <Compile Include="Model\UserProperties\PropertyAttack.cs" />
+    <Compile Include="Model\UserProperties\UserPropertyBase.cs" />
+    <Compile Include="Model\UserState.cs" />
     <Compile Include="Module\EquipmentModule.cs" />
     <Compile Include="Module\ItemsModule.cs" />
     <Compile Include="Module\MainModule.cs" />

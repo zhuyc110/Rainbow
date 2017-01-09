@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:control="clr-namespace:RPG.Controls"
-                    xmlns:local="clr-namespace:RPG.Resource">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
     <Style x:Key="CheckBoxBaseStyle" TargetType="{x:Type CheckBox}">
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Padding" Value="0"/>
