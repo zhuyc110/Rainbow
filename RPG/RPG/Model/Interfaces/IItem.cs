@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Composition;
-
-namespace RPG.Model.Interfaces
+﻿namespace RPG.Model.Interfaces
 {
     public interface IItem
     {

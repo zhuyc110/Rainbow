@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="RPG.View.AchievementsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             xmlns:achivements="clr-namespace:RPG.Model.Achivements"
+             xmlns:controls="clr-namespace:RPG.Controls"
+             mc:Ignorable="d" 
+            d:DataContext="{d:DesignInstance viewModel:AchievementsViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <ListView ItemsSource="{Binding Achivements}">
+        <ListView.ItemTemplate>
+            <DataTemplate DataType="{x:Type achivements:AchievementBase}">
+                <controls:IconItemHorizontal ItemName="{Binding Path=Name}" ItemContent="{Binding Path=Content}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</UserControl>

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace RPG.ViewModel
 {
-    [Export(nameof(EquipmentViewModel))]
+    [Export(typeof(EquipmentViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class EquipmentViewModel : BindableBase
     {

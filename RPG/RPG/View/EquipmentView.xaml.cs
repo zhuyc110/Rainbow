@@ -1,6 +1,6 @@
 ﻿using RPG.ViewModel;
 using System.ComponentModel.Composition;
-using System.Windows.Controls;
+using RPG.Infrastructure.Interfaces;
 
 namespace RPG.View
 {
@@ -9,14 +9,14 @@ namespace RPG.View
     /// </summary>
     [Export(typeof(EquipmentView))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public partial class EquipmentView : UserControl
+    public partial class EquipmentView : IView<EquipmentViewModel>
     {
         public EquipmentView()
         {
             InitializeComponent();
         }
 
-        [Import(nameof(EquipmentViewModel))]
+        [Import(typeof(EquipmentViewModel))]
         public EquipmentViewModel ViewModel
         {
             set { DataContext = value; }

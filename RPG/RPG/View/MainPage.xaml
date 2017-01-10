@@ -89,7 +89,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="铁匠铺"></TextBlock>
             </Button.Content>
         </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
+        <Button Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource BigButton}" Command="{Binding Path=OpenAchievementsCommand}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNUndeadCaptureFlag}"></ImageBrush>
             </Button.Background>

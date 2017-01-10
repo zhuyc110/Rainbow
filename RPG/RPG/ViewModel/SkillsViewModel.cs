@@ -11,7 +11,7 @@ using RPG.Model.Skills;
 
 namespace RPG.ViewModel
 {
-    [Export(nameof(SkillsViewModel))]
+    [Export(typeof(SkillsViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class SkillsViewModel : BindableBase
     {

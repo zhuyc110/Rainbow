@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using RPG.Infrastructure.Interfaces;
 using RPG.ViewModel;
 
 namespace RPG.View
@@ -8,14 +9,14 @@ namespace RPG.View
     /// </summary>
     [Export(typeof (ItemsView))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public partial class ItemsView
+    public partial class ItemsView : IView<ItemsViewModel>
     {
         public ItemsView()
         {
             InitializeComponent();
         }
 
-        [Import(nameof(ItemsViewModel))]
+        [Import(typeof(ItemsViewModel))]
         public ItemsViewModel ViewModel
         {
             set { DataContext = value; }

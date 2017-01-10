@@ -9,7 +9,7 @@ using RPG.Model.Items;
 
 namespace RPG.ViewModel
 {
-    [Export(nameof(ItemsViewModel))]
+    [Export(typeof(ItemsViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ItemsViewModel : BindableBase
     {

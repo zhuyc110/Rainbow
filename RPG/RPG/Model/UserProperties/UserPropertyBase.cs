@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.Composition;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model.UserProperties
 {
-    [InheritedExport(typeof(UserPropertyBase))]
     public abstract class UserPropertyBase : BindableBase, IUserProperty
     {
         private int _absoluteEnhancement;

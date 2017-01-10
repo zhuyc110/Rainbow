@@ -1,5 +1,8 @@
-﻿namespace RPG.Model.Interfaces
+﻿using System.ComponentModel.Composition;
+
+namespace RPG.Model.Interfaces
 {
+    [InheritedExport(typeof(IUserProperty))]
     public interface IUserProperty
     {
         string Name { get; }

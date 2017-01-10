@@ -79,13 +79,21 @@
     <Compile Include="Controls\IconItem.xaml.cs">
       <DependentUpon>IconItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\IconItemHorizontal.xaml.cs">
+      <DependentUpon>IconItemHorizontal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Extension\EnumExtension.cs" />
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
+    <Compile Include="Infrastructure\Interfaces\IView.cs" />
+    <Compile Include="Model\Achivements\AchievementBase.cs" />
+    <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />
+    <Compile Include="Model\Achivements\AchivementPropertyBase.cs" />
     <Compile Include="Model\Equipment\BasicLance.cs" />
     <Compile Include="Model\Equipment\EquipmentBase.cs" />
     <Compile Include="Model\Equipment\EquipmentPart.cs" />
     <Compile Include="Model\Equipment\UltimateChestPlate.cs" />
+    <Compile Include="Model\Interfaces\IAchievement.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Interfaces\ITitleManager.cs" />
     <Compile Include="Model\Interfaces\IUserProperty.cs" />
@@ -109,9 +117,14 @@
     <Compile Include="Model\Skills\HeavyStrike.cs" />
     <Compile Include="Model\Skills\Whirlwind.cs" />
     <Compile Include="Module\SkillsModule.cs" />
+    <Compile Include="ViewModel\AchievementsViewModel.cs" />
     <Compile Include="ViewModel\EquipmentViewModel.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\SkillsViewModel.cs" />
+    <Compile Include="View\AchievementsView.xaml.cs">
+      <DependentUpon>AchievementsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EquipmentView.xaml.cs">
       <DependentUpon>EquipmentView.xaml</DependentUpon>
     </Compile>
@@ -125,6 +138,10 @@
       <DependentUpon>SkillsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\IconItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\IconItemHorizontal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resource\IconDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AchievementsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,6 +269,7 @@
   <ItemGroup>
     <Resource Include="Resource\Icons\BTNEnchantedGemstone.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

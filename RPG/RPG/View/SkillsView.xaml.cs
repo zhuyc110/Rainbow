@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Controls;
+using RPG.Infrastructure.Interfaces;
 using RPG.ViewModel;
 
 namespace RPG.View
@@ -9,7 +9,7 @@ namespace RPG.View
     /// </summary>
     [Export(typeof (SkillsView))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public partial class SkillsView
+    public partial class SkillsView : IView<SkillsViewModel>
     {
         [ImportingConstructor]
         public SkillsView()
@@ -17,7 +17,7 @@ namespace RPG.View
             InitializeComponent();
         }
 
-        [Import(nameof(SkillsViewModel))]
+        [Import(typeof(SkillsViewModel))]
         public SkillsViewModel ViewModel
         {
             set { DataContext = value; }

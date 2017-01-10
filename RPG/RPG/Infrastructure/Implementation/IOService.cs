@@ -1,6 +1,7 @@
 ﻿using RPG.Infrastructure.Interfaces;
 using System.ComponentModel.Composition;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace RPG.Infrastructure.Implementation
 {
@@ -16,6 +17,15 @@ namespace RPG.Infrastructure.Implementation
         public MessageBoxResult ShowDialog(string title, string content)
         {
             return MessageBox.Show(content, title, MessageBoxButton.YesNo);
+        }
+
+        public void ShowView(object view)
+        {
+            var window = new Window()
+            {
+                Content = view,
+            };
+            window.Show();
         }
     }
 }
