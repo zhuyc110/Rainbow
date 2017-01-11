@@ -14,7 +14,8 @@ namespace RPG.Model.Achivements
             Content = "你杀了一只怪物！";
             AchivementProperties = new List<AchivementPropertyBase>
             {
-                new AchivementPropertyBase("命中", 0, 0.01)
+                new AchivementPropertyBase("命中", 0, 0.01),
+                new AchivementPropertyBase("暴击", 0, 0.01)
             };
             ComposeProperty();
             Condition = 1;

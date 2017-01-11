@@ -1,7 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using Prism.Mvvm;
+using RPG.Model;
+using RPG.Model.Achivements;
 using RPG.Model.Interfaces;
+using RPG.Model.UserProperties;
 
 namespace RPG.ViewModel
 {
@@ -15,7 +19,18 @@ namespace RPG.ViewModel
         [ImportingConstructor]
         public AchievementsViewModel()
         {
-            
+            if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
+                var property = new PropertyAttack(new UserState());
+                Achivements = new ObservableCollection<IAchievement>
+                {
+                    new AchievementFirstBlood(new[] {property}),
+                    new AchievementFirstBlood(new[] {property}),
+                    new AchievementFirstBlood(new[] {property}),
+                    new AchievementFirstBlood(new[] {property}),
+                    new AchievementFirstBlood(new[] {property})
+                };
+            }
         }
     }
 }

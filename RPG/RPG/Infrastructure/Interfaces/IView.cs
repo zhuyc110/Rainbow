@@ -7,5 +7,7 @@ namespace RPG.Infrastructure.Interfaces
     public interface IView<T> where T : BindableBase
     {
         T ViewModel { set ; }
+
+        string Title { get; }
     }
 }

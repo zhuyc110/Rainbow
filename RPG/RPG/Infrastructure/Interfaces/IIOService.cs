@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
+using Prism.Mvvm;
 
 namespace RPG.Infrastructure.Interfaces
 {
@@ -7,6 +7,6 @@ namespace RPG.Infrastructure.Interfaces
     {
         void ShowMessage(string title, string content);
         MessageBoxResult ShowDialog(string title, string content);
-        void ShowView(object view);
+        void ShowViewModel<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase;
     }
 }

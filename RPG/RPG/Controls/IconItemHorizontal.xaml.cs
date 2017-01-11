@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections;
+using System.Windows;
 using System.Windows.Media;
 
 namespace RPG.Controls
@@ -20,6 +21,14 @@ namespace RPG.Controls
             DependencyProperty.Register(nameof(ItemContent), typeof(string), typeof(IconItemHorizontal),
                 new PropertyMetadata(default(string)));
 
+        public static DependencyProperty AdditionalTextProperty =
+            DependencyProperty.Register(nameof(AdditionalText), typeof(string), typeof(IconItemHorizontal),
+                new PropertyMetadata(default(string)));
+
+        public static DependencyProperty PropertyListProperty =
+            DependencyProperty.Register(nameof(PropertyList), typeof(IEnumerable), typeof(IconItemHorizontal),
+                new PropertyMetadata(null));
+
         public IconItemHorizontal()
         {
             InitializeComponent();
@@ -27,20 +36,33 @@ namespace RPG.Controls
 
         public ImageSource Icon
         {
-            get { return (ImageSource) GetValue(IconProperty); }
+            get { return (ImageSource)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
 
         public string ItemName
         {
-            get { return (string) GetValue(ItemNameProperty); }
+            get { return (string)GetValue(ItemNameProperty); }
             set { SetValue(ItemNameProperty, value); }
         }
 
         public string ItemContent
         {
-            get { return (string) GetValue(ItemContentProperty); }
+            get { return (string)GetValue(ItemContentProperty); }
             set { SetValue(ItemContentProperty, value); }
         }
+
+        public string AdditionalText
+        {
+            get { return (string)GetValue(AdditionalTextProperty); }
+            set { SetValue(AdditionalTextProperty, value); }
+        }
+
+        public IEnumerable PropertyList
+        {
+            get { return (IEnumerable)GetValue(PropertyListProperty); }
+            set { SetValue(PropertyListProperty, value); }
+        }
+
     }
 }

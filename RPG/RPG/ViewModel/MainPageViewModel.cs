@@ -29,8 +29,8 @@ namespace RPG.ViewModel
 
         private void OpenAchievements()
         {
-            var view = _serviceLocator.GetInstance<AchievementsView>();
-            _ioService.ShowView(view);
+            var view = _serviceLocator.GetInstance<AchievementsViewModel>();
+            _ioService.ShowViewModel(view);
         }
     }
 }

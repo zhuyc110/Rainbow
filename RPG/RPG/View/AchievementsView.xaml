@@ -12,7 +12,17 @@
     <ListView ItemsSource="{Binding Achivements}">
         <ListView.ItemTemplate>
             <DataTemplate DataType="{x:Type achivements:AchievementBase}">
-                <controls:IconItemHorizontal ItemName="{Binding Path=Name}" ItemContent="{Binding Path=Content}"/>
+                <controls:IconItemHorizontal ItemName="{Binding Path=Name}" PropertyList="{Binding Path=AchivementProperties}">
+                    <controls:IconItemHorizontal.ItemContent>
+                        <MultiBinding StringFormat="{}进度: {0}/{1}">
+                            <Binding Path="Current"/>
+                            <Binding Path="Condition"/>
+                        </MultiBinding>
+                    </controls:IconItemHorizontal.ItemContent>
+                    <controls:IconItemHorizontal.ToolTip>
+                        <TextBlock Text="{Binding Path=Content}"></TextBlock>
+                    </controls:IconItemHorizontal.ToolTip>
+                </controls:IconItemHorizontal>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

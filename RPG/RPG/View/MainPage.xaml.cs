@@ -22,5 +22,7 @@ namespace RPG.View
         {
             set { DataContext = value; }
         }
+
+        public string Title => "主页";
     }
 }

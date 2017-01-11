@@ -1,7 +1,8 @@
 ﻿using RPG.Infrastructure.Interfaces;
 using System.ComponentModel.Composition;
 using System.Windows;
-using System.Windows.Controls;
+using Microsoft.Practices.ServiceLocation;
+using Prism.Mvvm;
 
 namespace RPG.Infrastructure.Implementation
 {
@@ -9,6 +10,9 @@ namespace RPG.Infrastructure.Implementation
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class IOService : IIOService
     {
+        [Import]
+        private IServiceLocator ServiceLocator { get; set; }
+
         public void ShowMessage(string title, string content)
         {
             MessageBox.Show(content, title);
@@ -19,11 +23,20 @@ namespace RPG.Infrastructure.Implementation
             return MessageBox.Show(content, title, MessageBoxButton.YesNo);
         }
 
-        public void ShowView(object view)
+        public void ShowViewModel<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase
         {
-            var window = new Window()
+            var view = ServiceLocator.GetInstance<IView<TViewModel>>();
+            ShowView(view);
+        }
+
+        private static void ShowView<TViewModel>(IView<TViewModel> view) where TViewModel : BindableBase
+        {
+            var window = new Window
             {
+                Title = view.Title,
                 Content = view,
+                Width = 400,
+                Height = 600
             };
             window.Show();
         }
