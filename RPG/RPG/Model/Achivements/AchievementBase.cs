@@ -43,5 +43,7 @@ namespace RPG.Model.Achivements
                 property.RelativeEnhancement *= 1 + achivementProperty.RelativeEnhancement;
             }
         }
+
+        public string IconResource { get; protected set; }
     }
 }

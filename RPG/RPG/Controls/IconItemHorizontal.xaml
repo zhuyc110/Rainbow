@@ -16,9 +16,9 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Grid.RowSpan="2" Margin="2" Source="{Binding ElementName=IconItemHorizontalControl, Path=Icon}"/>
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemName}"/>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemContent}"/>
+        <Image Width="48" Height="48" Grid.RowSpan="2" Margin="2" Source="{Binding ElementName=IconItemHorizontalControl, Path=Icon}"/>
+        <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemName}"/>
+        <TextBlock Margin="5"  Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemContent}"/>
         <!--<TextBlock Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Text="{Binding ElementName=IconItemHorizontalControl, Path=AdditionalText}"/>-->
         <ListView Margin="5" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding ElementName=IconItemHorizontalControl, Path=PropertyList}">
             <ListView.ItemsPanel>

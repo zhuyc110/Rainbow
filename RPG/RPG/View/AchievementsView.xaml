@@ -6,13 +6,17 @@
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              xmlns:achivements="clr-namespace:RPG.Model.Achivements"
              xmlns:controls="clr-namespace:RPG.Controls"
+             xmlns:resource="clr-namespace:RPG.Resource"
              mc:Ignorable="d" 
             d:DataContext="{d:DesignInstance viewModel:AchievementsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"/>
+    </UserControl.Resources>
     <ListView ItemsSource="{Binding Achivements}">
         <ListView.ItemTemplate>
             <DataTemplate DataType="{x:Type achivements:AchievementBase}">
-                <controls:IconItemHorizontal ItemName="{Binding Path=Name}" PropertyList="{Binding Path=AchivementProperties}">
+                <controls:IconItemHorizontal Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" ItemName="{Binding Path=Name}" PropertyList="{Binding Path=AchivementProperties}">
                     <controls:IconItemHorizontal.ItemContent>
                         <MultiBinding StringFormat="{}进度: {0}/{1}">
                             <Binding Path="Current"/>

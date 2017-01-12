@@ -1,25 +1,26 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RPG.Resource">
-    <BitmapImage x:Key="INV_Chest_Plate03" UriSource="Icons/Equipments/INV_Chest_Plate03.jpg"></BitmapImage>
-    <BitmapImage x:Key="INV_Chest_Plate14" UriSource="Icons/Equipments/INV_Chest_Plate14.jpg"></BitmapImage>
-    <BitmapImage x:Key="INV_Spear_05" UriSource="Icons/Equipments/INV_Spear_05.jpg"></BitmapImage>
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BitmapImage x:Key="Ability_Druid_Disembowel" UriSource="Icons/Achievement/Ability_Druid_Disembowel.jpg" />
+    
+    <BitmapImage x:Key="INV_Chest_Plate03" UriSource="Icons/Equipments/INV_Chest_Plate03.jpg" />
+    <BitmapImage x:Key="INV_Chest_Plate14" UriSource="Icons/Equipments/INV_Chest_Plate14.jpg" />
+    <BitmapImage x:Key="INV_Spear_05" UriSource="Icons/Equipments/INV_Spear_05.jpg" />
 
-    <BitmapImage x:Key="INV_Misc_Gem_Emerald_02" UriSource="Icons/Items/INV_Misc_Gem_Emerald_02.jpg"></BitmapImage>
-    <BitmapImage x:Key="INV_Stone_06" UriSource="Icons/Items/INV_Stone_06.jpg"></BitmapImage>
+    <BitmapImage x:Key="INV_Misc_Gem_Emerald_02" UriSource="Icons/Items/INV_Misc_Gem_Emerald_02.jpg" />
+    <BitmapImage x:Key="INV_Stone_06" UriSource="Icons/Items/INV_Stone_06.jpg" />
 
-    <BitmapImage x:Key="Background" UriSource="Icons/Background-a.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNBlacksmith" UriSource="Icons/BTNBlacksmith.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNChestOfGold" UriSource="Icons/BTNChestOfGold.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNCleavingAttack" UriSource="Icons/BTNCleavingAttack.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNDarkPortal" UriSource="Icons/BTNDarkPortal.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNEnchantedGemstone" UriSource="Icons/BTNEnchantedGemstone.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNFireBolt" UriSource="Icons/BTNFireBolt.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNHoldPosition" UriSource="Icons/BTNHoldPosition.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNMove" UriSource="Icons/BTNMove.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNStormBolt" UriSource="Icons/BTNStormBolt.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNTombOfRelics" UriSource="Icons/BTNTombOfRelics.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNUndeadCaptureFlag" UriSource="Icons/BTNUndeadCaptureFlag.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNUnholyFrenzy" UriSource="Icons/BTNUnholyFrenzy.jpg"></BitmapImage>
-    <BitmapImage x:Key="BTNVengeanceIncarnate" UriSource="Icons/BTNVengeanceIncarnate.jpg"></BitmapImage>
+    <BitmapImage x:Key="Background" UriSource="Icons/Background-a.jpg" />
+    <BitmapImage x:Key="BTNBlacksmith" UriSource="Icons/BTNBlacksmith.jpg" />
+    <BitmapImage x:Key="BTNChestOfGold" UriSource="Icons/BTNChestOfGold.jpg" />
+    <BitmapImage x:Key="BTNCleavingAttack" UriSource="Icons/BTNCleavingAttack.jpg" />
+    <BitmapImage x:Key="BTNDarkPortal" UriSource="Icons/BTNDarkPortal.jpg" />
+    <BitmapImage x:Key="BTNEnchantedGemstone" UriSource="Icons/BTNEnchantedGemstone.jpg" />
+    <BitmapImage x:Key="BTNFireBolt" UriSource="Icons/BTNFireBolt.jpg" />
+    <BitmapImage x:Key="BTNHoldPosition" UriSource="Icons/BTNHoldPosition.jpg" />
+    <BitmapImage x:Key="BTNMove" UriSource="Icons/BTNMove.jpg" />
+    <BitmapImage x:Key="BTNStormBolt" UriSource="Icons/BTNStormBolt.jpg" />
+    <BitmapImage x:Key="BTNTombOfRelics" UriSource="Icons/BTNTombOfRelics.jpg" />
+    <BitmapImage x:Key="BTNUndeadCaptureFlag" UriSource="Icons/BTNUndeadCaptureFlag.jpg" />
+    <BitmapImage x:Key="BTNUnholyFrenzy" UriSource="Icons/BTNUnholyFrenzy.jpg" />
+    <BitmapImage x:Key="BTNVengeanceIncarnate" UriSource="Icons/BTNVengeanceIncarnate.jpg" />
 </ResourceDictionary>

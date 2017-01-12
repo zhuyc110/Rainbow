@@ -9,6 +9,7 @@ namespace RPG.Model.Interfaces
     {
         string Name { get; }
         string Content { get; }
+        string IconResource { get; }
         bool Achived { get; }
         int Condition { get; }
         int Current { get; }

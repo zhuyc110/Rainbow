@@ -19,6 +19,7 @@ namespace RPG.Model.Achivements
             };
             ComposeProperty();
             Condition = 1;
+            IconResource = "Ability_Druid_Disembowel";
         }
     }
 }
