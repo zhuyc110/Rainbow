@@ -11,7 +11,9 @@
         <TabItem Header="主页">
             <ContentControl prism:RegionManager.RegionName="MainModule" Margin="5" />
         </TabItem>
-        <TabItem Header="角色"></TabItem>
+        <TabItem Header="角色">
+            <ContentControl prism:RegionManager.RegionName="UserEquipmentModule" Margin="5"></ContentControl>
+        </TabItem>
         <TabItem Header="背包">
             <TabControl>
                 <TabItem Header="装备">

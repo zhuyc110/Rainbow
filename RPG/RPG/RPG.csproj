@@ -109,6 +109,7 @@
     <Compile Include="Module\EquipmentModule.cs" />
     <Compile Include="Module\ItemsModule.cs" />
     <Compile Include="Module\MainModule.cs" />
+    <Compile Include="Module\UserEquipmentModule.cs" />
     <Compile Include="Resource\RarityToBrushConverter.cs" />
     <Compile Include="Resource\ResourceKeyToImageConverter.cs" />
     <Compile Include="Model\Skills\SkillBase.cs" />
@@ -136,6 +137,9 @@
     </Compile>
     <Compile Include="View\SkillsView.xaml.cs">
       <DependentUpon>SkillsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserEquipmentView.xaml.cs">
+      <DependentUpon>UserEquipmentView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\IconItem.xaml">
       <SubType>Designer</SubType>
@@ -183,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SkillsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserEquipmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,6 +279,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Icons\Achievement\Ability_Druid_Disembowel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Equipments\INV_Helmet_03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Equipments\INV_Boots_01.jpg" />
+    <Resource Include="Resource\Icons\Equipments\INV_Gauntlets_12.jpg" />
+    <Resource Include="Resource\Icons\Equipments\INV_Jewelry_Necklace_16.jpg" />
+    <Resource Include="Resource\Icons\Equipments\INV_Jewelry_Talisman_01.jpg" />
+    <Resource Include="Resource\Icons\Equipments\INV_Pants_05.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Equipments\INV_Jewelry_Ring_03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\chapter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

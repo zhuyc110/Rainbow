@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="RPG.View.UserEquipmentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RPG.View"
+             xmlns:controls="clr-namespace:RPG.Controls"
+             xmlns:resource="clr-namespace:RPG.Resource"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Resource\IconDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <controls:IconItem x:Name="Head" Grid.Row="0" Grid.Column="0"
+                               Rarity="Legend"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Helmet_03}" />
+            <controls:IconItem x:Name="Breastplate" Grid.Row="1" Grid.Column="0"
+                               Rarity="Normal"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Chest_Plate14}" />
+            <controls:IconItem x:Name="Legging" Grid.Row="2" Grid.Column="0"
+                               Rarity="Epic"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Pants_05}" />
+            <controls:IconItem x:Name="Weapon" Grid.Row="3" Grid.Column="0"
+                               Rarity="Rare"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Spear_05}" />
+            <controls:IconItem x:Name="Necklace" Grid.Row="0" Grid.Column="4"
+                               Rarity="Epic"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Jewelry_Necklace_16}" />
+            <controls:IconItem x:Name="Glove" Grid.Row="1" Grid.Column="4"
+                               Rarity="Rare"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Gauntlets_12}" />
+            <controls:IconItem x:Name="Ring" Grid.Row="2" Grid.Column="4"
+                               Rarity="Epic"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Jewelry_Ring_03}" />
+            <controls:IconItem x:Name="Boot" Grid.Row="3" Grid.Column="4"
+                               Rarity="Rare"
+                               ShowAmount="False"
+                               Icon="{StaticResource INV_Boots_01}" />
+            <Image Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Margin="5" Source="{StaticResource chapter}"></Image>
+        </Grid>
+    </Grid>
+</UserControl>

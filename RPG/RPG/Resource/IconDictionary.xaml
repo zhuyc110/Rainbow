@@ -1,9 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BitmapImage x:Key="Ability_Druid_Disembowel" UriSource="Icons/Achievement/Ability_Druid_Disembowel.jpg" />
-    
+
+    <BitmapImage x:Key="INV_Boots_01" UriSource="Icons/Equipments/INV_Boots_01.jpg" />
     <BitmapImage x:Key="INV_Chest_Plate03" UriSource="Icons/Equipments/INV_Chest_Plate03.jpg" />
     <BitmapImage x:Key="INV_Chest_Plate14" UriSource="Icons/Equipments/INV_Chest_Plate14.jpg" />
+    <BitmapImage x:Key="INV_Gauntlets_12" UriSource="Icons/Equipments/INV_Gauntlets_12.jpg" />
+    <BitmapImage x:Key="INV_Helmet_03" UriSource="Icons/Equipments/INV_Helmet_03.jpg" />
+    <BitmapImage x:Key="INV_Jewelry_Necklace_16" UriSource="Icons/Equipments/INV_Jewelry_Necklace_16.jpg" />
+    <BitmapImage x:Key="INV_Jewelry_Ring_03" UriSource="Icons/Equipments/INV_Jewelry_Ring_03.jpg" />
+    <BitmapImage x:Key="INV_Jewelry_Talisman_01" UriSource="Icons/Equipments/INV_Jewelry_Talisman_01.jpg" />
+    <BitmapImage x:Key="INV_Pants_05" UriSource="Icons/Equipments/INV_Pants_05.jpg" />
     <BitmapImage x:Key="INV_Spear_05" UriSource="Icons/Equipments/INV_Spear_05.jpg" />
 
     <BitmapImage x:Key="INV_Misc_Gem_Emerald_02" UriSource="Icons/Items/INV_Misc_Gem_Emerald_02.jpg" />
@@ -23,4 +30,5 @@
     <BitmapImage x:Key="BTNUndeadCaptureFlag" UriSource="Icons/BTNUndeadCaptureFlag.jpg" />
     <BitmapImage x:Key="BTNUnholyFrenzy" UriSource="Icons/BTNUnholyFrenzy.jpg" />
     <BitmapImage x:Key="BTNVengeanceIncarnate" UriSource="Icons/BTNVengeanceIncarnate.jpg" />
+    <BitmapImage x:Key="chapter" UriSource="Icons/chapter.png" />
 </ResourceDictionary>
