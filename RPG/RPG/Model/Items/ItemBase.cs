@@ -42,7 +42,10 @@ namespace RPG.Model.Items
         [Import]
         private IIOService IoService { get; set; }
 
-        public ItemBase()
+        [Import]
+        private IUserState UserState { get; set; }
+
+        protected ItemBase()
         {
             SellSelf = new DelegateCommand(() =>
             {
@@ -52,14 +55,12 @@ namespace RPG.Model.Items
                 }
                 else
                 {
+                    UserState.Gold += Worth;
                     Amount--;
                 }
             });
 
-            SellAll = new DelegateCommand(() =>
-            {
-                SoldOutConfirm();
-            });
+            SellAll = new DelegateCommand(SoldOutConfirm);
         }
 
         private void SoldOutConfirm()
@@ -76,6 +77,7 @@ namespace RPG.Model.Items
 
             if (confirm)
             {
+                UserState.Gold += Worth * Amount;
                 Amount = 0;
                 RaiseSoldOutEvent();
             }

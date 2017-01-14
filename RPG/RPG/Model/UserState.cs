@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel.Composition;
+using Prism.Mvvm;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model
 {
     [Export(typeof(IUserState))]
-    public class UserState : IUserState
+    public class UserState : BindableBase, IUserState
     {
-        public string Title { get; set; }
-        public string UserName { get; set; }
-        public int Level { get; set; }
-        public long Gold { get; set; }
-        public long Gem { get; set; }
-        public long Experience { get; set; }
+        private long _experience;
+        private long _gem;
+        private long _gold;
+        private int _level;
+        private string _title;
 
         [ImportingConstructor]
         public UserState()
@@ -20,6 +20,38 @@ namespace RPG.Model
             Gold = 1000;
             Gem = 100;
             UserName = "Sky - Han";
+        }
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
+        public string UserName { get; set; }
+
+        public int Level
+        {
+            get { return _level; }
+            set { SetProperty(ref _level, value); }
+        }
+
+        public long Gold
+        {
+            get { return _gold; }
+            set { SetProperty(ref _gold, value); }
+        }
+
+        public long Gem
+        {
+            get { return _gem; }
+            set { SetProperty(ref _gem, value); }
+        }
+
+        public long Experience
+        {
+            get { return _experience; }
+            set { SetProperty(ref _experience, value); }
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows.Input;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Interfaces;
-using RPG.View;
+using RPG.Model;
+using RPG.Model.Interfaces;
 
 namespace RPG.ViewModel
 {
@@ -24,6 +26,15 @@ namespace RPG.ViewModel
 
             OpenAchievementsCommand = new DelegateCommand(OpenAchievements);
         }
+
+        [Obsolete]
+        public MainPageViewModel()
+        {
+            UserState = new UserState {Gold = 10000, Gem = 200};
+        }
+
+        [Import]
+        public IUserState UserState { get; private set; }
 
         public ICommand OpenAchievementsCommand { get; }
 
