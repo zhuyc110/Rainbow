@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="RPG.View.NavigationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RPG.View"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             mc:Ignorable="d" 
+    d:DataContext="{d:DesignInstance viewModel:NavigationViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="100" d:DesignWidth="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Content="主页" Margin="5" Command="{Binding Path=MainPageCommand}"/>
+        <Button Grid.Column="1" Content="角色" Margin="5" Command="{Binding Path=ChapterCommand}"/>
+        <Button Grid.Column="2" Content="背包" Margin="5" Command="{Binding Path=BackpackCommand}"/>
+        <Button Grid.Column="3" Content="技能" Margin="5" Command="{Binding Path=SkillCommand}"/>
+        <Button Grid.Column="4" Content="其他" Margin="5" Command="{Binding Path=OtherCommand}"/>
+    </Grid>
+</UserControl>

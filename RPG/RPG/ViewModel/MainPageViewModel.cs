@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
-using Microsoft.Practices.ServiceLocation;
 using Prism.Commands;
 using Prism.Mvvm;
-using RPG.Infrastructure.Interfaces;
+using Prism.Regions;
 using RPG.Model;
 using RPG.Model.Interfaces;
+using RPG.Module;
+using RPG.View;
 
 namespace RPG.ViewModel
 {
@@ -14,15 +15,12 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class MainPageViewModel : BindableBase
     {
-        private readonly IIOService _ioService;
-
-        private readonly IServiceLocator _serviceLocator;
+        private readonly IRegionManager _regionManager;
 
         [ImportingConstructor]
-        public MainPageViewModel(IIOService ioService, IServiceLocator serviceLocator)
+        public MainPageViewModel(IRegionManager regionManager)
         {
-            _ioService = ioService;
-            _serviceLocator = serviceLocator;
+            _regionManager = regionManager;
 
             OpenAchievementsCommand = new DelegateCommand(OpenAchievements);
         }
@@ -40,8 +38,7 @@ namespace RPG.ViewModel
 
         private void OpenAchievements()
         {
-            var view = _serviceLocator.GetInstance<AchievementsViewModel>();
-            _ioService.ShowViewModel(view);
+            _regionManager.Regions[nameof(MainModule)].RequestNavigate(nameof(AchievementsView));
         }
     }
 }

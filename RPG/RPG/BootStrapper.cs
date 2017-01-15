@@ -8,7 +8,7 @@ namespace RPG
     {
         protected override DependencyObject CreateShell()
         {
-            return Container.GetExportedValue<MainWindow>();
+            return Container.GetExportedValue<RPGHome>();
         }
 
         protected override void InitializeShell()

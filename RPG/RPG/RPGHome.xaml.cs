@@ -3,13 +3,13 @@
 namespace RPG
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     RPGHome.xaml 的交互逻辑
     /// </summary>
-    [Export(typeof(MainWindow))]
-    public partial class MainWindow
+    [Export(typeof(RPGHome))]
+    public partial class RPGHome
     {
         [ImportingConstructor]
-        public MainWindow()
+        public RPGHome()
         {
             InitializeComponent();
         }

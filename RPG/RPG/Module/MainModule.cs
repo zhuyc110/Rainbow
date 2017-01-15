@@ -7,6 +7,7 @@ using System.ComponentModel.Composition;
 namespace RPG.Module
 {
     [ModuleExport(typeof(MainModule))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class MainModule : IModule
     {
         private readonly IRegionManager _regionManager;
@@ -20,6 +21,12 @@ namespace RPG.Module
         public void Initialize()
         {
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(MainPage));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(AchievementsView));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(SkillsView));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(BackpackView));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(ItemsView));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(EquipmentView)); 
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(UserEquipmentView));
         }
     }
 }
