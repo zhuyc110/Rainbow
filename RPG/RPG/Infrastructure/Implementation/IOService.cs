@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Mvvm;
+using Prism.Regions;
 
 namespace RPG.Infrastructure.Implementation
 {
@@ -10,8 +11,16 @@ namespace RPG.Infrastructure.Implementation
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class IOService : IIOService
     {
-        [Import]
-        private IServiceLocator ServiceLocator { get; set; }
+        private readonly IRegionManager _regionManager;
+
+        private readonly IServiceLocator _serviceLocator;
+
+        [ImportingConstructor]
+        public IOService(IRegionManager regionManager, IServiceLocator serviceLocator)
+        {
+            _regionManager = regionManager;
+            _serviceLocator = serviceLocator;
+        }
 
         public void ShowMessage(string title, string content)
         {
@@ -25,7 +34,7 @@ namespace RPG.Infrastructure.Implementation
 
         public void ShowViewModel<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase
         {
-            var view = ServiceLocator.GetInstance<IView<TViewModel>>();
+            var view = _serviceLocator.GetInstance<IView<TViewModel>>();
             ShowView(view);
         }
 
@@ -39,6 +48,11 @@ namespace RPG.Infrastructure.Implementation
                 Height = 600
             };
             window.Show();
+        }
+
+        public void SwitchView(string moduleName, string viewName)
+        {
+            _regionManager.Regions[moduleName].RequestNavigate(viewName);
         }
     }
 }

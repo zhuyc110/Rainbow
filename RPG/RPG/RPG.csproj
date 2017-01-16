@@ -82,6 +82,7 @@
     <Compile Include="Controls\IconItemHorizontal.xaml.cs">
       <DependentUpon>IconItemHorizontal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\Extension\EnumExtension.cs" />
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
