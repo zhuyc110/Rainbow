@@ -3,6 +3,13 @@ using Prism.Modularity;
 using Prism.Regions;
 using RPG.View;
 using System.ComponentModel.Composition;
+using AchievementsView = RPG.View.MainView.AchievementsView;
+using BackpackView = RPG.View.MainView.BackpackView;
+using EquipmentView = RPG.View.MainView.EquipmentView;
+using ItemsView = RPG.View.MainView.ItemsView;
+using MainPage = RPG.View.MainView.MainPage;
+using SkillsView = RPG.View.MainView.SkillsView;
+using UserEquipmentView = RPG.View.MainView.UserEquipmentView;
 
 namespace RPG.Module
 {

@@ -2,22 +2,22 @@
 using RPG.Infrastructure.Interfaces;
 using RPG.ViewModel;
 
-namespace RPG.View
+namespace RPG.View.MainView
 {
     /// <summary>
-    ///     BackpackView.xaml 的交互逻辑
+    ///     ItemsView.xaml 的交互逻辑
     /// </summary>
-    [Export(typeof(BackpackView))]
+    [Export(typeof (ItemsView))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public partial class BackpackView : IView<BackpackViewModel>
+    public partial class ItemsView : IView<ItemsViewModel>
     {
-        public BackpackView()
+        public ItemsView()
         {
             InitializeComponent();
         }
 
-        [Import]
-        public BackpackViewModel ViewModel
+        [Import(typeof(ItemsViewModel))]
+        public ItemsViewModel ViewModel
         {
             set { DataContext = value; }
         }

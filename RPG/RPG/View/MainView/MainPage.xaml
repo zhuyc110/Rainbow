@@ -5,14 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:resource="clr-namespace:RPG.Resource"
     xmlns:viewModel="clr-namespace:RPG.ViewModel"
-    x:Class="RPG.View.MainPage"
+    x:Class="RPG.View.MainView.MainPage"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance viewModel:MainPageViewModel, IsDesignTimeCreatable=True}"
     d:DesignHeight="400" d:DesignWidth="375">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="..\Resource\IconDictionary.xaml" />
+                <ResourceDictionary Source="..\..\Resource\IconDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="Button" x:Key="BigButton">

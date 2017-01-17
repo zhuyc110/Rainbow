@@ -3,11 +3,11 @@ using System.ComponentModel.Composition;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
+using RPG.Infrastructure;
+using RPG.Infrastructure.Interfaces;
 using RPG.Model;
 using RPG.Model.Interfaces;
 using RPG.Module;
-using RPG.View;
 
 namespace RPG.ViewModel
 {
@@ -15,12 +15,12 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class MainPageViewModel : BindableBase
     {
-        private readonly IRegionManager _regionManager;
+        private readonly IIOService _ioService;
 
         [ImportingConstructor]
-        public MainPageViewModel(IRegionManager regionManager)
+        public MainPageViewModel(IIOService ioService)
         {
-            _regionManager = regionManager;
+            _ioService = ioService;
 
             OpenAchievementsCommand = new DelegateCommand(OpenAchievements);
         }
@@ -38,7 +38,7 @@ namespace RPG.ViewModel
 
         private void OpenAchievements()
         {
-            _regionManager.Regions[nameof(MainModule)].RequestNavigate(nameof(AchievementsView));
+            _ioService.SwitchView(nameof(MainModule),Constants.AchievementsView);
         }
     }
 }

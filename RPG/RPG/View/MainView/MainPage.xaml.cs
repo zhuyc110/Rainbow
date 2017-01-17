@@ -2,27 +2,27 @@
 using RPG.Infrastructure.Interfaces;
 using RPG.ViewModel;
 
-namespace RPG.View
+namespace RPG.View.MainView
 {
     /// <summary>
-    ///     SkillsView.xaml 的交互逻辑
+    ///     MainPage.xaml 的交互逻辑
     /// </summary>
-    [Export(typeof (SkillsView))]
+    [Export(typeof(MainPage))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public partial class SkillsView : IView<SkillsViewModel>
+    public partial class MainPage : IView<MainPageViewModel>
     {
         [ImportingConstructor]
-        public SkillsView()
+        public MainPage()
         {
             InitializeComponent();
         }
 
-        [Import(typeof(SkillsViewModel))]
-        public SkillsViewModel ViewModel
+        [Import(typeof(MainPageViewModel))]
+        public MainPageViewModel ViewModel
         {
             set { DataContext = value; }
         }
 
-        public string Title => "技能";
+        public string Title => "主页";
     }
 }

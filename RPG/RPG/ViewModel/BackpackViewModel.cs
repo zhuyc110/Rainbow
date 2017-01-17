@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Mvvm;
-using RPG.View;
+using RPG.View.MainView;
 
 namespace RPG.ViewModel
 {

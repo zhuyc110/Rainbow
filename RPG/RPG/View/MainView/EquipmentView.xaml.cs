@@ -1,8 +1,8 @@
-﻿using RPG.ViewModel;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using RPG.Infrastructure.Interfaces;
+using RPG.ViewModel;
 
-namespace RPG.View
+namespace RPG.View.MainView
 {
     /// <summary>
     /// EquipmentView.xaml 的交互逻辑

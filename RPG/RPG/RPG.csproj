@@ -128,31 +128,31 @@
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\SkillsViewModel.cs" />
-    <Compile Include="View\AchievementsView.xaml.cs">
+    <Compile Include="View\MainView\AchievementsView.xaml.cs">
       <DependentUpon>AchievementsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BackpackView.xaml.cs">
+    <Compile Include="View\MainView\BackpackView.xaml.cs">
       <DependentUpon>BackpackView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EquipmentView.xaml.cs">
+    <Compile Include="View\MainView\EquipmentView.xaml.cs">
       <DependentUpon>EquipmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HeaderView.xaml.cs">
       <DependentUpon>HeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ItemsView.xaml.cs">
+    <Compile Include="View\MainView\ItemsView.xaml.cs">
       <DependentUpon>ItemsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
+    <Compile Include="View\MainView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SkillsView.xaml.cs">
+    <Compile Include="View\MainView\SkillsView.xaml.cs">
       <DependentUpon>SkillsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UserEquipmentView.xaml.cs">
+    <Compile Include="View\MainView\UserEquipmentView.xaml.cs">
       <DependentUpon>UserEquipmentView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\IconItem.xaml">
@@ -180,15 +180,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AchievementsView.xaml">
+    <Page Include="View\MainView\AchievementsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BackpackView.xaml">
+    <Page Include="View\MainView\BackpackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EquipmentView.xaml">
+    <Page Include="View\MainView\EquipmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,11 +196,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ItemsView.xaml">
+    <Page Include="View\MainView\ItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="View\MainView\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,11 +208,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SkillsView.xaml">
+    <Page Include="View\MainView\SkillsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UserEquipmentView.xaml">
+    <Page Include="View\MainView\UserEquipmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
