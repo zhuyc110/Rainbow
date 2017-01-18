@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RPG.View.MainView.UserEquipmentView"
+﻿<UserControl x:Class="RPG.View.MainView.CharacterView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:RPG.View"
              xmlns:controls="clr-namespace:RPG.Controls"
              xmlns:resource="clr-namespace:RPG.Resource"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
              mc:Ignorable="d"
+            d:DataContext="{d:DesignInstance viewModel:CharacterViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -21,6 +24,29 @@
             <RowDefinition Height="1.5*" />
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ListView ItemsSource="{Binding Path=UserProperties}" Background="Transparent" BorderThickness="0" Margin="20">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type interfaces:IUserProperty}">
+                        <DockPanel>
+                            <TextBlock Background="#FEDFE1" Foreground="#1B813E" FontSize="18">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}: {1}">
+                                        <Binding Path="Name" />
+                                        <Binding Path="FinalValue" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />

@@ -3,16 +3,14 @@ using RPG.Model.Interfaces;
 
 namespace RPG.Model.UserProperties
 {
-    public class PropertyAttack : UserPropertyBase
+    public class PropertyHP : UserPropertyBase
     {
         [ImportingConstructor]
-        public PropertyAttack(IUserState userState)
-            : base("攻击")
+        public PropertyHP(IUserState userState) : base("生命")
         {
             _userState = userState;
-            Basic = 20 + (_userState.Level > 1 ? 5 : 0) + _userState.Level - 1;
+            Basic = 100 + (_userState.Level > 1 ? 14 : 0) + _userState.Level - 1;
         }
-
         private readonly IUserState _userState;
     }
 }

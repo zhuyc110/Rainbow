@@ -9,6 +9,11 @@ namespace RPG.Model.UserProperties
         private int _basic;
         private double _relativeEnhancement;
 
+        protected UserPropertyBase(string name)
+        {
+            Name = name;
+        }
+
         public int AbsoluteEnhancement
         {
             get { return _absoluteEnhancement; }
@@ -20,9 +25,9 @@ namespace RPG.Model.UserProperties
             }
         }
 
-        public int FinalValue => (int) ((Basic + AbsoluteEnhancement) * RelativeEnhancement);
+        public int FinalValue => (int)((Basic + AbsoluteEnhancement) * (1 + RelativeEnhancement));
 
-        public string Name { get; protected set; }
+        public string Name { get; }
 
         public double RelativeEnhancement
         {
@@ -44,6 +49,11 @@ namespace RPG.Model.UserProperties
                 SetProperty(ref _basic, value);
                 OnPropertyChanged(nameof(FinalValue));
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}: {FinalValue}";
         }
     }
 }
