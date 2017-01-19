@@ -41,4 +41,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#FEDFE1"/>
+    <SolidColorBrush x:Key="ForegroundBrush" Color="#1B813E"/>
 </ResourceDictionary>

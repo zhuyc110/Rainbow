@@ -15,6 +15,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="..\..\Resource\IconDictionary.xaml" />
+                <ResourceDictionary Source="..\..\Resource\Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
         </ResourceDictionary>
@@ -34,7 +35,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type interfaces:IUserProperty}">
                         <DockPanel>
-                            <TextBlock Background="#FEDFE1" Foreground="#1B813E" FontSize="18">
+                            <TextBlock MinWidth="100" Background="{StaticResource BackgroundBrush}" Foreground="{StaticResource ForegroundBrush}" FontSize="18">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}: {1}">
                                         <Binding Path="Name" />

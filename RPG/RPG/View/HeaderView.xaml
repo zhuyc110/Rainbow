@@ -7,11 +7,12 @@
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModel:HeaderViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="200" d:DesignWidth="380">
+             d:DesignHeight="150" d:DesignWidth="380">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="..\Resource\IconDictionary.xaml" />
+                <ResourceDictionary Source="..\Resource\Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -29,11 +30,11 @@
         </Grid.ColumnDefinitions>
         <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="0" Text="称号" Margin="5"
                        VerticalAlignment="Center" FontWeight="Bold" />
-        <TextBlock FontSize="15" Foreground="#1B813E" Grid.Column="1" Grid.Row="0" Text="{Binding Path=UserState.UserName}" Margin="5"
+        <TextBlock FontSize="15" Foreground="{StaticResource ForegroundBrush}" Grid.Column="1" Grid.Row="0" Text="{Binding Path=UserState.UserName}" Margin="5"
                        VerticalAlignment="Center" />
         <TextBlock FontSize="18" Foreground="White" Grid.Column="0" Grid.Row="1" Text="等级" Margin="5"
                        VerticalAlignment="Center" FontWeight="Bold" />
-        <TextBlock FontSize="15" Foreground="#FEDFE1" Grid.Column="1" Grid.Row="1" Text="{Binding Path=UserState.Level}" Margin="5"
+        <TextBlock FontSize="15" Foreground="{StaticResource BackgroundBrush}" Grid.Column="1" Grid.Row="1" Text="{Binding Path=UserState.Level}" Margin="5"
                        VerticalAlignment="Center" />
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
             <Image Source="{StaticResource BTNChestOfGold}" Width="28" Height="28" />
@@ -47,8 +48,8 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal">
             <TextBlock Foreground="White" Text="经验" VerticalAlignment="Center" />
             <Grid Margin="15,0,0,0">
-                <Rectangle Width="150" Height="10" Fill="#FEDFE1" HorizontalAlignment="Left" />
-                <Rectangle Width="50" Height="10" Fill="#1B813E" HorizontalAlignment="Left" />
+                <Rectangle Width="150" Height="10" Fill="{StaticResource BackgroundBrush}" HorizontalAlignment="Left" />
+                <Rectangle Width="50" Height="10" Fill="{StaticResource ForegroundBrush}" HorizontalAlignment="Left" />
             </Grid>
         </StackPanel>
     </Grid>
