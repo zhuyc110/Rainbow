@@ -3,7 +3,7 @@ using RPG.Model.Interfaces;
 
 namespace RPG.Model.UserProperties
 {
-    public abstract class UserPropertyBase : BindableBase, IUserProperty
+    public abstract class UserPropertyBase : BindableBase, IBattleProperty
     {
         private int _absoluteEnhancement;
         private int _basic;

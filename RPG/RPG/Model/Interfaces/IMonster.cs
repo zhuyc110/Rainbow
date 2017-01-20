@@ -12,5 +12,7 @@ namespace RPG.Model.Interfaces
         int Level { get; }
 
         MonsterClass Class { get; }
+
+        string IconResource { get; }
     }
 }

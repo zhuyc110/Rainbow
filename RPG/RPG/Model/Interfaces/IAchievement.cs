@@ -13,7 +13,7 @@ namespace RPG.Model.Interfaces
         bool Achived { get; }
         int Condition { get; }
         int Current { get; }
-        IEnumerable<IUserProperty> Enhancements { get; }
+        IEnumerable<IBattleProperty> Enhancements { get; }
         IEnumerable<AchivementPropertyBase> AchivementProperties { get; }
     }
 }

@@ -10,8 +10,8 @@ namespace RPG.Model
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class UserBattleState : BindableBase
     {
-        [ImportMany(typeof(IUserProperty))]
-        public ObservableCollection<IUserProperty> UserProperty { get; set; }
+        [ImportMany(typeof(IBattleProperty))]
+        public ObservableCollection<IBattleProperty> UserProperty { get; set; }
 
         [ImportingConstructor]
         public UserBattleState()

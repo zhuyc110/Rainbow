@@ -33,7 +33,7 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
-                    <DataTemplate DataType="{x:Type interfaces:IUserProperty}">
+                    <DataTemplate DataType="{x:Type interfaces:IBattleProperty}">
                         <DockPanel>
                             <TextBlock MinWidth="100" Background="{StaticResource BackgroundBrush}" Foreground="{StaticResource ForegroundBrush}" FontSize="18">
                                 <TextBlock.Text>

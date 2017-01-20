@@ -7,7 +7,7 @@ namespace RPG.Model.Achivements
     public class AchievementFirstBlood : AchievementBase
     {
         [ImportingConstructor]
-        public AchievementFirstBlood([ImportMany]IEnumerable<IUserProperty> userProperties)
+        public AchievementFirstBlood([ImportMany]IEnumerable<IBattleProperty> userProperties)
         {
             Enhancements = userProperties;
             Name = "First blood!";

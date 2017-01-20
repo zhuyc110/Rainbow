@@ -17,7 +17,7 @@ namespace RPG.ViewModel
     public class CharacterViewModel : BindableBase
     {
 
-        public ObservableCollection<IUserProperty> UserProperties { get; }
+        public ObservableCollection<IBattleProperty> UserProperties { get; }
 
         [ImportingConstructor]
         public CharacterViewModel([Import] UserBattleState userBattleState)
@@ -28,7 +28,7 @@ namespace RPG.ViewModel
         [Obsolete]
         public CharacterViewModel()
         {
-            UserProperties = new ObservableCollection<IUserProperty> { new PropertyHP(new UserState { Level = 10 }) };
+            UserProperties = new ObservableCollection<IBattleProperty> { new PropertyHP(new UserState { Level = 10 }) };
         }
     }
 }

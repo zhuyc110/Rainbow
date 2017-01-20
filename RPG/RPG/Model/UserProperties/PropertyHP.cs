@@ -11,6 +11,11 @@ namespace RPG.Model.UserProperties
             _userState = userState;
             Basic = 100 + (_userState.Level > 1 ? 14 : 0) + _userState.Level - 1;
         }
+
+        public PropertyHP() : base("生命")
+        {
+        } 
+
         private readonly IUserState _userState;
     }
 }

@@ -9,7 +9,7 @@ namespace RPG.Model.Achivements
     {
         private int _current;
         
-        public IEnumerable<IUserProperty> Enhancements { get; protected set; }
+        public IEnumerable<IBattleProperty> Enhancements { get; protected set; }
 
         public string Name { get; protected set; }
 

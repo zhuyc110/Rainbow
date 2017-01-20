@@ -2,8 +2,8 @@
 
 namespace RPG.Model.Interfaces
 {
-    [InheritedExport(typeof(IUserProperty))]
-    public interface IUserProperty
+    [InheritedExport(typeof(IBattleProperty))]
+    public interface IBattleProperty
     {
         string Name { get; }
 
