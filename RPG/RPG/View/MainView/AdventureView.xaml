@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="RPG.View.MainView.AdventureView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:resource="clr-namespace:RPG.Resource"
+             xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
+             xmlns:controls="clr-namespace:RPG.Controls"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             mc:Ignorable="d" 
+            d:DataContext="{d:DesignInstance viewModel:AdventureViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="380">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resource/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <ListView ItemsSource="{Binding Path=AdventureAreas}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent">
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel/>
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+        <ListView.ItemTemplate>
+            <DataTemplate DataType="{x:Type interfaces:IAdventureArea}">
+                <controls:IconItem Rarity="Normal" MinWidth="110" Background="{StaticResource BackgroundBrush02}"
+                                  ShowAmount="False"
+                                  Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" >
+                    <controls:IconItem.ItemName>
+                        <MultiBinding StringFormat="{}{0} LV{1}~{2}">
+                            <Binding Path="AreaName"></Binding>
+                            <Binding Path="MinLevel"></Binding>
+                            <Binding Path="MaxLevel"></Binding>
+                        </MultiBinding>
+                    </controls:IconItem.ItemName>
+                </controls:IconItem>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</UserControl>

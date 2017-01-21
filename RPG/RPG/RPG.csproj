@@ -93,11 +93,13 @@
     <Compile Include="Model\Achivements\AchievementBase.cs" />
     <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />
     <Compile Include="Model\Achivements\AchivementPropertyBase.cs" />
+    <Compile Include="Model\AdventureArea.cs" />
     <Compile Include="Model\Equipment\BasicLance.cs" />
     <Compile Include="Model\Equipment\EquipmentBase.cs" />
     <Compile Include="Model\Equipment\EquipmentPart.cs" />
     <Compile Include="Model\Equipment\UltimateChestPlate.cs" />
     <Compile Include="Model\Interfaces\IAchievement.cs" />
+    <Compile Include="Model\Interfaces\IAdventureArea.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Interfaces\IMonster.cs" />
     <Compile Include="Model\Interfaces\ITitleManager.cs" />
@@ -130,6 +132,7 @@
       <DependentUpon>RPGHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AchievementsViewModel.cs" />
+    <Compile Include="ViewModel\AdventureViewModel.cs" />
     <Compile Include="ViewModel\BackpackViewModel.cs" />
     <Compile Include="ViewModel\CharacterViewModel.cs" />
     <Compile Include="ViewModel\EquipmentViewModel.cs" />
@@ -141,6 +144,9 @@
     <Compile Include="ViewModel\SkillsViewModel.cs" />
     <Compile Include="View\MainView\AchievementsView.xaml.cs">
       <DependentUpon>AchievementsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView\AdventureView.xaml.cs">
+      <DependentUpon>AdventureView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView\BackpackView.xaml.cs">
       <DependentUpon>BackpackView.xaml</DependentUpon>
@@ -195,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView\AchievementsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView\AdventureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,6 +345,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Icons\chapter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Adventures\BTNForestTroll.jpg" />
+    <Resource Include="Resource\Icons\Adventures\BTNGrunt.jpg" />
+    <Resource Include="Resource\Icons\Adventures\BTNWolf.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Adventures\BTNArachnathid.jpg" />
+    <Resource Include="Resource\Icons\Adventures\BTNOgre.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

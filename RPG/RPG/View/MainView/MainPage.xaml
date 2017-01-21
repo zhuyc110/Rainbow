@@ -69,7 +69,7 @@
                 <TextBlock Foreground="White" FontSize="15" Text="成就" />
             </Button.Content>
         </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
+        <Button Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource BigButton}" Command="{Binding OpenAdventuresCommand}">
             <Button.Background>
                 <ImageBrush ImageSource="{StaticResource BTNHoldPosition}" />
             </Button.Background>

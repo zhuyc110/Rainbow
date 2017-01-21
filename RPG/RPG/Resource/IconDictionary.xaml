@@ -2,6 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BitmapImage x:Key="Ability_Druid_Disembowel" UriSource="Icons/Achievement/Ability_Druid_Disembowel.jpg" />
 
+    <BitmapImage x:Key="BTNArachnathid" UriSource="Icons/Adventures/BTNArachnathid.jpg" />
+    <BitmapImage x:Key="BTNForestTroll" UriSource="Icons/Adventures/BTNForestTroll.jpg" />
+    <BitmapImage x:Key="BTNGrunt" UriSource="Icons/Adventures/BTNGrunt.jpg" />
+    <BitmapImage x:Key="BTNOgre" UriSource="Icons/Adventures/BTNOgre.jpg" />
+    <BitmapImage x:Key="BTNWolf" UriSource="Icons/Adventures/BTNWolf.jpg" />
+
     <BitmapImage x:Key="INV_Boots_01" UriSource="Icons/Equipments/INV_Boots_01.jpg" />
     <BitmapImage x:Key="INV_Chest_Plate03" UriSource="Icons/Equipments/INV_Chest_Plate03.jpg" />
     <BitmapImage x:Key="INV_Chest_Plate14" UriSource="Icons/Equipments/INV_Chest_Plate14.jpg" />

@@ -7,5 +7,6 @@
         public const string BackpackView = nameof(View.MainView.BackpackView);
         public const string SkillsView = nameof(View.MainView.SkillsView);
         public const string AchievementsView = nameof(View.MainView.AchievementsView);
+        public const string AdventureView = nameof(View.MainView.AdventureView);
     }
 }

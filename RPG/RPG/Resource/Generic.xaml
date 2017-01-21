@@ -43,5 +43,6 @@
     </Style>
 
     <SolidColorBrush x:Key="BackgroundBrush" Color="#FEDFE1"/>
+    <SolidColorBrush x:Key="BackgroundBrush02" Color="#BDC0BA"></SolidColorBrush>
     <SolidColorBrush x:Key="ForegroundBrush" Color="#1B813E"/>
 </ResourceDictionary>

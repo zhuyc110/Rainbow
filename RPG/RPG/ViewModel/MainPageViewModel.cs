@@ -22,7 +22,8 @@ namespace RPG.ViewModel
         {
             _ioService = ioService;
 
-            OpenAchievementsCommand = new DelegateCommand(OpenAchievements);
+            OpenAchievementsCommand = new DelegateCommand(() => OpenView(Constants.AchievementsView));
+            OpenAdventuresCommand = new DelegateCommand(() => OpenView(Constants.AdventureView));
         }
 
         [Obsolete]
@@ -36,9 +37,11 @@ namespace RPG.ViewModel
 
         public ICommand OpenAchievementsCommand { get; }
 
-        private void OpenAchievements()
+        public ICommand OpenAdventuresCommand { get; }
+
+        private void OpenView(string viewName)
         {
-            _ioService.SwitchView(nameof(MainModule),Constants.AchievementsView);
+            _ioService.SwitchView(nameof(MainModule), viewName);
         }
     }
 }
