@@ -9,14 +9,20 @@
              xmlns:resource="clr-namespace:RPG.Resource"
              mc:Ignorable="d" 
             d:DataContext="{d:DesignInstance viewModel:AchievementsViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="300" d:DesignWidth="380">
+             d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
-        <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resource/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        </ResourceDictionary>
     </UserControl.Resources>
+    
     <ListView ItemsSource="{Binding Achivements}" Background="Transparent" BorderThickness="0">
         <ListView.ItemTemplate>
             <DataTemplate DataType="{x:Type achivements:AchievementBase}">
-                <controls:IconItemHorizontal Background="White" Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" ItemName="{Binding Path=Name}" PropertyList="{Binding Path=AchivementProperties}">
+                <controls:IconItemHorizontal Background="{StaticResource BackgroundBrush02}" Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" ItemName="{Binding Path=Name}" PropertyList="{Binding Path=AchivementProperties}">
                     <controls:IconItemHorizontal.ItemContent>
                         <MultiBinding StringFormat="{}进度: {0}/{1}">
                             <Binding Path="Current"/>

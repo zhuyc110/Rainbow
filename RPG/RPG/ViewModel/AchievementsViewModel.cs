@@ -25,10 +25,11 @@ namespace RPG.ViewModel
                 Achivements = new ObservableCollection<IAchievement>
                 {
                     new AchievementFirstBlood(new[] {property}),
+                    new AchievementBossKiller(new[] {property}),
                     new AchievementFirstBlood(new[] {property}),
+                    new AchievementBossKiller(new[] {property}),
                     new AchievementFirstBlood(new[] {property}),
-                    new AchievementFirstBlood(new[] {property}),
-                    new AchievementFirstBlood(new[] {property})
+                    new AchievementBossKiller(new[] {property})
                 };
             }
         }

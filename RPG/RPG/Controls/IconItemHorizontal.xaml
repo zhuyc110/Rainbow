@@ -10,7 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="52"></ColumnDefinition>
             <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="210"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
@@ -20,10 +20,11 @@
         <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemName}"/>
         <TextBlock Margin="5"  Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemContent}"/>
         <!--<TextBlock Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Text="{Binding ElementName=IconItemHorizontalControl, Path=AdditionalText}"/>-->
-        <ListView Margin="5" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding ElementName=IconItemHorizontalControl, Path=PropertyList}">
+        <ListView Margin="5" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                  ItemsSource="{Binding ElementName=IconItemHorizontalControl, Path=PropertyList}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
+                    <WrapPanel Orientation="Vertical" MaxHeight="50"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>

@@ -91,6 +91,7 @@
     <Compile Include="Infrastructure\Interfaces\IRandom.cs" />
     <Compile Include="Infrastructure\Interfaces\IView.cs" />
     <Compile Include="Model\Achivements\AchievementBase.cs" />
+    <Compile Include="Model\Achivements\AchievementBossKiller.cs" />
     <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />
     <Compile Include="Model\Achivements\AchivementPropertyBase.cs" />
     <Compile Include="Model\AdventureArea.cs" />

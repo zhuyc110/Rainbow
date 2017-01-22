@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <ListView ItemsSource="{Binding Path=AdventureAreas}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent">
+    <ListView ItemsSource="{Binding Path=AdventureAreas}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0">
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel/>
