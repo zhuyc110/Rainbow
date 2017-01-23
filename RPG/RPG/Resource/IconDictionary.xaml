@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BitmapImage x:Key="Ability_Druid_Disembowel" UriSource="Icons/Achievement/Ability_Druid_Disembowel.jpg" />
+    <BitmapImage x:Key="Spell_Shadow_BlackPlague" UriSource="Icons/Achievement/Spell_Shadow_BlackPlague.jpg" />
 
     <BitmapImage x:Key="BTNArachnathid" UriSource="Icons/Adventures/BTNArachnathid.jpg" />
     <BitmapImage x:Key="BTNForestTroll" UriSource="Icons/Adventures/BTNForestTroll.jpg" />

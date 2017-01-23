@@ -76,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\IconButton.cs" />
     <Compile Include="Controls\IconItem.xaml.cs">
       <DependentUpon>IconItem.xaml</DependentUpon>
     </Compile>
@@ -190,6 +191,10 @@
     </Compile>
     <Compile Include="BootStrapper.cs" />
     <Page Include="Resource\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\IconButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,6 +360,9 @@
   <ItemGroup>
     <Resource Include="Resource\Icons\Adventures\BTNArachnathid.jpg" />
     <Resource Include="Resource\Icons\Adventures\BTNOgre.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Icons\Achievement\Spell_Shadow_BlackPlague.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
