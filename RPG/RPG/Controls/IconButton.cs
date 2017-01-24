@@ -14,6 +14,10 @@ namespace RPG.Controls
             DependencyProperty.Register(nameof(ContextRow), typeof(int), typeof(IconButton),
                 new PropertyMetadata(default(int)));
 
+        public static readonly DependencyProperty TextSecondRowProperty =
+            DependencyProperty.Register(nameof(TextSecondRow), typeof(string), typeof(IconButton),
+                new PropertyMetadata(default(string)));
+
         public ImageSource ImageSource
         {
             get { return (ImageSource) GetValue(ImageSourceProperty); }
@@ -24,6 +28,12 @@ namespace RPG.Controls
         {
             get { return (int)GetValue(ContextRowProperty); }
             set { SetValue(ContextRowProperty, value); }
+        }
+
+        public string TextSecondRow
+        {
+            get { return (string)GetValue(TextSecondRowProperty); }
+            set { SetValue(TextSecondRowProperty, value); }
         }
     }
 }

@@ -21,16 +21,8 @@
         </ListView.ItemsPanel>
         <ListView.ItemTemplate>
             <DataTemplate DataType="{x:Type interfaces:IMonster}">
-                <controls:IconItem Rarity="Normal"
-                                  ShowAmount="False"
-                                  Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" >
-                    <controls:IconItem.ItemName>
-                        <MultiBinding StringFormat="{}{0} - LV {1}">
-                            <Binding Path="MonsterName"></Binding>
-                            <Binding Path="Level"></Binding>
-                        </MultiBinding>
-                    </controls:IconItem.ItemName>
-                </controls:IconItem>
+                <controls:IconButton ImageSource="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" Content="{Binding Title}" >
+                </controls:IconButton>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

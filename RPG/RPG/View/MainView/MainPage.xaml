@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:resource="clr-namespace:RPG.Resource"
     xmlns:viewModel="clr-namespace:RPG.ViewModel"
     xmlns:controls="clr-namespace:RPG.Controls"
     x:Class="RPG.View.MainView.MainPage"
@@ -17,22 +16,14 @@
                 <ResourceDictionary Source="..\..\Resource\IconButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="Button" x:Key="BigButton">
+            <Style TargetType="controls:IconButton" x:Key="MainPageIconButtonStyle" BasedOn="{StaticResource IconButtonStyle}">
                 <Setter Property="Width" Value="75" />
                 <Setter Property="Height" Value="75" />
                 <Setter Property="Margin" Value="5" />
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Rectangle
-                                        Fill="{Binding Path=Background, RelativeSource={RelativeSource AncestorType=Button}}" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Trigger>
-                </Style.Triggers>
+                <Setter Property="ContextRow" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="15"></Setter>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -46,49 +37,18 @@
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Content="角色强化" HorizontalAlignment="Left" Height="25" Width="75" Margin="5" />
         <Button Grid.Row="0" Content="公告" HorizontalAlignment="Right" Height="25" Width="75" Margin="5" />
-        <Button Grid.Row="1" HorizontalAlignment="Left" Style="{StaticResource BigButton}">
-            <Button.Background>
-                <ImageBrush ImageSource="{StaticResource BTNTombOfRelics}" />
-            </Button.Background>
-            <Button.Content>
-                <TextBlock Foreground="White" FontSize="15" Text="黑市" />
-            </Button.Content>
-        </Button>
-        <controls:IconButton Grid.Row="1" HorizontalAlignment="Center" Width="75" Style="{StaticResource IconButtonStyle}"
-                             ImageSource="{StaticResource BTNBlacksmith}" ContextRow="0" Content="铁匠铺" Foreground="White" Background="Transparent"/>
-        <Button Grid.Row="1" HorizontalAlignment="Right" Style="{StaticResource BigButton}"
-                Command="{Binding Path=OpenAchievementsCommand}">
-            <Button.Background>
-                <ImageBrush ImageSource="{StaticResource BTNUndeadCaptureFlag}" />
-            </Button.Background>
-            <Button.Content>
-                <TextBlock Foreground="White" FontSize="15" Text="成就" />
-            </Button.Content>
-        </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource BigButton}" Command="{Binding OpenAdventuresCommand}">
-            <Button.Background>
-                <ImageBrush ImageSource="{StaticResource BTNHoldPosition}" />
-            </Button.Background>
-            <Button.Content>
-                <TextBlock Foreground="White" FontSize="15" Text="冒险" />
-            </Button.Content>
-        </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource BigButton}">
-            <Button.Background>
-                <ImageBrush ImageSource="{StaticResource BTNDarkPortal}" />
-            </Button.Background>
-            <Button.Content>
-                <TextBlock Foreground="White" FontSize="15" Text="副本" />
-            </Button.Content>
-        </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource BigButton}">
-            <Button.Background>
-                <ImageBrush ImageSource="{StaticResource BTNVengeanceIncarnate}" />
-            </Button.Background>
-            <Button.Content>
-                <TextBlock Foreground="White" FontSize="15" Text="深渊" />
-            </Button.Content>
-        </Button>
+        <controls:IconButton Grid.Row="1" HorizontalAlignment="Left" Style="{StaticResource MainPageIconButtonStyle}"
+                             ImageSource="{StaticResource BTNTombOfRelics}" Content="黑市"/>
+        <controls:IconButton Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource MainPageIconButtonStyle}"
+                             ImageSource="{StaticResource BTNBlacksmith}" Content="铁匠铺" />
+        <controls:IconButton Grid.Row="1" HorizontalAlignment="Right" Style="{StaticResource MainPageIconButtonStyle}"
+                             ImageSource="{StaticResource BTNUndeadCaptureFlag}" Content="成就" Command="{Binding Path=OpenAchievementsCommand}"/>
+        <controls:IconButton Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource MainPageIconButtonStyle}"
+                             ImageSource="{StaticResource BTNHoldPosition}" Content="冒险" Command="{Binding Path=OpenAdventuresCommand}"/>
+        <controls:IconButton Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource MainPageIconButtonStyle}"
+                             ImageSource="{StaticResource BTNDarkPortal}" Content="副本" />
+        <controls:IconButton Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource MainPageIconButtonStyle}"
+                             ImageSource="{StaticResource BTNVengeanceIncarnate}" Content="深渊" />
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
