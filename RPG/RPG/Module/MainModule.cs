@@ -28,6 +28,7 @@ namespace RPG.Module
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(EquipmentView)); 
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(CharacterView));
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(AdventureView));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(MonstersView));
         }
     }
 }

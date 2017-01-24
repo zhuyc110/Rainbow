@@ -54,5 +54,10 @@ namespace RPG.Infrastructure.Implementation
         {
             _regionManager.Regions[moduleName].RequestNavigate(viewName);
         }
+
+        public T GetView<T>()
+        {
+            return _serviceLocator.GetInstance<T>();
+        }
     }
 }

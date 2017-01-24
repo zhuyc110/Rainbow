@@ -1,20 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Prism.Mvvm;
+using RPG.Infrastructure.Implementation;
 using RPG.Model.Interfaces;
+using RPG.Model.Monsters;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(MonstersViewModel))]
-    [PartCreationPolicy(CreationPolicy.Shared)]
     public class MonstersViewModel : BindableBase
     {
-        [ImportMany]
-        public ObservableCollection<IMonster> Monsters { get; set; }
+        public MonstersViewModel(IEnumerable<IMonster> monsters)
+        {
+            Monsters = new ObservableCollection<IMonster>(monsters);
+        }
+
+        [Obsolete]
+        public MonstersViewModel()
+        {
+            Monsters = new ObservableCollection<IMonster>
+            {
+                new MonsterSlime(new MyRandom())
+            };
+        } 
+
+        public ObservableCollection<IMonster> Monsters { get; private set; }
     }
 }

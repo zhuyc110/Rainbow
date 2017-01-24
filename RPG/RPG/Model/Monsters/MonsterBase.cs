@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Interfaces;
 
@@ -7,11 +6,13 @@ namespace RPG.Model.Monsters
 {
     public abstract class MonsterBase : IMonster
     {
-        protected MonsterBase(string monsterName, int level, string iconResource, string title = null,
+        protected MonsterBase(string monsterName, int level, string iconResource, IRandom random, string title = null,
             MonsterClass monsterClass = MonsterClass.Normal)
         {
+            MyRandom = random;
             MonsterName = monsterName;
             Level = level;
+            IconResource = iconResource;
             Title = title;
             if (monsterClass == MonsterClass.Normal)
                 Class = CalculateMonsterClass();
@@ -20,8 +21,7 @@ namespace RPG.Model.Monsters
         }
         
         protected IEnumerable<IBattleProperty> Properties { get; set; }
-
-        [Import]
+        
         protected IRandom MyRandom { get; set; }
 
         public string Title { get; }

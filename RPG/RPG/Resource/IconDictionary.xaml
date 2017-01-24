@@ -23,6 +23,8 @@
     <BitmapImage x:Key="INV_Misc_Gem_Emerald_02" UriSource="Icons/Items/INV_Misc_Gem_Emerald_02.jpg" />
     <BitmapImage x:Key="INV_Stone_06" UriSource="Icons/Items/INV_Stone_06.jpg" />
 
+    <BitmapImage x:Key="INV_Stone_15" UriSource="Icons/Monsters/INV_Stone_15.jpg" />
+
     <BitmapImage x:Key="Background" UriSource="Icons/Background-a.jpg" />
     <BitmapImage x:Key="BTNBlacksmith" UriSource="Icons/BTNBlacksmith.jpg" />
     <BitmapImage x:Key="BTNChestOfGold" UriSource="Icons/BTNChestOfGold.jpg" />
