@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Interfaces;
 using RPG.Model.UserProperties;
@@ -18,6 +19,7 @@ namespace RPG.Model.Monsters
                 new PropertyHP {Basic = (int) (80*rel)},
                 new PropertyAttack {Basic = (int) (10*rel)}
             };
+            CurrentHp = Properties.Single(x => x.Name == "生命").FinalValue;
         }
     }
 }

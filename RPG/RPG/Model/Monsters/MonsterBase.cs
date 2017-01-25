@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Prism.Mvvm;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model.Monsters
 {
-    public abstract class MonsterBase : IMonster
+    public abstract class MonsterBase : BindableBase, IMonster
     {
+        private int _currentHp;
+
         protected MonsterBase(string monsterName, int level, string iconResource, IRandom random, string title = null,
             MonsterClass monsterClass = MonsterClass.Normal)
         {
@@ -19,15 +23,29 @@ namespace RPG.Model.Monsters
             else
                 Class |= CalculateMonsterClass();
         }
-        
+
         protected IEnumerable<IBattleProperty> Properties { get; set; }
-        
+
         protected IRandom MyRandom { get; set; }
 
         public string Title { get; }
         public string MonsterName { get; }
         public int Level { get; }
-        public MonsterClass Class { get; }
+        public MonsterClass Class { get; private set; }
+
+        public string IconResource { get; }
+
+        public int CurrentHp
+        {
+            get { return _currentHp; }
+            set
+            {
+                SetProperty(ref _currentHp, value);
+                OnPropertyChanged(nameof(CurrentHpPercentage));
+            }
+        }
+
+        public double CurrentHpPercentage => CurrentHp / (double)Properties.Single(x => x.Name == "生命").FinalValue * 100.0;
 
         private MonsterClass CalculateMonsterClass()
         {
@@ -39,7 +57,5 @@ namespace RPG.Model.Monsters
                 return MonsterClass.Elite;
             return MonsterClass.Normal;
         }
-
-        public string IconResource { get; }
     }
 }

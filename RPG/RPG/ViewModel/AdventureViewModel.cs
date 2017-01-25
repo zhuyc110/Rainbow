@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
@@ -14,12 +13,12 @@ using RPG.View.MainView;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(AdventureViewModel))]
+    [Export(typeof (AdventureViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class AdventureViewModel : BindableBase
     {
-        private IAdventureArea _selectedArea;
         private readonly IIOService _ioService;
+        private IAdventureArea _selectedArea;
 
         [ImportingConstructor]
         public AdventureViewModel(IIOService ioService)
@@ -51,13 +50,19 @@ namespace RPG.ViewModel
         [ImportMany]
         private IEnumerable<IMonster> Monsters { get; set; }
 
+        [Import]
+        private UserBattleState UserBattleState { get; set; }
+
         private void OnOpenArea(string areaName)
         {
             if ((SelectedArea = AdventureAreas.First(x => x.AreaName == areaName)) == null)
                 return;
-            
+
             var view = _ioService.GetView<MonstersView>();
-            view.DataContext = new MonstersViewModel(Monsters);
+            view.ViewModel =
+                new MonstersViewModel(
+                    Monsters.Where(x => x.Level <= SelectedArea.MaxLevel && x.Level >= SelectedArea.MinLevel),
+                    UserBattleState, _ioService);
             _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
         }
     }

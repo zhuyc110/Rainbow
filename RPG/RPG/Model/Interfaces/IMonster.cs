@@ -14,5 +14,9 @@ namespace RPG.Model.Interfaces
         MonsterClass Class { get; }
 
         string IconResource { get; }
+
+        int CurrentHp { get; set; }
+
+        double CurrentHpPercentage { get; }
     }
 }

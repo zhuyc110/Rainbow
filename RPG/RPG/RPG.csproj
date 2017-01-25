@@ -123,6 +123,7 @@
     <Compile Include="Module\HeaderModule.cs" />
     <Compile Include="Module\MainModule.cs" />
     <Compile Include="Module\NavigationModule.cs" />
+    <Compile Include="Resource\MonsterClassToBrushConverter.cs" />
     <Compile Include="Resource\RarityToBrushConverter.cs" />
     <Compile Include="Resource\ResourceKeyToImageConverter.cs" />
     <Compile Include="Model\Skills\SkillBase.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="ViewModel\AchievementsViewModel.cs" />
     <Compile Include="ViewModel\AdventureViewModel.cs" />
     <Compile Include="ViewModel\BackpackViewModel.cs" />
+    <Compile Include="ViewModel\BattleViewModel.cs" />
     <Compile Include="ViewModel\CharacterViewModel.cs" />
     <Compile Include="ViewModel\EquipmentViewModel.cs" />
     <Compile Include="ViewModel\HeaderViewModel.cs" />
@@ -152,6 +154,9 @@
     </Compile>
     <Compile Include="View\MainView\BackpackView.xaml.cs">
       <DependentUpon>BackpackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView\BattleView.xaml.cs">
+      <DependentUpon>BattleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView\EquipmentView.xaml.cs">
       <DependentUpon>EquipmentView.xaml</DependentUpon>
@@ -215,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView\BackpackView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView\BattleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
