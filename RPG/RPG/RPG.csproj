@@ -83,6 +83,9 @@
     <Compile Include="Controls\IconItemHorizontal.xaml.cs">
       <DependentUpon>IconItemHorizontal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NameBoard.xaml.cs">
+      <DependentUpon>NameBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\Extension\EnumExtension.cs" />
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
@@ -195,6 +198,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BootStrapper.cs" />
+    <Page Include="Controls\NameBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resource\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
