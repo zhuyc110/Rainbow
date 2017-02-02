@@ -2,30 +2,28 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RPG.Controls"
-             xmlns:resource="clr-namespace:RPG.Resource"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              x:Name="NameBoardControl"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="124">
+             d:DesignHeight="70" d:DesignWidth="124">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Resource/Generic.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <resource:MonsterClassToBrushConverter x:Key="MonsterClassToBrushConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Path=BoardTitle, ElementName=NameBoardControl}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.Row="0" Text="{Binding Path=BoardTitle, ElementName=NameBoardControl}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold"/>
         <TextBlock Grid.Row="1" Text="{Binding Path=BoardName, ElementName=NameBoardControl}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding Path=Foreground, ElementName=NameBoardControl}"/>
-        <Rectangle Grid.Row="2" HorizontalAlignment="Left" Margin="12,5" Width="100" Fill="{StaticResource BackgroundBrush02}" />
+        <Rectangle Grid.Row="2" HorizontalAlignment="Left" Margin="12,0" Height="8" Width="100" Fill="{StaticResource BackgroundBrush02}" />
+        <Rectangle Grid.Row="2" HorizontalAlignment="Left" Margin="12,0" Height="8" Width="{Binding ElementName=NameBoardControl, Path=HpPercentage}" Fill="{StaticResource ForegroundBrush}" />
     </Grid>
 </UserControl>
