@@ -20,6 +20,7 @@ namespace RPG.Model
             Gold = 1000;
             Gem = 100;
             UserName = "Sky - Han";
+            Title = "一个称号";
         }
 
         public string Title

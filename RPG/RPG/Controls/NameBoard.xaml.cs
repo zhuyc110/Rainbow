@@ -9,14 +9,14 @@ namespace RPG.Controls
     {
         public static DependencyProperty BoardTitleProperty =
             DependencyProperty.Register(nameof(BoardTitle), typeof(string), typeof(NameBoard),
-                new PropertyMetadata("怪物称号"));
+                new PropertyMetadata("称号"));
 
         public static DependencyProperty HpPercentageProperty =
             DependencyProperty.Register(nameof(HpPercentage), typeof(int), typeof(NameBoard), new PropertyMetadata(100));
 
         public static DependencyProperty BoardNameProperty =
             DependencyProperty.Register(nameof(BoardName), typeof(string), typeof(NameBoard),
-                new PropertyMetadata("怪物名称"));
+                new PropertyMetadata("名称"));
 
         public NameBoard()
         {

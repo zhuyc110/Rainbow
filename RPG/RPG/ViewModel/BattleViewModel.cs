@@ -23,6 +23,5 @@ namespace RPG.ViewModel
 
         public IMonster Monster { get; }
         public UserBattleState UserBattleState { get; }
-        public IUserState UserState { get; }
     }
 }

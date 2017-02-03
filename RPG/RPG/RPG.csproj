@@ -105,6 +105,7 @@
     <Compile Include="Model\Equipment\UltimateChestPlate.cs" />
     <Compile Include="Model\Interfaces\IAchievement.cs" />
     <Compile Include="Model\Interfaces\IAdventureArea.cs" />
+    <Compile Include="Model\Interfaces\IBattleActor.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Interfaces\IMonster.cs" />
     <Compile Include="Model\Interfaces\ITitleManager.cs" />

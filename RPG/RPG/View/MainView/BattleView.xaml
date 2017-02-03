@@ -41,14 +41,13 @@
                 </MultiBinding>
             </controls:NameBoard.BoardName>
         </controls:NameBoard>
-        
-        <controls:NameBoard Grid.Row="4" Grid.Column="1" BoardTitle="{Binding Path=Monster.Title}" 
-                            HpPercentage="{Binding Path=Monster.CurrentHpPercentage}" 
-                            Foreground="{Binding Path=Monster.Class, Converter={StaticResource MonsterClassToBrushConverter}}">
+
+        <controls:NameBoard Grid.Row="4" Grid.Column="1" BoardTitle="{Binding Path=UserBattleState.UserState.Title}" 
+                            HpPercentage="{Binding Path=Monster.CurrentHpPercentage}" >
             <controls:NameBoard.BoardName>
                 <MultiBinding StringFormat="{}LV{0} {1}">
-                    <Binding Path="Monster.Level" />
-                    <Binding Path="Monster.MonsterName" />
+                    <Binding Path="UserBattleState.UserState.Level" />
+                    <Binding Path="UserBattleState.UserState.UserName" />
                 </MultiBinding>
             </controls:NameBoard.BoardName>
         </controls:NameBoard>
