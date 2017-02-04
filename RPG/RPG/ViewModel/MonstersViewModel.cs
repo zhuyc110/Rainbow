@@ -8,6 +8,7 @@ using Prism.Mvvm;
 using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model;
+using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.Monsters;
 using RPG.Module;

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Prism.Mvvm;
 using RPG.Model;
+using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.UserProperties;
 

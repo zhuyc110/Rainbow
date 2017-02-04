@@ -7,6 +7,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model;
+using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Module;
 using RPG.View.MainView;

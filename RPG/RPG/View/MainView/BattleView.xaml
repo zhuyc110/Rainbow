@@ -43,7 +43,7 @@
         </controls:NameBoard>
 
         <controls:NameBoard Grid.Row="4" Grid.Column="1" BoardTitle="{Binding Path=UserBattleState.UserState.Title}" 
-                            HpPercentage="{Binding Path=Monster.CurrentHpPercentage}" >
+                            HpPercentage="{Binding Path=UserBattleState.CurrentHpPercentage}" >
             <controls:NameBoard.BoardName>
                 <MultiBinding StringFormat="{}LV{0} {1}">
                     <Binding Path="UserBattleState.UserState.Level" />

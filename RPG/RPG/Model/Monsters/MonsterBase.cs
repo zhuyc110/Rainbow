@@ -6,8 +6,9 @@ using RPG.Model.Interfaces;
 
 namespace RPG.Model.Monsters
 {
-    public abstract class MonsterBase : BindableBase, IMonster
+    public abstract class MonsterBase : BindableBase, IMonster, IBattleEntity
     {
+        private int _currentAttack;
         private int _currentHp;
 
         protected MonsterBase(string monsterName, int level, string iconResource, IRandom random, string title = null,
@@ -28,10 +29,16 @@ namespace RPG.Model.Monsters
 
         protected IRandom MyRandom { get; set; }
 
+        public int CurrentAttack
+        {
+            get { return _currentAttack; }
+            set { SetProperty(ref _currentAttack, value); }
+        }
+
         public string Title { get; }
         public string MonsterName { get; }
         public int Level { get; }
-        public MonsterClass Class { get; private set; }
+        public MonsterClass Class { get; }
 
         public string IconResource { get; }
 
@@ -45,7 +52,8 @@ namespace RPG.Model.Monsters
             }
         }
 
-        public double CurrentHpPercentage => CurrentHp / (double)Properties.Single(x => x.Name == "生命").FinalValue * 100.0;
+        public double CurrentHpPercentage
+            => CurrentHp / (double) Properties.Single(x => x.Name == "生命").FinalValue * 100.0;
 
         private MonsterClass CalculateMonsterClass()
         {
