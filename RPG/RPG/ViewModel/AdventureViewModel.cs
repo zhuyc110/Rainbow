@@ -54,6 +54,9 @@ namespace RPG.ViewModel
         [Import]
         private UserBattleState UserBattleState { get; set; }
 
+        [Import]
+        private IBattleActor BattleActor { get; set; }
+
         private void OnOpenArea(string areaName)
         {
             if ((SelectedArea = AdventureAreas.First(x => x.AreaName == areaName)) == null)
@@ -63,7 +66,7 @@ namespace RPG.ViewModel
             view.ViewModel =
                 new MonstersViewModel(
                     Monsters.Where(x => x.Level <= SelectedArea.MaxLevel && x.Level >= SelectedArea.MinLevel),
-                    UserBattleState, _ioService);
+                    UserBattleState, _ioService, BattleActor);
             _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
         }
     }

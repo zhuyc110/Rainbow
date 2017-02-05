@@ -19,6 +19,7 @@ namespace RPG.Model.Monsters
                 new PropertyHP {Basic = (int) (80*rel)},
                 new PropertyAttack {Basic = (int) (10*rel)}
             };
+            CurrentAttack = Properties.Single(x => x.Name == "攻击").FinalValue;
             CurrentHp = Properties.Single(x => x.Name == "生命").FinalValue;
         }
     }

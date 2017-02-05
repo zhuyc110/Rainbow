@@ -13,6 +13,6 @@ namespace RPG.Model.Interfaces
 
         double RelativeEnhancement { get; set; }
 
-        int FinalValue { get; }
+        int FinalValue { get; set; }
     }
 }

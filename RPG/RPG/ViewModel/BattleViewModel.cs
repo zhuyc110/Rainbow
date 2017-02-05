@@ -10,10 +10,11 @@ namespace RPG.ViewModel
 {
     public class BattleViewModel : BindableBase
     {
-        public BattleViewModel(UserBattleState userBattleState, IMonster monster)
+        public BattleViewModel(UserBattleState userBattleState, IMonster monster, IBattleActor battleActor)
         {
             UserBattleState = userBattleState;
             Monster = monster;
+            battleActor.StartBattle(UserBattleState, Monster);
         }
 
         [Obsolete]

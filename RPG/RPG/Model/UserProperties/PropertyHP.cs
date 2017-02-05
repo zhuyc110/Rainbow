@@ -6,16 +6,17 @@ namespace RPG.Model.UserProperties
     public class PropertyHP : UserPropertyBase
     {
         [ImportingConstructor]
-        public PropertyHP(IUserState userState) : base("生命")
+        public PropertyHP(IUserState userState) : base("生命", userState)
         {
-            _userState = userState;
-            Basic = 100 + (_userState.Level > 1 ? 14 : 0) + _userState.Level - 1;
         }
 
-        public PropertyHP() : base("生命")
+        public PropertyHP() : base("生命", new UserState())
         {
-        } 
+        }
 
-        private readonly IUserState _userState;
+        protected override void SetBasicAndFinalValue()
+        {
+            Basic = 100 + (UserState.Level > 1 ? 14 : 0) + UserState.Level - 1;
+        }
     }
 }

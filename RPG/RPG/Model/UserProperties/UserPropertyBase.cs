@@ -5,13 +5,18 @@ namespace RPG.Model.UserProperties
 {
     public abstract class UserPropertyBase : BindableBase, IBattleProperty
     {
+        protected readonly IUserState UserState;
         private int _absoluteEnhancement;
         private int _basic;
+        private int _finalValue;
         private double _relativeEnhancement;
 
-        protected UserPropertyBase(string name)
+        protected UserPropertyBase(string name, IUserState userState)
         {
             Name = name;
+            UserState = userState;
+            SetBasicAndFinalValue();
+            FinalValue = (int) ((Basic + AbsoluteEnhancement) * (1 + RelativeEnhancement));
         }
 
         public int AbsoluteEnhancement
@@ -25,7 +30,11 @@ namespace RPG.Model.UserProperties
             }
         }
 
-        public int FinalValue => (int)((Basic + AbsoluteEnhancement) * (1 + RelativeEnhancement));
+        public int FinalValue
+        {
+            get { return _finalValue; }
+            set { SetProperty(ref _finalValue, value); }
+        }
 
         public string Name { get; }
 
@@ -50,6 +59,8 @@ namespace RPG.Model.UserProperties
                 OnPropertyChanged(nameof(FinalValue));
             }
         }
+
+        protected abstract void SetBasicAndFinalValue();
 
         public override string ToString()
         {

@@ -3,7 +3,7 @@
 namespace RPG.Model.Interfaces
 {
     [InheritedExport(typeof(IMonster))]
-    public interface IMonster
+    public interface IMonster : IBattleEntity
     {
         string Title { get; }
 
@@ -14,9 +14,5 @@ namespace RPG.Model.Interfaces
         MonsterClass Class { get; }
 
         string IconResource { get; }
-
-        int CurrentHp { get; set; }
-
-        double CurrentHpPercentage { get; }
     }
 }

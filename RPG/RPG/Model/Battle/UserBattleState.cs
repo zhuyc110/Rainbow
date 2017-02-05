@@ -19,6 +19,7 @@ namespace RPG.Model.Battle
         {
             UserProperty = new ObservableCollection<IBattleProperty>(userProperties);
             CurrentHp = UserProperty.Single(x => x.Name == "生命").FinalValue;
+            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
         }
 
         [Import]

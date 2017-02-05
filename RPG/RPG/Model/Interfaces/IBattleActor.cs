@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using RPG.Model.Battle;
 
 namespace RPG.Model.Interfaces
@@ -6,6 +7,6 @@ namespace RPG.Model.Interfaces
     public interface IBattleActor
     {
         event EventHandler<BattleFinishedArgs> BattleFinished;
-        void StartBattle(UserBattleState userBattleState, IMonster monster);
+        Task StartBattle(IBattleEntity userBattleState, IBattleEntity monster);
     }
 }

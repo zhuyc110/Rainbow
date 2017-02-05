@@ -6,7 +6,7 @@ using RPG.Model.Interfaces;
 
 namespace RPG.Model.Monsters
 {
-    public abstract class MonsterBase : BindableBase, IMonster, IBattleEntity
+    public abstract class MonsterBase : BindableBase, IMonster
     {
         private int _currentAttack;
         private int _currentHp;

@@ -6,16 +6,17 @@ namespace RPG.Model.UserProperties
     public class PropertyAttack : UserPropertyBase
     {
         [ImportingConstructor]
-        public PropertyAttack(IUserState userState) : base("攻击")
-        {
-            _userState = userState;
-            Basic = 20 + (_userState.Level > 1 ? 5 : 0) + _userState.Level - 1;
-        }
-
-        public PropertyAttack() : base("攻击")
+        public PropertyAttack(IUserState userState) : base("攻击", userState)
         {
         }
 
-        private readonly IUserState _userState;
+        public PropertyAttack() : base("攻击", new UserState())
+        {
+        }
+
+        protected override void SetBasicAndFinalValue()
+        {
+            Basic = 20 + (UserState.Level > 1 ? 5 : 0) + UserState.Level - 1;
+        }
     }
 }
