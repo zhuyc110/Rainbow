@@ -101,6 +101,7 @@
     <Compile Include="Model\AdventureArea.cs" />
     <Compile Include="Model\Battle\BattleActor.cs" />
     <Compile Include="Model\Battle\BattleFinishedArgs.cs" />
+    <Compile Include="Model\Battle\BattleRoundArgs.cs" />
     <Compile Include="Model\Equipment\BasicLance.cs" />
     <Compile Include="Model\Equipment\EquipmentBase.cs" />
     <Compile Include="Model\Equipment\EquipmentPart.cs" />

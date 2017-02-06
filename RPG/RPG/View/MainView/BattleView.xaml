@@ -14,6 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resource/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <resource:MonsterClassToBrushConverter x:Key="MonsterClassToBrushConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
@@ -31,6 +32,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="5" Fill="{StaticResource BackgroundBrush02}" Opacity="0.5" />
+        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=Damage}" Background="Transparent" Foreground="Red" Visibility="{Binding IsMonsterDamaged, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <controls:NameBoard Grid.Row="0" Grid.Column="1" BoardTitle="{Binding Path=Monster.Title}" 
                             HpPercentage="{Binding Path=Monster.CurrentHpPercentage}" 
                             Foreground="{Binding Path=Monster.Class, Converter={StaticResource MonsterClassToBrushConverter}}">
@@ -41,7 +43,8 @@
                 </MultiBinding>
             </controls:NameBoard.BoardName>
         </controls:NameBoard>
-
+        
+        <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=Damage}" Background="Transparent" Foreground="Red" Visibility="{Binding IsUserDamaged, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
         <controls:NameBoard Grid.Row="4" Grid.Column="1" BoardTitle="{Binding Path=UserBattleState.UserState.Title}" 
                             HpPercentage="{Binding Path=UserBattleState.CurrentHpPercentage}" >
             <controls:NameBoard.BoardName>

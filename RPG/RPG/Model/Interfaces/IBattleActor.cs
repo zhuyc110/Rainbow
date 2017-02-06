@@ -7,6 +7,7 @@ namespace RPG.Model.Interfaces
     public interface IBattleActor
     {
         event EventHandler<BattleFinishedArgs> BattleFinished;
+        event EventHandler<BattleRoundArgs> OneRoundBattle;
         Task StartBattle(IBattleEntity userBattleState, IBattleEntity monster);
     }
 }

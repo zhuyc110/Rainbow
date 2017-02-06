@@ -19,30 +19,34 @@ namespace RPG.Model.Battle
                 Thread.Sleep(500);
                 var result = OneRound(userBattleState, monster);
                 while (result == BattleResult.Continue)
-                {
                     result = OneRound(userBattleState, monster);
-                }
                 OnBattleFinished(result);
             });
         }
 
-        private static BattleResult OneRound(IBattleEntity userBattleState, IBattleEntity monster)
+        public event EventHandler<BattleRoundArgs> OneRoundBattle;
+
+        private BattleResult OneRound(IBattleEntity userBattleState, IBattleEntity monster)
         {
+            OnOneRoundBattleFinished(monster, userBattleState.CurrentAttack);
             monster.CurrentHp = Math.Max(monster.CurrentHp - userBattleState.CurrentAttack, 0);
             Thread.Sleep(500);
             if (monster.CurrentHp == 0)
-            {
                 return BattleResult.MonsterDied;
-            }
 
+            OnOneRoundBattleFinished(userBattleState, monster.CurrentAttack);
             userBattleState.CurrentHp = Math.Max(userBattleState.CurrentHp - monster.CurrentAttack, 0);
             Thread.Sleep(500);
             if (userBattleState.CurrentHp == 0)
-            {
                 return BattleResult.UserDied;
-            }
 
             return BattleResult.Continue;
+        }
+
+        private void OnOneRoundBattleFinished(IBattleEntity damagedEntity, int damage)
+        {
+            var handle = OneRoundBattle;
+            handle?.Invoke(damagedEntity, new BattleRoundArgs(damage));
         }
 
         private void OnBattleFinished(BattleResult battleResult)

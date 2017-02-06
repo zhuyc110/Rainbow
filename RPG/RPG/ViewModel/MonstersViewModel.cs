@@ -28,17 +28,6 @@ namespace RPG.ViewModel
             _userBattleState = userBattleState;
             Monsters = new ObservableCollection<IMonster>(monsters);
             StartBattleCommand = new DelegateCommand<string>(StartBattle);
-            _battleActor.BattleFinished += OnBattleFinished;
-        }
-
-        private void OnBattleFinished(object sender, BattleFinishedArgs e)
-        {
-            var view = _ioService.GetView<MonstersView>();
-            view.Dispatcher.Invoke(() =>
-            {
-                view.ViewModel = this;
-                _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
-            });
         }
 
         [Obsolete]
@@ -54,10 +43,10 @@ namespace RPG.ViewModel
 
         public ICommand StartBattleCommand { get; }
 
-        private void StartBattle(string areaName)
+        private void StartBattle(string monsterName)
         {
             var view = _ioService.GetView<BattleView>();
-            view.ViewModel = new BattleViewModel(_userBattleState, Monsters.Single(x => x.MonsterName == areaName), _battleActor);
+            view.ViewModel = new BattleViewModel(_userBattleState, Monsters.Single(x => x.MonsterName == monsterName), _battleActor, _ioService, this);
             _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
         }
     }
