@@ -15,8 +15,8 @@ namespace RPG.Model.UserProperties
         {
             Name = name;
             UserState = userState;
-            SetBasicAndFinalValue();
-            FinalValue = (int) ((Basic + AbsoluteEnhancement) * (1 + RelativeEnhancement));
+            SetBasicValue();
+            RecaculateFinalValue();
         }
 
         public int AbsoluteEnhancement
@@ -25,8 +25,8 @@ namespace RPG.Model.UserProperties
 
             set
             {
-                SetProperty(ref _absoluteEnhancement, value);
-                OnPropertyChanged(nameof(FinalValue));
+                if (SetProperty(ref _absoluteEnhancement, value))
+                    RecaculateFinalValue();
             }
         }
 
@@ -44,8 +44,8 @@ namespace RPG.Model.UserProperties
 
             set
             {
-                SetProperty(ref _relativeEnhancement, value);
-                OnPropertyChanged(nameof(FinalValue));
+                if (SetProperty(ref _relativeEnhancement, value))
+                    RecaculateFinalValue();
             }
         }
 
@@ -55,12 +55,17 @@ namespace RPG.Model.UserProperties
 
             set
             {
-                SetProperty(ref _basic, value);
-                OnPropertyChanged(nameof(FinalValue));
+                if (SetProperty(ref _basic, value))
+                    RecaculateFinalValue();
             }
         }
 
-        protected abstract void SetBasicAndFinalValue();
+        private void RecaculateFinalValue()
+        {
+            FinalValue = (int) ((Basic + AbsoluteEnhancement) * (1 + RelativeEnhancement));
+        }
+
+        protected abstract void SetBasicValue();
 
         public override string ToString()
         {

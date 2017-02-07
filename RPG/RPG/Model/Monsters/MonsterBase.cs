@@ -65,5 +65,7 @@ namespace RPG.Model.Monsters
                 return MonsterClass.Elite;
             return MonsterClass.Normal;
         }
+
+        public abstract IMonster NewInstance();
     }
 }

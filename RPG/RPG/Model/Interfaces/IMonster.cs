@@ -14,5 +14,7 @@ namespace RPG.Model.Interfaces
         MonsterClass Class { get; }
 
         string IconResource { get; }
+
+        IMonster NewInstance();
     }
 }

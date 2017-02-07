@@ -46,7 +46,7 @@ namespace RPG.ViewModel
         private void StartBattle(string monsterName)
         {
             var view = _ioService.GetView<BattleView>();
-            view.ViewModel = new BattleViewModel(_userBattleState, Monsters.Single(x => x.MonsterName == monsterName), _battleActor, _ioService, this);
+            view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), Monsters.Single(x => x.MonsterName == monsterName).NewInstance(), _battleActor, _ioService, this);
             _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
         }
     }

@@ -7,6 +7,7 @@ using RPG.Model.UserProperties;
 
 namespace RPG.Model.Monsters
 {
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class MonsterSlime : MonsterBase
     {
         [ImportingConstructor]
@@ -21,6 +22,11 @@ namespace RPG.Model.Monsters
             };
             CurrentAttack = Properties.Single(x => x.Name == "攻击").FinalValue;
             CurrentHp = Properties.Single(x => x.Name == "生命").FinalValue;
+        }
+
+        public override IMonster NewInstance()
+        {
+            return new MonsterSlime(MyRandom);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Prism.Mvvm;
 using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
@@ -62,7 +61,6 @@ namespace RPG.ViewModel
         private void OnOneRoundBattle(object sender, BattleRoundArgs e)
         {
             IsMonsterDamaged = sender is IMonster;
-            Debug.Print(IsMonsterDamaged.ToString());
             Damage = e.Damage;
         }
 

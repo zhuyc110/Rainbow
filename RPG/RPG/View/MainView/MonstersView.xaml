@@ -31,7 +31,7 @@
             <DataTemplate DataType="{x:Type interfaces:IMonster}">
                 <controls:IconButton Width="64" Style="{StaticResource IconButtonStyle}" ContextRow="0" Background="{StaticResource BackgroundBrush02}"
                                      ImageSource="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}"
-                                     Content="{Binding Title}" TextSecondRow="{Binding MonsterName}"
+                                     TextSecondRow="{Binding MonsterName}"
                                      Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.StartBattleCommand}"
                                      CommandParameter="{Binding MonsterName}"
                                      FontSize="12" />

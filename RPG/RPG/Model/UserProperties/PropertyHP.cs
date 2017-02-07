@@ -14,7 +14,7 @@ namespace RPG.Model.UserProperties
         {
         }
 
-        protected override void SetBasicAndFinalValue()
+        protected override void SetBasicValue()
         {
             Basic = 100 + (UserState.Level > 1 ? 14 : 0) + UserState.Level - 1;
         }

@@ -18,6 +18,11 @@ namespace RPG.Model.Battle
         public UserBattleState([ImportMany(typeof(IBattleProperty))] IEnumerable<IBattleProperty> userProperties)
         {
             UserProperty = new ObservableCollection<IBattleProperty>(userProperties);
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             CurrentHp = UserProperty.Single(x => x.Name == "生命").FinalValue;
             CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
         }
@@ -44,6 +49,12 @@ namespace RPG.Model.Battle
         {
             get { return _currentAttack; }
             set { SetProperty(ref _currentAttack, value); }
+        }
+
+        public UserBattleState ResetBattleState()
+        {
+            Initialize();
+            return this;
         }
     }
 }
