@@ -23,7 +23,7 @@ namespace RPG.Model.Battle
 
         private void Initialize()
         {
-            CurrentHp = UserProperty.Single(x => x.Name == "生命").FinalValue;
+            CurrentHp = MaximumHp;
             CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
         }
 
@@ -33,7 +33,7 @@ namespace RPG.Model.Battle
         public ObservableCollection<IBattleProperty> UserProperty { get; }
 
         public double CurrentHpPercentage
-            => CurrentHp / (double) UserProperty.Single(x => x.Name == "生命").FinalValue * 100.0;
+            => CurrentHp / (double)MaximumHp * 100.0;
 
         public int CurrentHp
         {
@@ -56,5 +56,7 @@ namespace RPG.Model.Battle
             Initialize();
             return this;
         }
+
+        public int MaximumHp => UserProperty.Single(x => x.Name == "生命").FinalValue;
     }
 }

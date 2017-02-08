@@ -21,7 +21,8 @@ namespace RPG.Model.Monsters
                 new PropertyAttack {Basic = (int) (10*rel)}
             };
             CurrentAttack = Properties.Single(x => x.Name == "攻击").FinalValue;
-            CurrentHp = Properties.Single(x => x.Name == "生命").FinalValue;
+            CurrentHp = MaximumHp;
+            DropList = new List<string> { "石头" };
         }
 
         public override IMonster NewInstance()

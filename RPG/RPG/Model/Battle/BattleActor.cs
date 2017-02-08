@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
+using RPG.Model.Items;
 
 namespace RPG.Model.Battle
 {
@@ -10,9 +14,22 @@ namespace RPG.Model.Battle
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class BattleActor : IBattleActor
     {
-        public event EventHandler<BattleFinishedArgs> BattleFinished;
+        #region Properties
 
-        public async Task StartBattle(IBattleEntity userBattleState, IBattleEntity monster)
+        [ImportMany]
+        private IEnumerable<EquipmentBase> Equipments { get; set; }
+
+        [ImportMany]
+        private IEnumerable<ItemBase> Items { get; set; }
+
+        #endregion
+
+        #region IBattleActor Members
+
+        public event EventHandler<BattleFinishedArgs> BattleFinished;
+        public event EventHandler<BattleRoundArgs> OneRoundBattle;
+
+        public async Task StartBattle(IBattleEntity userBattleState, IMonster monster)
         {
             await Task.Run(() =>
             {
@@ -20,11 +37,11 @@ namespace RPG.Model.Battle
                 var result = OneRound(userBattleState, monster);
                 while (result == BattleResult.Continue)
                     result = OneRound(userBattleState, monster);
-                OnBattleFinished(result);
+                OnBattleFinished(result, monster);
             });
         }
 
-        public event EventHandler<BattleRoundArgs> OneRoundBattle;
+        #endregion
 
         private BattleResult OneRound(IBattleEntity userBattleState, IBattleEntity monster)
         {
@@ -49,11 +66,16 @@ namespace RPG.Model.Battle
             handle?.Invoke(damagedEntity, new BattleRoundArgs(damage));
         }
 
-        private void OnBattleFinished(BattleResult battleResult)
+        private void OnBattleFinished(BattleResult battleResult, IMonster monster)
         {
+            IEnumerable<IItem> dropList = Items.Where(x => monster.DropList.Contains(x.ItemName));
+
             var handle = BattleFinished;
-            handle?.Invoke(null, new BattleFinishedArgs(battleResult == BattleResult.MonsterDied, null, 0));
+            handle?.Invoke(null,
+                new BattleFinishedArgs(battleResult == BattleResult.MonsterDied, dropList, monster.MaximumHp));
         }
+
+        #region Nested type: BattleResult
 
         private enum BattleResult
         {
@@ -61,5 +83,7 @@ namespace RPG.Model.Battle
             MonsterDied,
             UserDied
         }
+
+        #endregion
     }
 }

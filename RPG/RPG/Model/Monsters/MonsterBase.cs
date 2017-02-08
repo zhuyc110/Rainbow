@@ -8,8 +8,20 @@ namespace RPG.Model.Monsters
 {
     public abstract class MonsterBase : BindableBase, IMonster
     {
+        #region Fields
+
         private int _currentAttack;
         private int _currentHp;
+
+        #endregion
+
+        #region Properties
+
+        protected IRandom MyRandom { get; set; }
+
+        protected IEnumerable<IBattleProperty> Properties { get; set; }
+
+        #endregion
 
         protected MonsterBase(string monsterName, int level, string iconResource, IRandom random, string title = null,
             MonsterClass monsterClass = MonsterClass.Normal)
@@ -25,22 +37,13 @@ namespace RPG.Model.Monsters
                 Class |= CalculateMonsterClass();
         }
 
-        protected IEnumerable<IBattleProperty> Properties { get; set; }
-
-        protected IRandom MyRandom { get; set; }
+        #region IMonster Members
 
         public int CurrentAttack
         {
             get { return _currentAttack; }
             set { SetProperty(ref _currentAttack, value); }
         }
-
-        public string Title { get; }
-        public string MonsterName { get; }
-        public int Level { get; }
-        public MonsterClass Class { get; }
-
-        public string IconResource { get; }
 
         public int CurrentHp
         {
@@ -53,7 +56,22 @@ namespace RPG.Model.Monsters
         }
 
         public double CurrentHpPercentage
-            => CurrentHp / (double) Properties.Single(x => x.Name == "生命").FinalValue * 100.0;
+            => CurrentHp / (double) MaximumHp * 100.0;
+
+        public int MaximumHp => Properties.Single(x => x.Name == "生命").FinalValue;
+
+        public MonsterClass Class { get; }
+        public IEnumerable<string> DropList { get; protected set; }
+
+        public string IconResource { get; }
+        public int Level { get; }
+        public string MonsterName { get; }
+
+        public abstract IMonster NewInstance();
+
+        public string Title { get; }
+
+        #endregion
 
         private MonsterClass CalculateMonsterClass()
         {
@@ -65,7 +83,5 @@ namespace RPG.Model.Monsters
                 return MonsterClass.Elite;
             return MonsterClass.Normal;
         }
-
-        public abstract IMonster NewInstance();
     }
 }

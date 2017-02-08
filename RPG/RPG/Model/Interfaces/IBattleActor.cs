@@ -8,6 +8,6 @@ namespace RPG.Model.Interfaces
     {
         event EventHandler<BattleFinishedArgs> BattleFinished;
         event EventHandler<BattleRoundArgs> OneRoundBattle;
-        Task StartBattle(IBattleEntity userBattleState, IBattleEntity monster);
+        Task StartBattle(IBattleEntity userBattleState, IMonster monster);
     }
 }

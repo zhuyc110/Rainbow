@@ -12,7 +12,7 @@
              d:DesignHeight="200" d:DesignWidth="300">
     <UserControl.Resources>
         <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
-        <Style x:Key="iconItemStyle" TargetType="control:IconItem">
+        <Style x:Key="IconItemStyle" TargetType="control:IconItem">
             <Setter Property="Visibility" Value="Visible"></Setter>
             <Style.Triggers>
                 <Trigger Property="Amount" Value="0">
@@ -30,7 +30,7 @@
         </ListView.ItemsPanel>
         <ListView.ItemTemplate>
             <DataTemplate DataType="{x:Type model:ItemBase}">
-                <control:IconItem Amount="{Binding Path=Amount}" Style="{StaticResource iconItemStyle}"
+                <control:IconItem Amount="{Binding Path=Amount}" Style="{StaticResource IconItemStyle}"
                                   Rarity="{Binding Path=Rarity}"
                                   ShowAmount="True"
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 

@@ -6,6 +6,7 @@
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              xmlns:resource="clr-namespace:RPG.Resource"
              xmlns:controls="clr-namespace:RPG.Controls"
+             xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
              d:DataContext="{d:DesignInstance viewModel:BattleViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="374">
@@ -16,6 +17,15 @@
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <resource:MonsterClassToBrushConverter x:Key="MonsterClassToBrushConverter" />
+            <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+            <Style x:Key="IconItemStyle" TargetType="controls:IconItem">
+                <Setter Property="Visibility" Value="Visible"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="Amount" Value="0">
+                        <Setter Property="Visibility" Value="Hidden"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -32,6 +42,38 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="5" Fill="{StaticResource BackgroundBrush02}" Opacity="0.5" />
+
+        <DockPanel Margin="10" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" Background="AliceBlue" Visibility="{Binding IsBattleFinished, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ListView DockPanel.Dock="Top" ItemsSource="{Binding Path=Booties}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type interfaces:IItem}">
+                        <controls:IconItem Amount="{Binding Path=Amount}" Style="{StaticResource IconItemStyle}"
+                                  Rarity="{Binding Path=Rarity}"
+                                  ShowAmount="True"
+                                  Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
+                                  ItemName="{Binding Path=ItemName}">
+                            <controls:IconItem.ToolTip>
+                                <TextBlock TextWrapping="Wrap">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} * {1}">
+                                            <Binding Path="ItemName"></Binding>
+                                            <Binding Path="Amount"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </controls:IconItem.ToolTip>
+                        </controls:IconItem>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Content="结束" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding FinishBattleCommand}" Margin="5"/>
+        </DockPanel>
+        
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=Damage}" Background="Transparent" Foreground="Red" Visibility="{Binding IsMonsterDamaged, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <controls:NameBoard Grid.Row="0" Grid.Column="1" BoardTitle="{Binding Path=Monster.Title}" 
                             HpPercentage="{Binding Path=Monster.CurrentHpPercentage}" 

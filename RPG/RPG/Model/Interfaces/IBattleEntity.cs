@@ -5,5 +5,6 @@
         int CurrentHp { get; set; }
         double CurrentHpPercentage { get; }
         int CurrentAttack { get; set; }
+        int MaximumHp { get; }
     }
 }

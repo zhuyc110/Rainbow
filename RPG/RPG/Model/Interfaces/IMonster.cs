@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 namespace RPG.Model.Interfaces
 {
@@ -16,5 +17,7 @@ namespace RPG.Model.Interfaces
         string IconResource { get; }
 
         IMonster NewInstance();
+
+        IEnumerable<string> DropList { get; }
     }
 }
