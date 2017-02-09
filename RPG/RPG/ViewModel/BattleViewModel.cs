@@ -26,6 +26,7 @@ namespace RPG.ViewModel
         private int _damage;
         private bool _isBattleFinished;
         private bool _isMonsterDamaged;
+        private int _gold;
 
         #endregion
 
@@ -48,6 +49,12 @@ namespace RPG.ViewModel
         }
 
         public ICommand FinishBattleCommand { get; }
+
+        public int Gold
+        {
+            get { return _gold; }
+            set { SetProperty(ref _gold, value); }
+        }
 
         public bool IsBattleFinished
         {
@@ -94,7 +101,7 @@ namespace RPG.ViewModel
         [Obsolete]
         public BattleViewModel()
         {
-            Monster = new MonsterSlime(new MyRandom()) {CurrentHp = 20};
+            Monster = new MonsterSlime(new MyRandom()) { CurrentHp = 20 };
             IsBattleFinished = true;
         }
 
@@ -112,6 +119,8 @@ namespace RPG.ViewModel
                 Booties.Clear();
                 Booties.AddRange(e.Items);
                 UserBattleState.UserState.Gold += e.Gold;
+                UserBattleState.UserState.Experience += e.Gold;
+                Gold = e.Gold;
             }
 
             _battleActor.OneRoundBattle -= OnOneRoundBattle;

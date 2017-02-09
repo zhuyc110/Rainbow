@@ -122,6 +122,7 @@
     <Compile Include="Model\MonsterClass.cs" />
     <Compile Include="Model\Monsters\MonsterBase.cs" />
     <Compile Include="Model\Monsters\MonsterSlime.cs" />
+    <Compile Include="Model\Monsters\MonsterWolf.cs" />
     <Compile Include="Model\Rarity.cs" />
     <Compile Include="Model\Battle\UserBattleState.cs" />
     <Compile Include="Model\UserProperties\PropertyAttack.cs" />

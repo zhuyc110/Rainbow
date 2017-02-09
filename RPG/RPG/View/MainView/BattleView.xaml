@@ -26,6 +26,28 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+
+            <Style x:Key="VictoryTextBlockStyle" TargetType="TextBlock">
+                <Style.Setters>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </Style.Setters>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=UserBattleState.CurrentHp}" Value="0">
+                        <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="FailedTextBlockStyle" TargetType="TextBlock">
+                <Style.Setters>
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Style.Setters>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=UserBattleState.CurrentHp}" Value="0">
+                        <Setter Property="Visibility" Value="Visible"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -43,8 +65,8 @@
         </Grid.ColumnDefinitions>
         <Rectangle Grid.ColumnSpan="3" Grid.RowSpan="5" Fill="{StaticResource BackgroundBrush02}" Opacity="0.5" />
 
-        <DockPanel Margin="10" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" Background="AliceBlue" Visibility="{Binding IsBattleFinished, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <ListView DockPanel.Dock="Top" ItemsSource="{Binding Path=Booties}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0">
+        <StackPanel Margin="10" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" Background="AliceBlue" Visibility="{Binding IsBattleFinished, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ListView ItemsSource="{Binding Path=Booties}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -71,8 +93,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Content="结束" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding FinishBattleCommand}" Margin="5"/>
-        </DockPanel>
+            <TextBlock  HorizontalAlignment="Center" FontSize="20" Text="{Binding Path=Gold, StringFormat={}+{0} G}" Margin="20" Style="{StaticResource VictoryTextBlockStyle}"/>
+            <TextBlock  HorizontalAlignment="Center" FontSize="20" Text="{Binding Path=Gold, StringFormat={}+{0} Exp}" Margin="20,0,20,20" Style="{StaticResource VictoryTextBlockStyle}"/>
+            <TextBlock  HorizontalAlignment="Center" FontSize="20" Text="失败！" Margin="20,0,20,20" Style="{StaticResource FailedTextBlockStyle}"/>
+            <Button Content="结束" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding FinishBattleCommand}" Margin="5" MinWidth="50"/>
+        </StackPanel>
         
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Path=Damage}" Background="Transparent" Foreground="Red" Visibility="{Binding IsMonsterDamaged, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <controls:NameBoard Grid.Row="0" Grid.Column="1" BoardTitle="{Binding Path=Monster.Title}" 
