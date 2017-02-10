@@ -3,14 +3,14 @@ using RPG.Model.Interfaces;
 
 namespace RPG.Model.UserProperties
 {
-    public class PropertyHP : UserPropertyBase
+    public class PropertyHp : UserPropertyBase
     {
         [ImportingConstructor]
-        public PropertyHP(IUserState userState) : base("生命", userState)
+        public PropertyHp(IUserState userState) : base("生命", userState)
         {
         }
 
-        public PropertyHP() : base("生命", new UserState())
+        public PropertyHp() : base("生命", new UserState())
         {
         }
 

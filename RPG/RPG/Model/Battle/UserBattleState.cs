@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
+using RPG.Model.UserProperties;
 
 namespace RPG.Model.Battle
 {
@@ -11,29 +11,36 @@ namespace RPG.Model.Battle
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class UserBattleState : BindableBase, IBattleEntity
     {
+        #region Fields
+
         private int _currentAttack;
         private int _currentHp;
 
+        #endregion
+
+        #region Properties
+
+        public ObservableCollection<IBattleProperty> UserProperty { get; private set; }
+        
+        public IUserState UserState { get; }
+
+        #endregion
+
         [ImportingConstructor]
-        public UserBattleState([ImportMany(typeof(IBattleProperty))] IEnumerable<IBattleProperty> userProperties)
+        public UserBattleState(IUserState userState)
         {
-            UserProperty = new ObservableCollection<IBattleProperty>(userProperties);
+            UserState = userState;
+            UserState.LevelUp += (sender, args) => Initialize();
             Initialize();
         }
 
-        private void Initialize()
+        #region IBattleEntity Members
+
+        public int CurrentAttack
         {
-            CurrentHp = MaximumHp;
-            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
+            get { return _currentAttack; }
+            set { SetProperty(ref _currentAttack, value); }
         }
-
-        [Import]
-        public IUserState UserState { get; set; }
-
-        public ObservableCollection<IBattleProperty> UserProperty { get; }
-
-        public double CurrentHpPercentage
-            => CurrentHp / (double)MaximumHp * 100.0;
 
         public int CurrentHp
         {
@@ -45,10 +52,22 @@ namespace RPG.Model.Battle
             }
         }
 
-        public int CurrentAttack
+        public double CurrentHpPercentage
+            => CurrentHp / (double) MaximumHp * 100.0;
+
+        public int MaximumHp => UserProperty.Single(x => x.Name == "生命").FinalValue;
+
+        #endregion
+
+        private void Initialize()
         {
-            get { return _currentAttack; }
-            set { SetProperty(ref _currentAttack, value); }
+            UserProperty = new ObservableCollection<IBattleProperty>
+            {
+                new PropertyHp(UserState),
+                new PropertyAttack(UserState)
+            };
+            CurrentHp = MaximumHp;
+            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
         }
 
         public UserBattleState ResetBattleState()
@@ -56,7 +75,5 @@ namespace RPG.Model.Battle
             Initialize();
             return this;
         }
-
-        public int MaximumHp => UserProperty.Single(x => x.Name == "生命").FinalValue;
     }
 }

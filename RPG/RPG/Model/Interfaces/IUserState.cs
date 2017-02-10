@@ -1,4 +1,6 @@
-﻿namespace RPG.Model.Interfaces
+﻿using System;
+
+namespace RPG.Model.Interfaces
 {
     public interface IUserState
     {
@@ -13,5 +15,7 @@
         long Gem { get; set; }
 
         long Experience { get; set; }
+
+        event EventHandler LevelUp;
     }
 }

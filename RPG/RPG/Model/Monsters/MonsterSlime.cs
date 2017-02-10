@@ -17,7 +17,7 @@ namespace RPG.Model.Monsters
 
             Properties = new List<IBattleProperty>
             {
-                new PropertyHP {Basic = (int) (80*rel)},
+                new PropertyHp {Basic = (int) (80*rel)},
                 new PropertyAttack {Basic = (int) (10*rel)}
             };
             CurrentAttack = Properties.Single(x => x.Name == "攻击").FinalValue;

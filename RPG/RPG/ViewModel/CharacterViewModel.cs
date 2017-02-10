@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.Composition;
 using Prism.Mvvm;
-using RPG.Model;
 using RPG.Model.Battle;
-using RPG.Model.Interfaces;
-using RPG.Model.UserProperties;
 
 namespace RPG.ViewModel
 {
@@ -17,19 +8,21 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class CharacterViewModel : BindableBase
     {
+        #region Properties
 
-        public ObservableCollection<IBattleProperty> UserProperties { get; }
+        public UserBattleState UserBattleState { get; }
+
+        #endregion
 
         [ImportingConstructor]
-        public CharacterViewModel([Import] UserBattleState userBattleState)
+        public CharacterViewModel(UserBattleState userBattleState)
         {
-            UserProperties = userBattleState.UserProperty;
-        }
+            UserBattleState = userBattleState;
 
-        [Obsolete]
-        public CharacterViewModel()
-        {
-            UserProperties = new ObservableCollection<IBattleProperty> { new PropertyHP(new UserState { Level = 10 }) };
+            UserBattleState.UserState.LevelUp += (sender, args) =>
+            {
+                OnPropertyChanged(nameof(UserBattleState));
+            };
         }
     }
 }
