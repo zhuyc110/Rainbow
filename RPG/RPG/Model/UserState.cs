@@ -6,6 +6,8 @@ using RPG.Model.Interfaces;
 namespace RPG.Model
 {
     [Export(typeof(IUserState))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
+    [Serializable]
     public class UserState : BindableBase, IUserState
     {
         #region Fields

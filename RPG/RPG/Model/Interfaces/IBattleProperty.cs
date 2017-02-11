@@ -1,18 +1,18 @@
-﻿using System.ComponentModel.Composition;
-
-namespace RPG.Model.Interfaces
+﻿namespace RPG.Model.Interfaces
 {
-    [InheritedExport(typeof(IBattleProperty))]
     public interface IBattleProperty
     {
-        string Name { get; }
-
-        int Basic { get; set; }
+        #region Properties
 
         int AbsoluteEnhancement { get; set; }
 
-        double RelativeEnhancement { get; set; }
+        int Basic { get; set; }
 
         int FinalValue { get; set; }
+        string Name { get; }
+
+        double RelativeEnhancement { get; set; }
+
+        #endregion
     }
 }

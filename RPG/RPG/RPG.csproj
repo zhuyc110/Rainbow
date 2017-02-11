@@ -90,10 +90,11 @@
     <Compile Include="Infrastructure\Extension\EnumExtension.cs" />
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Implementation\MyRandom.cs" />
+    <Compile Include="Infrastructure\Implementation\XmlSerializer.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
-    <Compile Include="Infrastructure\Interfaces\IMonsterManager.cs" />
     <Compile Include="Infrastructure\Interfaces\IRandom.cs" />
     <Compile Include="Infrastructure\Interfaces\IView.cs" />
+    <Compile Include="Infrastructure\Interfaces\IXmlSerializer.cs" />
     <Compile Include="Model\Achivements\AchievementBase.cs" />
     <Compile Include="Model\Achivements\AchievementBossKiller.cs" />
     <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />

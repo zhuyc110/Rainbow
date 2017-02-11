@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.Composition;
-using RPG.Model.Interfaces;
+﻿using RPG.Model.Interfaces;
 
 namespace RPG.Model.UserProperties
 {
     public class PropertyHp : UserPropertyBase
     {
-        [ImportingConstructor]
         public PropertyHp(IUserState userState) : base("生命", userState)
         {
         }

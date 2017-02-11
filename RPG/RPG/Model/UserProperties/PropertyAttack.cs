@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.Composition;
-using RPG.Model.Interfaces;
+﻿using RPG.Model.Interfaces;
 
 namespace RPG.Model.UserProperties
 {
     public class PropertyAttack : UserPropertyBase
     {
-        [ImportingConstructor]
         public PropertyAttack(IUserState userState) : base("攻击", userState)
         {
         }
