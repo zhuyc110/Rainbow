@@ -3,6 +3,6 @@
     public interface IXmlSerializer
     {
         T DeSerialize<T>(string filePath) where T : class;
-        void Serialize<T>(T target);
+        void Serialize<T>(T target, string filePath) where T : class;
     }
 }

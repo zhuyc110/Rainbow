@@ -1,40 +1,70 @@
 ﻿using System;
 using System.IO;
+using log4net;
 using RPG.Infrastructure.Interfaces;
 
 namespace RPG.Infrastructure.Implementation
 {
     public class XmlSerializer : IXmlSerializer
     {
+        public static IXmlSerializer Instance { get; }
+
+        static XmlSerializer()
+        {
+            Instance = new XmlSerializer();
+        }
+
+        private XmlSerializer()
+        {
+        }
+
         #region IXmlSerializer Members
 
         public T DeSerialize<T>(string filePath) where T : class
         {
             if (!File.Exists(filePath))
             {
+                Log.Error($"Can not find file: {filePath}");
                 throw new FileNotFoundException();
             }
 
-            T result;
-            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            try
             {
-                using (var sr = new StreamReader(fs))
+                using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    var xmlS = new System.Xml.Serialization.XmlSerializer(typeof(T));
-                    result = xmlS.Deserialize(sr) as T;
+                    using (var sr = new StreamReader(fs))
+                    {
+                        var xmlS = new System.Xml.Serialization.XmlSerializer(typeof(T));
+                        return xmlS.Deserialize(sr) as T;
+                    }
                 }
             }
-            if (result != null)
-                return result;
+            catch (Exception exception)
+            {
+                Log.Error($"Can not de-serialize {filePath}", exception);
+            }
 
-            throw new Exception($"Can not DeSerialize file: {filePath}");
+            throw new Exception("Can not de-serialize");
         }
 
-        public void Serialize<T>(T target)
+        public void Serialize<T>(T target, string filePath) where T : class
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    var xmlS = new System.Xml.Serialization.XmlSerializer(typeof(T));
+                    xmlS.Serialize(fs, target);
+                }
+            }
+            catch (Exception exception)
+            {
+                Log.Error($"Can not serialize {target}", exception);
+            }
         }
 
         #endregion
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof(XmlSerializer));
     }
 }
