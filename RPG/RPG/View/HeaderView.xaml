@@ -6,7 +6,7 @@
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModel:HeaderViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="150" d:DesignWidth="380">
+             d:DesignHeight="150" d:DesignWidth="364">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -47,8 +47,8 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal">
             <TextBlock Foreground="White" Text="经验" VerticalAlignment="Center" />
             <Grid Margin="15,0,0,0">
-                <Rectangle Width="150" Height="10" Fill="{StaticResource BackgroundBrush}" HorizontalAlignment="Left" />
-                <Rectangle Width="50" Height="10" Fill="{StaticResource ForegroundBrush}" HorizontalAlignment="Left" />
+                <Rectangle Width="100" Height="10" Fill="{StaticResource BackgroundBrush}" HorizontalAlignment="Left" />
+                <Rectangle Width="{Binding Path=ExpBarLength}" Height="10" Fill="{StaticResource ForegroundBrush}" HorizontalAlignment="Left" />
             </Grid>
         </StackPanel>
     </Grid>

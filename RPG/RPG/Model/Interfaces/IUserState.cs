@@ -17,5 +17,7 @@ namespace RPG.Model.Interfaces
         long Experience { get; set; }
 
         event EventHandler LevelUp;
+
+        event EventHandler ExpChanged;
     }
 }

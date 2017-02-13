@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel.Composition;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model
 {
-    //[Export(typeof(IUserState))]
-    //[PartCreationPolicy(CreationPolicy.Shared)]
     [Serializable]
     public class UserState : BindableBase, IUserState
     {
@@ -20,26 +17,31 @@ namespace RPG.Model
 
         #endregion
 
-        [ImportingConstructor]
         public UserState()
         {
             Level = 1;
-            Gold = 1000;
-            Gem = 100;
+            Gold = 0;
+            Gem = 0;
             UserName = "Sky - Han";
-            Title = "一个称号";
-            Experience = 1499;
+            Title = "";
+            Experience = 0;
         }
 
         #region IUserState Members
+
+        public event EventHandler ExpChanged;
 
         public long Experience
         {
             get { return _experience; }
             set
             {
-                SetProperty(ref _experience, value);
-                CalculateLevel(Experience);
+                if (SetProperty(ref _experience, value))
+                {
+                    CalculateLevel();
+                    var handle = ExpChanged;
+                    handle?.Invoke(null, null);
+                }
             }
         }
 
@@ -63,7 +65,7 @@ namespace RPG.Model
                 if (SetProperty(ref _level, value))
                 {
                     var handle = LevelUp;
-                    handle?.Invoke(null,null);
+                    handle?.Invoke(null, null);
                 }
             }
         }
@@ -80,10 +82,15 @@ namespace RPG.Model
 
         #endregion
 
-        private void CalculateLevel(long exp)
+        private void CalculateLevel()
         {
-            var expLevel = exp / 1000.0;
-            Level = Math.Max((int) Math.Log(expLevel, 1.5), 0) + 1;
+            var expRequiredOfCurrentLevel = 500 * (long) Math.Pow(1.5, Level - 1);
+
+            if (Experience >= expRequiredOfCurrentLevel)
+            {
+                Level += 1;
+                Experience = Experience - expRequiredOfCurrentLevel;
+            }
         }
     }
 }

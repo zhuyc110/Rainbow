@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.IO;
 using System.Windows;
 using log4net;
 using Prism.Mef;
@@ -31,11 +33,26 @@ namespace RPG
 
         protected override void ConfigureContainer()
         {
-            Log.Info("Start DeSerializing UserData...");
-            var userData = XmlSerializer.Instance.DeSerialize<UserState>("UserData.dat");
-            Log.Info("UserData DeSerializing finished.");
+            IUserState userData = null;
+            if (File.Exists("UserData.dat"))
+            {
+                try
+                {
+                    userData = XmlSerializer.Instance.DeSerialize<UserState>("UserData.dat");
+                    Log.Info("UserData is loaded from file.");
+                }
+                catch (Exception exception)
+                {
+                    Log.Info("UserData is can not be loaded from file.", exception);
+                }
+            }
+            if (userData == null)
+            {
+                userData = new UserState();
+                Log.Info("New UserData is created.");
+            }
+            Container.ComposeExportedValue(userData);
 
-            Container.ComposeExportedValue((IUserState) userData);
             Container.ComposeExportedValue(XmlSerializer.Instance);
             base.ConfigureContainer();
         }
