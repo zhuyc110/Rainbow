@@ -122,6 +122,7 @@
     <Compile Include="Model\Interfaces\IUserState.cs" />
     <Compile Include="Model\Items\Beryl.cs" />
     <Compile Include="Model\Items\ItemBase.cs" />
+    <Compile Include="Model\Items\LightItem.cs" />
     <Compile Include="Model\Items\SellEventArgs.cs" />
     <Compile Include="Model\Items\Stone.cs" />
     <Compile Include="Model\MonsterClass.cs" />

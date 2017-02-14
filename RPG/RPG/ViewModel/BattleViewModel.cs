@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using Prism.Commands;
@@ -8,6 +9,7 @@ using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Battle;
 using RPG.Model.Interfaces;
+using RPG.Model.Items;
 using RPG.Model.Monsters;
 using RPG.Module;
 using RPG.View.MainView;
@@ -121,6 +123,12 @@ namespace RPG.ViewModel
                 UserBattleState.UserState.Gold += e.Gold;
                 UserBattleState.UserState.Experience += e.Gold;
                 Gold = e.Gold;
+
+                var items = e.Items.OfType<ItemBase>();
+                foreach (var itemBase in items)
+                {
+                    UserBattleState.UserState.AddItem(itemBase);
+                }
             }
 
             _battleActor.OneRoundBattle -= OnOneRoundBattle;

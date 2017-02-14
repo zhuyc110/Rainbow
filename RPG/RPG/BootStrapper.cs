@@ -43,7 +43,7 @@ namespace RPG
                 }
                 catch (Exception exception)
                 {
-                    Log.Info("UserData is can not be loaded from file.", exception);
+                    Log.Info("UserData can not be loaded from file.", exception);
                 }
             }
             if (userData == null)

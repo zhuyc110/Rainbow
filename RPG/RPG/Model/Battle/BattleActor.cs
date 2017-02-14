@@ -45,14 +45,14 @@ namespace RPG.Model.Battle
 
         private BattleResult OneRound(IBattleEntity userBattleState, IBattleEntity monster)
         {
-            OnOneRoundBattleFinished(monster, userBattleState.CurrentAttack);
             monster.CurrentHp = Math.Max(monster.CurrentHp - userBattleState.CurrentAttack, 0);
+            OnOneRoundBattleFinished(monster, userBattleState.CurrentAttack);
             Thread.Sleep(500);
             if (monster.CurrentHp == 0)
                 return BattleResult.MonsterDied;
 
-            OnOneRoundBattleFinished(userBattleState, monster.CurrentAttack);
             userBattleState.CurrentHp = Math.Max(userBattleState.CurrentHp - monster.CurrentAttack, 0);
+            OnOneRoundBattleFinished(userBattleState, monster.CurrentAttack);
             Thread.Sleep(500);
             if (userBattleState.CurrentHp == 0)
                 return BattleResult.UserDied;

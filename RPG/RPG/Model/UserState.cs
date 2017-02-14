@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
+using RPG.Model.Items;
 
 namespace RPG.Model
 {
@@ -25,11 +29,23 @@ namespace RPG.Model
             UserName = "Sky - Han";
             Title = "";
             Experience = 0;
+            Items = new List<ItemBase>();
         }
 
         #region IUserState Members
 
         public event EventHandler ExpChanged;
+
+        public event EventHandler LevelUp;
+
+        public void AddItem(ItemBase newItem)
+        {
+            var item = Items.FirstOrDefault(x => x.ItemName == newItem.ItemName);
+            if (item == null)
+                Items.Add(newItem);
+            else
+                item.Amount += newItem.Amount;
+        }
 
         public long Experience
         {
@@ -57,6 +73,9 @@ namespace RPG.Model
             set { SetProperty(ref _gold, value); }
         }
 
+        [XmlIgnore]
+        public IList<ItemBase> Items { get; set; }
+
         public int Level
         {
             get { return _level; }
@@ -69,8 +88,6 @@ namespace RPG.Model
                 }
             }
         }
-
-        public event EventHandler LevelUp;
 
         public string Title
         {

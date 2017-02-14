@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using RPG.Model.Items;
 
 namespace RPG.Model.Interfaces
 {
@@ -15,6 +17,10 @@ namespace RPG.Model.Interfaces
         long Gem { get; set; }
 
         long Experience { get; set; }
+
+        IList<ItemBase> Items { get; }
+
+        void AddItem(ItemBase newItem);
 
         event EventHandler LevelUp;
 
