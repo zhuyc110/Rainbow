@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Linq;
 using log4net;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model;
 using RPG.Model.Interfaces;
+using RPG.Model.Items;
 
 namespace RPG
 {
@@ -21,6 +23,9 @@ namespace RPG
         [Import]
         private IUserState UserState { get; set; }
 
+        [Import]
+        private IItemManager ItemManager { get; set; }
+
         [ImportingConstructor]
         public RpgHome()
         {
@@ -32,6 +37,7 @@ namespace RPG
             Log.Info("Start serializing UserData...");
             XmlSerializer.Serialize((UserState)UserState, "UserData.dat");
             Log.Info("UserData serializing finished.");
+            
             base.OnClosing(e);
         }
     }

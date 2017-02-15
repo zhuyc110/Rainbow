@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
@@ -11,41 +8,11 @@ namespace RPG.Model
     [Serializable]
     public class UserState : BindableBase, IUserState
     {
-        #region Fields
-
-        private long _experience;
-        private long _gem;
-        private long _gold;
-        private int _level;
-        private string _title;
-
-        #endregion
-
-        public UserState()
-        {
-            Level = 1;
-            Gold = 0;
-            Gem = 0;
-            UserName = "Sky - Han";
-            Title = "";
-            Experience = 0;
-            Items = new List<ItemBase>();
-        }
-
-        #region IUserState Members
-
         public event EventHandler ExpChanged;
 
         public event EventHandler LevelUp;
 
-        public void AddItem(ItemBase newItem)
-        {
-            var item = Items.FirstOrDefault(x => x.ItemName == newItem.ItemName);
-            if (item == null)
-                Items.Add(newItem);
-            else
-                item.Amount += newItem.Amount;
-        }
+        #region Properties
 
         public long Experience
         {
@@ -72,9 +39,8 @@ namespace RPG.Model
             get { return _gold; }
             set { SetProperty(ref _gold, value); }
         }
-
-        [XmlIgnore]
-        public IList<ItemBase> Items { get; set; }
+        
+        public ItemManager ItemManager { get; set; }
 
         public int Level
         {
@@ -99,6 +65,26 @@ namespace RPG.Model
 
         #endregion
 
+        public UserState()
+        {
+            Level = 1;
+            Gold = 0;
+            Gem = 0;
+            UserName = "Sky - Han";
+            Title = "";
+            Experience = 0;
+            ItemManager = new ItemManager();
+        }
+
+        #region IUserState Members
+
+        public void AddItem(ItemBase newItem)
+        {
+            ItemManager.AddItem(newItem);
+        }
+
+        #endregion
+
         private void CalculateLevel()
         {
             var expRequiredOfCurrentLevel = 500 * (long) Math.Pow(1.5, Level - 1);
@@ -109,5 +95,19 @@ namespace RPG.Model
                 Experience = Experience - expRequiredOfCurrentLevel;
             }
         }
+
+        public void RevertItems()
+        {
+        }
+
+        #region Fields
+
+        private long _experience;
+        private long _gem;
+        private long _gold;
+        private int _level;
+        private string _title;
+
+        #endregion
     }
 }

@@ -18,7 +18,7 @@ namespace RPG.Model.Interfaces
 
         long Experience { get; set; }
 
-        IList<ItemBase> Items { get; }
+        ItemManager ItemManager { get; set; }
 
         void AddItem(ItemBase newItem);
 

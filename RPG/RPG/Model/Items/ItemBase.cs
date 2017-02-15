@@ -1,49 +1,37 @@
-﻿using Prism.Commands;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Windows;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Interfaces;
-using System;
-using System.ComponentModel.Composition;
-using System.Windows.Input;
 
 namespace RPG.Model.Items
 {
+    [Serializable]
     [InheritedExport(typeof(ItemBase))]
     public abstract class ItemBase : BindableBase, IItem
     {
-        public event EventHandler<SellEventArgs> OnItemSoldOut;
+        #region Fields
 
         private int _amount;
 
-        public int Amount
-        {
-            get { return _amount; }
+        #endregion
 
-            set
-            {
-                SetProperty(ref _amount, value > 99 ? 99 : value);
-            }
-        }
-
-        public string Content { get; protected set; }
-
-        public string IconResource { get; set; }
-
-        public string ItemName { get; set; }
-
-        public Rarity Rarity { get; protected set; }
-
-        public int Worth { get; protected set; }
-
-        public ICommand SellSelf { get; }
-
-        public ICommand SellAll { get; }
+        #region Properties
 
         [Import]
         private IIOService IoService { get; set; }
 
+        public ICommand SellAll { get; }
+
+        public ICommand SellSelf { get; }
+
         [Import]
         private IUserState UserState { get; set; }
+
+        #endregion
 
         protected ItemBase()
         {
@@ -63,16 +51,37 @@ namespace RPG.Model.Items
             SellAll = new DelegateCommand(SoldOutConfirm);
         }
 
+        #region IItem Members
+
+        public int Amount
+        {
+            get { return _amount; }
+
+            set { SetProperty(ref _amount, value > 99 ? 99 : value); }
+        }
+
+        public string Content { get; set; }
+
+        public string IconResource { get; set; }
+
+        public string ItemName { get; set; }
+
+        public Rarity Rarity { get; set; }
+
+        public int Worth { get; set; }
+
+        #endregion
+
+        public event EventHandler<SellEventArgs> OnItemSoldOut;
+
         private void SoldOutConfirm()
         {
             var confirm = true;
             if (Rarity >= Rarity.Epic)
             {
                 var result = IoService.ShowDialog("确认", $"是否将{ItemName}全部卖出？");
-                if (result != System.Windows.MessageBoxResult.Yes)
-                {
+                if (result != MessageBoxResult.Yes)
                     confirm = false;
-                }
             }
 
             if (confirm)
@@ -85,7 +94,7 @@ namespace RPG.Model.Items
 
         private void RaiseSoldOutEvent()
         {
-            OnItemSoldOut.Invoke(null, new SellEventArgs(this));
+            OnItemSoldOut?.Invoke(null, new SellEventArgs(this));
         }
     }
 }

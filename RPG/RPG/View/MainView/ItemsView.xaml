@@ -22,7 +22,7 @@
         </Style>
     </UserControl.Resources>
 
-    <ListView ItemsSource="{Binding Path=Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+    <ListView ItemsSource="{Binding Path=ItemManager.Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel/>

@@ -8,6 +8,7 @@ using Prism.Mef;
 using RPG.Infrastructure.Implementation;
 using RPG.Model;
 using RPG.Model.Interfaces;
+using RPG.Model.Items;
 
 namespace RPG
 {
@@ -51,6 +52,7 @@ namespace RPG
                 userData = new UserState();
                 Log.Info("New UserData is created.");
             }
+            Container.ComposeExportedValue((IItemManager)userData.ItemManager);
             Container.ComposeExportedValue(userData);
 
             Container.ComposeExportedValue(XmlSerializer.Instance);
