@@ -13,16 +13,31 @@ namespace RPG.Model.Items
     [InheritedExport(typeof(ItemBase))]
     public abstract class ItemBase : BindableBase, IItem
     {
-        #region Fields
-
-        private int _amount;
-
-        #endregion
+        public event EventHandler<SellEventArgs> OnItemSoldOut;
 
         #region Properties
 
+        public int Amount
+        {
+            get { return _amount; }
+
+            set { SetProperty(ref _amount, value > 99 ? 99 : value); }
+        }
+
+        public string Content { get; set; }
+
+        public string IconResource { get; set; }
+
+        public long Id { get; set; }
+
+        private static int _idSum = 0;
+
         [Import]
         private IIOService IoService { get; set; }
+
+        public string ItemName { get; set; }
+
+        public Rarity Rarity { get; set; }
 
         public ICommand SellAll { get; }
 
@@ -31,9 +46,21 @@ namespace RPG.Model.Items
         [Import]
         private IUserState UserState { get; set; }
 
+        public int Worth { get; set; }
+
         #endregion
 
-        protected ItemBase()
+        public ItemBase(string itemName, string content, string iconSource, Rarity rarity, int worth)
+        {
+            ItemName = itemName;
+            Content = content;
+            IconResource = iconSource;
+            Rarity = rarity;
+            Worth = worth;
+            CalculateId();
+        }
+
+        public ItemBase()
         {
             SellSelf = new DelegateCommand(() =>
             {
@@ -51,28 +78,15 @@ namespace RPG.Model.Items
             SellAll = new DelegateCommand(SoldOutConfirm);
         }
 
-        #region IItem Members
-
-        public int Amount
+        private void CalculateId()
         {
-            get { return _amount; }
-
-            set { SetProperty(ref _amount, value > 99 ? 99 : value); }
+            Id = _idSum++;
         }
 
-        public string Content { get; set; }
-
-        public string IconResource { get; set; }
-
-        public string ItemName { get; set; }
-
-        public Rarity Rarity { get; set; }
-
-        public int Worth { get; set; }
-
-        #endregion
-
-        public event EventHandler<SellEventArgs> OnItemSoldOut;
+        private void RaiseSoldOutEvent()
+        {
+            OnItemSoldOut?.Invoke(null, new SellEventArgs(this));
+        }
 
         private void SoldOutConfirm()
         {
@@ -92,9 +106,10 @@ namespace RPG.Model.Items
             }
         }
 
-        private void RaiseSoldOutEvent()
-        {
-            OnItemSoldOut?.Invoke(null, new SellEventArgs(this));
-        }
+        #region Fields
+
+        private int _amount;
+
+        #endregion
     }
 }

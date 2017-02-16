@@ -8,8 +8,8 @@ namespace RPG.Model.Equipment
     [InheritedExport(typeof(EquipmentBase))]
     public abstract class EquipmentBase : BindableBase, IItem
     {
-        private int _id;
-        public int Id
+        private long _id;
+        public long Id
         {
             get { return _id; }
             set { SetProperty(ref _id, value); }

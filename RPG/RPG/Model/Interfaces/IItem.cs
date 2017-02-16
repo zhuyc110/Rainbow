@@ -2,6 +2,8 @@
 {
     public interface IItem
     {
+        long Id { get; }
+
         string ItemName { get; set; }
 
         string Content { get; }

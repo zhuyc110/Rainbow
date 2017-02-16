@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Data;
 using log4net;
@@ -11,7 +10,6 @@ using RPG.Model.Interfaces;
 namespace RPG.Model.Items
 {
     [Serializable]
-    [PartCreationPolicy(CreationPolicy.Shared)]
     public class ItemManager : IItemManager
     {
         public event EventHandler OnItemPropertyChange;
@@ -28,15 +26,12 @@ namespace RPG.Model.Items
             }
         }
 
-        #endregion
-
-        [ImportingConstructor]
-        public ItemManager([ImportMany] IEnumerable<ItemBase> items)
-            : this()
+        public static readonly HashSet<ItemBase> ItemsIdDictionary = new HashSet<ItemBase>
         {
-            foreach (var item in items)
-                AddItem(item);
-        }
+            
+        };
+
+        #endregion
 
         public ItemManager()
         {

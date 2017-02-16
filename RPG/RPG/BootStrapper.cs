@@ -8,7 +8,6 @@ using Prism.Mef;
 using RPG.Infrastructure.Implementation;
 using RPG.Model;
 using RPG.Model.Interfaces;
-using RPG.Model.Items;
 
 namespace RPG
 {

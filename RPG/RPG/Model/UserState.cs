@@ -39,7 +39,7 @@ namespace RPG.Model
             get { return _gold; }
             set { SetProperty(ref _gold, value); }
         }
-        
+
         public ItemManager ItemManager { get; set; }
 
         public int Level
