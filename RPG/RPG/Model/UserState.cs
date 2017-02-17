@@ -83,6 +83,11 @@ namespace RPG.Model
             ItemManager.AddItem(newItem);
         }
 
+        public void AddItem(string newItem, int amount)
+        {
+            ItemManager.AddItem(newItem, amount);
+        }
+
         #endregion
 
         private void CalculateLevel()

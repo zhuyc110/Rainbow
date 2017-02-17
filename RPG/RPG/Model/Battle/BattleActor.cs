@@ -19,9 +19,6 @@ namespace RPG.Model.Battle
         [ImportMany]
         private IEnumerable<EquipmentBase> Equipments { get; set; }
 
-        [ImportMany]
-        private IEnumerable<ItemBase> Items { get; set; }
-
         #endregion
 
         #region IBattleActor Members
@@ -68,11 +65,10 @@ namespace RPG.Model.Battle
 
         private void OnBattleFinished(BattleResult battleResult, IMonster monster)
         {
-            IEnumerable<IItem> dropList = Items.Where(x => monster.DropList.Contains(x.ItemName));
-
             var handle = BattleFinished;
             handle?.Invoke(null,
-                new BattleFinishedArgs(battleResult == BattleResult.MonsterDied, dropList, monster.MaximumHp));
+                new BattleFinishedArgs(battleResult == BattleResult.MonsterDied,
+                    monster.DropList.ToDictionary(key => key, v => 1), monster.MaximumHp));
         }
 
         #region Nested type: BattleResult

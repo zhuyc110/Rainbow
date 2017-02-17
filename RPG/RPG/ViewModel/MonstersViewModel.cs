@@ -20,12 +20,14 @@ namespace RPG.ViewModel
         private readonly IBattleActor _battleActor;
         private readonly IIOService _ioService;
         private readonly UserBattleState _userBattleState;
+        private readonly IItemManager _itemManager;
 
-        public MonstersViewModel(IEnumerable<IMonster> monsters, UserBattleState userBattleState, IIOService ioService, IBattleActor battleActor)
+        public MonstersViewModel(IEnumerable<IMonster> monsters, UserBattleState userBattleState, IIOService ioService, IBattleActor battleActor, IItemManager itemManager)
         {
             _ioService = ioService;
             _battleActor = battleActor;
             _userBattleState = userBattleState;
+            _itemManager = itemManager;
             Monsters = new ObservableCollection<IMonster>(monsters);
             StartBattleCommand = new DelegateCommand<string>(StartBattle);
         }
@@ -46,7 +48,7 @@ namespace RPG.ViewModel
         private void StartBattle(string monsterName)
         {
             var view = _ioService.GetView<BattleView>();
-            view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), Monsters.Single(x => x.MonsterName == monsterName).NewInstance(), _battleActor, _ioService, this);
+            view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), Monsters.Single(x => x.MonsterName == monsterName).NewInstance(), _battleActor, _ioService, _itemManager, this);
             _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
         }
     }

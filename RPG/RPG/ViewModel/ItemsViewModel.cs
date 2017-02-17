@@ -27,7 +27,7 @@ namespace RPG.ViewModel
             ItemManager.Items.CollectionChanged += ItemsCollectionChanged;
         }
 
-        private void ItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if(e.Action != NotifyCollectionChangedAction.Add)
                 return;

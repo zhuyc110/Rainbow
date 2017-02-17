@@ -10,8 +10,8 @@ using RPG.Model.Interfaces;
 namespace RPG.Model.Items
 {
     [Serializable]
-    [InheritedExport(typeof(ItemBase))]
-    public abstract class ItemBase : BindableBase, IItem
+    //[InheritedExport(typeof(ItemBase))]
+    public class ItemBase : BindableBase, IItem, ICloneable
     {
         public event EventHandler<SellEventArgs> OnItemSoldOut;
 
@@ -29,8 +29,6 @@ namespace RPG.Model.Items
         public string IconResource { get; set; }
 
         public long Id { get; set; }
-
-        private static int _idSum = 0;
 
         [Import]
         private IIOService IoService { get; set; }
@@ -50,14 +48,16 @@ namespace RPG.Model.Items
 
         #endregion
 
-        public ItemBase(string itemName, string content, string iconSource, Rarity rarity, int worth)
+        public ItemBase(string itemName, string content, string iconSource, Rarity rarity, int worth,
+            bool isCloned = false)
         {
             ItemName = itemName;
             Content = content;
             IconResource = iconSource;
             Rarity = rarity;
             Worth = worth;
-            CalculateId();
+            if (!isCloned)
+                CalculateId();
         }
 
         public ItemBase()
@@ -77,6 +77,16 @@ namespace RPG.Model.Items
 
             SellAll = new DelegateCommand(SoldOutConfirm);
         }
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            var cloned = new ItemBase(ItemName, Content, IconResource, Rarity, Worth, true);
+            return cloned;
+        }
+
+        #endregion
 
         private void CalculateId()
         {
@@ -107,6 +117,8 @@ namespace RPG.Model.Items
         }
 
         #region Fields
+
+        private static int _idSum;
 
         private int _amount;
 

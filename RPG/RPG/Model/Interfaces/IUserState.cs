@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using RPG.Model.Items;
 
 namespace RPG.Model.Interfaces
@@ -21,6 +20,8 @@ namespace RPG.Model.Interfaces
         ItemManager ItemManager { get; set; }
 
         void AddItem(ItemBase newItem);
+
+        void AddItem(string newItem, int amount);
 
         event EventHandler LevelUp;
 

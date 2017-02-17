@@ -22,7 +22,7 @@ namespace RPG.Model.Monsters
             };
             CurrentAttack = Properties.Single(x => x.Name == "攻击").FinalValue;
             CurrentHp = MaximumHp;
-            DropList = new List<string> { "石头" };
+            DropList = new List<string> { "石头", "翡翠" };
         }
 
         public override IMonster NewInstance()

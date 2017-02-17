@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPG.Model.Interfaces;
 
 namespace RPG.Model.Battle
 {
     public class BattleFinishedArgs : EventArgs
     {
-        public BattleFinishedArgs(bool userVitoried, IEnumerable<IItem> items, int gold)
+        public BattleFinishedArgs(bool userVitoried, Dictionary<string,int> items, int gold)
         {
             IsUserVictoried = userVitoried;
             Items = items;
@@ -15,7 +14,7 @@ namespace RPG.Model.Battle
 
         public bool IsUserVictoried { get; }
 
-        public IEnumerable<IItem> Items { get; }
+        public Dictionary<string, int> Items { get; }
 
         public int Gold { get; }
     }

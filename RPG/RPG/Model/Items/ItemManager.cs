@@ -16,6 +16,8 @@ namespace RPG.Model.Items
 
         #region Properties
 
+        public HashSet<ItemBase> AllGameItems => ItemsIdDictionary;
+
         public ObservableCollection<ItemBase> Items
         {
             get { return _items; }
@@ -25,11 +27,6 @@ namespace RPG.Model.Items
                 BindingOperations.EnableCollectionSynchronization(_items, _threadLock);
             }
         }
-
-        public static readonly HashSet<ItemBase> ItemsIdDictionary = new HashSet<ItemBase>
-        {
-            
-        };
 
         #endregion
 
@@ -52,6 +49,14 @@ namespace RPG.Model.Items
             {
                 itemInCollection.Amount += newItem.Amount;
             }
+        }
+
+        public void AddItem(string newItem, int amount)
+        {
+            var item = ItemsIdDictionary.Single(x => x.ItemName == newItem).Clone() as ItemBase;
+            item.Amount = amount;
+            item.PropertyChanged += OnItemPropertyChanged;
+            AddItem(item);
         }
 
         public void RemoveItem(ItemBase newItem)
@@ -81,6 +86,12 @@ namespace RPG.Model.Items
         }
 
         #region Fields
+
+        public static readonly HashSet<ItemBase> ItemsIdDictionary = new HashSet<ItemBase>
+        {
+            new ItemBase("石头", "一块石头", "INV_Stone_06", Rarity.Normal, 200),
+            new ItemBase("翡翠", "一块翡翠", "INV_Misc_Gem_Emerald_02", Rarity.Rare, 2000)
+        };
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(ItemManager));
 

@@ -125,7 +125,6 @@
     <Compile Include="Model\Items\ItemBase.cs" />
     <Compile Include="Model\Items\ItemManager.cs" />
     <Compile Include="Model\Items\SellEventArgs.cs" />
-    <Compile Include="Model\Items\Stone.cs" />
     <Compile Include="Model\MonsterClass.cs" />
     <Compile Include="Model\Monsters\MonsterBase.cs" />
     <Compile Include="Model\Monsters\MonsterSlime.cs" />
