@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Linq;
+using log4net;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
@@ -18,8 +19,10 @@ namespace RPG.ViewModel
         #endregion
 
         [ImportingConstructor]
-        public ItemsViewModel(IItemManager itemManager)
+        public ItemsViewModel(IItemManager itemManager, IUserState userState)
         {
+            _userState = userState;
+
             foreach (var item in itemManager.Items.OrderBy(x => x.Rarity))
                 item.OnItemSelling += OnItemSelling;
             ItemManager = itemManager;
@@ -44,7 +47,18 @@ namespace RPG.ViewModel
 
         private void OnItemSelling(object sender, SellEventArgs e)
         {
+            var item = sender as IItem;
+            if (item == null)
+            {
+                Log.Error($"Can not get item from {sender}");
+                return;
+            }
+
+            _userState.Gold += item.Worth * e.Amount;
             ItemManager.SellItem(e.Item, e.Amount);
         }
+
+        private readonly IUserState _userState;
+        private static readonly ILog Log = LogManager.GetLogger(typeof(ItemsViewModel));
     }
 }

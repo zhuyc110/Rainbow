@@ -12,6 +12,7 @@ using RPG.Model.Interfaces;
 using RPG.Model.Items;
 using RPG.Model.Monsters;
 using RPG.Module;
+using RPG.View;
 using RPG.View.MainView;
 
 namespace RPG.ViewModel
@@ -68,8 +69,12 @@ namespace RPG.ViewModel
 
         #endregion
 
-        public BattleViewModel(UserBattleState userBattleState, IMonster monster, IBattleActor battleActor,
-            IIOService ioService, IItemManager itemManager, MonstersViewModel parentViewModel)
+        public BattleViewModel(UserBattleState userBattleState,
+            IMonster monster,
+            IBattleActor battleActor,
+            IIOService ioService,
+            IItemManager itemManager,
+            MonstersViewModel parentViewModel)
         {
             IsBattleFinished = false;
             Booties = new ObservableCollection<IItem>();
@@ -84,6 +89,7 @@ namespace RPG.ViewModel
 
             battleActor.OneRoundBattle += OnOneRoundBattle;
             battleActor.BattleFinished += OnBattleFinished;
+            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
             battleActor.StartBattle(UserBattleState, Monster);
         }
 
@@ -99,6 +105,7 @@ namespace RPG.ViewModel
             var view = _ioService.GetView<MonstersView>();
             view.Dispatcher.Invoke(() =>
             {
+                _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
                 view.ViewModel = _parenViewModel;
                 _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
             });
@@ -111,17 +118,18 @@ namespace RPG.ViewModel
             {
                 Booties.Clear();
 
-                var booties = _itemManager.AllGameItems.Where(x => e.Items.Keys.Contains(x.ItemName)).Select(x => x.Clone() as ItemBase).ToList();
+                var booties =
+                    _itemManager.AllGameItems.Where(x => e.Items.Keys.Contains(x.ItemName))
+                        .Select(x => x.Clone() as ItemBase)
+                        .ToList();
                 foreach (var booty in booties)
-                {
                     booty.Amount = e.Items[booty.ItemName];
-                }
 
                 Booties.AddRange(booties);
                 UserBattleState.UserState.Gold += e.Gold;
                 UserBattleState.UserState.Experience += e.Gold;
                 Gold = e.Gold;
-                
+
                 foreach (var itemBase in e.Items)
                     UserBattleState.UserState.ItemManager.AddItem(itemBase.Key, itemBase.Value);
             }
@@ -138,9 +146,10 @@ namespace RPG.ViewModel
 
         #region Fields
 
-        private readonly IItemManager _itemManager;
         private readonly IBattleActor _battleActor;
         private readonly IIOService _ioService;
+
+        private readonly IItemManager _itemManager;
         private readonly MonstersViewModel _parenViewModel;
         private readonly object _threadLock = new object();
         private ObservableCollection<IItem> _booties;

@@ -51,7 +51,7 @@ namespace RPG.Infrastructure.Implementation
         {
             try
             {
-                using (var fs = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite))
                 {
                     var xmlS = new System.Xml.Serialization.XmlSerializer(typeof(T));
                     xmlS.Serialize(fs, target);

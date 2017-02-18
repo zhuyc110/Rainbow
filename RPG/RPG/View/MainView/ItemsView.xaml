@@ -24,7 +24,7 @@
         <res:IntToNullableIntConverter x:Key="IntToNullableIntConverter" />
     </UserControl.Resources>
 
-    <ListView ItemsSource="{Binding UserState.Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+    <ListView ItemsSource="{Binding ItemManager.Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel />

@@ -79,10 +79,8 @@ namespace RPG.Model.Items
 
         private void RaiseSellItem(int? amount)
         {
-            if (amount != null)
-                OnItemSelling?.Invoke(null, new SellEventArgs(ItemName, (int) amount));
-            else
-                OnItemSelling?.Invoke(null, new SellEventArgs(ItemName));
+            OnItemSelling?.Invoke(this,
+                amount != null ? new SellEventArgs(ItemName, (int) amount) : new SellEventArgs(ItemName));
         }
 
         #region Fields

@@ -76,7 +76,6 @@ namespace RPG
             userData.ItemManager = itemManager;
             Container.ComposeExportedValue(userData.ItemManager);
             Container.ComposeExportedValue(userData);
-
             Container.ComposeExportedValue(XmlSerializer.Instance);
             base.ConfigureContainer();
         }

@@ -1,5 +1,6 @@
 ﻿using RPG.Infrastructure.Interfaces;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Windows;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Mvvm;
@@ -55,9 +56,21 @@ namespace RPG.Infrastructure.Implementation
             _regionManager.Regions[moduleName].RequestNavigate(viewName);
         }
 
-        public T GetView<T>()
+        public void DeactiveView<TView>(string moduleName)
         {
-            return _serviceLocator.GetInstance<T>();
+            var view = _regionManager.Regions[moduleName].Views.OfType<TView>().Single();
+            _regionManager.Regions[moduleName].Deactivate(view);
+        }
+
+        public void ActiveView<TView>(string moduleName)
+        {
+            var view = _regionManager.Regions[moduleName].Views.OfType<TView>().Single();
+            _regionManager.Regions[moduleName].Activate(view);
+        }
+
+        public TView GetView<TView>()
+        {
+            return _serviceLocator.GetInstance<TView>();
         }
     }
 }
