@@ -1,15 +1,20 @@
-﻿using RPG.Model.Interfaces;
-using System;
+﻿using System;
 
 namespace RPG.Model.Items
 {
     public class SellEventArgs : EventArgs
     {
-        public IItem Item { get; }
+        #region Properties
 
-        public SellEventArgs(IItem item)
+        public int Amount { get; }
+        public string Item { get; }
+
+        #endregion
+
+        public SellEventArgs(string item, int amount = 1)
         {
             Item = item;
+            Amount = amount;
         }
     }
 }

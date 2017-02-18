@@ -21,7 +21,7 @@ namespace RPG.ViewModel
         public ItemsViewModel(IItemManager itemManager)
         {
             foreach (var item in itemManager.Items.OrderBy(x => x.Rarity))
-                item.OnItemSoldOut += OnItemSoldOut;
+                item.OnItemSelling += OnItemSelling;
             ItemManager = itemManager;
 
             ItemManager.Items.CollectionChanged += ItemsCollectionChanged;
@@ -37,19 +37,14 @@ namespace RPG.ViewModel
                 var conventedItem = newItem as ItemBase;
                 if (conventedItem != null)
                 {
-                    conventedItem.OnItemSoldOut += OnItemSoldOut;
+                    conventedItem.OnItemSelling += OnItemSelling;
                 }
             }
         }
 
-        private void OnItemSoldOut(object sender, SellEventArgs e)
+        private void OnItemSelling(object sender, SellEventArgs e)
         {
-            var item = e.Item as ItemBase;
-            if (item == null)
-                return;
-
-            item.OnItemSoldOut -= OnItemSoldOut;
-            ItemManager.RemoveItem(item);
+            ItemManager.SellItem(e.Item, e.Amount);
         }
     }
 }

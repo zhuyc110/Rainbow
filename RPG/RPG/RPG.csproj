@@ -138,6 +138,7 @@
     <Compile Include="Module\HeaderModule.cs" />
     <Compile Include="Module\MainModule.cs" />
     <Compile Include="Module\NavigationModule.cs" />
+    <Compile Include="Resource\IntToNullableIntConverter.cs" />
     <Compile Include="Resource\MonsterClassToBrushConverter.cs" />
     <Compile Include="Resource\RarityToBrushConverter.cs" />
     <Compile Include="Resource\ResourceKeyToImageConverter.cs" />

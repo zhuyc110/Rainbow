@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
@@ -40,7 +41,8 @@ namespace RPG.Model
             set { SetProperty(ref _gold, value); }
         }
 
-        public ItemManager ItemManager { get; set; }
+        [XmlIgnore]
+        public IItemManager ItemManager { get; set; }
 
         public int Level
         {
@@ -73,22 +75,7 @@ namespace RPG.Model
             UserName = "Sky - Han";
             Title = "";
             Experience = 0;
-            ItemManager = new ItemManager();
         }
-
-        #region IUserState Members
-
-        public void AddItem(ItemBase newItem)
-        {
-            ItemManager.AddItem(newItem);
-        }
-
-        public void AddItem(string newItem, int amount)
-        {
-            ItemManager.AddItem(newItem, amount);
-        }
-
-        #endregion
 
         private void CalculateLevel()
         {

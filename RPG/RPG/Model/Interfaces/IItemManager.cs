@@ -10,11 +10,14 @@ namespace RPG.Model.Interfaces
         event EventHandler OnItemPropertyChange;
 
         ObservableCollection<ItemBase> Items { get; }
+
         HashSet<ItemBase> AllGameItems { get; }
 
         void AddItem(ItemBase newItem);
 
         void AddItem(string newItem, int amount);
+
+        void SellItem(string item, int amount);
 
         void RemoveItem(ItemBase newItem);
     }

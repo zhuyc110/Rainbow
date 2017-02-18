@@ -8,6 +8,7 @@ using Prism.Mef;
 using RPG.Infrastructure.Implementation;
 using RPG.Model;
 using RPG.Model.Interfaces;
+using RPG.Model.Items;
 
 namespace RPG
 {
@@ -34,6 +35,7 @@ namespace RPG
         protected override void ConfigureContainer()
         {
             IUserState userData = null;
+            IItemManager itemManager = null;
             if (File.Exists("UserData.dat"))
             {
                 try
@@ -46,12 +48,33 @@ namespace RPG
                     Log.Info("UserData can not be loaded from file.", exception);
                 }
             }
+
+            if (File.Exists("ItemData.dat"))
+            {
+                try
+                {
+                    itemManager = XmlSerializer.Instance.DeSerialize<ItemManager>("ItemData.dat");
+                    Log.Info("ItemData is loaded from file.");
+                }
+                catch (Exception exception)
+                {
+                    Log.Info("ItemData can not be loaded from file.", exception);
+                }
+            }
+
             if (userData == null)
             {
                 userData = new UserState();
                 Log.Info("New UserData is created.");
             }
-            Container.ComposeExportedValue((IItemManager)userData.ItemManager);
+            if (itemManager == null)
+            {
+                itemManager = new ItemManager();
+                Log.Info("New ItemData is created.");
+            }
+
+            userData.ItemManager = itemManager;
+            Container.ComposeExportedValue(userData.ItemManager);
             Container.ComposeExportedValue(userData);
 
             Container.ComposeExportedValue(XmlSerializer.Instance);

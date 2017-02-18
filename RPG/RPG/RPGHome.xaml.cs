@@ -36,6 +36,7 @@ namespace RPG
         {
             Log.Info("Start serializing UserData...");
             XmlSerializer.Serialize((UserState)UserState, "UserData.dat");
+            XmlSerializer.Serialize((ItemManager)ItemManager, "ItemData.dat");
             Log.Info("UserData serializing finished.");
             
             base.OnClosing(e);

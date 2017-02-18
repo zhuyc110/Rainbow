@@ -17,11 +17,7 @@ namespace RPG.Model.Interfaces
 
         long Experience { get; set; }
 
-        ItemManager ItemManager { get; set; }
-
-        void AddItem(ItemBase newItem);
-
-        void AddItem(string newItem, int amount);
+        IItemManager ItemManager { get; set; }
 
         event EventHandler LevelUp;
 

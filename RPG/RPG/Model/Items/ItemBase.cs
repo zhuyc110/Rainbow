@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -13,7 +12,7 @@ namespace RPG.Model.Items
     //[InheritedExport(typeof(ItemBase))]
     public class ItemBase : BindableBase, IItem, ICloneable
     {
-        public event EventHandler<SellEventArgs> OnItemSoldOut;
+        public event EventHandler<SellEventArgs> OnItemSelling;
 
         #region Properties
 
@@ -37,9 +36,7 @@ namespace RPG.Model.Items
 
         public Rarity Rarity { get; set; }
 
-        public ICommand SellAll { get; }
-
-        public ICommand SellSelf { get; }
+        public ICommand SellCommand { get; }
 
         [Import]
         private IUserState UserState { get; set; }
@@ -49,7 +46,7 @@ namespace RPG.Model.Items
         #endregion
 
         public ItemBase(string itemName, string content, string iconSource, Rarity rarity, int worth,
-            bool isCloned = false)
+            bool isCloned = false) : this()
         {
             ItemName = itemName;
             Content = content;
@@ -62,20 +59,7 @@ namespace RPG.Model.Items
 
         public ItemBase()
         {
-            SellSelf = new DelegateCommand(() =>
-            {
-                if (Amount - 1 == 0)
-                {
-                    SoldOutConfirm();
-                }
-                else
-                {
-                    UserState.Gold += Worth;
-                    Amount--;
-                }
-            });
-
-            SellAll = new DelegateCommand(SoldOutConfirm);
+            SellCommand = new DelegateCommand<int?>(RaiseSellItem);
         }
 
         #region ICloneable Members
@@ -93,27 +77,12 @@ namespace RPG.Model.Items
             Id = _idSum++;
         }
 
-        private void RaiseSoldOutEvent()
+        private void RaiseSellItem(int? amount)
         {
-            OnItemSoldOut?.Invoke(null, new SellEventArgs(this));
-        }
-
-        private void SoldOutConfirm()
-        {
-            var confirm = true;
-            if (Rarity >= Rarity.Epic)
-            {
-                var result = IoService.ShowDialog("确认", $"是否将{ItemName}全部卖出？");
-                if (result != MessageBoxResult.Yes)
-                    confirm = false;
-            }
-
-            if (confirm)
-            {
-                UserState.Gold += Worth * Amount;
-                Amount = 0;
-                RaiseSoldOutEvent();
-            }
+            if (amount != null)
+                OnItemSelling?.Invoke(null, new SellEventArgs(ItemName, (int) amount));
+            else
+                OnItemSelling?.Invoke(null, new SellEventArgs(ItemName));
         }
 
         #region Fields

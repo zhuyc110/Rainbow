@@ -123,7 +123,7 @@ namespace RPG.ViewModel
                 Gold = e.Gold;
                 
                 foreach (var itemBase in e.Items)
-                    UserBattleState.UserState.AddItem(itemBase.Key, itemBase.Value);
+                    UserBattleState.UserState.ItemManager.AddItem(itemBase.Key, itemBase.Value);
             }
 
             _battleActor.OneRoundBattle -= OnOneRoundBattle;

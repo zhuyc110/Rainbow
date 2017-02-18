@@ -30,6 +30,11 @@ namespace RPG.Model.Items
 
         #endregion
 
+        static ItemManager()
+        {
+            ItemsIdDictionary = new HashSet<ItemBase>();
+        }
+
         public ItemManager()
         {
             Items = new ObservableCollection<ItemBase>();
@@ -54,9 +59,12 @@ namespace RPG.Model.Items
         public void AddItem(string newItem, int amount)
         {
             var item = ItemsIdDictionary.Single(x => x.ItemName == newItem).Clone() as ItemBase;
-            item.Amount = amount;
-            item.PropertyChanged += OnItemPropertyChanged;
-            AddItem(item);
+            if (item != null)
+            {
+                item.Amount = amount;
+                item.PropertyChanged += OnItemPropertyChanged;
+                AddItem(item);
+            }
         }
 
         public void RemoveItem(ItemBase newItem)
@@ -70,6 +78,19 @@ namespace RPG.Model.Items
             else
             {
                 Log.Warn($"No item {newItem.ItemName} exists in collection.");
+            }
+        }
+
+        public void SellItem(string item, int amount = 1)
+        {
+            var itemInfo = Items.FirstOrDefault(x => x.ItemName == item);
+            if (itemInfo == null || itemInfo.Amount < amount)
+                return;
+
+            itemInfo.Amount -= amount;
+            if (itemInfo.Amount == 0)
+            {
+                RemoveItem(itemInfo);
             }
         }
 
@@ -87,11 +108,7 @@ namespace RPG.Model.Items
 
         #region Fields
 
-        public static readonly HashSet<ItemBase> ItemsIdDictionary = new HashSet<ItemBase>
-        {
-            new ItemBase("石头", "一块石头", "INV_Stone_06", Rarity.Normal, 200),
-            new ItemBase("翡翠", "一块翡翠", "INV_Misc_Gem_Emerald_02", Rarity.Rare, 2000)
-        };
+        public static readonly HashSet<ItemBase> ItemsIdDictionary;
 
         private static readonly ILog Log = LogManager.GetLogger(typeof(ItemManager));
 
