@@ -118,6 +118,7 @@
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Interfaces\IItemManager.cs" />
     <Compile Include="Model\Interfaces\IMonster.cs" />
+    <Compile Include="Model\Interfaces\ISkillManager.cs" />
     <Compile Include="Model\Interfaces\ITitleManager.cs" />
     <Compile Include="Model\Interfaces\IBattleProperty.cs" />
     <Compile Include="Model\Interfaces\IUserState.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Model\Monsters\MonsterWolf.cs" />
     <Compile Include="Model\Rarity.cs" />
     <Compile Include="Model\Battle\UserBattleState.cs" />
+    <Compile Include="Model\Skills\SkillManager.cs" />
     <Compile Include="Model\UserProperties\PropertyAttack.cs" />
     <Compile Include="Model\UserProperties\PropertyHP.cs" />
     <Compile Include="Model\UserProperties\UserPropertyBase.cs" />

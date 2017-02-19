@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:RPG.ViewModel"
              xmlns:res="clr-namespace:RPG.Resource"
+             xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:SkillsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -17,12 +18,12 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <DataGrid HeadersVisibility="None" ItemsSource="{Binding Path=Skills}" AutoGenerateColumns="False" 
+    <DataGrid HeadersVisibility="None" ItemsSource="{Binding Path=SkillManager.Skills}" AutoGenerateColumns="False" 
               Background="Transparent" BorderThickness="0">
         <DataGrid.Columns>
             <DataGridTemplateColumn IsReadOnly="True">
                 <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
+                    <DataTemplate DataType="{x:Type interfaces:ISkill}">
                         <StackPanel>
                             <Image VerticalAlignment="Center" HorizontalAlignment="Center"
                                    Source="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}"
@@ -33,7 +34,7 @@
             </DataGridTemplateColumn>
             <DataGridTemplateColumn MaxWidth="300">
                 <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
+                    <DataTemplate DataType="{x:Type interfaces:ISkill}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -49,7 +50,7 @@
             </DataGridTemplateColumn>
             <DataGridTemplateColumn>
                 <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
+                    <DataTemplate DataType="{x:Type interfaces:ISkill}">
                         <CheckBox Style="{StaticResource CheckBoxBaseStyle}" BorderBrush="#255359" Background="#A5DEE4"
                                   IsChecked="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                     </DataTemplate>

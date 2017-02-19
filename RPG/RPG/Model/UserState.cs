@@ -2,7 +2,6 @@
 using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
-using RPG.Model.Items;
 
 namespace RPG.Model
 {
