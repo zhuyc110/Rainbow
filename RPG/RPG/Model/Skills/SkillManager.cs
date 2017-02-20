@@ -19,13 +19,16 @@ namespace RPG.Model.Skills
         #endregion
 
         [ImportingConstructor]
-        public SkillManager([ImportMany]IEnumerable<ISkill> skills, IIOService ioService)
+        public SkillManager([ImportMany] IEnumerable<ISkill> skills, IIOService ioService, IUserState userState)
         {
-            var skillList = skills.ToList();
+            var skillList = skills.OrderBy(x => x.LevelRequirement).ToList();
             _ioService = ioService;
 
             foreach (var skill in skillList)
             {
+                if (userState.CheckedSkills.Contains(skill.Name))
+                    skill.IsChecked = true;
+
                 var skillImp = skill as INotifyPropertyChanged;
                 if (skillImp != null)
                     skillImp.PropertyChanged += SkillPropertyChanged;

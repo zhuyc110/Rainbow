@@ -6,6 +6,7 @@ using RPG.Infrastructure.Interfaces;
 using RPG.Model;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
+using RPG.Model.Skills;
 
 namespace RPG
 {
@@ -26,6 +27,9 @@ namespace RPG
         [Import]
         private IItemManager ItemManager { get; set; }
 
+        [Import]
+        private ISkillManager SkillManager { get; set; }
+
         [ImportingConstructor]
         public RpgHome()
         {
@@ -35,10 +39,11 @@ namespace RPG
         protected override void OnClosing(CancelEventArgs e)
         {
             Log.Info("Start serializing UserData...");
-            XmlSerializer.Serialize((UserState)UserState, "UserData.dat");
+            UserState.SaveSkillStatus(SkillManager);
             XmlSerializer.Serialize((ItemManager)ItemManager, "ItemData.dat");
+            XmlSerializer.Serialize((UserState)UserState, "UserData.dat");
             Log.Info("UserData serializing finished.");
-            
+
             base.OnClosing(e);
         }
     }

@@ -1,26 +1,34 @@
 ﻿using System;
-using RPG.Model.Items;
+using System.Collections.Generic;
 
 namespace RPG.Model.Interfaces
 {
     public interface IUserState
     {
+        event EventHandler ExpChanged;
+
+        event EventHandler LevelUp;
+
+        #region Properties
+
+        long Experience { get; set; }
+
+        long Gem { get; set; }
+
+        long Gold { get; set; }
+
+        IItemManager ItemManager { get; set; }
+
+        int Level { get; set; }
+
         string Title { get; set; }
 
         string UserName { get; set; }
 
-        int Level { get; set; }
+        List<string> CheckedSkills { get; }
 
-        long Gold { get; set; }
+        #endregion
 
-        long Gem { get; set; }
-
-        long Experience { get; set; }
-
-        IItemManager ItemManager { get; set; }
-
-        event EventHandler LevelUp;
-
-        event EventHandler ExpChanged;
+        void SaveSkillStatus(ISkillManager skillManager);
     }
 }

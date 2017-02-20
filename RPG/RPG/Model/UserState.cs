@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
@@ -13,6 +15,9 @@ namespace RPG.Model
         public event EventHandler LevelUp;
 
         #region Properties
+
+        [XmlArray]
+        public List<string> CheckedSkills { get; private set; }
 
         public long Experience
         {
@@ -74,7 +79,17 @@ namespace RPG.Model
             UserName = "Sky - Han";
             Title = "";
             Experience = 0;
+            CheckedSkills = new List<string>();
         }
+
+        #region IUserState Members
+
+        public void SaveSkillStatus(ISkillManager skillManager)
+        {
+            CheckedSkills = skillManager.Skills.Where(x => x.IsChecked).Select(x => x.Name).ToList();
+        }
+
+        #endregion
 
         private void CalculateLevel()
         {
@@ -85,10 +100,6 @@ namespace RPG.Model
                 Level += 1;
                 Experience = Experience - expRequiredOfCurrentLevel;
             }
-        }
-
-        public void RevertItems()
-        {
         }
 
         #region Fields
