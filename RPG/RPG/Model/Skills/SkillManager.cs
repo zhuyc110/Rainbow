@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Prism.Mvvm;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Interfaces;
 
@@ -10,7 +12,7 @@ namespace RPG.Model.Skills
 {
     [Export(typeof(ISkillManager))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class SkillManager : ISkillManager
+    public class SkillManager : BindableBase, ISkillManager
     {
         #region Properties
 
@@ -23,10 +25,12 @@ namespace RPG.Model.Skills
         {
             var skillList = skills.OrderBy(x => x.LevelRequirement).ToList();
             _ioService = ioService;
+            _userState = userState;
+            _userState.LevelUp += OnUserLevelUp;
 
             foreach (var skill in skillList)
             {
-                if (userState.CheckedSkills.Contains(skill.Name))
+                if (_userState.CheckedSkills.Contains(skill.Name))
                     skill.IsChecked = true;
 
                 var skillImp = skill as INotifyPropertyChanged;
@@ -35,6 +39,21 @@ namespace RPG.Model.Skills
             }
 
             Skills = new ObservableCollection<ISkill>(skillList);
+            RecalculateVisibility();
+        }
+
+        private void OnUserLevelUp(object sender, EventArgs e)
+        {
+            RecalculateVisibility();
+        }
+
+        private void RecalculateVisibility()
+        {
+            foreach (var skill in Skills)
+                if (skill.LevelRequirement <= _userState.Level)
+                    skill.IsVisible = true;
+
+            OnPropertyChanged(nameof(Skills));
         }
 
         private void SkillPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -54,6 +73,7 @@ namespace RPG.Model.Skills
         #region Fields
 
         private readonly IIOService _ioService;
+        private readonly IUserState _userState;
 
         #endregion
     }

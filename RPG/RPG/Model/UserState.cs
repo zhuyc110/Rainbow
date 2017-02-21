@@ -19,6 +19,19 @@ namespace RPG.Model
         [XmlArray]
         public List<string> CheckedSkills { get; private set; }
 
+        public int Level
+        {
+            get { return _level; }
+            set
+            {
+                if (SetProperty(ref _level, value))
+                {
+                    var handle = LevelUp;
+                    handle?.Invoke(null, null);
+                }
+            }
+        }
+
         public long Experience
         {
             get { return _experience; }
@@ -47,19 +60,6 @@ namespace RPG.Model
 
         [XmlIgnore]
         public IItemManager ItemManager { get; set; }
-
-        public int Level
-        {
-            get { return _level; }
-            set
-            {
-                if (SetProperty(ref _level, value))
-                {
-                    var handle = LevelUp;
-                    handle?.Invoke(null, null);
-                }
-            }
-        }
 
         public string Title
         {

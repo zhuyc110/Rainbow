@@ -10,5 +10,6 @@ namespace RPG.Model.Interfaces
         int LevelRequirement { get; }
         string IconResource { get; }
         bool IsChecked { get; set; }
+        bool IsVisible { get; set; }
     }
 }
