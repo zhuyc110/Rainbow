@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RPG.Model.Achivements;
 
 namespace RPG.Model.Interfaces
 {
@@ -25,10 +26,10 @@ namespace RPG.Model.Interfaces
 
         string UserName { get; set; }
 
-        List<string> CheckedSkills { get; }
+        List<string> CheckedSkills { get; set; }
+
+        List<AchievementExtract> Achievements { get; }
 
         #endregion
-
-        void SaveSkillStatus(ISkillManager skillManager);
     }
 }

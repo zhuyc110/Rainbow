@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using Prism.Mvvm;
+using RPG.Model.Achivements;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model
@@ -17,7 +18,9 @@ namespace RPG.Model
         #region Properties
 
         [XmlArray]
-        public List<string> CheckedSkills { get; private set; }
+        public List<AchievementExtract> Achievements { get; }
+
+        public List<string> CheckedSkills { get; set; }
 
         public int Level
         {
@@ -81,15 +84,6 @@ namespace RPG.Model
             Experience = 0;
             CheckedSkills = new List<string>();
         }
-
-        #region IUserState Members
-
-        public void SaveSkillStatus(ISkillManager skillManager)
-        {
-            CheckedSkills = skillManager.Skills.Where(x => x.IsChecked).Select(x => x.Name).ToList();
-        }
-
-        #endregion
 
         private void CalculateLevel()
         {

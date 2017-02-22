@@ -42,6 +42,15 @@ namespace RPG.Model.Skills
             RecalculateVisibility();
         }
 
+        #region ISkillManager Members
+
+        public void SaveSkillStatus()
+        {
+            _userState.CheckedSkills = Skills.Where(x => x.IsChecked).Select(x => x.Name).ToList();
+        }
+
+        #endregion
+
         private void OnUserLevelUp(object sender, EventArgs e)
         {
             RecalculateVisibility();

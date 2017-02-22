@@ -5,15 +5,16 @@ using RPG.Model.Achivements;
 namespace RPG.Model.Interfaces
 {
     [InheritedExport(typeof(IAchievement))]
-    public interface IAchievement
+    public interface IAchievement : IAchievementExtract
     {
-        string Name { get; }
-        string Content { get; }
-        string IconResource { get; }
+        #region Properties
+
         bool Achived { get; }
-        int Condition { get; }
-        int Current { get; }
-        IEnumerable<IBattleProperty> Enhancements { get; }
         IEnumerable<AchivementPropertyBase> AchivementProperties { get; }
+        string Content { get; }
+        IEnumerable<IBattleProperty> Enhancements { get; }
+        string IconResource { get; }
+
+        #endregion
     }
 }

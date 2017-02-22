@@ -17,7 +17,7 @@ namespace RPG.Model.Achivements
 
         public IEnumerable<AchivementPropertyBase> AchivementProperties { get; protected set; }
 
-        public bool Achived => Current == Condition;
+        public bool Achived => Current >= Condition;
         public int Condition { get; protected set; }
 
         public int Current

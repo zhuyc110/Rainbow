@@ -39,7 +39,7 @@ namespace RPG
         protected override void OnClosing(CancelEventArgs e)
         {
             Log.Info("Start serializing UserData...");
-            UserState.SaveSkillStatus(SkillManager);
+            SkillManager.SaveSkillStatus();
             XmlSerializer.Serialize((ItemManager)ItemManager, "ItemData.dat");
             XmlSerializer.Serialize((UserState)UserState, "UserData.dat");
             Log.Info("UserData serializing finished.");

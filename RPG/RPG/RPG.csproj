@@ -101,8 +101,12 @@
     <Compile Include="Infrastructure\Interfaces\IXmlSerializer.cs" />
     <Compile Include="Model\Achivements\AchievementBase.cs" />
     <Compile Include="Model\Achivements\AchievementBossKiller.cs" />
+    <Compile Include="Model\Achivements\AchievementEventArgs.cs" />
+    <Compile Include="Model\Achivements\AchievementExtract.cs" />
     <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />
+    <Compile Include="Model\Achivements\AchievementManager.cs" />
     <Compile Include="Model\Achivements\AchivementPropertyBase.cs" />
+    <Compile Include="Model\Interfaces\IAchievementExtract.cs" />
     <Compile Include="Model\AdventureArea.cs" />
     <Compile Include="Model\Battle\BattleActor.cs" />
     <Compile Include="Model\Battle\BattleFinishedArgs.cs" />
@@ -112,6 +116,7 @@
     <Compile Include="Model\Equipment\EquipmentPart.cs" />
     <Compile Include="Model\Equipment\UltimateChestPlate.cs" />
     <Compile Include="Model\Interfaces\IAchievement.cs" />
+    <Compile Include="Model\Interfaces\IAchievementManager.cs" />
     <Compile Include="Model\Interfaces\IAdventureArea.cs" />
     <Compile Include="Model\Interfaces\IBattleActor.cs" />
     <Compile Include="Model\Interfaces\IBattleEntity.cs" />
