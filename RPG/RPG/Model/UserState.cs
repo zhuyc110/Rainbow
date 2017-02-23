@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Achivements;
@@ -17,8 +16,8 @@ namespace RPG.Model
 
         #region Properties
 
-        [XmlArray]
-        public List<AchievementExtract> Achievements { get; }
+        //[XmlArray]
+        public List<AchievementExtract> Achievements { get; set; }
 
         public List<string> CheckedSkills { get; set; }
 

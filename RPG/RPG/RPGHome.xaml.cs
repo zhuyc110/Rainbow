@@ -30,6 +30,9 @@ namespace RPG
         [Import]
         private ISkillManager SkillManager { get; set; }
 
+        [Import]
+        private IAchievementManager AchievementManager { get; set; }
+
         [ImportingConstructor]
         public RpgHome()
         {
@@ -40,6 +43,7 @@ namespace RPG
         {
             Log.Info("Start serializing UserData...");
             SkillManager.SaveSkillStatus();
+            AchievementManager.SaveData();
             XmlSerializer.Serialize((ItemManager)ItemManager, "ItemData.dat");
             XmlSerializer.Serialize((UserState)UserState, "UserData.dat");
             Log.Info("UserData serializing finished.");

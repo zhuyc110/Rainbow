@@ -9,6 +9,7 @@ namespace RPG.Model.Interfaces
     {
         #region Properties
 
+        int Condition { get; }
         bool Achived { get; }
         IEnumerable<AchivementPropertyBase> AchivementProperties { get; }
         string Content { get; }

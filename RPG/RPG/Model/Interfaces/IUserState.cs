@@ -28,7 +28,7 @@ namespace RPG.Model.Interfaces
 
         List<string> CheckedSkills { get; set; }
 
-        List<AchievementExtract> Achievements { get; }
+        List<AchievementExtract> Achievements { get; set; }
 
         #endregion
     }

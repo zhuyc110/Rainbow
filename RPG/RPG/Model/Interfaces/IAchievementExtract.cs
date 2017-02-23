@@ -4,8 +4,7 @@
     {
         #region Properties
 
-        int Condition { get; }
-        int Current { get; }
+        int Current { get; set; }
         string Name { get; }
 
         #endregion

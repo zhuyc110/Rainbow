@@ -8,23 +8,20 @@ namespace RPG.Model.Achivements
     {
         #region Properties
 
-        public int Condition { get; }
-        public int Current { get; }
-        public string Name { get; }
+        public int Current { get; set; }
+        public string Name { get; set; }
 
         #endregion
 
-        public AchievementExtract(string name, int condition, int current)
+        public AchievementExtract(string name, int current)
         {
             Name = name;
-            Condition = condition;
             Current = current;
         }
 
         public AchievementExtract()
         {
             Name = string.Empty;
-            Condition = 0;
             Current = 0;
         }
     }
