@@ -5,7 +5,5 @@ namespace RPG.Model.Interfaces
     public interface ISkillManager
     {
         ObservableCollection<ISkill> Skills { get; }
-
-        void SaveSkillStatus();
     }
 }

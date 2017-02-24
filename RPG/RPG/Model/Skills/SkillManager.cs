@@ -11,8 +11,9 @@ using RPG.Model.Interfaces;
 namespace RPG.Model.Skills
 {
     [Export(typeof(ISkillManager))]
+    [Export(typeof(ISavableData))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class SkillManager : BindableBase, ISkillManager
+    public class SkillManager : BindableBase, ISkillManager, ISavableData
     {
         #region Properties
 
@@ -42,9 +43,9 @@ namespace RPG.Model.Skills
             RecalculateVisibility();
         }
 
-        #region ISkillManager Members
+        #region ISavableData Members
 
-        public void SaveSkillStatus()
+        public void SaveData()
         {
             _userState.CheckedSkills = Skills.Where(x => x.IsChecked).Select(x => x.Name).ToList();
         }

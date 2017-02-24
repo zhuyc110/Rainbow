@@ -9,8 +9,9 @@ using RPG.Model.Interfaces;
 namespace RPG.Model.Achivements
 {
     [Export(typeof(IAchievementManager))]
+    [Export(typeof(ISavableData))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class AchievementManager : IAchievementManager
+    public class AchievementManager : IAchievementManager, ISavableData
     {
         public event EventHandler<AchievementEventArgs> OnAchievementGet;
 
@@ -21,12 +22,32 @@ namespace RPG.Model.Achivements
         #endregion
 
         [ImportingConstructor]
-        public AchievementManager([ImportMany] IEnumerable<IAchievement> achievements, IUserState userState)
+        public AchievementManager([ImportMany] IEnumerable<IAchievement> achievements, IUserState userState,
+            IBattleActor battleActor)
         {
             _userState = userState;
+            _battleActor = battleActor;
             Achievements = new ObservableCollection<IAchievement>(achievements);
             RecoverAchievements();
+            _battleActor.BattleFinished += OnBattleFinished;
         }
+
+        private void OnBattleFinished(object sender, Battle.BattleFinishedArgs e)
+        {
+            foreach (var achievement in Achievements.Where(x => x.CanHandleEvent(e)))
+            {
+                achievement.HandleEvent();
+            }
+        }
+
+        #region ISavableData Members
+
+        public void SaveData()
+        {
+            _userState.Achievements = Achievements.Select(x => new AchievementExtract(x.Name, x.Current)).ToList();
+        }
+
+        #endregion
 
         private void RecoverAchievements()
         {
@@ -47,10 +68,7 @@ namespace RPG.Model.Achivements
         private static readonly ILog Log = LogManager.GetLogger(typeof(AchievementManager));
 
         private readonly IUserState _userState;
-        public void SaveData()
-        {
-            _userState.Achievements = Achievements.Select(x => new AchievementExtract(x.Name, x.Current)).ToList();
-        }
+        private readonly IBattleActor _battleActor;
 
         #endregion
     }

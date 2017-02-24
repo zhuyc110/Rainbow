@@ -7,18 +7,14 @@ namespace RPG.Model.Achivements
 {
     public abstract class AchievementBase : BindableBase, IAchievement
     {
-        private int _current;
-        
-        public IEnumerable<IBattleProperty> Enhancements { get; protected set; }
-
-        public string Name { get; protected set; }
-
-        public string Content { get; protected set; }
-
-        public IEnumerable<AchivementPropertyBase> AchivementProperties { get; protected set; }
+        #region Properties
 
         public bool Achived => Current >= Condition;
+
+        public IEnumerable<AchivementPropertyBase> AchivementProperties { get; protected set; }
         public int Condition { get; protected set; }
+
+        public string Content { get; protected set; }
 
         public int Current
         {
@@ -30,9 +26,24 @@ namespace RPG.Model.Achivements
             }
         }
 
+        public IEnumerable<IBattleProperty> Enhancements { get; protected set; }
+
+        public string IconResource { get; protected set; }
+
+        public string Name { get; protected set; }
+
+        #endregion
+
+        #region IAchievement Members
+
+        public abstract bool CanHandleEvent<T>(T args);
+        public abstract void HandleEvent();
+
+        #endregion
+
         protected void ComposeProperty()
         {
-            if(Enhancements == null)
+            if (Enhancements == null)
                 return;
             foreach (var achivementProperty in AchivementProperties)
             {
@@ -44,6 +55,10 @@ namespace RPG.Model.Achivements
             }
         }
 
-        public string IconResource { get; protected set; }
+        #region Fields
+
+        private int _current;
+
+        #endregion
     }
 }

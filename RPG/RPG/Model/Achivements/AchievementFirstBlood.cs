@@ -21,5 +21,26 @@ namespace RPG.Model.Achivements
             Condition = 1;
             IconResource = "Ability_Druid_Disembowel";
         }
+
+        public override bool CanHandleEvent<T>(T args)
+        {
+            if (Achived)
+            {
+                return false;
+            }
+
+            var battle = args as Battle.BattleFinishedArgs;
+            if (battle == null)
+            {
+                return false;
+            }
+
+            return battle.IsUserVictoried;
+        }
+
+        public override void HandleEvent()
+        {
+            Current = 1;
+        }
     }
 }

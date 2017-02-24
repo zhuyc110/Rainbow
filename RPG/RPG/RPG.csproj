@@ -123,6 +123,7 @@
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Interfaces\IItemManager.cs" />
     <Compile Include="Model\Interfaces\IMonster.cs" />
+    <Compile Include="Model\Interfaces\ISavableData.cs" />
     <Compile Include="Model\Interfaces\ISkillManager.cs" />
     <Compile Include="Model\Interfaces\ITitleManager.cs" />
     <Compile Include="Model\Interfaces\IBattleProperty.cs" />

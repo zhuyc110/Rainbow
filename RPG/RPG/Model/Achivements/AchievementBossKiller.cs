@@ -22,5 +22,26 @@ namespace RPG.Model.Achivements
             Condition = 100000;
             IconResource = "Spell_Shadow_BlackPlague";
         }
+
+        public override bool CanHandleEvent<T>(T args)
+        {
+            if (Achived)
+            {
+                return false;
+            }
+
+            var battle = args as Battle.BattleFinishedArgs;
+            if (battle == null)
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+        public override void HandleEvent()
+        {
+            Current++;
+        }
     }
 }

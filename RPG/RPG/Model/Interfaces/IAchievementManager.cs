@@ -13,7 +13,5 @@ namespace RPG.Model.Interfaces
         ObservableCollection<IAchievement> Achievements { get; set; }
 
         #endregion
-
-        void SaveData();
     }
 }

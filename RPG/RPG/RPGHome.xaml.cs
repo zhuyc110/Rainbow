@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using log4net;
@@ -27,11 +28,8 @@ namespace RPG
         [Import]
         private IItemManager ItemManager { get; set; }
 
-        [Import]
-        private ISkillManager SkillManager { get; set; }
-
-        [Import]
-        private IAchievementManager AchievementManager { get; set; }
+        [ImportMany]
+        private IEnumerable<ISavableData> SavableDatas { get; set; }
 
         [ImportingConstructor]
         public RpgHome()
@@ -42,8 +40,10 @@ namespace RPG
         protected override void OnClosing(CancelEventArgs e)
         {
             Log.Info("Start serializing UserData...");
-            SkillManager.SaveSkillStatus();
-            AchievementManager.SaveData();
+            foreach (var savableData in SavableDatas)
+            {
+                savableData.SaveData();
+            }
             XmlSerializer.Serialize((ItemManager)ItemManager, "ItemData.dat");
             XmlSerializer.Serialize((UserState)UserState, "UserData.dat");
             Log.Info("UserData serializing finished.");

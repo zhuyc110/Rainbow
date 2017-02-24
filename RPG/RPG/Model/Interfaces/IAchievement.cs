@@ -17,5 +17,8 @@ namespace RPG.Model.Interfaces
         string IconResource { get; }
 
         #endregion
+
+        bool CanHandleEvent<T>(T args);
+        void HandleEvent();
     }
 }
