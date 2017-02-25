@@ -34,10 +34,16 @@ namespace RPG.Model.Achivements
 
         private void OnBattleFinished(object sender, Battle.BattleFinishedArgs e)
         {
+            var achievements = new List<IAchievement>();
             foreach (var achievement in Achievements.Where(x => x.CanHandleEvent(e)))
             {
                 achievement.HandleEvent();
+                if (achievement.Achived)
+                {
+                    achievements.Add(achievement);
+                }
             }
+            RaiseAchievementGet(achievements);
         }
 
         #region ISavableData Members
@@ -61,6 +67,12 @@ namespace RPG.Model.Achivements
                 }
                 matchedAchievement.Current = achievementExtract.Current;
             }
+        }
+
+        private void RaiseAchievementGet(IEnumerable<IAchievement> achievement)
+        {
+            var handle = OnAchievementGet;
+            handle?.Invoke(this, new AchievementEventArgs(achievement));
         }
 
         #region Fields

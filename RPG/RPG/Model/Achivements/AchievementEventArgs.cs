@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model.Achivements
@@ -7,13 +8,13 @@ namespace RPG.Model.Achivements
     {
         #region Properties
 
-        public IAchievement Achievement { get; }
+        public IEnumerable<IAchievement> Achievements { get; }
 
         #endregion
 
-        public AchievementEventArgs(IAchievement achievement)
+        public AchievementEventArgs(IEnumerable<IAchievement> achievements)
         {
-            Achievement = achievement;
+            Achievements = achievements;
         }
     }
 }

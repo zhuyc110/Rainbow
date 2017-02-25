@@ -68,7 +68,7 @@ namespace RPG.Model.Battle
             var handle = BattleFinished;
             handle?.Invoke(null,
                 new BattleFinishedArgs(battleResult == BattleResult.MonsterDied,
-                    monster.DropList.ToDictionary(key => key, v => 1), monster.MaximumHp));
+                    monster.DropList.ToDictionary(key => key, v => 1), monster.MaximumHp, monster));
         }
 
         #region Nested type: BattleResult

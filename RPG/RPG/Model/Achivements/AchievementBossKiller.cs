@@ -31,12 +31,12 @@ namespace RPG.Model.Achivements
             }
 
             var battle = args as Battle.BattleFinishedArgs;
-            if (battle == null)
+            if (battle?.Monster == null)
             {
                 return false;
             }
 
-            return false;
+            return battle.Monster.Class.HasFlag(MonsterClass.Boss);
         }
 
         public override void HandleEvent()
