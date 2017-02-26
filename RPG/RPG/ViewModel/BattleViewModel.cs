@@ -67,6 +67,14 @@ namespace RPG.ViewModel
 
         public UserBattleState UserBattleState { get; }
 
+        private SettleViewModel _settleViewModel;
+
+        public SettleViewModel SettleViewModel
+        {
+            get { return _settleViewModel; }
+            set { SetProperty(ref _settleViewModel, value); }
+        }
+
         #endregion
 
         public BattleViewModel(UserBattleState userBattleState,
@@ -74,6 +82,7 @@ namespace RPG.ViewModel
             IBattleActor battleActor,
             IIOService ioService,
             IItemManager itemManager,
+            IAchievementManager achievementManager,
             MonstersViewModel parentViewModel)
         {
             IsBattleFinished = false;
@@ -85,12 +94,21 @@ namespace RPG.ViewModel
             _battleActor = battleActor;
             _ioService = ioService;
             _itemManager = itemManager;
+            _achievementManager = achievementManager;
             _parenViewModel = parentViewModel;
 
+            SettleViewModel = new SettleViewModel(Enumerable.Empty<IAchievement>());
             battleActor.OneRoundBattle += OnOneRoundBattle;
             battleActor.BattleFinished += OnBattleFinished;
+            _achievementManager.OnAchievementGet += OnAchievementGet;
             _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
             battleActor.StartBattle(UserBattleState, Monster);
+        }
+
+        private void OnAchievementGet(object sender, Model.Achivements.AchievementEventArgs e)
+        {
+            SettleViewModel.Achivements = new ObservableCollection<IAchievement>(e.Achievements);
+            OnPropertyChanged(nameof(SettleViewModel));
         }
 
         [Obsolete]
@@ -102,6 +120,7 @@ namespace RPG.ViewModel
 
         private void DisposeView()
         {
+            SettleViewModel.Achivements.Clear();
             var view = _ioService.GetView<MonstersView>();
             view.Dispatcher.Invoke(() =>
             {
@@ -149,6 +168,7 @@ namespace RPG.ViewModel
         private readonly IBattleActor _battleActor;
         private readonly IIOService _ioService;
 
+        private readonly IAchievementManager _achievementManager;
         private readonly IItemManager _itemManager;
         private readonly MonstersViewModel _parenViewModel;
         private readonly object _threadLock = new object();

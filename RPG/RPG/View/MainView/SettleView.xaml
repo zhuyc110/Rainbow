@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="RPG.View.MainView.SettleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:resource="clr-namespace:RPG.Resource"
+             xmlns:achivements="clr-namespace:RPG.Model.Achivements"
+             xmlns:controls="clr-namespace:RPG.Controls"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             d:DataContext="{d:DesignInstance viewModel:SettleViewModel, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resource/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Background="{StaticResource BackgroundBrush02}">成就达成！</TextBlock>
+        <ListView ItemsSource="{Binding Achivements}" Background="Transparent" BorderThickness="0" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type achivements:AchievementBase}">
+                    <controls:IconItemHorizontal Background="{StaticResource BackgroundBrush02}" Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" ItemName="{Binding Path=Name}" PropertyList="{Binding Path=AchivementProperties}">
+                        <controls:IconItemHorizontal.ItemContent>
+                            <MultiBinding StringFormat="{}进度: {0}/{1}">
+                                <Binding Path="Current"/>
+                                <Binding Path="Condition"/>
+                            </MultiBinding>
+                        </controls:IconItemHorizontal.ItemContent>
+                        <controls:IconItemHorizontal.ToolTip>
+                            <TextBlock Text="{Binding Path=Content}"></TextBlock>
+                        </controls:IconItemHorizontal.ToolTip>
+                    </controls:IconItemHorizontal>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

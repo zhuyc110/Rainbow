@@ -169,6 +169,7 @@
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MonstersViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
+    <Compile Include="ViewModel\SettleViewModel.cs" />
     <Compile Include="ViewModel\SkillsViewModel.cs" />
     <Compile Include="View\MainView\AchievementsView.xaml.cs">
       <DependentUpon>AchievementsView.xaml</DependentUpon>
@@ -196,6 +197,9 @@
     </Compile>
     <Compile Include="View\MainView\MonstersView.xaml.cs">
       <DependentUpon>MonstersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView\SettleView.xaml.cs">
+      <DependentUpon>SettleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
@@ -272,6 +276,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView\MonstersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView\SettleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
