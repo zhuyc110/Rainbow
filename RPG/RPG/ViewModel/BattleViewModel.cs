@@ -107,8 +107,7 @@ namespace RPG.ViewModel
 
         private void OnAchievementGet(object sender, Model.Achivements.AchievementEventArgs e)
         {
-            SettleViewModel.Achivements = new ObservableCollection<IAchievement>(e.Achievements);
-            OnPropertyChanged(nameof(SettleViewModel));
+            SettleViewModel = new SettleViewModel(e.Achievements);
         }
 
         [Obsolete]

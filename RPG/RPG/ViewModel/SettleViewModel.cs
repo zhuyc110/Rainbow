@@ -2,7 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Windows.Data;
 using Prism.Mvvm;
+using RPG.Model;
+using RPG.Model.Achivements;
 using RPG.Model.Interfaces;
+using RPG.Model.UserProperties;
 
 namespace RPG.ViewModel
 {
@@ -25,6 +28,17 @@ namespace RPG.ViewModel
         public SettleViewModel(IEnumerable<IAchievement> achivements)
         {
             Achivements = new ObservableCollection<IAchievement>(achivements);
+        }
+
+        public SettleViewModel()
+        {
+            var property = new PropertyAttack(new UserState());
+            Achivements = new ObservableCollection<IAchievement>
+            {
+                new AchievementFirstBlood(new []{property}),
+                new AchievementFirstBlood(new []{property}),
+                new AchievementFirstBlood(new []{property})
+            };
         }
 
         #region Fields

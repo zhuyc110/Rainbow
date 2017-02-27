@@ -24,20 +24,29 @@
             <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Background="{StaticResource BackgroundBrush02}">成就达成！</TextBlock>
-        <ListView ItemsSource="{Binding Achivements}" Background="Transparent" BorderThickness="0" Grid.Row="1">
+        <ListView ItemsSource="{Binding Achivements}" Background="Transparent" BorderThickness="0" Grid.Row="1" MaxWidth="240">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type achivements:AchievementBase}">
-                    <controls:IconItemHorizontal Background="{StaticResource BackgroundBrush02}" Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" ItemName="{Binding Path=Name}" PropertyList="{Binding Path=AchivementProperties}">
-                        <controls:IconItemHorizontal.ItemContent>
-                            <MultiBinding StringFormat="{}进度: {0}/{1}">
-                                <Binding Path="Current"/>
-                                <Binding Path="Condition"/>
-                            </MultiBinding>
-                        </controls:IconItemHorizontal.ItemContent>
-                        <controls:IconItemHorizontal.ToolTip>
-                            <TextBlock Text="{Binding Path=Content}"></TextBlock>
-                        </controls:IconItemHorizontal.ToolTip>
-                    </controls:IconItemHorizontal>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Width="16" Height="16" Grid.RowSpan="2" Margin="2" Source="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}"/>
+                        <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" Text="{Binding Path=Name}"/>
+                        <Grid.ToolTip>
+                            <TextBlock Text="{Binding Path=Content}"/>
+                        </Grid.ToolTip>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

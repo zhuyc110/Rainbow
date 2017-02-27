@@ -102,11 +102,9 @@
             <TextBlock  HorizontalAlignment="Center" FontSize="20" Text="{Binding Gold, StringFormat=+\{0\} G}" Margin="20" Style="{StaticResource VictoryTextBlockStyle}"/>
             <TextBlock  HorizontalAlignment="Center" FontSize="20" Text="{Binding Gold, StringFormat=+\{0\} Exp}" Margin="20,0,20,20" Style="{StaticResource VictoryTextBlockStyle}"/>
             <TextBlock  HorizontalAlignment="Center" FontSize="20" Text="失败！" Margin="20,0,20,20" Style="{StaticResource FailedTextBlockStyle}"/>
-            <Button Content="结束" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding FinishBattleCommand}" Margin="5" MinWidth="50"/>
-
             <local:SettleView DataContext="{Binding SettleViewModel}" Style="{StaticResource SettleViewStyle}" >
             </local:SettleView>
-
+            <Button Content="结束" HorizontalAlignment="Center" VerticalAlignment="Bottom" Command="{Binding FinishBattleCommand}" Margin="5" MinWidth="50"/>
         </StackPanel>
 
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Damage}" Background="Transparent" Foreground="Red" Visibility="{Binding IsMonsterDamaged, Converter={StaticResource BooleanToVisibilityConverter}}" />
