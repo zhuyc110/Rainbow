@@ -20,5 +20,6 @@ namespace RPG.Model.Interfaces
 
         bool CanHandleEvent<T>(T args);
         void HandleEvent();
+        void ComposeProperty();
     }
 }

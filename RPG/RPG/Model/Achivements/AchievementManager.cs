@@ -40,6 +40,7 @@ namespace RPG.Model.Achivements
                 achievement.HandleEvent();
                 if (achievement.Achived)
                 {
+                    achievement.ComposeProperty();
                     achievements.Add(achievement);
                 }
             }

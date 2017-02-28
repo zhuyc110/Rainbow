@@ -34,6 +34,19 @@ namespace RPG.Model.Achivements
 
         #endregion
 
+        protected AchievementBase(IEnumerable<IBattleProperty> properties, string name, string content, IReadOnlyCollection<AchivementPropertyBase> achivementProperties, int condition, string iconResource)
+        {
+            Enhancements = properties;
+            Name = name;
+            Content = content;
+            AchivementProperties = achivementProperties;
+            Condition = condition;
+            IconResource = iconResource;
+
+            if (Achived)
+                ComposeProperty();
+        }
+
         #region IAchievement Members
 
         public abstract bool CanHandleEvent<T>(T args);
@@ -41,7 +54,7 @@ namespace RPG.Model.Achivements
 
         #endregion
 
-        protected void ComposeProperty()
+        public virtual void ComposeProperty()
         {
             if (Enhancements == null)
                 return;

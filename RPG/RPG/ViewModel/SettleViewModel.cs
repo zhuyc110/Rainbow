@@ -4,6 +4,7 @@ using System.Windows.Data;
 using Prism.Mvvm;
 using RPG.Model;
 using RPG.Model.Achivements;
+using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.UserProperties;
 
@@ -32,12 +33,12 @@ namespace RPG.ViewModel
 
         public SettleViewModel()
         {
-            var property = new PropertyAttack(new UserState());
+            var userBattleState = new UserBattleState(new UserState());
             Achivements = new ObservableCollection<IAchievement>
             {
-                new AchievementFirstBlood(new []{property}),
-                new AchievementFirstBlood(new []{property}),
-                new AchievementFirstBlood(new []{property})
+                new AchievementFirstBlood(userBattleState),
+                new AchievementFirstBlood(userBattleState),
+                new AchievementFirstBlood(userBattleState)
             };
         }
 
