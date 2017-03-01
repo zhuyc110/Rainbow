@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Prism.Mvvm;
@@ -27,14 +28,17 @@ namespace RPG.Model.Battle
         #endregion
 
         [ImportingConstructor]
-        public UserBattleState(IUserState userState)
+        public UserBattleState(IUserState userState, ISkillManager skillManager)
         {
             UserState = userState;
+            _skillManager = skillManager;
             UserState.LevelUp += (sender, args) => Initialize();
             Initialize();
         }
 
         #region IBattleEntity Members
+
+        public IEnumerable<ISkill> Skills { get; private set; }
 
         public int CurrentAttack
         {
@@ -68,6 +72,7 @@ namespace RPG.Model.Battle
             };
             CurrentHp = MaximumHp;
             CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
+            Skills = _skillManager.Skills.Where(x => x.IsChecked);
         }
 
         public UserBattleState ResetBattleState()
@@ -75,5 +80,7 @@ namespace RPG.Model.Battle
             Initialize();
             return this;
         }
+
+        private readonly ISkillManager _skillManager;
     }
 }

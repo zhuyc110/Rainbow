@@ -4,9 +4,9 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using RPG.Infrastructure.Interfaces;
 using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
-using RPG.Model.Items;
 
 namespace RPG.Model.Battle
 {
@@ -14,6 +14,9 @@ namespace RPG.Model.Battle
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class BattleActor : IBattleActor
     {
+        public event EventHandler<BattleFinishedArgs> BattleFinished;
+        public event EventHandler<BattleRoundArgs> OneRoundBattle;
+
         #region Properties
 
         [ImportMany]
@@ -21,10 +24,13 @@ namespace RPG.Model.Battle
 
         #endregion
 
-        #region IBattleActor Members
+        [ImportingConstructor]
+        public BattleActor(IRandom random)
+        {
+            _random = random;
+        }
 
-        public event EventHandler<BattleFinishedArgs> BattleFinished;
-        public event EventHandler<BattleRoundArgs> OneRoundBattle;
+        #region IBattleActor Members
 
         public async Task StartBattle(IBattleEntity userBattleState, IMonster monster)
         {
@@ -40,16 +46,43 @@ namespace RPG.Model.Battle
 
         #endregion
 
+        private int CalculateAttack(IBattleEntity battleEntity)
+        {
+            if (!battleEntity.Skills.Any())
+                return battleEntity.CurrentAttack;
+            var seed = _random.Next(100);
+
+            foreach (var skill in battleEntity.Skills)
+            {
+                if (seed < skill.Rate * 100)
+                {
+                    return (int)(battleEntity.CurrentAttack * skill.AttackRate * skill.AttackFrequency);
+                }
+            }
+
+            return battleEntity.CurrentAttack;
+        }
+
+        private void OnBattleFinished(BattleResult battleResult, IMonster monster)
+        {
+            var handle = BattleFinished;
+            handle?.Invoke(null,
+                new BattleFinishedArgs(battleResult == BattleResult.MonsterDied,
+                    monster.DropList.ToDictionary(key => key, v => 1), monster.MaximumHp, monster));
+        }
+
         private BattleResult OneRound(IBattleEntity userBattleState, IBattleEntity monster)
         {
-            monster.CurrentHp = Math.Max(monster.CurrentHp - userBattleState.CurrentAttack, 0);
-            OnOneRoundBattleFinished(monster, userBattleState.CurrentAttack);
+            var attack = CalculateAttack(userBattleState);
+            monster.CurrentHp = Math.Max(monster.CurrentHp - attack, 0);
+            OnOneRoundBattleFinished(monster, attack);
             Thread.Sleep(500);
             if (monster.CurrentHp == 0)
                 return BattleResult.MonsterDied;
 
-            userBattleState.CurrentHp = Math.Max(userBattleState.CurrentHp - monster.CurrentAttack, 0);
-            OnOneRoundBattleFinished(userBattleState, monster.CurrentAttack);
+            var monsterAttack = CalculateAttack(monster);
+            userBattleState.CurrentHp = Math.Max(userBattleState.CurrentHp - monsterAttack, 0);
+            OnOneRoundBattleFinished(userBattleState, monsterAttack);
             Thread.Sleep(500);
             if (userBattleState.CurrentHp == 0)
                 return BattleResult.UserDied;
@@ -63,13 +96,11 @@ namespace RPG.Model.Battle
             handle?.Invoke(damagedEntity, new BattleRoundArgs(damage));
         }
 
-        private void OnBattleFinished(BattleResult battleResult, IMonster monster)
-        {
-            var handle = BattleFinished;
-            handle?.Invoke(null,
-                new BattleFinishedArgs(battleResult == BattleResult.MonsterDied,
-                    monster.DropList.ToDictionary(key => key, v => 1), monster.MaximumHp, monster));
-        }
+        #region Fields
+
+        private readonly IRandom _random;
+
+        #endregion
 
         #region Nested type: BattleResult
 

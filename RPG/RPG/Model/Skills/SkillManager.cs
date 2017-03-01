@@ -15,6 +15,8 @@ namespace RPG.Model.Skills
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class SkillManager : BindableBase, ISkillManager, ISavableData
     {
+        public event EventHandler CheckedSkillChanged;
+
         #region Properties
 
         public ObservableCollection<ISkill> Skills { get; }
@@ -68,16 +70,22 @@ namespace RPG.Model.Skills
 
         private void SkillPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != nameof(ISkill.IsChecked))
+            if (e.PropertyName != nameof(ISkill.IsChecked) || Skills.Count(x => x.IsChecked) <= 3)
+            {
+                RaiseCheckedSkillChanged();
                 return;
-
-            if (Skills.Count(x => x.IsChecked) <= 3)
-                return;
+            }
 
             _ioService.ShowMessage("提示", "最多只能同时装备三个技能");
             var skill = sender as ISkill;
             if (skill != null)
                 skill.IsChecked = false;
+        }
+
+        private void RaiseCheckedSkillChanged()
+        {
+            var handle = CheckedSkillChanged;
+            handle?.Invoke(null, null);
         }
 
         #region Fields

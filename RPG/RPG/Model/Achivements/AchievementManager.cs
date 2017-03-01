@@ -67,6 +67,10 @@ namespace RPG.Model.Achivements
                     continue;
                 }
                 matchedAchievement.Current = achievementExtract.Current;
+                if (matchedAchievement.Achived)
+                {
+                    matchedAchievement.ComposeProperty();
+                }
             }
         }
 

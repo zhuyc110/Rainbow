@@ -3,11 +3,9 @@
     public class HeavyStrike : SkillBase
     {
         public HeavyStrike()
+            : base("重击", "对敌人造成150%伤害", "BTNCleavingAttack", 1, 0.5)
         {
-            Content = "对敌人造成150%伤害";
-            LevelRequirement = 1;
-            Name = "重击";
-            IconResource = "BTNCleavingAttack";
+            AttackRate = 1.5;
         }
     }
 }

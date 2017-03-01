@@ -3,11 +3,8 @@
     public class Whirlwind : SkillBase
     {
         public Whirlwind()
+            : base("旋风斩", "对敌人造成2次60%伤害使目标眩晕1回合", "BTNStormBolt", 24, 0.05)
         {
-            Name = "旋风斩";
-            Content = "对敌人造成2次60%伤害使目标眩晕1回合";
-            LevelRequirement = 24;
-            IconResource = "BTNStormBolt";
         }
     }
 }

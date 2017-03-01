@@ -11,5 +11,9 @@ namespace RPG.Model.Interfaces
         string IconResource { get; }
         bool IsChecked { get; set; }
         bool IsVisible { get; set; }
+        double Rate { get; set; }
+
+        double AttackRate { get; }
+        int AttackFrequency { get; }
     }
 }

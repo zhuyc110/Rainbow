@@ -1,4 +1,6 @@
-﻿namespace RPG.Model.Interfaces
+﻿using System.Collections.Generic;
+
+namespace RPG.Model.Interfaces
 {
     public interface IBattleEntity
     {
@@ -6,5 +8,6 @@
         double CurrentHpPercentage { get; }
         int CurrentAttack { get; set; }
         int MaximumHp { get; }
+        IEnumerable<ISkill> Skills { get; }
     }
 }

@@ -39,6 +39,8 @@ namespace RPG.Model.Monsters
 
         #region IMonster Members
 
+        public virtual IEnumerable<ISkill> Skills => Enumerable.Empty<ISkill>();
+
         public int CurrentAttack
         {
             get { return _currentAttack; }
