@@ -11,19 +11,24 @@ using RPG.Module;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(MainPageViewModel))]
+    [Export(typeof (MainPageViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class MainPageViewModel : BindableBase
     {
-        private readonly IIOService _ioService;
+        [Import]
+        public IUserState UserState { get; private set; }
+
+        public ICommand OpenAchievementsCommand { get; }
+
+        public ICommand OpenAdventuresCommand { get; }
 
         [ImportingConstructor]
         public MainPageViewModel(IIOService ioService)
         {
             _ioService = ioService;
 
-            OpenAchievementsCommand = new DelegateCommand(() => OpenView(Constants.AchievementsView));
-            OpenAdventuresCommand = new DelegateCommand(() => OpenView(Constants.AdventureView));
+            OpenAchievementsCommand = new DelegateCommand(() => OpenView(Constants.ACHIEVEMENTS_VIEW));
+            OpenAdventuresCommand = new DelegateCommand(() => OpenView(Constants.ADVENTURE_VIEW));
         }
 
         [Obsolete]
@@ -32,16 +37,19 @@ namespace RPG.ViewModel
             UserState = new UserState {Gold = 10000, Gem = 200};
         }
 
-        [Import]
-        public IUserState UserState { get; private set; }
-
-        public ICommand OpenAchievementsCommand { get; }
-
-        public ICommand OpenAdventuresCommand { get; }
+        #region Private methods
 
         private void OpenView(string viewName)
         {
             _ioService.SwitchView(nameof(MainModule), viewName);
         }
+
+        #endregion
+
+        #region Fields
+
+        private readonly IIOService _ioService;
+
+        #endregion
     }
 }

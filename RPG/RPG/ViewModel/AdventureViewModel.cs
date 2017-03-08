@@ -18,26 +18,6 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class AdventureViewModel : BindableBase
     {
-        private readonly IIOService _ioService;
-        private IAdventureArea _selectedArea;
-
-        [ImportingConstructor]
-        public AdventureViewModel(IIOService ioService)
-        {
-            _ioService = ioService;
-
-            AdventureAreas = new ObservableCollection<IAdventureArea>
-            {
-                new AdventureArea("勇者平原", "BTNWolf", 1, 5),
-                new AdventureArea("黑暗森林", "BTNForestTroll", 6, 10),
-                new AdventureArea("兽人领地", "BTNGrunt", 11, 15),
-                new AdventureArea("死亡沙漠", "BTNArachnathid", 16, 20),
-                new AdventureArea("无尽废墟", "BTNOgre", 21, 24)
-            };
-
-            OpenAreaCommand = new DelegateCommand<string>(OnOpenArea);
-        }
-
         public ObservableCollection<IAdventureArea> AdventureAreas { get; }
 
         public IAdventureArea SelectedArea
@@ -63,6 +43,25 @@ namespace RPG.ViewModel
         [Import]
         private IAchievementManager AchievementManager { get; set; }
 
+        [ImportingConstructor]
+        public AdventureViewModel(IIOService ioService)
+        {
+            _ioService = ioService;
+
+            AdventureAreas = new ObservableCollection<IAdventureArea>
+            {
+                new AdventureArea("勇者平原", "BTNWolf", 1, 5),
+                new AdventureArea("黑暗森林", "BTNForestTroll", 6, 10),
+                new AdventureArea("兽人领地", "BTNGrunt", 11, 15),
+                new AdventureArea("死亡沙漠", "BTNArachnathid", 16, 20),
+                new AdventureArea("无尽废墟", "BTNOgre", 21, 24)
+            };
+
+            OpenAreaCommand = new DelegateCommand<string>(OnOpenArea);
+        }
+
+        #region Private methods
+
         private void OnOpenArea(string areaName)
         {
             if ((SelectedArea = AdventureAreas.First(x => x.AreaName == areaName)) == null)
@@ -75,5 +74,14 @@ namespace RPG.ViewModel
                     UserBattleState, _ioService, BattleActor, ItemManager, AchievementManager);
             _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
         }
+
+        #endregion
+
+        #region Fields
+
+        private readonly IIOService _ioService;
+        private IAdventureArea _selectedArea;
+
+        #endregion
     }
 }

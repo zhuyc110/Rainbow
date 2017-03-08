@@ -5,7 +5,7 @@ using RPG.Model.Interfaces;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(AchievementsViewModel))]
+    [Export(typeof (AchievementsViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class AchievementsViewModel : BindableBase
     {

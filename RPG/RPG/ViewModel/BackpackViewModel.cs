@@ -7,10 +7,12 @@ using RPG.View.MainView;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(BackpackViewModel))]
+    [Export(typeof (BackpackViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class BackpackViewModel : BindableBase
     {
+        public ObservableCollection<TabItem> Tabs { get; set; }
+
         [ImportingConstructor]
         public BackpackViewModel(IServiceLocator serviceLocator)
         {
@@ -20,7 +22,5 @@ namespace RPG.ViewModel
                 new TabItem {Header = "物品", Content = serviceLocator.GetInstance<ItemsView>()}
             };
         }
-
-        public ObservableCollection<TabItem> Tabs { get; set; }
     }
 }

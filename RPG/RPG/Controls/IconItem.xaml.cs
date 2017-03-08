@@ -1,6 +1,6 @@
-﻿using RPG.Model;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
+using RPG.Model;
 
 namespace RPG.Controls
 {
@@ -9,48 +9,33 @@ namespace RPG.Controls
     /// </summary>
     public partial class IconItem
     {
-        public static DependencyProperty AmountProperty =
-            DependencyProperty.Register(nameof(Amount), typeof(int), typeof(IconItem), new PropertyMetadata(default(int)));
-
-        public static DependencyProperty ShowAmountProperty =
-            DependencyProperty.Register(nameof(ShowAmount), typeof(bool), typeof(IconItem), new PropertyMetadata(default(bool)));
-
-        public static DependencyProperty IconProperty =
-            DependencyProperty.Register(nameof(Icon), typeof(ImageSource), typeof(IconItem), new PropertyMetadata(default(ImageSource)));
-
-        public static DependencyProperty ItemNameProperty =
-            DependencyProperty.Register(nameof(ItemName), typeof(string), typeof(IconItem), new PropertyMetadata(default(string)));
-
-        public static DependencyProperty RarityProperty =
-            DependencyProperty.Register(nameof(Rarity), typeof(Rarity), typeof(IconItem), new PropertyMetadata(default(Rarity)));
-
         public int Amount
         {
-            get { return (int)GetValue(AmountProperty); }
+            get { return (int) GetValue(AmountProperty); }
             set { SetValue(AmountProperty, value); }
         }
 
         public bool ShowAmount
         {
-            get { return (bool)GetValue(ShowAmountProperty); }
+            get { return (bool) GetValue(ShowAmountProperty); }
             set { SetValue(ShowAmountProperty, value); }
         }
 
         public ImageSource Icon
         {
-            get { return (ImageSource)GetValue(IconProperty); }
+            get { return (ImageSource) GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
 
         public string ItemName
         {
-            get { return (string)GetValue(ItemNameProperty); }
+            get { return (string) GetValue(ItemNameProperty); }
             set { SetValue(ItemNameProperty, value); }
         }
 
         public Rarity Rarity
         {
-            get { return (Rarity)GetValue(RarityProperty); }
+            get { return (Rarity) GetValue(RarityProperty); }
             set { SetValue(RarityProperty, value); }
         }
 
@@ -58,5 +43,24 @@ namespace RPG.Controls
         {
             InitializeComponent();
         }
+
+        #region Fields
+
+        public static DependencyProperty AmountProperty =
+            DependencyProperty.Register(nameof(Amount), typeof (int), typeof (IconItem), new PropertyMetadata(default(int)));
+
+        public static DependencyProperty ShowAmountProperty =
+            DependencyProperty.Register(nameof(ShowAmount), typeof (bool), typeof (IconItem), new PropertyMetadata(default(bool)));
+
+        public static DependencyProperty IconProperty =
+            DependencyProperty.Register(nameof(Icon), typeof (ImageSource), typeof (IconItem), new PropertyMetadata(default(ImageSource)));
+
+        public static DependencyProperty ItemNameProperty =
+            DependencyProperty.Register(nameof(ItemName), typeof (string), typeof (IconItem), new PropertyMetadata(default(string)));
+
+        public static DependencyProperty RarityProperty =
+            DependencyProperty.Register(nameof(Rarity), typeof (Rarity), typeof (IconItem), new PropertyMetadata(default(Rarity)));
+
+        #endregion
     }
 }

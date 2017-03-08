@@ -9,60 +9,63 @@ namespace RPG.Controls
     /// </summary>
     public partial class IconItemHorizontal
     {
-        public static DependencyProperty IconProperty =
-            DependencyProperty.Register(nameof(Icon), typeof(ImageSource), typeof(IconItemHorizontal),
-                new PropertyMetadata(default(ImageSource)));
+        public ImageSource Icon
+        {
+            get { return (ImageSource) GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
 
-        public static DependencyProperty ItemNameProperty =
-            DependencyProperty.Register(nameof(ItemName), typeof(string), typeof(IconItemHorizontal),
-                new PropertyMetadata(default(string)));
+        public string ItemName
+        {
+            get { return (string) GetValue(ItemNameProperty); }
+            set { SetValue(ItemNameProperty, value); }
+        }
 
-        public static DependencyProperty ItemContentProperty =
-            DependencyProperty.Register(nameof(ItemContent), typeof(string), typeof(IconItemHorizontal),
-                new PropertyMetadata(default(string)));
+        public string ItemContent
+        {
+            get { return (string) GetValue(ItemContentProperty); }
+            set { SetValue(ItemContentProperty, value); }
+        }
 
-        public static DependencyProperty AdditionalTextProperty =
-            DependencyProperty.Register(nameof(AdditionalText), typeof(string), typeof(IconItemHorizontal),
-                new PropertyMetadata(default(string)));
+        public string AdditionalText
+        {
+            get { return (string) GetValue(AdditionalTextProperty); }
+            set { SetValue(AdditionalTextProperty, value); }
+        }
 
-        public static DependencyProperty PropertyListProperty =
-            DependencyProperty.Register(nameof(PropertyList), typeof(IEnumerable), typeof(IconItemHorizontal),
-                new PropertyMetadata(null));
+        public IEnumerable PropertyList
+        {
+            get { return (IEnumerable) GetValue(PropertyListProperty); }
+            set { SetValue(PropertyListProperty, value); }
+        }
 
         public IconItemHorizontal()
         {
             InitializeComponent();
         }
 
-        public ImageSource Icon
-        {
-            get { return (ImageSource)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
-        }
+        #region Fields
 
-        public string ItemName
-        {
-            get { return (string)GetValue(ItemNameProperty); }
-            set { SetValue(ItemNameProperty, value); }
-        }
+        public static DependencyProperty IconProperty =
+            DependencyProperty.Register(nameof(Icon), typeof (ImageSource), typeof (IconItemHorizontal),
+                new PropertyMetadata(default(ImageSource)));
 
-        public string ItemContent
-        {
-            get { return (string)GetValue(ItemContentProperty); }
-            set { SetValue(ItemContentProperty, value); }
-        }
+        public static DependencyProperty ItemNameProperty =
+            DependencyProperty.Register(nameof(ItemName), typeof (string), typeof (IconItemHorizontal),
+                new PropertyMetadata(default(string)));
 
-        public string AdditionalText
-        {
-            get { return (string)GetValue(AdditionalTextProperty); }
-            set { SetValue(AdditionalTextProperty, value); }
-        }
+        public static DependencyProperty ItemContentProperty =
+            DependencyProperty.Register(nameof(ItemContent), typeof (string), typeof (IconItemHorizontal),
+                new PropertyMetadata(default(string)));
 
-        public IEnumerable PropertyList
-        {
-            get { return (IEnumerable)GetValue(PropertyListProperty); }
-            set { SetValue(PropertyListProperty, value); }
-        }
+        public static DependencyProperty AdditionalTextProperty =
+            DependencyProperty.Register(nameof(AdditionalText), typeof (string), typeof (IconItemHorizontal),
+                new PropertyMetadata(default(string)));
 
+        public static DependencyProperty PropertyListProperty =
+            DependencyProperty.Register(nameof(PropertyList), typeof (IEnumerable), typeof (IconItemHorizontal),
+                new PropertyMetadata(null));
+
+        #endregion
     }
 }

@@ -8,7 +8,7 @@ using RPG.Model.Items;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(ItemsViewModel))]
+    [Export(typeof (ItemsViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ItemsViewModel : BindableBase
     {
@@ -30,9 +30,11 @@ namespace RPG.ViewModel
             ItemManager.Items.CollectionChanged += ItemsCollectionChanged;
         }
 
+        #region Private methods
+
         private void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if(e.Action != NotifyCollectionChangedAction.Add)
+            if (e.Action != NotifyCollectionChangedAction.Add)
                 return;
 
             foreach (var newItem in e.NewItems)
@@ -54,11 +56,17 @@ namespace RPG.ViewModel
                 return;
             }
 
-            _userState.Gold += item.Worth * e.Amount;
+            _userState.Gold += item.Worth*e.Amount;
             ItemManager.SellItem(e.Item, e.Amount);
         }
 
+        #endregion
+
+        #region Fields
+
         private readonly IUserState _userState;
-        private static readonly ILog Log = LogManager.GetLogger(typeof(ItemsViewModel));
+        private static readonly ILog Log = LogManager.GetLogger(typeof (ItemsViewModel));
+
+        #endregion
     }
 }

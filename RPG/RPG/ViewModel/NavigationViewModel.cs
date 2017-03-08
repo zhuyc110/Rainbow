@@ -9,11 +9,15 @@ using RPG.Module;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(NavigationViewModel))]
+    [Export(typeof (NavigationViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class NavigationViewModel : BindableBase
     {
-        private readonly IIOService _ioService;
+        public ICommand MainPageCommand { get; }
+        public ICommand ChapterCommand { get; }
+        public ICommand BackpackCommand { get; }
+        public ICommand SkillCommand { get; }
+        public ICommand OtherCommand { get; }
 
         [ImportingConstructor]
         public NavigationViewModel(IIOService ioService)
@@ -22,19 +26,19 @@ namespace RPG.ViewModel
 
             MainPageCommand =
                 new DelegateCommand(
-                    () => { SwitchMainView(Constants.MainPage); });
+                    () => { SwitchMainView(Constants.MAIN_PAGE); });
             ChapterCommand =
                 new DelegateCommand(
-                    () => { SwitchMainView(Constants.UserEquipmentView); });
+                    () => { SwitchMainView(Constants.USER_EQUIPMENT_VIEW); });
             BackpackCommand =
                 new DelegateCommand(
-                    () => { SwitchMainView(Constants.BackpackView); });
+                    () => { SwitchMainView(Constants.BACKPACK_VIEW); });
             SkillCommand =
                 new DelegateCommand(
-                    () => { SwitchMainView(Constants.SkillsView); });
+                    () => { SwitchMainView(Constants.SKILLS_VIEW); });
             OtherCommand =
                 new DelegateCommand(
-                    () => { SwitchMainView(Constants.MainPage); });
+                    () => { SwitchMainView(Constants.MAIN_PAGE); });
         }
 
         [Obsolete]
@@ -42,15 +46,19 @@ namespace RPG.ViewModel
         {
         }
 
-        public ICommand MainPageCommand { get; }
-        public ICommand ChapterCommand { get; }
-        public ICommand BackpackCommand { get; }
-        public ICommand SkillCommand { get; }
-        public ICommand OtherCommand { get; }
+        #region Private methods
 
         private void SwitchMainView(string viewName)
         {
             _ioService.SwitchView(nameof(MainModule), viewName);
         }
+
+        #endregion
+
+        #region Fields
+
+        private readonly IIOService _ioService;
+
+        #endregion
     }
 }

@@ -4,12 +4,12 @@ using RPG.Model.Interfaces;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof(SkillsViewModel))]
+    [Export(typeof (SkillsViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class SkillsViewModel : BindableBase
     {
         #region Properties
-        
+
         public ISkillManager SkillManager { get; }
 
         #endregion

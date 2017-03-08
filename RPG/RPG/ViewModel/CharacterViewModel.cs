@@ -19,10 +19,7 @@ namespace RPG.ViewModel
         {
             UserBattleState = userBattleState;
 
-            UserBattleState.UserState.LevelUp += (sender, args) =>
-            {
-                OnPropertyChanged(nameof(UserBattleState));
-            };
+            UserBattleState.UserState.LevelUp += (sender, args) => OnPropertyChanged(nameof(UserBattleState));
         }
     }
 }

@@ -7,22 +7,6 @@ namespace RPG.Controls
     /// </summary>
     public partial class NameBoard
     {
-        public static DependencyProperty BoardTitleProperty =
-            DependencyProperty.Register(nameof(BoardTitle), typeof(string), typeof(NameBoard),
-                new PropertyMetadata("称号"));
-
-        public static DependencyProperty HpPercentageProperty =
-            DependencyProperty.Register(nameof(HpPercentage), typeof(int), typeof(NameBoard), new PropertyMetadata(100));
-
-        public static DependencyProperty BoardNameProperty =
-            DependencyProperty.Register(nameof(BoardName), typeof(string), typeof(NameBoard),
-                new PropertyMetadata("名称"));
-
-        public NameBoard()
-        {
-            InitializeComponent();
-        }
-
         public string BoardTitle
         {
             get { return (string) GetValue(BoardTitleProperty); }
@@ -40,5 +24,25 @@ namespace RPG.Controls
             get { return (int) GetValue(HpPercentageProperty); }
             set { SetValue(HpPercentageProperty, value); }
         }
+
+        public NameBoard()
+        {
+            InitializeComponent();
+        }
+
+        #region Fields
+
+        public static DependencyProperty BoardTitleProperty =
+            DependencyProperty.Register(nameof(BoardTitle), typeof (string), typeof (NameBoard),
+                new PropertyMetadata("称号"));
+
+        public static DependencyProperty HpPercentageProperty =
+            DependencyProperty.Register(nameof(HpPercentage), typeof (int), typeof (NameBoard), new PropertyMetadata(100));
+
+        public static DependencyProperty BoardNameProperty =
+            DependencyProperty.Register(nameof(BoardName), typeof (string), typeof (NameBoard),
+                new PropertyMetadata("名称"));
+
+        #endregion
     }
 }

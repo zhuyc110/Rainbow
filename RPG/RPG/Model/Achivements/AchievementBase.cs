@@ -54,7 +54,7 @@ namespace RPG.Model.Achivements
 
         #endregion
 
-        public virtual void ComposeProperty()
+        public void ComposeProperty()
         {
             if (Enhancements == null)
                 return;

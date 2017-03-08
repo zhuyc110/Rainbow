@@ -1,12 +1,18 @@
-﻿namespace RPG.Infrastructure
+﻿using RPG.View.MainView;
+
+namespace RPG.Infrastructure
 {
     public static class Constants
     {
-        public const string MainPage = nameof(View.MainView.MainPage);
-        public const string UserEquipmentView = nameof(View.MainView.CharacterView);
-        public const string BackpackView = nameof(View.MainView.BackpackView);
-        public const string SkillsView = nameof(View.MainView.SkillsView);
-        public const string AchievementsView = nameof(View.MainView.AchievementsView);
-        public const string AdventureView = nameof(View.MainView.AdventureView);
+        #region Fields
+
+        public const string MAIN_PAGE = nameof(MainPage);
+        public const string USER_EQUIPMENT_VIEW = nameof(CharacterView);
+        public const string BACKPACK_VIEW = nameof(BackpackView);
+        public const string SKILLS_VIEW = nameof(SkillsView);
+        public const string ACHIEVEMENTS_VIEW = nameof(AchievementsView);
+        public const string ADVENTURE_VIEW = nameof(AdventureView);
+
+        #endregion
     }
 }

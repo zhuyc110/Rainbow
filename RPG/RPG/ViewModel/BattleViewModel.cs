@@ -7,6 +7,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
+using RPG.Model.Achivements;
 using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
@@ -19,6 +20,114 @@ namespace RPG.ViewModel
 {
     public class BattleViewModel : BindableBase
     {
+        public BattleViewModel(UserBattleState userBattleState,
+            IMonster monster,
+            IBattleActor battleActor,
+            IIOService ioService,
+            IItemManager itemManager,
+            IAchievementManager achievementManager,
+            MonstersViewModel parentViewModel)
+        {
+            IsBattleFinished = false;
+            Booties = new ObservableCollection<IItem>();
+
+            FinishBattleCommand = new DelegateCommand(DisposeView);
+            UserBattleState = userBattleState;
+            Monster = monster;
+            _battleActor = battleActor;
+            _ioService = ioService;
+            _itemManager = itemManager;
+            _achievementManager = achievementManager;
+            _parenViewModel = parentViewModel;
+
+            SettleViewModel = new SettleViewModel(Enumerable.Empty<IAchievement>());
+            battleActor.OneRoundBattle += OnOneRoundBattle;
+            battleActor.BattleFinished += OnBattleFinished;
+            _achievementManager.OnAchievementGet += OnAchievementGet;
+            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
+            battleActor.StartBattle(UserBattleState, Monster);
+        }
+
+        [Obsolete]
+        public BattleViewModel()
+        {
+            Monster = new MonsterSlime(new MyRandom()) {CurrentHp = 20};
+            IsBattleFinished = true;
+        }
+
+        #region Private methods
+
+        private void DisposeView()
+        {
+            _achievementManager.OnAchievementGet -= OnAchievementGet;
+
+            SettleViewModel.Achivements.Clear();
+            var view = _ioService.GetView<MonstersView>();
+            view.Dispatcher.Invoke(() =>
+            {
+                _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
+                view.ViewModel = _parenViewModel;
+                _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
+            });
+        }
+
+        private void OnAchievementGet(object sender, AchievementEventArgs e)
+        {
+            SettleViewModel = new SettleViewModel(e.Achievements);
+        }
+
+        private void OnBattleFinished(object sender, BattleFinishedArgs e)
+        {
+            IsBattleFinished = true;
+            if (e.IsUserVictoried)
+            {
+                Booties.Clear();
+
+                var booties =
+                    _itemManager.AllGameItems.Where(x => e.Items.Keys.Contains(x.ItemName))
+                        .Select(x => x.Clone() as ItemBase)
+                        .ToList();
+                foreach (var booty in booties)
+                    booty.Amount = e.Items[booty.ItemName];
+
+                Booties.AddRange(booties);
+                UserBattleState.UserState.Gold += e.Gold;
+                UserBattleState.UserState.Experience += e.Gold;
+                Gold = e.Gold;
+
+                foreach (var itemBase in e.Items)
+                    UserBattleState.UserState.ItemManager.AddItem(itemBase.Key, itemBase.Value);
+            }
+
+            _battleActor.OneRoundBattle -= OnOneRoundBattle;
+            _battleActor.BattleFinished -= OnBattleFinished;
+        }
+
+        private void OnOneRoundBattle(object sender, BattleRoundArgs e)
+        {
+            IsMonsterDamaged = sender is IMonster;
+            Damage = e.Damage;
+        }
+
+        #endregion
+
+        #region Fields
+
+        private readonly IBattleActor _battleActor;
+        private readonly IIOService _ioService;
+
+        private readonly IAchievementManager _achievementManager;
+        private readonly IItemManager _itemManager;
+        private readonly MonstersViewModel _parenViewModel;
+        private readonly object _threadLock = new object();
+        private ObservableCollection<IItem> _booties;
+        private int _damage;
+        private int _gold;
+        private bool _isBattleFinished;
+        private bool _isMonsterDamaged;
+
+        #endregion
+
         #region Properties
 
         public ObservableCollection<IItem> Booties
@@ -74,108 +183,6 @@ namespace RPG.ViewModel
             get { return _settleViewModel; }
             set { SetProperty(ref _settleViewModel, value); }
         }
-
-        #endregion
-
-        public BattleViewModel(UserBattleState userBattleState,
-            IMonster monster,
-            IBattleActor battleActor,
-            IIOService ioService,
-            IItemManager itemManager,
-            IAchievementManager achievementManager,
-            MonstersViewModel parentViewModel)
-        {
-            IsBattleFinished = false;
-            Booties = new ObservableCollection<IItem>();
-
-            FinishBattleCommand = new DelegateCommand(DisposeView);
-            UserBattleState = userBattleState;
-            Monster = monster;
-            _battleActor = battleActor;
-            _ioService = ioService;
-            _itemManager = itemManager;
-            _achievementManager = achievementManager;
-            _parenViewModel = parentViewModel;
-
-            SettleViewModel = new SettleViewModel(Enumerable.Empty<IAchievement>());
-            battleActor.OneRoundBattle += OnOneRoundBattle;
-            battleActor.BattleFinished += OnBattleFinished;
-            _achievementManager.OnAchievementGet += OnAchievementGet;
-            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
-            battleActor.StartBattle(UserBattleState, Monster);
-        }
-
-        private void OnAchievementGet(object sender, Model.Achivements.AchievementEventArgs e)
-        {
-            SettleViewModel = new SettleViewModel(e.Achievements);
-        }
-
-        [Obsolete]
-        public BattleViewModel()
-        {
-            Monster = new MonsterSlime(new MyRandom()) {CurrentHp = 20};
-            IsBattleFinished = true;
-        }
-
-        private void DisposeView()
-        {
-            SettleViewModel.Achivements.Clear();
-            var view = _ioService.GetView<MonstersView>();
-            view.Dispatcher.Invoke(() =>
-            {
-                _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
-                view.ViewModel = _parenViewModel;
-                _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
-            });
-        }
-
-        private void OnBattleFinished(object sender, BattleFinishedArgs e)
-        {
-            IsBattleFinished = true;
-            if (e.IsUserVictoried)
-            {
-                Booties.Clear();
-
-                var booties =
-                    _itemManager.AllGameItems.Where(x => e.Items.Keys.Contains(x.ItemName))
-                        .Select(x => x.Clone() as ItemBase)
-                        .ToList();
-                foreach (var booty in booties)
-                    booty.Amount = e.Items[booty.ItemName];
-
-                Booties.AddRange(booties);
-                UserBattleState.UserState.Gold += e.Gold;
-                UserBattleState.UserState.Experience += e.Gold;
-                Gold = e.Gold;
-
-                foreach (var itemBase in e.Items)
-                    UserBattleState.UserState.ItemManager.AddItem(itemBase.Key, itemBase.Value);
-            }
-
-            _battleActor.OneRoundBattle -= OnOneRoundBattle;
-            _battleActor.BattleFinished -= OnBattleFinished;
-        }
-
-        private void OnOneRoundBattle(object sender, BattleRoundArgs e)
-        {
-            IsMonsterDamaged = sender is IMonster;
-            Damage = e.Damage;
-        }
-
-        #region Fields
-
-        private readonly IBattleActor _battleActor;
-        private readonly IIOService _ioService;
-
-        private readonly IAchievementManager _achievementManager;
-        private readonly IItemManager _itemManager;
-        private readonly MonstersViewModel _parenViewModel;
-        private readonly object _threadLock = new object();
-        private ObservableCollection<IItem> _booties;
-        private int _damage;
-        private int _gold;
-        private bool _isBattleFinished;
-        private bool _isMonsterDamaged;
 
         #endregion
     }

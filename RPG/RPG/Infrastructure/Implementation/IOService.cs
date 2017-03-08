@@ -1,21 +1,17 @@
-﻿using RPG.Infrastructure.Interfaces;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Mvvm;
 using Prism.Regions;
+using RPG.Infrastructure.Interfaces;
 
 namespace RPG.Infrastructure.Implementation
 {
-    [Export(typeof(IIOService))]
+    [Export(typeof (IIOService))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class IOService : IIOService
     {
-        private readonly IRegionManager _regionManager;
-
-        private readonly IServiceLocator _serviceLocator;
-
         [ImportingConstructor]
         public IOService(IRegionManager regionManager, IServiceLocator serviceLocator)
         {
@@ -23,9 +19,23 @@ namespace RPG.Infrastructure.Implementation
             _serviceLocator = serviceLocator;
         }
 
-        public void ShowMessage(string title, string content)
+        #region IIOService Members
+
+        public void ActiveView<TView>(string moduleName)
         {
-            MessageBox.Show(content, title);
+            var view = _regionManager.Regions[moduleName].Views.OfType<TView>().Single();
+            _regionManager.Regions[moduleName].Activate(view);
+        }
+
+        public void DeactiveView<TView>(string moduleName)
+        {
+            var view = _regionManager.Regions[moduleName].Views.OfType<TView>().Single();
+            _regionManager.Regions[moduleName].Deactivate(view);
+        }
+
+        public TView GetView<TView>()
+        {
+            return _serviceLocator.GetInstance<TView>();
         }
 
         public MessageBoxResult ShowDialog(string title, string content)
@@ -33,11 +43,25 @@ namespace RPG.Infrastructure.Implementation
             return MessageBox.Show(content, title, MessageBoxButton.YesNo);
         }
 
+        public void ShowMessage(string title, string content)
+        {
+            MessageBox.Show(content, title);
+        }
+
         public void ShowViewModel<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase
         {
             var view = _serviceLocator.GetInstance<IView<TViewModel>>();
             ShowView(view);
         }
+
+        public void SwitchView(string moduleName, string viewName)
+        {
+            _regionManager.Regions[moduleName].RequestNavigate(viewName);
+        }
+
+        #endregion
+
+        #region Private methods
 
         private static void ShowView<TViewModel>(IView<TViewModel> view) where TViewModel : BindableBase
         {
@@ -51,26 +75,14 @@ namespace RPG.Infrastructure.Implementation
             window.Show();
         }
 
-        public void SwitchView(string moduleName, string viewName)
-        {
-            _regionManager.Regions[moduleName].RequestNavigate(viewName);
-        }
+        #endregion
 
-        public void DeactiveView<TView>(string moduleName)
-        {
-            var view = _regionManager.Regions[moduleName].Views.OfType<TView>().Single();
-            _regionManager.Regions[moduleName].Deactivate(view);
-        }
+        #region Fields
 
-        public void ActiveView<TView>(string moduleName)
-        {
-            var view = _regionManager.Regions[moduleName].Views.OfType<TView>().Single();
-            _regionManager.Regions[moduleName].Activate(view);
-        }
+        private readonly IRegionManager _regionManager;
 
-        public TView GetView<TView>()
-        {
-            return _serviceLocator.GetInstance<TView>();
-        }
+        private readonly IServiceLocator _serviceLocator;
+
+        #endregion
     }
 }
