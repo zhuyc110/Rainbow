@@ -54,9 +54,17 @@ namespace RPG.Model.Skills
 
         #endregion
 
+        #region Private methods
+
         private void OnUserLevelUp(object sender, EventArgs e)
         {
             RecalculateVisibility();
+        }
+
+        private void RaiseCheckedSkillChanged()
+        {
+            var handle = CheckedSkillChanged;
+            handle?.Invoke(null, null);
         }
 
         private void RecalculateVisibility()
@@ -82,11 +90,7 @@ namespace RPG.Model.Skills
                 skill.IsChecked = false;
         }
 
-        private void RaiseCheckedSkillChanged()
-        {
-            var handle = CheckedSkillChanged;
-            handle?.Invoke(null, null);
-        }
+        #endregion
 
         #region Fields
 

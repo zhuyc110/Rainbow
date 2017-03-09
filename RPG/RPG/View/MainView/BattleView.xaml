@@ -54,6 +54,11 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
+            
+            <Style x:Key="SkillBoardStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="Text" Value="{Binding Path=TriggeredSkill}"></Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -81,10 +86,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type interfaces:IItem}">
                         <controls:IconItem Amount="{Binding Amount}" Style="{StaticResource IconItemStyle}"
-							Rarity="{Binding Rarity}"
-							ShowAmount="True"
-							Icon="{Binding IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
-							ItemName="{Binding ItemName}">
+                            Rarity="{Binding Rarity}"
+                            ShowAmount="True"
+                            Icon="{Binding IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
+                            ItemName="{Binding ItemName}">
                             <controls:IconItem.ToolTip>
                                 <TextBlock TextWrapping="Wrap">
                                     <TextBlock.Text>
@@ -109,8 +114,8 @@
 
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Damage}" Background="Transparent" Foreground="Red" Visibility="{Binding IsMonsterDamaged, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <controls:NameBoard Grid.Row="0" Grid.Column="1" BoardTitle="{Binding Monster.Title}" 
-			HpPercentage="{Binding Monster.CurrentHpPercentage}" 
-			Foreground="{Binding Monster.Class, Converter={StaticResource MonsterClassToBrushConverter}}">
+            HpPercentage="{Binding Monster.CurrentHpPercentage}" 
+            Foreground="{Binding Monster.Class, Converter={StaticResource MonsterClassToBrushConverter}}">
             <controls:NameBoard.BoardName>
                 <MultiBinding StringFormat="LV{0} {1}">
                     <Binding Path="Monster.Level" />
@@ -118,10 +123,11 @@
                 </MultiBinding>
             </controls:NameBoard.BoardName>
         </controls:NameBoard>
+        <TextBlock Grid.Row="0" Grid.Column="2" Visibility="{Binding IsUserDamaged, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" Style="{StaticResource SkillBoardStyle}"></TextBlock>
 
         <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Damage}" Background="Transparent" Foreground="Red" Visibility="{Binding IsUserDamaged, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
         <controls:NameBoard Grid.Row="4" Grid.Column="1" BoardTitle="{Binding UserBattleState.UserState.Title}" 
-			HpPercentage="{Binding UserBattleState.CurrentHpPercentage}" >
+            HpPercentage="{Binding UserBattleState.CurrentHpPercentage}" >
             <controls:NameBoard.BoardName>
                 <MultiBinding StringFormat="LV{0} {1}">
                     <Binding Path="UserBattleState.UserState.Level" />
@@ -129,5 +135,7 @@
                 </MultiBinding>
             </controls:NameBoard.BoardName>
         </controls:NameBoard>
+        <TextBlock Grid.Row="4" Grid.Column="2" Visibility="{Binding IsMonsterDamaged, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" Style="{StaticResource SkillBoardStyle}"></TextBlock>
+
     </Grid>
 </UserControl>

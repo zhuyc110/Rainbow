@@ -4,11 +4,11 @@ namespace RPG.Model.Battle
 {
     public class BattleRoundArgs : EventArgs
     {
-        public BattleRoundArgs(int damage)
-        {
-            Damage = damage;
-        }
+        public BattleEntityAttack AttackEntity { get; }
 
-        public int Damage { get; }
+        public BattleRoundArgs(BattleEntityAttack attackEntity)
+        {
+            AttackEntity = attackEntity;
+        }
     }
 }

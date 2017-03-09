@@ -107,6 +107,7 @@
     <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />
     <Compile Include="Model\Achivements\AchievementManager.cs" />
     <Compile Include="Model\Achivements\AchivementPropertyBase.cs" />
+    <Compile Include="Model\Battle\BattleEntityAttack.cs" />
     <Compile Include="Model\Interfaces\IAchievementExtract.cs" />
     <Compile Include="Model\AdventureArea.cs" />
     <Compile Include="Model\Battle\BattleActor.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Model\Monsters\MonsterWolf.cs" />
     <Compile Include="Model\Rarity.cs" />
     <Compile Include="Model\Battle\UserBattleState.cs" />
+    <Compile Include="Model\Skills\SkillEffect.cs" />
     <Compile Include="Model\Skills\SkillManager.cs" />
     <Compile Include="Model\UserProperties\PropertyAttack.cs" />
     <Compile Include="Model\UserProperties\PropertyHP.cs" />

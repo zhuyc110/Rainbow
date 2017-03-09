@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using RPG.Model.Skills;
 
 namespace RPG.Model.Interfaces
 {
@@ -11,9 +12,11 @@ namespace RPG.Model.Interfaces
         string IconResource { get; }
         bool IsChecked { get; set; }
         bool IsVisible { get; set; }
-        double Rate { get; set; }
+        double AppearRate { get; set; }
 
-        double AttackRate { get; }
+        double DamageRatePerAttack { get; }
         int AttackFrequency { get; }
+
+        SkillEffect SkillEffect { get; }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
+using RPG.Model.Skills;
 
 namespace RPG.Model.Battle
 {
@@ -46,21 +47,37 @@ namespace RPG.Model.Battle
 
         #endregion
 
-        private int CalculateAttack(IBattleEntity battleEntity)
-        {
-            if (!battleEntity.Skills.Any())
-                return battleEntity.CurrentAttack;
-            var seed = _random.Next(100);
+        #region Private methods
 
-            foreach (var skill in battleEntity.Skills)
+        private void CalculateBattleEntityState(IBattleEntity attackSide, IBattleEntity bearSide, BattleEntityAttack bearSidePreAttack)
+        {
+            var battleEntityAttack = new BattleEntityAttack(attackSide, _random);
+            switch (bearSidePreAttack.SkillEffect)
             {
-                if (seed < skill.Rate * 100)
-                {
-                    return (int)(battleEntity.CurrentAttack * skill.AttackRate * skill.AttackFrequency);
-                }
+                case SkillEffect.Dizziness:
+                    battleEntityAttack.SkillEffect = SkillEffect.Damage;
+                    battleEntityAttack.Damage = 0;
+                    break;
+                case SkillEffect.Weak:
+                    battleEntityAttack.Damage = (int) (battleEntityAttack.Damage * 0.7);
+                    break;
+                case SkillEffect.Damage:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            if (attackSide is IMonster)
+            {
+                _monsterPreAttack = battleEntityAttack;
+            }
+            else
+            {
+                _userPreAttack = battleEntityAttack;
             }
 
-            return battleEntity.CurrentAttack;
+            bearSide.CurrentHp = Math.Max(bearSide.CurrentHp - battleEntityAttack.Damage, 0);
+            OnOneRoundBattleFinished(bearSide, battleEntityAttack);
+            Thread.Sleep(500);
         }
 
         private void OnBattleFinished(BattleResult battleResult, IMonster monster)
@@ -73,32 +90,30 @@ namespace RPG.Model.Battle
 
         private BattleResult OneRound(IBattleEntity userBattleState, IBattleEntity monster)
         {
-            var attack = CalculateAttack(userBattleState);
-            monster.CurrentHp = Math.Max(monster.CurrentHp - attack, 0);
-            OnOneRoundBattleFinished(monster, attack);
-            Thread.Sleep(500);
+            CalculateBattleEntityState(userBattleState, monster, _monsterPreAttack);
             if (monster.CurrentHp == 0)
                 return BattleResult.MonsterDied;
 
-            var monsterAttack = CalculateAttack(monster);
-            userBattleState.CurrentHp = Math.Max(userBattleState.CurrentHp - monsterAttack, 0);
-            OnOneRoundBattleFinished(userBattleState, monsterAttack);
-            Thread.Sleep(500);
+            CalculateBattleEntityState(monster, userBattleState, _userPreAttack);
             if (userBattleState.CurrentHp == 0)
                 return BattleResult.UserDied;
 
             return BattleResult.Continue;
         }
 
-        private void OnOneRoundBattleFinished(IBattleEntity damagedEntity, int damage)
+        private void OnOneRoundBattleFinished(IBattleEntity damagedEntity, BattleEntityAttack damage)
         {
             var handle = OneRoundBattle;
             handle?.Invoke(damagedEntity, new BattleRoundArgs(damage));
         }
 
+        #endregion
+
         #region Fields
 
         private readonly IRandom _random;
+        private BattleEntityAttack _monsterPreAttack = new BattleEntityAttack();
+        private BattleEntityAttack _userPreAttack = new BattleEntityAttack();
 
         #endregion
 

@@ -5,11 +5,11 @@ namespace RPG.Model.Skills
 {
     public abstract class SkillBase : BindableBase, ISkill
     {
-        #region Properties
+        public SkillEffect SkillEffect { get; private set; }
 
         public int AttackFrequency { get; protected set; }
 
-        public double AttackRate { get; protected set; }
+        public double DamageRatePerAttack { get; protected set; }
 
         public string Content { get; }
 
@@ -31,31 +31,29 @@ namespace RPG.Model.Skills
 
         public string Name { get; }
 
-        public double Rate
+        public double AppearRate
         {
-            get { return _rate; }
-            set { SetProperty(ref _rate, value); }
+            get { return _appearRate; }
+            set { SetProperty(ref _appearRate, value); }
         }
 
-        #endregion
-
-        protected SkillBase(string name, string content, string iconResource, int levelRequirement, double rate)
+        protected SkillBase(string name, string content, string iconResource, int levelRequirement, double appearRate, SkillEffect skillEffect = SkillEffect.Damage)
         {
             Name = name;
             Content = content;
             IconResource = iconResource;
             LevelRequirement = levelRequirement;
-            Rate = rate;
+            AppearRate = appearRate;
 
             AttackFrequency = 1;
-            AttackRate = 1;
+            DamageRatePerAttack = 1;
         }
 
         #region Fields
 
         private bool _isChecked;
         private bool _isVisible;
-        private double _rate;
+        private double _appearRate;
 
         #endregion
     }

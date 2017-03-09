@@ -20,6 +20,64 @@ namespace RPG.ViewModel
 {
     public class BattleViewModel : BindableBase
     {
+        public ObservableCollection<IItem> Booties
+        {
+            get { return _booties; }
+            private set
+            {
+                _booties = value;
+                BindingOperations.EnableCollectionSynchronization(_booties, _threadLock);
+            }
+        }
+
+        public int Damage
+        {
+            get { return _damage; }
+            set { SetProperty(ref _damage, value); }
+        }
+
+        public string TriggeredSkill
+        {
+            get { return _triggeredSkill; }
+            set { SetProperty(ref _triggeredSkill, value); }
+        }
+
+        public ICommand FinishBattleCommand { get; }
+
+        public int Gold
+        {
+            get { return _gold; }
+            set { SetProperty(ref _gold, value); }
+        }
+
+        public bool IsBattleFinished
+        {
+            get { return _isBattleFinished; }
+            set { SetProperty(ref _isBattleFinished, value); }
+        }
+
+        public bool IsMonsterDamaged
+        {
+            get { return _isMonsterDamaged; }
+            set
+            {
+                SetProperty(ref _isMonsterDamaged, value);
+                OnPropertyChanged(nameof(IsUserDamaged));
+            }
+        }
+
+        public bool IsUserDamaged => !IsMonsterDamaged;
+
+        public IMonster Monster { get; }
+
+        public UserBattleState UserBattleState { get; }
+
+        public SettleViewModel SettleViewModel
+        {
+            get { return _settleViewModel; }
+            set { SetProperty(ref _settleViewModel, value); }
+        }
+
         public BattleViewModel(UserBattleState userBattleState,
             IMonster monster,
             IBattleActor battleActor,
@@ -106,12 +164,22 @@ namespace RPG.ViewModel
         private void OnOneRoundBattle(object sender, BattleRoundArgs e)
         {
             IsMonsterDamaged = sender is IMonster;
-            Damage = e.Damage;
+            Damage = e.AttackEntity.Damage;
+            if (e.AttackEntity.Skill != null)
+            {
+                TriggeredSkill = e.AttackEntity.Skill.Name;
+            }
+            else
+            {
+                TriggeredSkill = string.Empty;
+            }
         }
 
         #endregion
 
         #region Fields
+
+        private string _triggeredSkill;
 
         private readonly IBattleActor _battleActor;
         private readonly IIOService _ioService;
@@ -126,63 +194,7 @@ namespace RPG.ViewModel
         private bool _isBattleFinished;
         private bool _isMonsterDamaged;
 
-        #endregion
-
-        #region Properties
-
-        public ObservableCollection<IItem> Booties
-        {
-            get { return _booties; }
-            private set
-            {
-                _booties = value;
-                BindingOperations.EnableCollectionSynchronization(_booties, _threadLock);
-            }
-        }
-
-        public int Damage
-        {
-            get { return _damage; }
-            set { SetProperty(ref _damage, value); }
-        }
-
-        public ICommand FinishBattleCommand { get; }
-
-        public int Gold
-        {
-            get { return _gold; }
-            set { SetProperty(ref _gold, value); }
-        }
-
-        public bool IsBattleFinished
-        {
-            get { return _isBattleFinished; }
-            set { SetProperty(ref _isBattleFinished, value); }
-        }
-
-        public bool IsMonsterDamaged
-        {
-            get { return _isMonsterDamaged; }
-            set
-            {
-                SetProperty(ref _isMonsterDamaged, value);
-                OnPropertyChanged(nameof(IsUserDamaged));
-            }
-        }
-
-        public bool IsUserDamaged => !IsMonsterDamaged;
-
-        public IMonster Monster { get; }
-
-        public UserBattleState UserBattleState { get; }
-
         private SettleViewModel _settleViewModel;
-
-        public SettleViewModel SettleViewModel
-        {
-            get { return _settleViewModel; }
-            set { SetProperty(ref _settleViewModel, value); }
-        }
 
         #endregion
     }
