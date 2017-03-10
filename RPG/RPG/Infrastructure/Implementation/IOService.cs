@@ -8,7 +8,7 @@ using RPG.Infrastructure.Interfaces;
 
 namespace RPG.Infrastructure.Implementation
 {
-    [Export(typeof (IIOService))]
+    [Export(typeof(IIOService))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class IOService : IIOService
     {

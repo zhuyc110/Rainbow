@@ -27,15 +27,15 @@ namespace RPG.Controls
         #region Fields
 
         public static readonly DependencyProperty ImageSourceProperty =
-            DependencyProperty.Register(nameof(ImageSource), typeof (ImageSource), typeof (IconButton),
+            DependencyProperty.Register(nameof(ImageSource), typeof(ImageSource), typeof(IconButton),
                 new PropertyMetadata(default(ImageSource)));
 
         public static readonly DependencyProperty ContextRowProperty =
-            DependencyProperty.Register(nameof(ContextRow), typeof (int), typeof (IconButton),
+            DependencyProperty.Register(nameof(ContextRow), typeof(int), typeof(IconButton),
                 new PropertyMetadata(default(int)));
 
         public static readonly DependencyProperty TextSecondRowProperty =
-            DependencyProperty.Register(nameof(TextSecondRow), typeof (string), typeof (IconButton),
+            DependencyProperty.Register(nameof(TextSecondRow), typeof(string), typeof(IconButton),
                 new PropertyMetadata(default(string)));
 
         #endregion

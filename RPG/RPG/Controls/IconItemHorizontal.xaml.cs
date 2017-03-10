@@ -47,23 +47,23 @@ namespace RPG.Controls
         #region Fields
 
         public static DependencyProperty IconProperty =
-            DependencyProperty.Register(nameof(Icon), typeof (ImageSource), typeof (IconItemHorizontal),
+            DependencyProperty.Register(nameof(Icon), typeof(ImageSource), typeof(IconItemHorizontal),
                 new PropertyMetadata(default(ImageSource)));
 
         public static DependencyProperty ItemNameProperty =
-            DependencyProperty.Register(nameof(ItemName), typeof (string), typeof (IconItemHorizontal),
+            DependencyProperty.Register(nameof(ItemName), typeof(string), typeof(IconItemHorizontal),
                 new PropertyMetadata(default(string)));
 
         public static DependencyProperty ItemContentProperty =
-            DependencyProperty.Register(nameof(ItemContent), typeof (string), typeof (IconItemHorizontal),
+            DependencyProperty.Register(nameof(ItemContent), typeof(string), typeof(IconItemHorizontal),
                 new PropertyMetadata(default(string)));
 
         public static DependencyProperty AdditionalTextProperty =
-            DependencyProperty.Register(nameof(AdditionalText), typeof (string), typeof (IconItemHorizontal),
+            DependencyProperty.Register(nameof(AdditionalText), typeof(string), typeof(IconItemHorizontal),
                 new PropertyMetadata(default(string)));
 
         public static DependencyProperty PropertyListProperty =
-            DependencyProperty.Register(nameof(PropertyList), typeof (IEnumerable), typeof (IconItemHorizontal),
+            DependencyProperty.Register(nameof(PropertyList), typeof(IEnumerable), typeof(IconItemHorizontal),
                 new PropertyMetadata(null));
 
         #endregion

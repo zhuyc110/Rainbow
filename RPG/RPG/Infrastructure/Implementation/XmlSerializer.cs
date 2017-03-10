@@ -65,6 +65,10 @@ namespace RPG.Infrastructure.Implementation
 
         #endregion
 
+        #region Fields
+
         private static readonly ILog Log = LogManager.GetLogger(typeof(XmlSerializer));
+
+        #endregion
     }
 }

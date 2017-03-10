@@ -9,14 +9,13 @@ namespace RPG.Infrastructure.Implementation
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class MyRandom : IRandom
     {
-        private static Queue<int> _queue;
-        private Random _random;
-
         [ImportingConstructor]
         public MyRandom()
         {
             _queue = new Queue<int>(10);
         }
+
+        #region IRandom Members
 
         public int Next()
         {
@@ -30,7 +29,7 @@ namespace RPG.Infrastructure.Implementation
 
         public int Next(int min, int max)
         {
-            _random = new Random((int)DateTime.Now.Ticks);
+            _random = new Random((int) DateTime.Now.Ticks);
             var result = _random.Next(min, max + 1);
 
             RecordTheRandom(result);
@@ -38,11 +37,24 @@ namespace RPG.Infrastructure.Implementation
             return result;
         }
 
+        #endregion
+
+        #region Private methods
+
         private static void RecordTheRandom(int number)
         {
             if (_queue.Count > 9)
                 _queue.Dequeue();
             _queue.Enqueue(number);
         }
+
+        #endregion
+
+        #region Fields
+
+        private static Queue<int> _queue;
+        private Random _random;
+
+        #endregion
     }
 }

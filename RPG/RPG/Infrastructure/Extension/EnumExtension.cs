@@ -21,7 +21,7 @@ namespace RPG.Infrastructure.Extension
             {
                 return name;
             }
-            return attribute == null ? null : attribute.Description;
+            return attribute?.Description;
         }
     }
 }

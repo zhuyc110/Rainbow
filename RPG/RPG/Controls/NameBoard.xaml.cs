@@ -33,14 +33,14 @@ namespace RPG.Controls
         #region Fields
 
         public static DependencyProperty BoardTitleProperty =
-            DependencyProperty.Register(nameof(BoardTitle), typeof (string), typeof (NameBoard),
+            DependencyProperty.Register(nameof(BoardTitle), typeof(string), typeof(NameBoard),
                 new PropertyMetadata("称号"));
 
         public static DependencyProperty HpPercentageProperty =
-            DependencyProperty.Register(nameof(HpPercentage), typeof (int), typeof (NameBoard), new PropertyMetadata(100));
+            DependencyProperty.Register(nameof(HpPercentage), typeof(int), typeof(NameBoard), new PropertyMetadata(100));
 
         public static DependencyProperty BoardNameProperty =
-            DependencyProperty.Register(nameof(BoardName), typeof (string), typeof (NameBoard),
+            DependencyProperty.Register(nameof(BoardName), typeof(string), typeof(NameBoard),
                 new PropertyMetadata("名称"));
 
         #endregion

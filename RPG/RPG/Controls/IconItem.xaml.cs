@@ -47,19 +47,19 @@ namespace RPG.Controls
         #region Fields
 
         public static DependencyProperty AmountProperty =
-            DependencyProperty.Register(nameof(Amount), typeof (int), typeof (IconItem), new PropertyMetadata(default(int)));
+            DependencyProperty.Register(nameof(Amount), typeof(int), typeof(IconItem), new PropertyMetadata(default(int)));
 
         public static DependencyProperty ShowAmountProperty =
-            DependencyProperty.Register(nameof(ShowAmount), typeof (bool), typeof (IconItem), new PropertyMetadata(default(bool)));
+            DependencyProperty.Register(nameof(ShowAmount), typeof(bool), typeof(IconItem), new PropertyMetadata(default(bool)));
 
         public static DependencyProperty IconProperty =
-            DependencyProperty.Register(nameof(Icon), typeof (ImageSource), typeof (IconItem), new PropertyMetadata(default(ImageSource)));
+            DependencyProperty.Register(nameof(Icon), typeof(ImageSource), typeof(IconItem), new PropertyMetadata(default(ImageSource)));
 
         public static DependencyProperty ItemNameProperty =
-            DependencyProperty.Register(nameof(ItemName), typeof (string), typeof (IconItem), new PropertyMetadata(default(string)));
+            DependencyProperty.Register(nameof(ItemName), typeof(string), typeof(IconItem), new PropertyMetadata(default(string)));
 
         public static DependencyProperty RarityProperty =
-            DependencyProperty.Register(nameof(Rarity), typeof (Rarity), typeof (IconItem), new PropertyMetadata(default(Rarity)));
+            DependencyProperty.Register(nameof(Rarity), typeof(Rarity), typeof(IconItem), new PropertyMetadata(default(Rarity)));
 
         #endregion
     }
