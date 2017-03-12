@@ -1,4 +1,5 @@
-﻿using RPG.Infrastructure.Interfaces;
+﻿using System.Linq;
+using RPG.Infrastructure.Interfaces;
 using RPG.Model.Interfaces;
 using RPG.Model.Skills;
 
@@ -16,16 +17,17 @@ namespace RPG.Model.Battle
 
             var seed = random.Next(100);
 
-            foreach (var skill in battleEntity.Skills)
+            var matchedSkills = battleEntity.Skills.Where(x => x.AppearRate * 100 > seed).ToList();
+            if (!matchedSkills.Any())
             {
-                if (seed < skill.AppearRate * 100)
-                {
-                    Skill = skill;
-                    Damage = (int) (battleEntity.CurrentAttack * skill.DamageRatePerAttack * skill.AttackFrequency);
-                    SkillEffect = skill.SkillEffect;
-                    break;
-                }
+                return;
             }
+
+            var matchedSkillIndex = random.Next(matchedSkills.Count);
+
+            Skill = matchedSkills[matchedSkillIndex];
+            Damage = (int)(battleEntity.CurrentAttack * Skill.DamageRatePerAttack * Skill.AttackFrequency);
+            SkillEffect = Skill.SkillEffect;
         }
 
         public BattleEntityAttack()

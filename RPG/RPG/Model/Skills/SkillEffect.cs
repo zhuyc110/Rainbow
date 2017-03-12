@@ -2,8 +2,9 @@
 {
     public enum SkillEffect
     {
-        Damage,
+        Normal,
         Dizziness,
-        Weak
+        Weak,
+        Dot
     }
 }

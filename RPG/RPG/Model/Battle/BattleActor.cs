@@ -55,13 +55,14 @@ namespace RPG.Model.Battle
             switch (bearSidePreAttack.SkillEffect)
             {
                 case SkillEffect.Dizziness:
-                    battleEntityAttack.SkillEffect = SkillEffect.Damage;
+                    battleEntityAttack.SkillEffect = SkillEffect.Normal;
                     battleEntityAttack.Damage = 0;
                     break;
                 case SkillEffect.Weak:
                     battleEntityAttack.Damage = (int) (battleEntityAttack.Damage * 0.7);
                     break;
-                case SkillEffect.Damage:
+                case SkillEffect.Normal:
+                case SkillEffect.Dot:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -77,6 +78,12 @@ namespace RPG.Model.Battle
 
             bearSide.CurrentHp = Math.Max(bearSide.CurrentHp - battleEntityAttack.Damage, 0);
             OnOneRoundBattleFinished(bearSide, battleEntityAttack);
+            if (battleEntityAttack.SkillEffect == SkillEffect.Dot)
+            {
+                Thread.Sleep(500);
+                battleEntityAttack.Damage = (int) (battleEntityAttack.Damage * 0.1);
+                OnOneRoundBattleFinished(bearSide, battleEntityAttack);
+            }
             Thread.Sleep(500);
         }
 

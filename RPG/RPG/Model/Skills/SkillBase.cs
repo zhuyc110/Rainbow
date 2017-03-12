@@ -37,7 +37,7 @@ namespace RPG.Model.Skills
             set { SetProperty(ref _appearRate, value); }
         }
 
-        protected SkillBase(string name, string content, string iconResource, int levelRequirement, double appearRate, SkillEffect skillEffect = SkillEffect.Damage)
+        protected SkillBase(string name, string content, string iconResource, int levelRequirement, double appearRate, SkillEffect skillEffect = SkillEffect.Normal)
         {
             Name = name;
             Content = content;
@@ -47,6 +47,8 @@ namespace RPG.Model.Skills
 
             AttackFrequency = 1;
             DamageRatePerAttack = 1;
+
+            SkillEffect = skillEffect;
         }
 
         #region Fields

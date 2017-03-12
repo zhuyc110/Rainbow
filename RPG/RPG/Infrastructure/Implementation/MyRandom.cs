@@ -30,7 +30,7 @@ namespace RPG.Infrastructure.Implementation
         public int Next(int min, int max)
         {
             _random = new Random((int) DateTime.Now.Ticks);
-            var result = _random.Next(min, max + 1);
+            var result = _random.Next(min, max);
 
             RecordTheRandom(result);
 
