@@ -108,6 +108,8 @@
     <Compile Include="Model\Achivements\AchievementManager.cs" />
     <Compile Include="Model\Achivements\AchivementPropertyBase.cs" />
     <Compile Include="Model\Battle\BattleEntityAttack.cs" />
+    <Compile Include="Model\Equipment\EquipmentChangedArgs.cs" />
+    <Compile Include="Model\Equipment\EquipmentManager.cs" />
     <Compile Include="Model\Interfaces\IAchievementExtract.cs" />
     <Compile Include="Model\AdventureArea.cs" />
     <Compile Include="Model\Battle\BattleActor.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Model\Interfaces\IAdventureArea.cs" />
     <Compile Include="Model\Interfaces\IBattleActor.cs" />
     <Compile Include="Model\Interfaces\IBattleEntity.cs" />
+    <Compile Include="Model\Interfaces\IEquipmentManager.cs" />
     <Compile Include="Model\Interfaces\IItem.cs" />
     <Compile Include="Model\Interfaces\IItemManager.cs" />
     <Compile Include="Model\Interfaces\IMonster.cs" />

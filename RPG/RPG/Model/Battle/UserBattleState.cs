@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Prism.Mvvm;
+using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
 using RPG.Model.UserProperties;
 
@@ -12,31 +14,11 @@ namespace RPG.Model.Battle
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class UserBattleState : BindableBase, IBattleEntity
     {
-        #region Fields
-
-        private int _currentAttack;
-        private int _currentHp;
-
-        #endregion
-
-        #region Properties
-
         public ObservableCollection<IBattleProperty> UserProperty { get; private set; }
-        
+
         public IUserState UserState { get; }
 
-        #endregion
-
-        [ImportingConstructor]
-        public UserBattleState(IUserState userState, ISkillManager skillManager)
-        {
-            UserState = userState;
-            _skillManager = skillManager;
-            UserState.LevelUp += (sender, args) => Initialize();
-            Initialize();
-        }
-
-        #region IBattleEntity Members
+        public ObservableCollection<EquipmentBase> Equipments { get; private set; }
 
         public IEnumerable<ISkill> Skills { get; private set; }
 
@@ -61,7 +43,31 @@ namespace RPG.Model.Battle
 
         public int MaximumHp => UserProperty.Single(x => x.Name == "生命").FinalValue;
 
-        #endregion
+        [ImportingConstructor]
+        public UserBattleState(IUserState userState, ISkillManager skillManager, IEquipmentManager equipmentManager)
+        {
+            UserState = userState;
+            _skillManager = skillManager;
+            equipmentManager.OnEquipmentChanged += OnEquipmentChanged;
+            UserState.LevelUp += (sender, args) => Initialize();
+            Initialize();
+        }
+
+        private void OnEquipmentChanged(object sender, EquipmentChangedArgs e)
+        {
+            foreach (var battleProperty in UserProperty)
+            {
+                //Compose those properties
+            }
+        }
+
+        public UserBattleState ResetBattleState()
+        {
+            Initialize();
+            return this;
+        }
+
+        #region Private methods
 
         private void Initialize()
         {
@@ -75,12 +81,15 @@ namespace RPG.Model.Battle
             Skills = _skillManager.Skills.Where(x => x.IsChecked);
         }
 
-        public UserBattleState ResetBattleState()
-        {
-            Initialize();
-            return this;
-        }
+        #endregion
+
+        #region Fields
+
+        private int _currentAttack;
+        private int _currentHp;
 
         private readonly ISkillManager _skillManager;
+
+        #endregion
     }
 }

@@ -7,8 +7,6 @@ namespace RPG.Model.Interfaces
     [InheritedExport(typeof(IAchievement))]
     public interface IAchievement : IAchievementExtract
     {
-        #region Properties
-
         int Condition { get; }
         bool Achived { get; }
         IEnumerable<AchivementPropertyBase> AchivementProperties { get; }
@@ -16,10 +14,9 @@ namespace RPG.Model.Interfaces
         IEnumerable<IBattleProperty> Enhancements { get; }
         string IconResource { get; }
 
-        #endregion
 
         bool CanHandleEvent<T>(T args);
-        void HandleEvent();
         void ComposeProperty();
+        void HandleEvent();
     }
 }
