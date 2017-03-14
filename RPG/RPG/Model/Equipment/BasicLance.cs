@@ -1,7 +1,11 @@
-﻿namespace RPG.Model.Equipment
+﻿using System.ComponentModel.Composition;
+
+namespace RPG.Model.Equipment
 {
+    //[Export(nameof(BasicLance), typeof(EquipmentBase))]
     public class BasicLance : EquipmentBase
     {
+        //[ImportingConstructor]
         public BasicLance()
         {
             Content = "基础的长枪";

@@ -17,7 +17,7 @@ namespace RPG.Infrastructure.Extension
             var field = type.GetField(name);
             var attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
 
-            if (attribute == null && nameInstead == true)
+            if (attribute == null && nameInstead)
             {
                 return name;
             }

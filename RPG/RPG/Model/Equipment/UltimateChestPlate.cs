@@ -1,7 +1,11 @@
-﻿namespace RPG.Model.Equipment
+﻿using System.ComponentModel.Composition;
+
+namespace RPG.Model.Equipment
 {
+    //[Export(nameof(UltimateChestPlate), typeof(EquipmentBase))]
     public class UltimateChestPlate : EquipmentBase
     {
+        //[ImportingConstructor]
         public UltimateChestPlate()
         {
             Content = "终极的胸甲";

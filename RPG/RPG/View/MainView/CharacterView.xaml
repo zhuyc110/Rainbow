@@ -7,6 +7,7 @@
              xmlns:resource="clr-namespace:RPG.Resource"
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
+             xmlns:equipment="clr-namespace:RPG.Model.Equipment"
              mc:Ignorable="d"
             d:DataContext="{d:DesignInstance viewModel:CharacterViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="400" d:DesignWidth="400">
@@ -75,9 +76,9 @@
                                ShowAmount="False"
                                Icon="{StaticResource INV_Pants_05}" />
             <controls:IconItem x:Name="Weapon" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2"
-                               Rarity="Rare"
+                               Rarity="{Binding Path=EquipmentManager[EquipmentPart.Weapon].Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Spear_05}" />
+                               Icon="{Binding Path=EquipmentManager[EquipmentPart.Weapon].IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Necklace" Grid.Row="0" Grid.Column="4"
                                Rarity="Epic"
                                ShowAmount="False"

@@ -8,6 +8,8 @@ namespace RPG.Model.Interfaces
     {
         event EventHandler<EquipmentChangedArgs> OnEquipmentChanged;
 
+        EquipmentBase this[EquipmentPart index] { get; }
+
         IEnumerable<EquipmentBase> Equipments { get; }
     }
 }

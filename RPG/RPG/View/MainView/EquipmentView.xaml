@@ -39,6 +39,12 @@
                             </TextBlock.Text>
                         </TextBlock>
                     </control:IconItem.ToolTip>
+                    <control:IconItem.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="装备" Command="{Binding EquipCommand}" IsEnabled="{Binding IsNotEquiped}"/>
+                            <MenuItem Header="卸下" Command="{Binding EquipCommand}" IsEnabled="{Binding IsEquiped}"/>
+                        </ContextMenu>
+                    </control:IconItem.ContextMenu>
                 </control:IconItem>
             </DataTemplate>
         </ListView.ItemTemplate>

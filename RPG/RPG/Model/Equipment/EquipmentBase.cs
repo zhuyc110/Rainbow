@@ -1,14 +1,15 @@
-﻿using Prism.Mvvm;
+﻿using System.ComponentModel.Composition;
+using System.Windows.Input;
+using Prism.Commands;
+using Prism.Mvvm;
 using RPG.Infrastructure.Extension;
 using RPG.Model.Interfaces;
-using System.ComponentModel.Composition;
 
 namespace RPG.Model.Equipment
 {
     [InheritedExport(typeof(EquipmentBase))]
     public abstract class EquipmentBase : BindableBase, IItem
     {
-        private long _id;
         public long Id
         {
             get { return _id; }
@@ -27,8 +28,35 @@ namespace RPG.Model.Equipment
 
         public int Worth { get; protected set; }
 
-        protected EquipmentPart Part { get; set; }
+        public bool IsEquiped
+        {
+            get { return _isEquiped; }
+            set
+            {
+                SetProperty(ref _isEquiped, value);
+                OnPropertyChanged(nameof(IsNotEquiped));
+            }
+        }
+
+        public bool IsNotEquiped => !IsEquiped;
+
+        public EquipmentPart Part { get; set; }
 
         public string EquipmentPartString => Part.GetDescription();
+
+        public ICommand EquipCommand { get; }
+
+        protected EquipmentBase()
+        {
+            EquipCommand = new DelegateCommand(() => { IsEquiped = !IsEquiped; });
+        }
+
+        #region Fields
+
+        private long _id;
+
+        private bool _isEquiped;
+
+        #endregion
     }
 }
