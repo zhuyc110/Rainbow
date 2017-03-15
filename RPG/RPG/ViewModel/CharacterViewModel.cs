@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
-using System.Linq;
 using Prism.Mvvm;
 using RPG.Model.Battle;
+using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
 
 namespace RPG.ViewModel
@@ -11,6 +11,17 @@ namespace RPG.ViewModel
     public class CharacterViewModel : BindableBase
     {
         public IEquipmentManager EquipmentManager { get; }
+
+        public EquipmentBase Helmet => EquipmentManager[EquipmentPart.Helmet];
+        public EquipmentBase Breastplate => EquipmentManager[EquipmentPart.Breastplate];
+        public EquipmentBase Legging => EquipmentManager[EquipmentPart.Legging];
+        public EquipmentBase Weapon => EquipmentManager[EquipmentPart.Weapon];
+        public EquipmentBase Wing => EquipmentManager[EquipmentPart.Wing];
+        public EquipmentBase Accessory => EquipmentManager[EquipmentPart.Accessory];
+        public EquipmentBase Necklace => EquipmentManager[EquipmentPart.Necklace];
+        public EquipmentBase Glove => EquipmentManager[EquipmentPart.Glove];
+        public EquipmentBase Ring => EquipmentManager[EquipmentPart.Ring];
+        public EquipmentBase Boot => EquipmentManager[EquipmentPart.Boot];
 
         #region Properties
 
@@ -27,9 +38,13 @@ namespace RPG.ViewModel
             UserBattleState.UserState.LevelUp += (sender, args) => OnPropertyChanged(nameof(UserBattleState));
         }
 
-        private void EquipmentManagerOnEquipmentChanged(object sender, Model.Equipment.EquipmentChangedArgs e)
+        #region Private methods
+
+        private void EquipmentManagerOnEquipmentChanged(object sender, EquipmentChangedArgs e)
         {
-            var newE = e.NewEquipment;
+            OnPropertyChanged(e.NewEquipment.Part.ToString());
         }
+
+        #endregion
     }
 }

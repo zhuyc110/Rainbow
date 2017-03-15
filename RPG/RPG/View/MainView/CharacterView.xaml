@@ -63,38 +63,38 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <controls:IconItem x:Name="Head" Grid.Row="0" Grid.Column="0"
-                               Rarity="Legend"
+            <controls:IconItem x:Name="Helmet" Grid.Row="0" Grid.Column="0"                               
+                               Rarity="{Binding Path=Helmet.Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Helmet_03}" />
+                               Icon="{Binding Path=Helmet.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Breastplate" Grid.Row="1" Grid.Column="0"
-                               Rarity="Normal"
+                               Rarity="{Binding Path=Breastplate.Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Chest_Plate14}" />
+                               Icon="{Binding Path=Breastplate.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Legging" Grid.Row="2" Grid.Column="0" 
-                               Rarity="Epic"
+                               Rarity="{Binding Path=Legging.Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Pants_05}" />
+                               Icon="{Binding Path=Legging.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Weapon" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2"
-                               Rarity="{Binding Path=EquipmentManager[EquipmentPart.Weapon].Rarity}"
+                               Rarity="{Binding Path=Weapon.Rarity}"
                                ShowAmount="False"
-                               Icon="{Binding Path=EquipmentManager[EquipmentPart.Weapon].IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
+                               Icon="{Binding Path=Weapon.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Necklace" Grid.Row="0" Grid.Column="4"
-                               Rarity="Epic"
+                               Rarity="{Binding Path=Necklace.Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Jewelry_Necklace_16}" />
+                               Icon="{Binding Path=Necklace.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Glove" Grid.Row="1" Grid.Column="4"
-                               Rarity="Rare"
+                               Rarity="{Binding Path=Glove.Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Gauntlets_12}" />
+                               Icon="{Binding Path=Glove.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Ring" Grid.Row="2" Grid.Column="4"
-                               Rarity="Epic"
+                               Rarity="{Binding Path=Ring.Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Jewelry_Ring_03}" />
+                               Icon="{Binding Path=Ring.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <controls:IconItem x:Name="Boot" Grid.Row="3" Grid.Column="4" Grid.RowSpan="2"
-                               Rarity="Rare"
+                               Rarity="{Binding Path=Boot.Rarity}"
                                ShowAmount="False"
-                               Icon="{StaticResource INV_Boots_01}" />
+                               Icon="{Binding Path=Boot.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
             <Image Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Margin="5" Source="{StaticResource chapter}"></Image>
         </Grid>
     </Grid>
