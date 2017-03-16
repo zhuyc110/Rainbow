@@ -42,7 +42,9 @@ namespace RPG.ViewModel
 
         private void EquipmentManagerOnEquipmentChanged(object sender, EquipmentChangedArgs e)
         {
-            OnPropertyChanged(e.NewEquipment.Part.ToString());
+            var part = e.NewEquipment?.Part ?? e.OldEquipment.Part;
+
+            OnPropertyChanged(part.ToString());
         }
 
         #endregion

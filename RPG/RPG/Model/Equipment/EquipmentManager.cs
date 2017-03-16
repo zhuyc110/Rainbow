@@ -56,22 +56,15 @@ namespace RPG.Model.Equipment
 
             if (!equipment.IsEquiped)
             {
-                _preEquipment = equipment;
+                var handler = OnEquipmentChanged;
+                handler?.Invoke(null, new EquipmentChangedArgs(equipment, null));
             }
             else
             {
-                _newEquipment = equipment;
                 var handler = OnEquipmentChanged;
-                handler?.Invoke(null, new EquipmentChangedArgs(_preEquipment, _newEquipment));
+                handler?.Invoke(null, new EquipmentChangedArgs(null, equipment));
             }
         }
-
-        #endregion
-
-        #region Fields
-
-        private EquipmentBase _preEquipment;
-        private EquipmentBase _newEquipment;
 
         #endregion
     }
