@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace RPG.Resource
+namespace RPG.Resource.Converters
 {
     [ValueConversion(typeof(int), typeof(int?))]
     public class IntToNullableIntConverter : IValueConverter

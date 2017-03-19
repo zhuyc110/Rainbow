@@ -2,10 +2,11 @@
 
 namespace RPG.Model.Equipment
 {
-    //[Export(nameof(BasicLance), typeof(EquipmentBase))]
+    [Export(typeof(EquipmentBase))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class BasicLance : EquipmentBase
     {
-        //[ImportingConstructor]
+        [ImportingConstructor]
         public BasicLance()
         {
             Content = "基础的长枪";

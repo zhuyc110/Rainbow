@@ -154,10 +154,11 @@
     <Compile Include="Module\HeaderModule.cs" />
     <Compile Include="Module\MainModule.cs" />
     <Compile Include="Module\NavigationModule.cs" />
-    <Compile Include="Resource\IntToNullableIntConverter.cs" />
-    <Compile Include="Resource\MonsterClassToBrushConverter.cs" />
+    <Compile Include="Resource\Converters\IntToNullableIntConverter.cs" />
+    <Compile Include="Resource\Converters\IsNullToVisibilityConverter.cs" />
+    <Compile Include="Resource\Converters\MonsterClassToBrushConverter.cs" />
     <Compile Include="Resource\RarityToBrushConverter.cs" />
-    <Compile Include="Resource\ResourceKeyToImageConverter.cs" />
+    <Compile Include="Resource\Converters\ResourceKeyToImageConverter.cs" />
     <Compile Include="Model\Skills\SkillBase.cs" />
     <Compile Include="Model\Skills\Fireball.cs" />
     <Compile Include="Model\Skills\Fury.cs" />
@@ -329,8 +330,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="ResharperCodingGuidlines\AdditionalMMSettings.DotSettings" />
-    <None Include="ResharperCodingGuidlines\GlobalResharperSettings.DotSettings" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

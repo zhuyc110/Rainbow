@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:RPG.ViewModel"
              xmlns:res="clr-namespace:RPG.Resource"
              xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
+             xmlns:converters="clr-namespace:RPG.Resource.Converters"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:SkillsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -15,7 +16,7 @@
                 <ResourceDictionary Source="..\..\Resource\Generic.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+            <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
 

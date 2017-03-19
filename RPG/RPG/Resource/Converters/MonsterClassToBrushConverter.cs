@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using RPG.Model;
 
-namespace RPG.Resource
+namespace RPG.Resource.Converters
 {
     [ValueConversion(typeof (MonsterClass), typeof (Brush))]
     public class MonsterClassToBrushConverter : IValueConverter

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Composition;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Extension;
@@ -7,7 +6,6 @@ using RPG.Model.Interfaces;
 
 namespace RPG.Model.Equipment
 {
-    [InheritedExport(typeof(EquipmentBase))]
     public abstract class EquipmentBase : BindableBase, IItem
     {
         public long Id

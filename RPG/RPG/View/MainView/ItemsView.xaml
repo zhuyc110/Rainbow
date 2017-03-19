@@ -7,12 +7,13 @@
     xmlns:res="clr-namespace:RPG.Resource"
     xmlns:control="clr-namespace:RPG.Controls"
     xmlns:model="clr-namespace:RPG.Model.Items"
+    xmlns:converters="clr-namespace:RPG.Resource.Converters"
     x:Class="RPG.View.MainView.ItemsView"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance {x:Type vm:ItemsViewModel}, IsDesignTimeCreatable=True}"
     d:DesignHeight="200" d:DesignWidth="300">
     <UserControl.Resources>
-        <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
         <Style x:Key="IconItemStyle" TargetType="{x:Type control:IconItem}">
             <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
@@ -21,7 +22,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <res:IntToNullableIntConverter x:Key="IntToNullableIntConverter" />
+        <converters:IntToNullableIntConverter x:Key="IntToNullableIntConverter" />
     </UserControl.Resources>
 
     <ListView ItemsSource="{Binding ItemManager.Items}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">

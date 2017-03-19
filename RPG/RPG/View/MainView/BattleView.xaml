@@ -7,7 +7,9 @@
     xmlns:resource="clr-namespace:RPG.Resource"
     xmlns:controls="clr-namespace:RPG.Controls"
     xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
-    xmlns:local="clr-namespace:RPG.View.MainView" x:Class="RPG.View.MainView.BattleView"
+    xmlns:local="clr-namespace:RPG.View.MainView"
+    xmlns:converters="clr-namespace:RPG.Resource.Converters"
+    x:Class="RPG.View.MainView.BattleView"
     d:DataContext="{d:DesignInstance {x:Type viewModel:BattleViewModel}, IsDesignTimeCreatable=True}"
     mc:Ignorable="d"
     d:DesignHeight="400" d:DesignWidth="374">
@@ -17,8 +19,8 @@
                 <ResourceDictionary Source="../../Resource/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <resource:MonsterClassToBrushConverter x:Key="MonsterClassToBrushConverter" />
-            <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+            <converters:MonsterClassToBrushConverter x:Key="MonsterClassToBrushConverter" />
+            <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
             <Style x:Key="IconItemStyle" TargetType="{x:Type controls:IconItem}">
                 <Setter Property="Visibility" Value="Visible" />
                 <Style.Triggers>

@@ -8,12 +8,13 @@
       xmlns:res="clr-namespace:RPG.Resource"
       xmlns:control="clr-namespace:RPG.Controls"
       xmlns:model="clr-namespace:RPG.Model.Equipment"
+      xmlns:converters="clr-namespace:RPG.Resource.Converters"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance vm:EquipmentViewModel, IsDesignTimeCreatable=True}"
       d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
-        <res:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+        <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
     </UserControl.Resources>
 
     <ListView ItemsSource="{Binding Path=Equipments}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >

@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace RPG.Resource
+namespace RPG.Resource.Converters
 {
     [ValueConversion(typeof(string), typeof(ImageSource))]
     public class ResourceKeyToImageConverter : IValueConverter

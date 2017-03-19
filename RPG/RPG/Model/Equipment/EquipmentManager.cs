@@ -19,12 +19,7 @@ namespace RPG.Model.Equipment
         {
             get
             {
-                var result = Equipments.FirstOrDefault(x => x.IsEquiped && x.Part == index);
-                if (result == null)
-                {
-                    return new DefaultEquipment(index);
-                }
-                return result;
+                return Equipments.FirstOrDefault(x => x.IsEquiped && x.Part == index);
             }
         }
 

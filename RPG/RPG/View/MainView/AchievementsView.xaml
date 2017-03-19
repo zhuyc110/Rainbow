@@ -7,6 +7,7 @@
              xmlns:achivements="clr-namespace:RPG.Model.Achivements"
              xmlns:controls="clr-namespace:RPG.Controls"
              xmlns:resource="clr-namespace:RPG.Resource"
+             xmlns:converters="clr-namespace:RPG.Resource.Converters"
              mc:Ignorable="d" 
             d:DataContext="{d:DesignInstance viewModel:AchievementsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="400">
@@ -15,7 +16,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resource/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <resource:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+            <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     
