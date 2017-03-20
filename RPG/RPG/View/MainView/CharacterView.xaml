@@ -6,8 +6,6 @@
              xmlns:controls="clr-namespace:RPG.Controls"
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              xmlns:interfaces="clr-namespace:RPG.Model.Interfaces"
-             xmlns:equipment="clr-namespace:RPG.Model.Equipment"
-             xmlns:converters="clr-namespace:RPG.Resource.Converters"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:CharacterViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="400" d:DesignWidth="400">
@@ -15,10 +13,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="..\..\Resource\IconDictionary.xaml" />
+                <ResourceDictionary Source="..\..\Resource\IconItem.xaml" />
                 <ResourceDictionary Source="..\..\Resource\Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
-            <converters:IsNullToVisibilityConverter x:Key="IsNullToVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -64,45 +61,17 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <controls:IconItem x:Name="Helmet" Grid.Row="0" Grid.Column="0"
-                               Rarity="{Binding Path=Helmet.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Helmet.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
-            <controls:IconItem x:Name="Breastplate" Grid.Row="1" Grid.Column="0"
-                               Rarity="{Binding Path=Breastplate.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Breastplate.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
-            <controls:IconItem x:Name="Legging" Grid.Row="2" Grid.Column="0"
-                               Rarity="{Binding Path=Legging.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Legging.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
-            <controls:IconItem x:Name="Weapon" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2"
-                               Visibility="{Binding Path=Weapon, Converter={StaticResource IsNullToVisibilityConverter}}"
-                               Rarity="{Binding Path=Weapon.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Weapon.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}">
-                <controls:IconItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="卸下" Command="{Binding Path=Weapon.EquipCommand}" IsEnabled="{Binding Weapon.IsEquiped}" />
-                    </ContextMenu>
-                </controls:IconItem.ContextMenu>
-            </controls:IconItem>
-            <controls:IconItem x:Name="Necklace" Grid.Row="0" Grid.Column="4"
-                               Rarity="{Binding Path=Necklace.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Necklace.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
-            <controls:IconItem x:Name="Glove" Grid.Row="1" Grid.Column="4"
-                               Rarity="{Binding Path=Glove.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Glove.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
-            <controls:IconItem x:Name="Ring" Grid.Row="2" Grid.Column="4"
-                               Rarity="{Binding Path=Ring.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Ring.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
-            <controls:IconItem x:Name="Boot" Grid.Row="3" Grid.Column="4" Grid.RowSpan="2"
-                               Rarity="{Binding Path=Boot.Rarity}"
-                               ShowAmount="False"
-                               Icon="{Binding Path=Boot.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
+            <controls:IconItem x:Name="Helmet" Grid.Row="0" Grid.Column="0" DataContext="{Binding Path=Helmet}" Style="{StaticResource IconItemStyle}" />
+            <controls:IconItem x:Name="Breastplate" Grid.Row="1" Grid.Column="0" DataContext="{Binding Path=Breastplate}"
+                               Style="{StaticResource IconItemStyle}" />
+            <controls:IconItem x:Name="Legging" Grid.Row="2" Grid.Column="0" DataContext="{Binding Path=Legging}" Style="{StaticResource IconItemStyle}" />
+            <controls:IconItem x:Name="Weapon" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" DataContext="{Binding Path=Weapon}"
+                               Style="{StaticResource IconItemStyle}" />
+            <controls:IconItem x:Name="Necklace" Grid.Row="0" Grid.Column="4" DataContext="{Binding Path=Necklace}" Style="{StaticResource IconItemStyle}" />
+            <controls:IconItem x:Name="Glove" Grid.Row="1" Grid.Column="4" DataContext="{Binding Path=Glove}" Style="{StaticResource IconItemStyle}" />
+            <controls:IconItem x:Name="Ring" Grid.Row="2" Grid.Column="4" DataContext="{Binding Path=Ring}" Style="{StaticResource IconItemStyle}" />
+            <controls:IconItem x:Name="Boot" Grid.Row="3" Grid.Column="4" DataContext="{Binding Path=Boot}" Grid.RowSpan="2"
+                               Style="{StaticResource IconItemStyle}" />
             <Image Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Margin="5" Source="{StaticResource chapter}" />
         </Grid>
     </Grid>
