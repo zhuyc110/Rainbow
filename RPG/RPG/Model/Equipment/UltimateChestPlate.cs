@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using RPG.Model.UserProperties;
 
 namespace RPG.Model.Equipment
 {
@@ -8,6 +10,10 @@ namespace RPG.Model.Equipment
     {
         [ImportingConstructor]
         public UltimateChestPlate()
+            : base(new List<BasicProperty>
+            {
+                new BasicProperty("生命", 20, 0)
+            })
         {
             Content = "终极的胸甲";
             ItemName = "黄金甲";

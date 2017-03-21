@@ -48,37 +48,61 @@ namespace RPG.Model.Battle
         {
             UserState = userState;
             _skillManager = skillManager;
-            equipmentManager.OnEquipmentChanged += OnEquipmentChanged;
-            UserState.LevelUp += (sender, args) => Initialize();
-            Initialize();
-        }
+            _equipmentManager = equipmentManager;
 
-        private void OnEquipmentChanged(object sender, EquipmentChangedArgs e)
-        {
-            foreach (var battleProperty in UserProperty)
+            skillManager.CheckedSkillChanged += (sender, args) => ComposeUserSkills();
+            equipmentManager.OnEquipmentChanged += (sender, args) =>
             {
-                //Compose those properties
-            }
+                InitializeUserProperties();
+                ComposeEquipmentProperties();
+            };
+            UserState.LevelUp += (sender, args) => ComposeUserProperties();
+            ResetBattleState();
         }
 
         public UserBattleState ResetBattleState()
         {
-            Initialize();
+            ComposeUserProperties();
+            ComposeUserSkills();
+            ComposeEquipmentProperties();
             return this;
         }
 
         #region Private methods
 
-        private void Initialize()
+        private void ComposeUserProperties()
+        {
+            InitializeUserProperties();
+            CurrentHp = MaximumHp;
+            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
+        }
+
+        private void InitializeUserProperties()
         {
             UserProperty = new ObservableCollection<IBattleProperty>
             {
                 new PropertyHp(UserState),
                 new PropertyAttack(UserState)
             };
-            CurrentHp = MaximumHp;
-            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
+        }
+
+        private void ComposeUserSkills()
+        {
             Skills = _skillManager.Skills.Where(x => x.IsChecked);
+        }
+
+        private void ComposeEquipmentProperties()
+        {
+            foreach (var equipment in _equipmentManager.Equipments.Where(x => x.IsEquiped))
+            {
+                foreach (var equipmentProperty in equipment.EquipmentProperties)
+                {
+                    var property = UserProperty.Single(x => x.Name == equipmentProperty.Name);
+                    property.AbsoluteEnhancement += equipmentProperty.AbsoluteEnhancement;
+                    property.RelativeEnhancement += equipmentProperty.RelativeEnhancement;
+                }
+            }
+            OnPropertyChanged(nameof(UserProperty));
         }
 
         #endregion
@@ -89,6 +113,7 @@ namespace RPG.Model.Battle
         private int _currentHp;
 
         private readonly ISkillManager _skillManager;
+        private readonly IEquipmentManager _equipmentManager;
 
         #endregion
     }

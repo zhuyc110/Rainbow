@@ -1,8 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Extension;
 using RPG.Model.Interfaces;
+using RPG.Model.UserProperties;
 
 namespace RPG.Model.Equipment
 {
@@ -13,6 +15,8 @@ namespace RPG.Model.Equipment
             get { return _id; }
             set { SetProperty(ref _id, value); }
         }
+
+        public IEnumerable<BasicProperty> EquipmentProperties { get; protected set; }
 
         public int Amount => 1;
 
@@ -44,8 +48,10 @@ namespace RPG.Model.Equipment
 
         public ICommand EquipCommand { get; }
 
-        protected EquipmentBase()
+        protected EquipmentBase(IEnumerable<BasicProperty> equipmentProperties)
         {
+            EquipmentProperties = equipmentProperties;
+
             EquipCommand = new DelegateCommand(() => { IsEquiped = !IsEquiped; });
         }
 

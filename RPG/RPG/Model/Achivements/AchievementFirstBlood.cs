@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using RPG.Model.Battle;
+using RPG.Model.UserProperties;
 
 namespace RPG.Model.Achivements
 {
@@ -11,10 +12,10 @@ namespace RPG.Model.Achivements
             : base(userBattleState.UserProperty,
                 "First blood!",
                 "你杀了一只怪物！",
-                new List<AchivementPropertyBase>
+                new List<BasicProperty>
                 {
-                    new AchivementPropertyBase("命中", 0, 0.01),
-                    new AchivementPropertyBase("生命", 10, 0.00)
+                    new BasicProperty("命中", 0, 0.01),
+                    new BasicProperty("生命", 10, 0.00)
                 },
                 1,
                 "Ability_Druid_Disembowel")

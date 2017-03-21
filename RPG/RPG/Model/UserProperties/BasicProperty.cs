@@ -1,8 +1,8 @@
-﻿namespace RPG.Model.Achivements
+﻿namespace RPG.Model.UserProperties
 {
-    public class AchivementPropertyBase
+    public class BasicProperty
     {
-        public AchivementPropertyBase(string name, int absoluteEnhancement, double relativeEnhancement)
+        public BasicProperty(string name, int absoluteEnhancement, double relativeEnhancement)
         {
             Name = name;
             AbsoluteEnhancement = absoluteEnhancement;

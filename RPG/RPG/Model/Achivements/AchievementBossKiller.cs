@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using RPG.Model.Battle;
+using RPG.Model.UserProperties;
 
 namespace RPG.Model.Achivements
 {
@@ -11,11 +12,11 @@ namespace RPG.Model.Achivements
             : base(userBattleState.UserProperty, 
                   "Boss Killer", 
                   "杀死关卡boss10w次",
-                new List<AchivementPropertyBase>
+                new List<BasicProperty>
                 {
-                    new AchivementPropertyBase("暴击", 0, 0.02),
-                    new AchivementPropertyBase("暴伤", 0, 0.02),
-                    new AchivementPropertyBase("金币", 0, 0.02)
+                    new BasicProperty("暴击", 0, 0.02),
+                    new BasicProperty("暴伤", 0, 0.02),
+                    new BasicProperty("金币", 0, 0.02)
                 }, 
                 100000, 
                 "Spell_Shadow_BlackPlague")

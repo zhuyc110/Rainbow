@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using RPG.Model.Achivements;
+using RPG.Model.UserProperties;
 
 namespace RPG.Model.Interfaces
 {
@@ -9,7 +10,7 @@ namespace RPG.Model.Interfaces
     {
         int Condition { get; }
         bool Achived { get; }
-        IEnumerable<AchivementPropertyBase> AchivementProperties { get; }
+        IEnumerable<BasicProperty> AchivementProperties { get; }
         string Content { get; }
         IEnumerable<IBattleProperty> Enhancements { get; }
         string IconResource { get; }

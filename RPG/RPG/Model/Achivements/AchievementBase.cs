@@ -2,16 +2,15 @@
 using System.Linq;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
+using RPG.Model.UserProperties;
 
 namespace RPG.Model.Achivements
 {
     public abstract class AchievementBase : BindableBase, IAchievement
     {
-        #region Properties
-
         public bool Achived => Current >= Condition;
 
-        public IEnumerable<AchivementPropertyBase> AchivementProperties { get; protected set; }
+        public IEnumerable<BasicProperty> AchivementProperties { get; protected set; }
         public int Condition { get; protected set; }
 
         public string Content { get; protected set; }
@@ -32,9 +31,8 @@ namespace RPG.Model.Achivements
 
         public string Name { get; protected set; }
 
-        #endregion
-
-        protected AchievementBase(IEnumerable<IBattleProperty> properties, string name, string content, IReadOnlyCollection<AchivementPropertyBase> achivementProperties, int condition, string iconResource)
+        protected AchievementBase(IEnumerable<IBattleProperty> properties, string name, string content, IReadOnlyCollection<BasicProperty> achivementProperties,
+            int condition, string iconResource)
         {
             Enhancements = properties;
             Name = name;
@@ -50,9 +48,6 @@ namespace RPG.Model.Achivements
         #region IAchievement Members
 
         public abstract bool CanHandleEvent<T>(T args);
-        public abstract void HandleEvent();
-
-        #endregion
 
         public void ComposeProperty()
         {
@@ -67,6 +62,10 @@ namespace RPG.Model.Achivements
                 property.RelativeEnhancement *= 1 + achivementProperty.RelativeEnhancement;
             }
         }
+
+        public abstract void HandleEvent();
+
+        #endregion
 
         #region Fields
 
