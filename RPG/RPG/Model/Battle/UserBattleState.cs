@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -17,8 +16,6 @@ namespace RPG.Model.Battle
         public ObservableCollection<IBattleProperty> UserProperty { get; private set; }
 
         public IUserState UserState { get; }
-
-        public ObservableCollection<EquipmentBase> Equipments { get; private set; }
 
         public IEnumerable<ISkill> Skills { get; private set; }
 
@@ -70,27 +67,6 @@ namespace RPG.Model.Battle
 
         #region Private methods
 
-        private void ComposeUserProperties()
-        {
-            InitializeUserProperties();
-            CurrentHp = MaximumHp;
-            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
-        }
-
-        private void InitializeUserProperties()
-        {
-            UserProperty = new ObservableCollection<IBattleProperty>
-            {
-                new PropertyHp(UserState),
-                new PropertyAttack(UserState)
-            };
-        }
-
-        private void ComposeUserSkills()
-        {
-            Skills = _skillManager.Skills.Where(x => x.IsChecked);
-        }
-
         private void ComposeEquipmentProperties()
         {
             foreach (var equipment in _equipmentManager.Equipments.Where(x => x.IsEquiped))
@@ -103,6 +79,27 @@ namespace RPG.Model.Battle
                 }
             }
             OnPropertyChanged(nameof(UserProperty));
+        }
+
+        private void ComposeUserProperties()
+        {
+            InitializeUserProperties();
+            CurrentHp = MaximumHp;
+            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
+        }
+
+        private void ComposeUserSkills()
+        {
+            Skills = _skillManager.Skills.Where(x => x.IsChecked);
+        }
+
+        private void InitializeUserProperties()
+        {
+            UserProperty = new ObservableCollection<IBattleProperty>
+            {
+                new PropertyHp(UserState),
+                new PropertyAttack(UserState)
+            };
         }
 
         #endregion

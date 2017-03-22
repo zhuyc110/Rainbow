@@ -9,6 +9,7 @@
       xmlns:control="clr-namespace:RPG.Controls"
       xmlns:model="clr-namespace:RPG.Model.Equipment"
       xmlns:converters="clr-namespace:RPG.Resource.Converters"
+      xmlns:mainView="clr-namespace:RPG.View.MainView"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance vm:EquipmentViewModel, IsDesignTimeCreatable=True}"
       d:DesignHeight="300" d:DesignWidth="300">
@@ -30,6 +31,12 @@
                                   ShowAmount="False"
                                   Icon="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" 
                                   ItemName="{Binding Path=ItemName}">
+                    <control:IconItem.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" 
+                                      Command="{Binding Path=DataContext.ShowDetailCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mainView:EquipmentView} }}"
+                                      CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType=control:IconItem}}">
+                        </MouseBinding>
+                    </control:IconItem.InputBindings>
                     <control:IconItem.ToolTip>
                         <TextBlock>
                             <TextBlock.Text>
