@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="RPG.View.MainView.EquipmentDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             xmlns:converters="clr-namespace:RPG.Resource.Converters"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModel:EquipmentDetailViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="200">
+    <UserControl.Resources>
+        <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Margin="5" Source="{Binding Path=Equipment.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" BorderThickness="0" Background="Transparent"
+                  ItemsSource="{Binding Path=Equipment.EquipmentProperties}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Dock="Left" Margin="2">
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding AbsoluteEnhancement, StringFormat={} +{0}}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding AbsoluteEnhancement}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="{Binding RelativeEnhancement, StringFormat={} +{0}%}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeEnhancement}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

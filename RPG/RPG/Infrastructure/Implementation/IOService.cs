@@ -51,6 +51,7 @@ namespace RPG.Infrastructure.Implementation
         public void ShowViewModel<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase
         {
             var view = _serviceLocator.GetInstance<IView<TViewModel>>();
+            view.ViewModel = viewModel;
             ShowView(view);
         }
 
@@ -67,12 +68,15 @@ namespace RPG.Infrastructure.Implementation
         {
             var window = new Window
             {
+                Owner = Application.Current.MainWindow,
                 Title = view.Title,
                 Content = view,
-                Width = 400,
-                Height = 600
+                Width = 200,
+                Height = 300,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
-            window.Show();
+            window.ShowDialog();
         }
 
         #endregion

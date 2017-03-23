@@ -52,7 +52,8 @@ namespace RPG.ViewModel
 
         private void ShowDetail(EquipmentBase equipment)
         {
-            _ioService.ShowMessage(equipment.ItemName, equipment.EquipmentProperties.ToString());
+            var detailVm = new EquipmentDetailViewModel(equipment);
+            _ioService.ShowViewModel(detailVm);
         }
 
         #endregion

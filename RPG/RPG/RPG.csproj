@@ -172,6 +172,7 @@
     <Compile Include="ViewModel\BackpackViewModel.cs" />
     <Compile Include="ViewModel\BattleViewModel.cs" />
     <Compile Include="ViewModel\CharacterViewModel.cs" />
+    <Compile Include="ViewModel\EquipmentDetailViewModel.cs" />
     <Compile Include="ViewModel\EquipmentViewModel.cs" />
     <Compile Include="ViewModel\HeaderViewModel.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
@@ -191,6 +192,9 @@
     </Compile>
     <Compile Include="View\MainView\BattleView.xaml.cs">
       <DependentUpon>BattleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView\EquipmentDetailView.xaml.cs">
+      <DependentUpon>EquipmentDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView\EquipmentView.xaml.cs">
       <DependentUpon>EquipmentView.xaml</DependentUpon>
@@ -269,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView\BattleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView\EquipmentDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
