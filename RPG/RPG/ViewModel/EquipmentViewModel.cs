@@ -8,6 +8,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Equipment;
+using RPG.Model.Interfaces;
 
 namespace RPG.ViewModel
 {
@@ -20,10 +21,11 @@ namespace RPG.ViewModel
         public ICommand ShowDetailCommand { get; }
 
         [ImportingConstructor]
-        public EquipmentViewModel([ImportMany] IEnumerable<EquipmentBase> equipments, IIOService ioService)
+        public EquipmentViewModel([ImportMany] IEnumerable<EquipmentBase> equipments, IIOService ioService, IEnchantmentManager enchantmentManager)
         {
             Equipments = new ObservableCollection<EquipmentBase>();
             _ioService = ioService;
+            _enchantmentManager = enchantmentManager;
             ShowDetailCommand = new DelegateCommand<EquipmentBase>(ShowDetail);
 
             foreach (var item in equipments.OrderBy(x => x.Rarity))
@@ -52,7 +54,7 @@ namespace RPG.ViewModel
 
         private void ShowDetail(EquipmentBase equipment)
         {
-            var detailVm = new EquipmentDetailViewModel(equipment);
+            var detailVm = new EquipmentDetailViewModel(equipment, _enchantmentManager);
             _ioService.ShowViewModel(detailVm);
         }
 
@@ -61,6 +63,7 @@ namespace RPG.ViewModel
         #region Fields
 
         private readonly IIOService _ioService;
+        private readonly IEnchantmentManager _enchantmentManager;
 
         #endregion
     }

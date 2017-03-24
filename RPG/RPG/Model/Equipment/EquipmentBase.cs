@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -17,6 +18,8 @@ namespace RPG.Model.Equipment
         }
 
         public IEnumerable<BasicProperty> EquipmentProperties { get; protected set; }
+
+        public IEnumerable<BasicProperty> EnchantmentProperties { get; protected set; }
 
         public int Amount => 1;
 
@@ -50,7 +53,10 @@ namespace RPG.Model.Equipment
 
         protected EquipmentBase(IEnumerable<BasicProperty> equipmentProperties)
         {
-            EquipmentProperties = equipmentProperties;
+            var basicProperties = equipmentProperties.ToList();
+            EquipmentProperties = basicProperties;
+            var propertyNames = basicProperties.Select(x => x.Name);
+            EnchantmentProperties = propertyNames.Select(x => new BasicProperty(x, 0, 0)).ToList();
 
             EquipCommand = new DelegateCommand(() => { IsEquiped = !IsEquiped; });
         }

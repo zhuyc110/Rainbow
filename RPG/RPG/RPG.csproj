@@ -107,6 +107,8 @@
     <Compile Include="Model\Achivements\AchievementExtract.cs" />
     <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />
     <Compile Include="Model\Achivements\AchievementManager.cs" />
+    <Compile Include="Model\Enchantment\EnchantmentManager.cs" />
+    <Compile Include="Model\Interfaces\IEnchantmentManager.cs" />
     <Compile Include="Model\UserProperties\BasicProperty.cs" />
     <Compile Include="Model\Battle\BattleEntityAttack.cs" />
     <Compile Include="Model\Equipment\DefaultEquipment.cs" />
