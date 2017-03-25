@@ -23,7 +23,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Image Grid.Row="0" Grid.Column="0" Margin="5" Source="{Binding Path=Equipment.IconResource, Converter={StaticResource ResourceKeyToImageConverter}}" />
-        <Button Grid.Row="0" Grid.Column="3" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Path=EnchantCommand}">附魔</Button>
+        <Button Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding Path=EnchantCommand}">附魔</Button>
+        <TextBlock Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Text="{Binding Path=EnchantCost, StringFormat={}{0}G}" Margin="5"></TextBlock>
         <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <TextBlock Margin="5" Text="基本属性" DockPanel.Dock="Top"></TextBlock>
             <ListView Margin="5" BorderThickness="0" Background="Transparent"
@@ -61,10 +62,10 @@
                 </ListView.ItemTemplate>
             </ListView>
         </DockPanel>
-        <DockPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBlock Margin="5" Text="附魔属性" DockPanel.Dock="Top"></TextBlock>
-            <ListView Margin="5" BorderThickness="0" Background="Transparent"
-                  ItemsSource="{Binding Path=Equipment.EnchantmentProperties}">
+        <DockPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Dock="Top">
+            <TextBlock Margin="5" Text="{Binding Path=EnchantmentLevel, StringFormat={}附魔属性 {0}}" DockPanel.Dock="Top"></TextBlock>
+            <ListView Margin="5" BorderThickness="0" Background="Transparent" DockPanel.Dock="Top"
+                  ItemsSource="{Binding Path=EnchantmentProperties}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
