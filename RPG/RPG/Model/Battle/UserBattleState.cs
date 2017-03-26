@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Prism.Mvvm;
-using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
 using RPG.Model.UserProperties;
 
@@ -41,7 +40,7 @@ namespace RPG.Model.Battle
         public int MaximumHp => UserProperty.Single(x => x.Name == "生命").FinalValue;
 
         [ImportingConstructor]
-        public UserBattleState(IUserState userState, ISkillManager skillManager, IEquipmentManager equipmentManager)
+        public UserBattleState(IUserState userState, ISkillManager skillManager, IEquipmentManager equipmentManager, IEnchantmentManager enchantmentManager)
         {
             UserState = userState;
             _skillManager = skillManager;
@@ -52,8 +51,10 @@ namespace RPG.Model.Battle
             {
                 InitializeUserProperties();
                 ComposeEquipmentProperties();
+                ComposeEquipmentEnchantProperties();
             };
             UserState.LevelUp += (sender, args) => ComposeUserProperties();
+            enchantmentManager.EquipedEquipmentEnchantmentChanged += (sender, args) => ComposeEquipmentEnchantProperties();
             ResetBattleState();
         }
 
@@ -62,10 +63,25 @@ namespace RPG.Model.Battle
             ComposeUserProperties();
             ComposeUserSkills();
             ComposeEquipmentProperties();
+            ComposeEquipmentEnchantProperties();
             return this;
         }
 
         #region Private methods
+
+        private void ComposeEquipmentEnchantProperties()
+        {
+            foreach (var equipment in _equipmentManager.Equipments.Where(x => x.IsEquiped))
+            {
+                foreach (var enchantmentProperty in equipment.EnchantmentProperties)
+                {
+                    var property = UserProperty.Single(x => x.Name == enchantmentProperty.Name);
+                    property.AbsoluteEnhancement += enchantmentProperty.AbsoluteEnhancement;
+                    property.RelativeEnhancement += enchantmentProperty.RelativeEnhancement;
+                }
+            }
+            OnPropertyChanged(nameof(UserProperty));
+        }
 
         private void ComposeEquipmentProperties()
         {

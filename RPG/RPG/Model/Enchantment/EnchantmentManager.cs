@@ -11,6 +11,8 @@ namespace RPG.Model.Enchantment
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class EnchantmentManager : IEnchantmentManager
     {
+        public event EventHandler EquipedEquipmentEnchantmentChanged;
+
         [ImportingConstructor]
         public EnchantmentManager(IRandom random, IUserState userState, IIOService ioService)
         {
@@ -32,7 +34,7 @@ namespace RPG.Model.Enchantment
         {
             var enchantmentProperty = equipment.EnchantmentProperties.First();
             var equipmentProperty = equipment.EquipmentProperties.Single(x => x.Name == enchantmentProperty.Name);
-            var rateLevel = (double)enchantmentProperty.AbsoluteEnhancement / equipmentProperty.AbsoluteEnhancement;
+            var rateLevel = (double) enchantmentProperty.AbsoluteEnhancement / equipmentProperty.AbsoluteEnhancement;
 
             if (rateLevel >= 0.95)
             {
@@ -76,10 +78,17 @@ namespace RPG.Model.Enchantment
                     Math.Max((int) (equipment.EquipmentProperties.Single(x => x.Name == property.Name).AbsoluteEnhancement * rate * rate2), 1);
             }
 
+            RaiseEquipedEquipmentEnchantmentChanged();
             return CalculateEnchantLevel(equipment);
         }
 
         #endregion
+
+        private void RaiseEquipedEquipmentEnchantmentChanged()
+        {
+            var handle = EquipedEquipmentEnchantmentChanged;
+            handle?.Invoke(null, null);
+        }
 
         #region Fields
 

@@ -1,4 +1,5 @@
-﻿using RPG.Model.Equipment;
+﻿using System;
+using RPG.Model.Equipment;
 
 namespace RPG.Model.Interfaces
 {
@@ -9,5 +10,7 @@ namespace RPG.Model.Interfaces
         string CalculateEnchantLevel(EquipmentBase equipment);
 
         int CalculateCost(EquipmentBase equipment);
+
+        event EventHandler EquipedEquipmentEnchantmentChanged;
     }
 }
