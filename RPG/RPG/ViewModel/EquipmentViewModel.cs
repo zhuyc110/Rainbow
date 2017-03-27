@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -16,38 +14,23 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class EquipmentViewModel : BindableBase
     {
-        public ObservableCollection<EquipmentBase> Equipments { get; }
+        public IEquipmentManager EquipmentManager { get; }
 
         public ICommand ShowDetailCommand { get; }
 
         [ImportingConstructor]
-        public EquipmentViewModel([ImportMany] IEnumerable<EquipmentBase> equipments, IIOService ioService, IEnchantmentManager enchantmentManager)
+        public EquipmentViewModel(IEquipmentManager equipmentManager, IIOService ioService, IEnchantmentManager enchantmentManager)
         {
-            Equipments = new ObservableCollection<EquipmentBase>();
+            EquipmentManager = equipmentManager;
             _ioService = ioService;
             _enchantmentManager = enchantmentManager;
             ShowDetailCommand = new DelegateCommand<EquipmentBase>(ShowDetail);
-
-            foreach (var item in equipments.OrderBy(x => x.Rarity))
-            {
-                Equipments.Add(item);
-            }
         }
 
         [Obsolete("This is ONLY used for Design view")]
         public EquipmentViewModel()
         {
-            Equipments = new ObservableCollection<EquipmentBase>
-            {
-                new BasicLance(),
-                new BasicLance(),
-                new BasicLance(),
-                new BasicLance(),
-                new BasicLance(),
-                new BasicLance(),
-                new BasicLance(),
-                new BasicLance()
-            };
+            EquipmentManager = new EquipmentManager(new List<EquipmentBase> {new BasicLance(), new BasicLance()});
         }
 
         #region Private methods

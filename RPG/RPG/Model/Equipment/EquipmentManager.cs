@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace RPG.Model.Equipment
     {
         public event EventHandler<EquipmentChangedArgs> OnEquipmentChanged;
 
-        public IEnumerable<EquipmentBase> Equipments { get; }
+        public ObservableCollection<EquipmentBase> Equipments { get; }
 
         public EquipmentBase this[EquipmentPart index]
         {
@@ -31,7 +32,7 @@ namespace RPG.Model.Equipment
             {
                 equipment.PropertyChanged += EquipmentPropertyChanged;
             }
-            Equipments = equipmentBases;
+            Equipments = new ObservableCollection<EquipmentBase>(equipmentBases);
         }
 
         #region Private methods

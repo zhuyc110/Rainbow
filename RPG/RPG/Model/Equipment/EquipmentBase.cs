@@ -21,7 +21,7 @@ namespace RPG.Model.Equipment
 
         public IEnumerable<BasicProperty> EnchantmentProperties { get; protected set; }
 
-        public int Amount => 1;
+        public int Amount { get; set; }
 
         public string Content { get; protected set; }
 
@@ -53,6 +53,7 @@ namespace RPG.Model.Equipment
 
         protected EquipmentBase(IEnumerable<BasicProperty> equipmentProperties)
         {
+            Amount = 1;
             var basicProperties = equipmentProperties.ToList();
             EquipmentProperties = basicProperties;
             var propertyNames = basicProperties.Select(x => x.Name);

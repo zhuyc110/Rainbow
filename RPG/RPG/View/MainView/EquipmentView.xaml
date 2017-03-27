@@ -16,7 +16,7 @@
         <converters:ResourceKeyToImageConverter x:Key="ResourceKeyToImageConverter" />
     </UserControl.Resources>
 
-    <ListView ItemsSource="{Binding Path=Equipments}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+    <ListView ItemsSource="{Binding Path=EquipmentManager.Equipments}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel/>

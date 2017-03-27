@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RPG.Model.Equipment;
 
 namespace RPG.Model.Interfaces
@@ -10,6 +11,6 @@ namespace RPG.Model.Interfaces
 
         EquipmentBase this[EquipmentPart index] { get; }
 
-        IEnumerable<EquipmentBase> Equipments { get; }
+        ObservableCollection<EquipmentBase> Equipments { get; }
     }
 }

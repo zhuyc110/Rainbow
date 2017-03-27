@@ -1,5 +1,8 @@
-﻿namespace RPG.Model.UserProperties
+﻿using System;
+
+namespace RPG.Model.UserProperties
 {
+    [Serializable]
     public class BasicProperty
     {
         public BasicProperty(string name, int absoluteEnhancement, double relativeEnhancement)
