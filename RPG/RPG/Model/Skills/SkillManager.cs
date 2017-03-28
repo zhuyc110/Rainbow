@@ -17,11 +17,7 @@ namespace RPG.Model.Skills
     {
         public event EventHandler CheckedSkillChanged;
 
-        #region Properties
-
         public ObservableCollection<ISkill> Skills { get; }
-
-        #endregion
 
         [ImportingConstructor]
         public SkillManager([ImportMany] IEnumerable<ISkill> skills, IIOService ioService, IUserState userState)

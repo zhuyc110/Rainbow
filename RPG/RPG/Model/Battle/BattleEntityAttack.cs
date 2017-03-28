@@ -8,7 +8,9 @@ namespace RPG.Model.Battle
     public class BattleEntityAttack
     {
         public SkillEffect SkillEffect { get; set; }
+
         public int Damage { get; set; }
+
         public ISkill Skill { get; }
 
         public BattleEntityAttack(IBattleEntity battleEntity, IRandom random)
@@ -26,13 +28,12 @@ namespace RPG.Model.Battle
             var matchedSkillIndex = random.Next(matchedSkills.Count);
 
             Skill = matchedSkills[matchedSkillIndex];
-            Damage = (int)(battleEntity.CurrentAttack * Skill.DamageRatePerAttack * Skill.AttackFrequency);
+            Damage = (int) (battleEntity.CurrentAttack * Skill.DamageRatePerAttack * Skill.AttackFrequency);
             SkillEffect = Skill.SkillEffect;
         }
 
         public BattleEntityAttack()
         {
-            
         }
     }
 }

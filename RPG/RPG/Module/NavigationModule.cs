@@ -10,17 +10,25 @@ namespace RPG.Module
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class NavigationModule : IModule
     {
-        private readonly IRegionManager _regionManager;
-
         [ImportingConstructor]
         public NavigationModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
 
+        #region IModule Members
+
         public void Initialize()
         {
             _regionManager.RegisterViewWithRegion(nameof(NavigationModule), typeof(NavigationView));
         }
+
+        #endregion
+
+        #region Fields
+
+        private readonly IRegionManager _regionManager;
+
+        #endregion
     }
 }

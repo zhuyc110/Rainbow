@@ -18,12 +18,8 @@ namespace RPG.Model.Battle
         public event EventHandler<BattleFinishedArgs> BattleFinished;
         public event EventHandler<BattleRoundArgs> OneRoundBattle;
 
-        #region Properties
-
         [ImportMany]
         private IEnumerable<EquipmentBase> Equipments { get; set; }
-
-        #endregion
 
         [ImportingConstructor]
         public BattleActor(IRandom random)

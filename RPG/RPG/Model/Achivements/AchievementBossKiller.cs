@@ -9,16 +9,16 @@ namespace RPG.Model.Achivements
     {
         [ImportingConstructor]
         public AchievementBossKiller(UserBattleState userBattleState)
-            : base(userBattleState.UserProperty, 
-                  "Boss Killer", 
-                  "杀死关卡boss10w次",
+            : base(userBattleState.UserProperty,
+                "Boss Killer",
+                "杀死关卡boss10w次",
                 new List<BasicProperty>
                 {
                     new BasicProperty("暴击", 0, 0.02),
                     new BasicProperty("暴伤", 0, 0.02),
                     new BasicProperty("金币", 0, 0.02)
-                }, 
-                100000, 
+                },
+                100000,
                 "Spell_Shadow_BlackPlague")
         {
         }

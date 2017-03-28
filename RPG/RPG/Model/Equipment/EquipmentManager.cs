@@ -18,10 +18,7 @@ namespace RPG.Model.Equipment
 
         public EquipmentBase this[EquipmentPart index]
         {
-            get
-            {
-                return Equipments.FirstOrDefault(x => x.IsEquiped && x.Part == index);
-            }
+            get { return Equipments.FirstOrDefault(x => x.IsEquiped && x.Part == index); }
         }
 
         [ImportingConstructor]

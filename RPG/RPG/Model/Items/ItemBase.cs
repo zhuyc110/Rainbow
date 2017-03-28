@@ -14,8 +14,6 @@ namespace RPG.Model.Items
     {
         public event EventHandler<SellEventArgs> OnItemSelling;
 
-        #region Properties
-
         public int Amount
         {
             get { return _amount; }
@@ -29,21 +27,19 @@ namespace RPG.Model.Items
 
         public long Id { get; set; }
 
-        [Import]
-        private IIOService IoService { get; set; }
-
         public string ItemName { get; set; }
 
         public Rarity Rarity { get; set; }
 
         public ICommand SellCommand { get; }
 
-        [Import]
-        private IUserState UserState { get; set; }
-
         public int Worth { get; set; }
 
-        #endregion
+        [Import]
+        private IIOService IoService { get; set; }
+
+        [Import]
+        private IUserState UserState { get; set; }
 
         public ItemBase(string itemName, string content, string iconSource, Rarity rarity, int worth,
             bool isCloned = false) : this()
@@ -72,6 +68,8 @@ namespace RPG.Model.Items
 
         #endregion
 
+        #region Private methods
+
         private void CalculateId()
         {
             Id = _idSum++;
@@ -82,6 +80,8 @@ namespace RPG.Model.Items
             OnItemSelling?.Invoke(this,
                 amount != null ? new SellEventArgs(ItemName, (int) amount) : new SellEventArgs(ItemName));
         }
+
+        #endregion
 
         #region Fields
 

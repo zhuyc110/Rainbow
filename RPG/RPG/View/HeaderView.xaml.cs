@@ -7,8 +7,7 @@ namespace RPG.View
     /// <summary>
     ///     HeaderView.xaml 的交互逻辑
     /// </summary>
-    /// /
-    [Export(typeof (HeaderView))]
+    [Export(typeof(HeaderView))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class HeaderView : IView<HeaderViewModel>
     {

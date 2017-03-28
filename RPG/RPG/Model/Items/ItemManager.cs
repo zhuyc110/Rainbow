@@ -14,8 +14,6 @@ namespace RPG.Model.Items
     {
         public event EventHandler OnItemPropertyChange;
 
-        #region Properties
-
         public HashSet<ItemBase> AllGameItems => ItemsIdDictionary;
 
         public ObservableCollection<ItemBase> Items
@@ -27,8 +25,6 @@ namespace RPG.Model.Items
                 BindingOperations.EnableCollectionSynchronization(_items, _threadLock);
             }
         }
-
-        #endregion
 
         static ItemManager()
         {
@@ -96,6 +92,8 @@ namespace RPG.Model.Items
 
         #endregion
 
+        #region Private methods
+
         private void OnItemPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             RaiseOnItemPropertyChange();
@@ -105,6 +103,8 @@ namespace RPG.Model.Items
         {
             OnItemPropertyChange?.Invoke(null, null);
         }
+
+        #endregion
 
         #region Fields
 

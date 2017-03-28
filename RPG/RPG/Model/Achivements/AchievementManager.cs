@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using log4net;
+using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model.Achivements
@@ -15,11 +16,9 @@ namespace RPG.Model.Achivements
     {
         public event EventHandler<AchievementEventArgs> OnAchievementGet;
 
-        #region Properties
 
         public ObservableCollection<IAchievement> Achievements { get; set; }
 
-        #endregion
 
         [ImportingConstructor]
         public AchievementManager([ImportMany] IEnumerable<IAchievement> achievements, IUserState userState,
@@ -32,7 +31,18 @@ namespace RPG.Model.Achivements
             _battleActor.BattleFinished += OnBattleFinished;
         }
 
-        private void OnBattleFinished(object sender, Battle.BattleFinishedArgs e)
+        #region ISavableData Members
+
+        public void SaveData()
+        {
+            _userState.Achievements = Achievements.Select(x => new AchievementExtract(x.Name, x.Current)).ToList();
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private void OnBattleFinished(object sender, BattleFinishedArgs e)
         {
             var achievements = new List<IAchievement>();
             foreach (var achievement in Achievements.Where(x => x.CanHandleEvent(e)))
@@ -47,14 +57,11 @@ namespace RPG.Model.Achivements
             RaiseAchievementGet(achievements);
         }
 
-        #region ISavableData Members
-
-        public void SaveData()
+        private void RaiseAchievementGet(IEnumerable<IAchievement> achievement)
         {
-            _userState.Achievements = Achievements.Select(x => new AchievementExtract(x.Name, x.Current)).ToList();
+            var handle = OnAchievementGet;
+            handle?.Invoke(this, new AchievementEventArgs(achievement));
         }
-
-        #endregion
 
         private void RecoverAchievements()
         {
@@ -74,11 +81,7 @@ namespace RPG.Model.Achivements
             }
         }
 
-        private void RaiseAchievementGet(IEnumerable<IAchievement> achievement)
-        {
-            var handle = OnAchievementGet;
-            handle?.Invoke(this, new AchievementEventArgs(achievement));
-        }
+        #endregion
 
         #region Fields
 
