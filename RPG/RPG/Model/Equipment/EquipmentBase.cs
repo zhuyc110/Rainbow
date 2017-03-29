@@ -19,7 +19,7 @@ namespace RPG.Model.Equipment
 
         public IEnumerable<BasicProperty> EquipmentProperties { get; protected set; }
 
-        public IEnumerable<BasicProperty> EnchantmentProperties { get; protected set; }
+        public IEnumerable<BasicProperty> EnchantmentProperties { get; set; }
 
         public int Amount { get; set; }
 

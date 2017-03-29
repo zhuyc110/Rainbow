@@ -12,12 +12,9 @@ namespace RPG.Model.Interfaces
         bool Achived { get; }
         IEnumerable<BasicProperty> AchivementProperties { get; }
         string Content { get; }
-        IEnumerable<IBattleProperty> Enhancements { get; }
         string IconResource { get; }
-
-
+        
         bool CanHandleEvent<T>(T args);
-        void ComposeProperty();
         void HandleEvent();
     }
 }

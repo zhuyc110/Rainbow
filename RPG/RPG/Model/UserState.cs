@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Achivements;
+using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model
@@ -14,7 +15,7 @@ namespace RPG.Model
 
         public event EventHandler LevelUp;
 
-        #region Properties
+        public List<EquipmentExtract> Equipments { get; set; }
 
         //[XmlArray]
         public List<AchievementExtract> Achievements { get; set; }
@@ -71,8 +72,6 @@ namespace RPG.Model
 
         public string UserName { get; set; }
 
-        #endregion
-
         public UserState()
         {
             Level = 1;
@@ -84,6 +83,8 @@ namespace RPG.Model
             CheckedSkills = new List<string>();
         }
 
+        #region Private methods
+
         private void CalculateLevel()
         {
             var expRequiredOfCurrentLevel = 500 * (long) Math.Pow(1.5, Level - 1);
@@ -94,6 +95,8 @@ namespace RPG.Model
                 Experience = Experience - expRequiredOfCurrentLevel;
             }
         }
+
+        #endregion
 
         #region Fields
 

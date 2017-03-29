@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Interfaces;
+using RPG.Model;
 using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
 
@@ -30,7 +31,7 @@ namespace RPG.ViewModel
         [Obsolete("This is ONLY used for Design view")]
         public EquipmentViewModel()
         {
-            EquipmentManager = new EquipmentManager(new List<EquipmentBase> {new BasicLance(), new BasicLance()});
+            EquipmentManager = new EquipmentManager(new List<EquipmentBase> {new BasicLance(), new BasicLance()}, new UserState());
         }
 
         #region Private methods

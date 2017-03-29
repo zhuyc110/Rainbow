@@ -12,7 +12,14 @@ namespace RPG.Model.UserProperties
             RelativeEnhancement = relativeEnhancement;
         }
 
-        public string Name { get; }
+        public BasicProperty()
+        {
+            Name = string.Empty;
+            AbsoluteEnhancement = 0;
+            RelativeEnhancement = 0;
+        }
+
+        public string Name { get; set; }
         public int AbsoluteEnhancement { get; set; }
         public double RelativeEnhancement { get; set; }
 

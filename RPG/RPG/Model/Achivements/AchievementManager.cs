@@ -25,10 +25,9 @@ namespace RPG.Model.Achivements
             IBattleActor battleActor)
         {
             _userState = userState;
-            _battleActor = battleActor;
             Achievements = new ObservableCollection<IAchievement>(achievements);
             RecoverAchievements();
-            _battleActor.BattleFinished += OnBattleFinished;
+            battleActor.BattleFinished += OnBattleFinished;
         }
 
         #region ISavableData Members
@@ -50,7 +49,6 @@ namespace RPG.Model.Achivements
                 achievement.HandleEvent();
                 if (achievement.Achived)
                 {
-                    achievement.ComposeProperty();
                     achievements.Add(achievement);
                 }
             }
@@ -74,10 +72,6 @@ namespace RPG.Model.Achivements
                     continue;
                 }
                 matchedAchievement.Current = achievementExtract.Current;
-                if (matchedAchievement.Achived)
-                {
-                    matchedAchievement.ComposeProperty();
-                }
             }
         }
 
@@ -88,7 +82,6 @@ namespace RPG.Model.Achivements
         private static readonly ILog Log = LogManager.GetLogger(typeof(AchievementManager));
 
         private readonly IUserState _userState;
-        private readonly IBattleActor _battleActor;
 
         #endregion
     }

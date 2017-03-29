@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPG.Model.Achivements;
+using RPG.Model.Equipment;
 
 namespace RPG.Model.Interfaces
 {
@@ -29,6 +30,8 @@ namespace RPG.Model.Interfaces
         List<string> CheckedSkills { get; set; }
 
         List<AchievementExtract> Achievements { get; set; }
+
+        List<EquipmentExtract> Equipments { get; set; }
 
         #endregion
     }

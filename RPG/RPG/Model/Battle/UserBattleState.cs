@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Reflection;
+using log4net;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
 using RPG.Model.UserProperties;
@@ -40,30 +42,34 @@ namespace RPG.Model.Battle
         public int MaximumHp => UserProperty.Single(x => x.Name == "生命").FinalValue;
 
         [ImportingConstructor]
-        public UserBattleState(IUserState userState, ISkillManager skillManager, IEquipmentManager equipmentManager, IEnchantmentManager enchantmentManager)
+        public UserBattleState(IUserState userState, ISkillManager skillManager, IEquipmentManager equipmentManager, IEnchantmentManager enchantmentManager, IAchievementManager achievementManager)
         {
             UserState = userState;
             _skillManager = skillManager;
             _equipmentManager = equipmentManager;
+            _achievementManager = achievementManager;
 
             skillManager.CheckedSkillChanged += (sender, args) => ComposeUserSkills();
-            equipmentManager.OnEquipmentChanged += (sender, args) =>
-            {
-                InitializeUserProperties();
-                ComposeEquipmentProperties();
-                ComposeEquipmentEnchantProperties();
-            };
-            UserState.LevelUp += (sender, args) => ComposeUserProperties();
-            enchantmentManager.EquipedEquipmentEnchantmentChanged += (sender, args) => ComposeEquipmentEnchantProperties();
+            equipmentManager.OnEquipmentChanged += (sender, args) => ResetBattleState();
+            UserState.LevelUp += (sender, args) => ResetBattleState();
+            enchantmentManager.EquipedEquipmentEnchantmentChanged += (sender, args) => ResetBattleState();
+            achievementManager.OnAchievementGet += (sender, args) => ResetBattleState();
             ResetBattleState();
         }
 
         public UserBattleState ResetBattleState()
         {
-            ComposeUserProperties();
+            InitializeUserProperties();
             ComposeUserSkills();
             ComposeEquipmentProperties();
             ComposeEquipmentEnchantProperties();
+            ComposeAchievementProperties();
+
+            OnPropertyChanged(nameof(UserProperty));
+
+            CurrentHp = MaximumHp;
+            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
+
             return this;
         }
 
@@ -80,7 +86,6 @@ namespace RPG.Model.Battle
                     property.RelativeEnhancement += enchantmentProperty.RelativeEnhancement;
                 }
             }
-            OnPropertyChanged(nameof(UserProperty));
         }
 
         private void ComposeEquipmentProperties()
@@ -94,14 +99,25 @@ namespace RPG.Model.Battle
                     property.RelativeEnhancement += equipmentProperty.RelativeEnhancement;
                 }
             }
-            OnPropertyChanged(nameof(UserProperty));
         }
 
-        private void ComposeUserProperties()
+        private void ComposeAchievementProperties()
         {
-            InitializeUserProperties();
-            CurrentHp = MaximumHp;
-            CurrentAttack = UserProperty.Single(x => x.Name == "攻击").FinalValue;
+            foreach (var achievement in _achievementManager.Achievements.Where(x=>x.Achived))
+            {
+                foreach (var achivementProperty in achievement.AchivementProperties)
+                {
+                    var property = UserProperty.FirstOrDefault(x => x.Name == achivementProperty.Name);
+                    if (property == null)
+                    {
+                        Log.Warn($"Property: {achivementProperty.Name} is not supported yet.");
+                        continue;
+                    }
+
+                    property.AbsoluteEnhancement += achivementProperty.AbsoluteEnhancement;
+                    property.RelativeEnhancement += achivementProperty.RelativeEnhancement;
+                }
+            }
         }
 
         private void ComposeUserSkills()
@@ -127,6 +143,9 @@ namespace RPG.Model.Battle
 
         private readonly ISkillManager _skillManager;
         private readonly IEquipmentManager _equipmentManager;
+        private readonly IAchievementManager _achievementManager;
+
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
     }

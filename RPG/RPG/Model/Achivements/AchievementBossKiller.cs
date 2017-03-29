@@ -8,9 +8,8 @@ namespace RPG.Model.Achivements
     public class AchievementBossKiller : AchievementBase
     {
         [ImportingConstructor]
-        public AchievementBossKiller(UserBattleState userBattleState)
-            : base(userBattleState.UserProperty,
-                "Boss Killer",
+        public AchievementBossKiller()
+            : base("Boss Killer",
                 "杀死关卡boss10w次",
                 new List<BasicProperty>
                 {

@@ -8,9 +8,8 @@ namespace RPG.Model.Achivements
     public class AchievementFirstBlood : AchievementBase
     {
         [ImportingConstructor]
-        public AchievementFirstBlood(UserBattleState userBattleState)
-            : base(userBattleState.UserProperty,
-                "First blood!",
+        public AchievementFirstBlood()
+            : base("First blood!",
                 "你杀了一只怪物！",
                 new List<BasicProperty>
                 {
