@@ -160,6 +160,7 @@
     <Compile Include="Resource\Converters\IntToNullableIntConverter.cs" />
     <Compile Include="Resource\Converters\IsNullToVisibilityConverter.cs" />
     <Compile Include="Resource\Converters\MonsterClassToBrushConverter.cs" />
+    <Compile Include="Resource\Localization\StringDefinitions.cs" />
     <Compile Include="Resource\RarityToBrushConverter.cs" />
     <Compile Include="Resource\Converters\ResourceKeyToImageConverter.cs" />
     <Compile Include="Model\Skills\SkillBase.cs" />
@@ -167,6 +168,11 @@
     <Compile Include="Model\Skills\Fury.cs" />
     <Compile Include="Model\Skills\HeavyStrike.cs" />
     <Compile Include="Model\Skills\Whirlwind.cs" />
+    <Compile Include="Resource\Localization\UiTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UiTexts.resx</DependentUpon>
+    </Compile>
     <Compile Include="RPGHome.xaml.cs">
       <DependentUpon>RPGHome.xaml</DependentUpon>
     </Compile>
@@ -339,6 +345,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Localization\UiTexts.en-US.resx" />
+    <EmbeddedResource Include="Resource\Localization\UiTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UiTexts.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\Localization\UiTexts.zh-CN.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
