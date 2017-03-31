@@ -12,11 +12,7 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ItemsViewModel : BindableBase
     {
-        #region Properties
-
         public IItemManager ItemManager { get; set; }
-
-        #endregion
 
         [ImportingConstructor]
         public ItemsViewModel(IItemManager itemManager, IUserState userState)

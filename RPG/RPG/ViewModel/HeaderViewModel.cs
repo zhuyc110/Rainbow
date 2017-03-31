@@ -5,7 +5,7 @@ using RPG.Model.Interfaces;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof (HeaderViewModel))]
+    [Export(typeof(HeaderViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class HeaderViewModel : BindableBase
     {
@@ -32,8 +32,8 @@ namespace RPG.ViewModel
 
         private void CalculateExpPercentage()
         {
-            var expRequiredOfCurrentLevel = 500*Math.Pow(1.5, UserState.Level - 1);
-            ExpBarLength = UserState.Experience/expRequiredOfCurrentLevel*100;
+            var expRequiredOfCurrentLevel = 500 * Math.Pow(1.5, UserState.Level - 1);
+            ExpBarLength = UserState.Experience / expRequiredOfCurrentLevel * 100;
         }
 
         #endregion

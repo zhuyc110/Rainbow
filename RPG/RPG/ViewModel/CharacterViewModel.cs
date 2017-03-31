@@ -23,11 +23,7 @@ namespace RPG.ViewModel
         public EquipmentBase Ring => EquipmentManager[EquipmentPart.Ring];
         public EquipmentBase Boot => EquipmentManager[EquipmentPart.Boot];
 
-        #region Properties
-
         public UserBattleState UserBattleState { get; }
-
-        #endregion
 
         [ImportingConstructor]
         public CharacterViewModel(UserBattleState userBattleState, IEquipmentManager equipmentManager)

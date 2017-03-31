@@ -180,6 +180,7 @@
     <Compile Include="ViewModel\AdventureViewModel.cs" />
     <Compile Include="ViewModel\BackpackViewModel.cs" />
     <Compile Include="ViewModel\BattleViewModel.cs" />
+    <Compile Include="ViewModel\BonusViewModel.cs" />
     <Compile Include="ViewModel\CharacterViewModel.cs" />
     <Compile Include="ViewModel\EquipmentDetailViewModel.cs" />
     <Compile Include="ViewModel\EquipmentViewModel.cs" />

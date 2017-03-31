@@ -8,11 +8,7 @@ namespace RPG.ViewModel
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class SkillsViewModel : BindableBase
     {
-        #region Properties
-
         public ISkillManager SkillManager { get; }
-
-        #endregion
 
         [ImportingConstructor]
         public SkillsViewModel(ISkillManager skillManager)
