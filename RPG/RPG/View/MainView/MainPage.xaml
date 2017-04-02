@@ -62,7 +62,7 @@
             <Button Grid.Column="1" Content="任务" Height="25" Margin="5" />
             <Button Grid.Column="2" Content="礼包" Height="25" Margin="5" />
             <Button Grid.Column="3" Content="兑换" Height="25" Margin="5" />
-            <Button Grid.Column="4" Content="更多" Height="25" Margin="5" />
+            <Button Grid.Column="4" Content="更多" Height="25" Margin="5" Command="{Binding Path=OpenBuyGemCommand}" />
         </Grid>
     </Grid>
 </UserControl>

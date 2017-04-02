@@ -107,6 +107,7 @@
     <Compile Include="Model\Achivements\AchievementExtract.cs" />
     <Compile Include="Model\Achivements\AchievementFirstBlood.cs" />
     <Compile Include="Model\Achivements\AchievementManager.cs" />
+    <Compile Include="Model\BonusEntity.cs" />
     <Compile Include="Model\Enchantment\EnchantmentManager.cs" />
     <Compile Include="Model\Equipment\EquipmentExtract.cs" />
     <Compile Include="Model\Interfaces\IEnchantmentManager.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="ViewModel\BackpackViewModel.cs" />
     <Compile Include="ViewModel\BattleViewModel.cs" />
     <Compile Include="ViewModel\BonusViewModel.cs" />
+    <Compile Include="ViewModel\BuyGemViewModel.cs" />
     <Compile Include="ViewModel\CharacterViewModel.cs" />
     <Compile Include="ViewModel\EquipmentDetailViewModel.cs" />
     <Compile Include="ViewModel\EquipmentViewModel.cs" />
@@ -202,6 +204,9 @@
     </Compile>
     <Compile Include="View\MainView\BattleView.xaml.cs">
       <DependentUpon>BattleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView\BuyGemView.xaml.cs">
+      <DependentUpon>BuyGemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView\EquipmentDetailView.xaml.cs">
       <DependentUpon>EquipmentDetailView.xaml</DependentUpon>
@@ -283,6 +288,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView\BattleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView\BuyGemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

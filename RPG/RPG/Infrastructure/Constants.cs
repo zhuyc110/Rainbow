@@ -12,6 +12,7 @@ namespace RPG.Infrastructure
         public const string SKILLS_VIEW = nameof(SkillsView);
         public const string ACHIEVEMENTS_VIEW = nameof(AchievementsView);
         public const string ADVENTURE_VIEW = nameof(AdventureView);
+        public const string BUYGEM_VIEW = nameof(BuyGemView);
 
         #endregion
     }

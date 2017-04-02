@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="RPG.View.MainView.BuyGemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RPG.View.MainView"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             xmlns:converters="clr-namespace:RPG.Resource.Converters"
+             xmlns:controls="clr-namespace:RPG.Controls"
+             mc:Ignorable="d" 
+            d:DataContext="{d:DesignInstance viewModel:BuyGemViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\..\Resource\IconDictionary.xaml" />
+                <ResourceDictionary Source="..\..\Resource\Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:IntToNullableIntConverter x:Key="IntToNullableIntConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <ListView ItemsSource="{Binding Path=GemEntities}" Background="{StaticResource BackgroundBrush02}" BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <controls:IconItem ShowAmount="True" Amount="{Binding}" Rarity="Legend" Icon="{StaticResource BTNEnchantedGemstone}"></controls:IconItem>
+                        <TextBlock Margin="5" VerticalAlignment="Center" Text="{Binding StringFormat={}购买{0}宝石}"></TextBlock>
+                        <Button Content="购买" VerticalAlignment="Center" Command="{Binding Path=DataContext.BuyGemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:BuyGemView}}"
+                                CommandParameter="{Binding Converter={StaticResource IntToNullableIntConverter}}"></Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

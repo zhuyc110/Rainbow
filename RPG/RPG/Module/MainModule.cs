@@ -30,6 +30,7 @@ namespace RPG.Module
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(AdventureView));
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(MonstersView));
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(BattleView));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(BuyGemView));
         }
 
         #endregion
