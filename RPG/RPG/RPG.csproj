@@ -139,7 +139,6 @@
     <Compile Include="Model\Interfaces\ITitleManager.cs" />
     <Compile Include="Model\Interfaces\IBattleProperty.cs" />
     <Compile Include="Model\Interfaces\IUserState.cs" />
-    <Compile Include="Model\Items\Beryl.cs" />
     <Compile Include="Model\Items\ItemBase.cs" />
     <Compile Include="Model\Items\ItemManager.cs" />
     <Compile Include="Model\Items\SellEventArgs.cs" />
@@ -204,6 +203,9 @@
     </Compile>
     <Compile Include="View\MainView\BattleView.xaml.cs">
       <DependentUpon>BattleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView\BonusView.xaml.cs">
+      <DependentUpon>BonusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView\BuyGemView.xaml.cs">
       <DependentUpon>BuyGemView.xaml</DependentUpon>
@@ -288,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainView\BattleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView\BonusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

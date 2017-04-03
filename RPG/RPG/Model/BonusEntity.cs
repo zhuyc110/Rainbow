@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RPG.Model.Interfaces;
 
 namespace RPG.Model
@@ -12,5 +8,11 @@ namespace RPG.Model
         public IEnumerable<IItem> BonusItems { get; private set; }
 
         public int RequiredGem { get; private set; }
+
+        public BonusEntity(int requiredGem, IEnumerable<IItem> bonusItems)
+        {
+            RequiredGem = requiredGem;
+            BonusItems = bonusItems;
+        }
     }
 }

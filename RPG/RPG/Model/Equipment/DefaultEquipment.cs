@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using RPG.Model.UserProperties;
 
 namespace RPG.Model.Equipment
