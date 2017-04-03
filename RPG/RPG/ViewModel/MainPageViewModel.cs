@@ -24,6 +24,8 @@ namespace RPG.ViewModel
 
         public ICommand OpenBuyGemCommand { get; }
 
+        public ICommand OpenBonusCommand { get; }
+
         [ImportingConstructor]
         public MainPageViewModel(IIOService ioService)
         {
@@ -32,6 +34,7 @@ namespace RPG.ViewModel
             OpenAchievementsCommand = new DelegateCommand(() => OpenView(Constants.ACHIEVEMENTS_VIEW));
             OpenAdventuresCommand = new DelegateCommand(() => OpenView(Constants.ADVENTURE_VIEW));
             OpenBuyGemCommand = new DelegateCommand(() => OpenView(Constants.BUYGEM_VIEW));
+            OpenBonusCommand = new DelegateCommand(() => OpenView(Constants.BONUS_VIEW));
         }
 
         [Obsolete]

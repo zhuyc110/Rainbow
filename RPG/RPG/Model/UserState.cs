@@ -52,7 +52,14 @@ namespace RPG.Model
         public long Gem
         {
             get { return _gem; }
-            set { SetProperty(ref _gem, value); }
+            set
+            {
+                if (SetProperty(ref _gem, value))
+                {
+                    var handle = GemChanged;
+                    handle?.Invoke(null, null);
+                }
+            }
         }
 
         public long Gold
@@ -105,6 +112,7 @@ namespace RPG.Model
         private long _gold;
         private int _level;
         private string _title;
+        public event EventHandler GemChanged;
 
         #endregion
     }

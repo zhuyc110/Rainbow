@@ -11,6 +11,8 @@ namespace RPG.Model.Interfaces
 
         event EventHandler LevelUp;
 
+        event EventHandler GemChanged;
+
         #region Properties
 
         long Experience { get; set; }
