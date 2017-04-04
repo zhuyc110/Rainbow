@@ -32,7 +32,7 @@ namespace RPG.ViewModel
 
             BonusEntities = new ObservableCollection<BonusEntity>
             {
-                new BonusEntity(100, new List<IItem> {_itemManager.Items.Single(x => x.ItemName == "翡翠")}, _userState)
+                new BonusEntity(100, new List<IItem> {_itemManager.FindItem("翡翠")}, _userState)
             };
 
             GetBonusCommand = new DelegateCommand<BonusEntity>(GetBonus);
@@ -43,7 +43,7 @@ namespace RPG.ViewModel
         {
             BonusEntities = new ObservableCollection<BonusEntity>
             {
-                new BonusEntity(100, new List<IItem> {new ItemManager().Items.Single(x => x.ItemName == "翡翠")}, new UserState())
+                new BonusEntity(100, new List<IItem> {new ItemManager().AllGameItems.Single(x => x.ItemName == "翡翠")}, new UserState())
             };
         }
 
@@ -53,10 +53,10 @@ namespace RPG.ViewModel
         {
             foreach (var bonusItem in bonus.BonusItems)
             {
-                IItem item = _itemManager.Items.FirstOrDefault(x => x.ItemName == bonusItem.ItemName);
+                IItem item = _itemManager.FindItem(bonusItem.ItemName);
                 if (item != null)
                 {
-                    ((ItemBase) item).Amount += 1;
+                    _itemManager.AddItem((ItemBase) item);
                     continue;
                 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Data;
 using log4net;
 using RPG.Model.Interfaces;
@@ -63,6 +64,24 @@ namespace RPG.Model.Items
             }
         }
 
+        public ItemBase FindItem(string name)
+        {
+            var item = ItemsIdDictionary.FirstOrDefault(x => x.ItemName == name);
+            if (item == null)
+            {
+                Log.Error($"None of the item names is {name}");
+                throw new ArgumentException(name);
+            }
+
+            var result = item.Clone() as ItemBase;
+            if (result != null)
+            {
+                result.Amount = 1;
+                return result;
+            }
+            throw new ArgumentException(name);
+        }
+
         public void RemoveItem(ItemBase newItem)
         {
             var itemInCollection = Items.FirstOrDefault(x => x.ItemName == newItem.ItemName);
@@ -110,7 +129,7 @@ namespace RPG.Model.Items
 
         public static readonly HashSet<ItemBase> ItemsIdDictionary;
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(ItemManager));
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private readonly object _threadLock = new object();
 

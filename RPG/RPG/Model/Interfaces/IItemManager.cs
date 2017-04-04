@@ -20,5 +20,7 @@ namespace RPG.Model.Interfaces
         void SellItem(string item, int amount);
 
         void RemoveItem(ItemBase newItem);
+
+        ItemBase FindItem(string name);
     }
 }
