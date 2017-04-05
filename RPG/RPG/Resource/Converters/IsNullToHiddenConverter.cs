@@ -6,7 +6,7 @@ using System.Windows.Data;
 namespace RPG.Resource.Converters
 {
     [ValueConversion(typeof(object), typeof(Visibility))]
-    public class IsNullToVisibilityConverter : IValueConverter
+    public class IsNullToHiddenConverter : IValueConverter
     {
         #region IValueConverter Members
 

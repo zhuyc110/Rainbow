@@ -1,13 +1,14 @@
 ﻿<UserControl x:Class="RPG.View.MainView.BonusView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RPG.View.MainView"
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              xmlns:model="clr-namespace:RPG.Model"
-             mc:Ignorable="d" 
-            d:DataContext="{d:DesignInstance viewModel:BonusViewModel, IsDesignTimeCreatable=True}"
+             xmlns:controls="clr-namespace:RPG.Controls"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModel:BonusViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -21,11 +22,18 @@
         <ListView ItemsSource="{Binding Path=BonusEntities}" Background="{StaticResource BackgroundBrush02}" BorderThickness="0">
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type model:BonusEntity}">
-                    <StackPanel Orientation="Horizontal">
-                        <!--<controls:IconItem ShowAmount="True" Amount="{Binding Path=BonusItems}" Rarity="Legend" Icon="{StaticResource BTNEnchantedGemstone}"></controls:IconItem>-->
+                    <!--<StackPanel Orientation="Horizontal">
+                        --><!--<controls:IconItem ShowAmount="True" Amount="{Binding Path=BonusItems}" Rarity="Legend" Icon="{StaticResource BTNEnchantedGemstone}"></controls:IconItem>--><!--
                         <TextBlock Margin="5" VerticalAlignment="Center" Text="{Binding Path=RequiredGem, StringFormat={}累计获取{0}宝石}"></TextBlock>
                         <Button Content="领取" VerticalAlignment="Center" Command="{Binding Path=DataContext.GetBonusCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:BonusView}}"
                                 CommandParameter="{Binding}" IsEnabled="{Binding Path=CanGetBonus}"></Button>
+                    </StackPanel>-->
+                    <StackPanel Orientation="Horizontal">
+                        <controls:IconItemHorizontal Background="{StaticResource BackgroundBrush02}"
+                                                     ItemContent="{Binding Path=RequiredGem, StringFormat={}累计{0}宝石}" PropertyList="{Binding Path=BonusItems}" />
+                        <Button Margin="5" Content="领取" VerticalAlignment="Center"
+                                Command="{Binding Path=DataContext.GetBonusCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:BonusView}}"
+                                CommandParameter="{Binding}" IsEnabled="{Binding Path=CanGetBonus}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -158,7 +158,8 @@
     <Compile Include="Module\MainModule.cs" />
     <Compile Include="Module\NavigationModule.cs" />
     <Compile Include="Resource\Converters\IntToNullableIntConverter.cs" />
-    <Compile Include="Resource\Converters\IsNullToVisibilityConverter.cs" />
+    <Compile Include="Resource\Converters\IsNullToCollapsedConverter.cs" />
+    <Compile Include="Resource\Converters\IsNullToHiddenConverter.cs" />
     <Compile Include="Resource\Converters\MonsterClassToBrushConverter.cs" />
     <Compile Include="Resource\Localization\StringDefinitions.cs" />
     <Compile Include="Resource\RarityToBrushConverter.cs" />

@@ -68,6 +68,11 @@ namespace RPG.Model.Items
 
         #endregion
 
+        public override string ToString()
+        {
+            return $"{ItemName} * {Amount}";
+        }
+
         #region Private methods
 
         private void CalculateId()

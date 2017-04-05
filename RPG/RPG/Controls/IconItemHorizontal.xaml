@@ -3,12 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:RPG.Resource.Converters"
              mc:Ignorable="d" 
              x:Name="IconItemHorizontalControl"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:IsNullToCollapsedConverter x:Key="IsNullToCollapsedConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="52"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="100"></ColumnDefinition>
             <ColumnDefinition Width="210"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -16,7 +20,7 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Width="48" Height="48" Grid.RowSpan="2" Margin="2" Source="{Binding ElementName=IconItemHorizontalControl, Path=Icon}"/>
+        <Image Width="48" Height="48" Grid.RowSpan="2" Margin="2" Source="{Binding ElementName=IconItemHorizontalControl, Path=Icon}" Visibility="{Binding ElementName=IconItemHorizontalControl, Path=Icon, Converter={StaticResource IsNullToCollapsedConverter}}"/>
         <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemName}"/>
         <TextBlock Margin="5"  Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=IconItemHorizontalControl, Path=ItemContent}"/>
         <!--<TextBlock Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Text="{Binding ElementName=IconItemHorizontalControl, Path=AdditionalText}"/>-->
