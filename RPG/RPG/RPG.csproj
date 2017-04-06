@@ -96,9 +96,11 @@
     <Compile Include="Infrastructure\Extension\PropertyChangedExtendedEventArgs.cs" />
     <Compile Include="Infrastructure\Implementation\IOService.cs" />
     <Compile Include="Infrastructure\Implementation\MyRandom.cs" />
+    <Compile Include="Infrastructure\Implementation\SavableDataManager.cs" />
     <Compile Include="Infrastructure\Implementation\XmlSerializer.cs" />
     <Compile Include="Infrastructure\Interfaces\IIOService.cs" />
     <Compile Include="Infrastructure\Interfaces\IRandom.cs" />
+    <Compile Include="Infrastructure\Interfaces\ISavableDataManager.cs" />
     <Compile Include="Infrastructure\Interfaces\IView.cs" />
     <Compile Include="Infrastructure\Interfaces\IXmlSerializer.cs" />
     <Compile Include="Model\Achivements\AchievementBase.cs" />

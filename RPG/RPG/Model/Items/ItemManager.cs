@@ -64,7 +64,7 @@ namespace RPG.Model.Items
             }
         }
 
-        public ItemBase FindItem(string name)
+        public ItemBase CreateItem(string name, int amount = 1)
         {
             var item = ItemsIdDictionary.FirstOrDefault(x => x.ItemName == name);
             if (item == null)
@@ -76,7 +76,7 @@ namespace RPG.Model.Items
             var result = item.Clone() as ItemBase;
             if (result != null)
             {
-                result.Amount = 1;
+                result.Amount = amount;
                 return result;
             }
             throw new ArgumentException(name);

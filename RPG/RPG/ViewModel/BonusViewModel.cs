@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Input;
 using log4net;
 using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Model;
-using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
 
@@ -28,11 +26,11 @@ namespace RPG.ViewModel
         {
             _itemManager = itemManager;
             _equipmentManager = equipmentManager;
-            _userState = userState;
 
             BonusEntities = new ObservableCollection<BonusEntity>
             {
-                new BonusEntity(100, new List<IItem> {_itemManager.FindItem("翡翠")}, _userState)
+                new BonusEntity(100, new List<IItem> {_itemManager.CreateItem("翡翠")}, userState),
+                new BonusEntity(1000, new List<IItem> {_itemManager.CreateItem("翡翠", 100)}, userState)
             };
 
             GetBonusCommand = new DelegateCommand<BonusEntity>(GetBonus);
@@ -43,7 +41,7 @@ namespace RPG.ViewModel
         {
             BonusEntities = new ObservableCollection<BonusEntity>
             {
-                new BonusEntity(100, new List<IItem> {new ItemManager().AllGameItems.Single(x => x.ItemName == "翡翠")}, new UserState())
+                new BonusEntity(100, new List<IItem> {new ItemManager().CreateItem("翡翠")}, new UserState())
             };
         }
 
@@ -53,22 +51,13 @@ namespace RPG.ViewModel
         {
             foreach (var bonusItem in bonus.BonusItems)
             {
-                IItem item = _itemManager.FindItem(bonusItem.ItemName);
-                if (item != null)
+                if (bonusItem != null)
                 {
-                    _itemManager.AddItem((ItemBase) item);
+                    _itemManager.AddItem((ItemBase) bonusItem);
                     continue;
                 }
 
-                item = _equipmentManager.Equipments.FirstOrDefault(x => x.ItemName == bonusItem.ItemName);
-
-                if (item != null)
-                {
-                    ((EquipmentBase) item).Amount += 1;
-                    continue;
-                }
-
-                Log.Warn($"Can not find item: {bonusItem.ItemName}");
+                Log.Warn($"Can not find item: {bonusItem}");
             }
         }
 
@@ -78,7 +67,6 @@ namespace RPG.ViewModel
 
         private readonly IItemManager _itemManager;
         private readonly IEquipmentManager _equipmentManager;
-        private readonly IUserState _userState;
 
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 

@@ -18,7 +18,7 @@ namespace RPG.Model.Items
         {
             get { return _amount; }
 
-            set { SetProperty(ref _amount, value > 99 ? 99 : value); }
+            set { SetProperty(ref _amount, value > 999 ? 999 : value); }
         }
 
         public string Content { get; set; }
