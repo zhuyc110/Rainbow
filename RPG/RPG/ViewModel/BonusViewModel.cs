@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Input;
 using log4net;
 using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Model;
+using RPG.Model.Bonus;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
 
@@ -22,16 +24,13 @@ namespace RPG.ViewModel
         public ICommand GetBonusCommand { get; private set; }
 
         [ImportingConstructor]
-        public BonusViewModel(IItemManager itemManager, IEquipmentManager equipmentManager, IUserState userState)
+        public BonusViewModel(IItemManager itemManager, IEquipmentManager equipmentManager, IUserState userState, IBonusManager bonusManager)
         {
             _itemManager = itemManager;
             _equipmentManager = equipmentManager;
+            _bonusManager = bonusManager;
 
-            BonusEntities = new ObservableCollection<BonusEntity>
-            {
-                new BonusEntity(100, new List<IItem> {_itemManager.CreateItem("翡翠")}, userState),
-                new BonusEntity(1000, new List<IItem> {_itemManager.CreateItem("翡翠", 100)}, userState)
-            };
+            BonusEntities = new ObservableCollection<BonusEntity>(_bonusManager.BonusEntities);
 
             GetBonusCommand = new DelegateCommand<BonusEntity>(GetBonus);
         }
@@ -59,6 +58,8 @@ namespace RPG.ViewModel
 
                 Log.Warn($"Can not find item: {bonusItem}");
             }
+
+            _bonusManager.BonusEntities.Single(x => x.RequiredGem == bonus.RequiredGem).IsGotten = true;
         }
 
         #endregion
@@ -67,6 +68,7 @@ namespace RPG.ViewModel
 
         private readonly IItemManager _itemManager;
         private readonly IEquipmentManager _equipmentManager;
+        private readonly IBonusManager _bonusManager;
 
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 

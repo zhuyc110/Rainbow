@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Prism.Mvvm;
 using RPG.Model.Achivements;
+using RPG.Model.Bonus;
 using RPG.Model.Equipment;
 using RPG.Model.Interfaces;
 
@@ -12,13 +13,15 @@ namespace RPG.Model
     public class UserState : BindableBase, IUserState
     {
         public event EventHandler ExpChanged;
+        public event EventHandler GemChanged;
 
         public event EventHandler LevelUp;
 
         public List<EquipmentExtract> Equipments { get; set; }
 
-        //[XmlArray]
         public List<AchievementExtract> Achievements { get; set; }
+
+        public List<BonusEntity> BonusEntities { get; set; }
 
         public List<string> CheckedSkills { get; set; }
 
@@ -112,7 +115,6 @@ namespace RPG.Model
         private long _gold;
         private int _level;
         private string _title;
-        public event EventHandler GemChanged;
 
         #endregion
     }

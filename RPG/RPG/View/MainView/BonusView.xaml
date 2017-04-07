@@ -7,6 +7,7 @@
              xmlns:viewModel="clr-namespace:RPG.ViewModel"
              xmlns:model="clr-namespace:RPG.Model"
              xmlns:controls="clr-namespace:RPG.Controls"
+             xmlns:bonus="clr-namespace:RPG.Model.Bonus"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:BonusViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -16,24 +17,26 @@
                 <ResourceDictionary Source="..\..\Resource\IconDictionary.xaml" />
                 <ResourceDictionary Source="..\..\Resource\Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <ListView ItemsSource="{Binding Path=BonusEntities}" Background="{StaticResource BackgroundBrush02}" BorderThickness="0">
             <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type model:BonusEntity}">
-                    <!--<StackPanel Orientation="Horizontal">
-                        --><!--<controls:IconItem ShowAmount="True" Amount="{Binding Path=BonusItems}" Rarity="Legend" Icon="{StaticResource BTNEnchantedGemstone}"></controls:IconItem>--><!--
-                        <TextBlock Margin="5" VerticalAlignment="Center" Text="{Binding Path=RequiredGem, StringFormat={}累计获取{0}宝石}"></TextBlock>
-                        <Button Content="领取" VerticalAlignment="Center" Command="{Binding Path=DataContext.GetBonusCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:BonusView}}"
-                                CommandParameter="{Binding}" IsEnabled="{Binding Path=CanGetBonus}"></Button>
-                    </StackPanel>-->
+                <DataTemplate DataType="{x:Type bonus:BonusEntity}">
                     <StackPanel Orientation="Horizontal">
                         <controls:IconItemHorizontal Background="{StaticResource BackgroundBrush02}"
-                                                     ItemContent="{Binding Path=RequiredGem, StringFormat={}累计{0}宝石}" PropertyList="{Binding Path=BonusItems}" />
+                                                     ItemContent="{Binding Path=RequiredGem, StringFormat={}累计{0}宝石}" PropertyList="{Binding Path=BonusItems}">
+
+
+                        </controls:IconItemHorizontal>
                         <Button Margin="5" Content="领取" VerticalAlignment="Center"
                                 Command="{Binding Path=DataContext.GetBonusCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:BonusView}}"
-                                CommandParameter="{Binding}" IsEnabled="{Binding Path=CanGetBonus}" />
+                                CommandParameter="{Binding}" IsEnabled="{Binding Path=CanGetBonus}">
+                        </Button>
+                        <StackPanel.ToolTip>
+                            <TextBlock Text="已经领取" Visibility="{Binding IsGotten, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel.ToolTip>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

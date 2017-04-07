@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPG.Model.Achivements;
+using RPG.Model.Bonus;
 using RPG.Model.Equipment;
 
 namespace RPG.Model.Interfaces
@@ -9,11 +10,9 @@ namespace RPG.Model.Interfaces
     {
         event EventHandler ExpChanged;
 
-        event EventHandler LevelUp;
-
         event EventHandler GemChanged;
 
-        #region Properties
+        event EventHandler LevelUp;
 
         long Experience { get; set; }
 
@@ -35,6 +34,6 @@ namespace RPG.Model.Interfaces
 
         List<EquipmentExtract> Equipments { get; set; }
 
-        #endregion
+        List<BonusEntity> BonusEntities { get; set; }
     }
 }
