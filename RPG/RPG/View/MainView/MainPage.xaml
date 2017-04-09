@@ -37,7 +37,7 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Content="角色强化" HorizontalAlignment="Left" Height="25" Width="75" Margin="5" />
-        <Button Grid.Row="0" Content="公告" HorizontalAlignment="Right" Height="25" Width="75" Margin="5" />
+        <Button Grid.Row="0" Content="公告" HorizontalAlignment="Right" Height="25" Width="75" Margin="5" Command="{Binding Path=OpenAnnouncementCommand}" />
         <controls:IconButton Grid.Row="1" HorizontalAlignment="Left" Style="{StaticResource MainPageIconButtonStyle}"
                              ImageSource="{StaticResource BTNTombOfRelics}" Content="{x:Static localization:StringDefinitions.MainView_BlackMarket}"/>
         <controls:IconButton Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource MainPageIconButtonStyle}"
@@ -58,7 +58,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="提示" Height="25" Margin="5" />
+            <Button Grid.Column="0" Content="提示" Height="25" Margin="5" Command="{Binding Path=OpenTipCommand}"/>
             <Button Grid.Column="1" Content="任务" Height="25" Margin="5" />
             <Button Grid.Column="2" Content="礼包" Height="25" Margin="5" Command="{Binding Path=OpenBonusCommand}" />
             <Button Grid.Column="3" Content="兑换" Height="25" Margin="5" />

@@ -26,6 +26,10 @@ namespace RPG.ViewModel
 
         public ICommand OpenBonusCommand { get; }
 
+        public ICommand OpenAnnouncementCommand { get; }
+
+        public ICommand OpenTipCommand { get; }
+
         [ImportingConstructor]
         public MainPageViewModel(IIOService ioService)
         {
@@ -35,6 +39,8 @@ namespace RPG.ViewModel
             OpenAdventuresCommand = new DelegateCommand(() => OpenView(Constants.ADVENTURE_VIEW));
             OpenBuyGemCommand = new DelegateCommand(() => OpenView(Constants.BUYGEM_VIEW));
             OpenBonusCommand = new DelegateCommand(() => OpenView(Constants.BONUS_VIEW));
+            OpenAnnouncementCommand = new DelegateCommand(() => ioService.ShowMessage("公告", "这是一个公告"));
+            OpenTipCommand = new DelegateCommand(() => ioService.ShowMessage("提示", "这是一个提示"));
         }
 
         [Obsolete]
