@@ -14,6 +14,7 @@ namespace RPG.Infrastructure
         public const string ADVENTURE_VIEW = nameof(AdventureView);
         public const string BUYGEM_VIEW = nameof(BuyGemView);
         public const string BONUS_VIEW = nameof(BonusView);
+        public const string DUPLICATIONS_VIEW = nameof(DuplicationsView);
 
         #endregion
     }

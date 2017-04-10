@@ -67,6 +67,11 @@ namespace RPG.Model.Monsters
 
         #endregion
 
+        public override string ToString()
+        {
+            return MonsterName;
+        }
+
         #region Private methods
 
         private MonsterClass CalculateMonsterClass()

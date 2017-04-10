@@ -31,7 +31,8 @@ namespace RPG.Module
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(MonstersView));
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(BattleView));
             _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(BuyGemView));
-            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(BonusView));
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(BonusView)); 
+            _regionManager.RegisterViewWithRegion(nameof(MainModule), typeof(DuplicationsView));
         }
 
         #endregion

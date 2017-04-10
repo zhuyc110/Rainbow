@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="RPG.View.MainView.DuplicationsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:RPG.ViewModel"
+             xmlns:controls="clr-namespace:RPG.Controls"
+             xmlns:mainView="clr-namespace:RPG.View.MainView"
+             d:DataContext="{d:DesignInstance viewModel:DuplicationsViewModel, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="360">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\..\Resource\IconDictionary.xaml" />
+                <ResourceDictionary Source="..\..\Resource\Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <ListView ItemsSource="{Binding Path=Duplications}" Background="Transparent" BorderThickness="0">
+        <ListView.ItemTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DuplicationViewModel}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:IconItemHorizontal Background="{StaticResource BackgroundBrush02}"
+                                                     ItemContent="{Binding Path=RequiredLevel, StringFormat={}需要等级: {0}}" PropertyList="{Binding Path=Monsters}">
+
+
+                    </controls:IconItemHorizontal>
+                    <Button Margin="5" Content="攻击" VerticalAlignment="Center"
+                                Command="{Binding Path=DataContext.StartDuplicationCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=mainView:DuplicationsView}}">
+                    </Button>
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</UserControl>

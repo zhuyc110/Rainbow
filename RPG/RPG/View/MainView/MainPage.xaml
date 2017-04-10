@@ -47,7 +47,7 @@
         <controls:IconButton Grid.Row="2" HorizontalAlignment="Left" Style="{StaticResource MainPageIconButtonStyle}"
                              ImageSource="{StaticResource BTNHoldPosition}" Content="冒险" Command="{Binding Path=OpenAdventuresCommand}"/>
         <controls:IconButton Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource MainPageIconButtonStyle}"
-                             ImageSource="{StaticResource BTNDarkPortal}" Content="副本" />
+                             ImageSource="{StaticResource BTNDarkPortal}" Content="副本" Command="{Binding Path=OpenDuplicationsCommand}" />
         <controls:IconButton Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource MainPageIconButtonStyle}"
                              ImageSource="{StaticResource BTNVengeanceIncarnate}" Content="深渊" />
         <Grid Grid.Row="3">
