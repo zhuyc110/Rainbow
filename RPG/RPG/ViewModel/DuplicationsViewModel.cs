@@ -2,10 +2,15 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
+using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Implementation;
+using RPG.Infrastructure.Interfaces;
+using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.Monsters;
+using RPG.Module;
+using RPG.View.MainView;
 
 namespace RPG.ViewModel
 {
@@ -17,13 +22,23 @@ namespace RPG.ViewModel
 
         public ICommand StartDuplicationCommand { get; }
 
+        [Import]
+        private IAchievementManager AchievementManager { get; set; }
+
+        [Import]
+        private IItemManager ItemManager { get; set; }
+
         [ImportingConstructor]
-        public DuplicationsViewModel([ImportMany] IEnumerable<IMonster> monsters)
+        public DuplicationsViewModel([ImportMany] IEnumerable<IMonster> monsters, UserBattleState userBattleState, IBattleActor battleActor, IIOService ioService)
         {
+            _userBattleState = userBattleState;
+            _battleActor = battleActor;
+            _ioService = ioService;
             Duplications = new ObservableCollection<DuplicationViewModel>
             {
                 new DuplicationViewModel(monsters, 1)
             };
+            StartDuplicationCommand = new DelegateCommand<DuplicationViewModel>(StartDuplication);
         }
 
         public DuplicationsViewModel()
@@ -33,5 +48,28 @@ namespace RPG.ViewModel
                 new DuplicationViewModel(new[] {new MonsterSlime(new MyRandom())}, 1)
             };
         }
+
+        #region Private methods
+
+        private void StartDuplication(DuplicationViewModel duplication)
+        {
+            foreach (var monster in duplication.Monsters)
+            {
+                var view = _ioService.GetView<BattleView>();
+                view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), monster.NewInstance(), _battleActor,
+                    _ioService, ItemManager, AchievementManager, this);
+                _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
+            }
+        }
+
+        #endregion
+
+        #region Fields
+
+        private readonly UserBattleState _userBattleState;
+        private readonly IBattleActor _battleActor;
+        private readonly IIOService _ioService;
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using Microsoft.Practices.ServiceLocation;
@@ -48,7 +49,7 @@ namespace RPG.Infrastructure.Implementation
             MessageBox.Show(content, title);
         }
 
-        public void ShowViewModel<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase
+        public void ShowDialog<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase
         {
             var view = _serviceLocator.GetInstance<IView<TViewModel>>();
             view.ViewModel = viewModel;
@@ -60,9 +61,16 @@ namespace RPG.Infrastructure.Implementation
             _regionManager.Regions[moduleName].RequestNavigate(viewName);
         }
 
+        public void ShowView<TViewModel>(string moduleName, TViewModel viewModel) where TViewModel : BindableBase
+        {
+            var view = _serviceLocator.GetInstance<IView<TViewModel>>();
+            view.ViewModel = viewModel;
+            _regionManager.Regions[moduleName].RequestNavigate(view.GetType().Name);
+        }
+
         #endregion
 
-        #region Private methods
+            #region Private methods
 
         private static void ShowView<TViewModel>(IView<TViewModel> view) where TViewModel : BindableBase
         {

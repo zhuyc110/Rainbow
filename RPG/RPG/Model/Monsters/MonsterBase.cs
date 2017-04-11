@@ -61,16 +61,25 @@ namespace RPG.Model.Monsters
                 Class |= CalculateMonsterClass();
         }
 
+        public override string ToString()
+        {
+            return MonsterName;
+        }
+
+        #region IBattleEntity Members
+
+        IBattleEntity IBattleEntity.NewInstance()
+        {
+            return NewInstance();
+        }
+
+        #endregion
+
         #region IMonster Members
 
         public abstract IMonster NewInstance();
 
         #endregion
-
-        public override string ToString()
-        {
-            return MonsterName;
-        }
 
         #region Private methods
 

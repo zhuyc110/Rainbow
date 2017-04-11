@@ -9,5 +9,7 @@ namespace RPG.Model.Interfaces
         int CurrentAttack { get; set; }
         int MaximumHp { get; }
         IEnumerable<ISkill> Skills { get; }
+
+        IBattleEntity NewInstance();
     }
 }

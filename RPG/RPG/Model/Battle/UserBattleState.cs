@@ -42,7 +42,8 @@ namespace RPG.Model.Battle
         public int MaximumHp => UserProperty.Single(x => x.Name == "生命").FinalValue;
 
         [ImportingConstructor]
-        public UserBattleState(IUserState userState, ISkillManager skillManager, IEquipmentManager equipmentManager, IEnchantmentManager enchantmentManager, IAchievementManager achievementManager)
+        public UserBattleState(IUserState userState, ISkillManager skillManager, IEquipmentManager equipmentManager, IEnchantmentManager enchantmentManager,
+            IAchievementManager achievementManager)
         {
             UserState = userState;
             _skillManager = skillManager;
@@ -73,7 +74,35 @@ namespace RPG.Model.Battle
             return this;
         }
 
+        #region IBattleEntity Members
+
+        public IBattleEntity NewInstance()
+        {
+            return ResetBattleState();
+        }
+
+        #endregion
+
         #region Private methods
+
+        private void ComposeAchievementProperties()
+        {
+            foreach (var achievement in _achievementManager.Achievements.Where(x => x.Achived))
+            {
+                foreach (var achivementProperty in achievement.AchivementProperties)
+                {
+                    var property = UserProperty.FirstOrDefault(x => x.Name == achivementProperty.Name);
+                    if (property == null)
+                    {
+                        Log.Warn($"Property: {achivementProperty.Name} is not supported yet.");
+                        continue;
+                    }
+
+                    property.AbsoluteEnhancement += achivementProperty.AbsoluteEnhancement;
+                    property.RelativeEnhancement += achivementProperty.RelativeEnhancement;
+                }
+            }
+        }
 
         private void ComposeEquipmentEnchantProperties()
         {
@@ -97,25 +126,6 @@ namespace RPG.Model.Battle
                     var property = UserProperty.Single(x => x.Name == equipmentProperty.Name);
                     property.AbsoluteEnhancement += equipmentProperty.AbsoluteEnhancement;
                     property.RelativeEnhancement += equipmentProperty.RelativeEnhancement;
-                }
-            }
-        }
-
-        private void ComposeAchievementProperties()
-        {
-            foreach (var achievement in _achievementManager.Achievements.Where(x=>x.Achived))
-            {
-                foreach (var achivementProperty in achievement.AchivementProperties)
-                {
-                    var property = UserProperty.FirstOrDefault(x => x.Name == achivementProperty.Name);
-                    if (property == null)
-                    {
-                        Log.Warn($"Property: {achivementProperty.Name} is not supported yet.");
-                        continue;
-                    }
-
-                    property.AbsoluteEnhancement += achivementProperty.AbsoluteEnhancement;
-                    property.RelativeEnhancement += achivementProperty.RelativeEnhancement;
                 }
             }
         }

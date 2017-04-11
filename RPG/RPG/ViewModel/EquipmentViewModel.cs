@@ -39,7 +39,7 @@ namespace RPG.ViewModel
         private void ShowDetail(EquipmentBase equipment)
         {
             var detailVm = new EquipmentDetailViewModel(equipment, _enchantmentManager);
-            _ioService.ShowViewModel(detailVm);
+            _ioService.ShowDialog(detailVm);
         }
 
         #endregion

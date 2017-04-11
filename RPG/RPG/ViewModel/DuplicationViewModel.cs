@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using Prism.Mvvm;
 using RPG.Model.Interfaces;
 

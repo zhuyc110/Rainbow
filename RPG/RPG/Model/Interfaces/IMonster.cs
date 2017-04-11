@@ -16,7 +16,7 @@ namespace RPG.Model.Interfaces
 
         string IconResource { get; }
 
-        IMonster NewInstance();
+        new IMonster NewInstance();
 
         IEnumerable<string> DropList { get; }
     }

@@ -14,11 +14,10 @@ using RPG.Model.Items;
 using RPG.Model.Monsters;
 using RPG.Module;
 using RPG.View;
-using RPG.View.MainView;
 
 namespace RPG.ViewModel
 {
-    public class BattleViewModel : BindableBase
+    public class BattleViewModel: BindableBase
     {
         public ObservableCollection<IItem> Booties
         {
@@ -84,7 +83,7 @@ namespace RPG.ViewModel
             IIOService ioService,
             IItemManager itemManager,
             IAchievementManager achievementManager,
-            MonstersViewModel parentViewModel)
+            BindableBase parentViewModel)
         {
             IsBattleFinished = false;
             Booties = new ObservableCollection<IItem>();
@@ -109,7 +108,7 @@ namespace RPG.ViewModel
         [Obsolete]
         public BattleViewModel()
         {
-            Monster = new MonsterSlime(new MyRandom()) {CurrentHp = 20};
+            Monster = new MonsterSlime(new MyRandom()) { CurrentHp = 20 };
             IsBattleFinished = true;
         }
 
@@ -120,13 +119,17 @@ namespace RPG.ViewModel
             _achievementManager.OnAchievementGet -= OnAchievementGet;
 
             SettleViewModel.Achivements.Clear();
-            var view = _ioService.GetView<MonstersView>();
-            view.Dispatcher.Invoke(() =>
-            {
-                _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
-                view.ViewModel = _parenViewModel;
-                _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
-            });
+
+            _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
+            _ioService.ShowView(nameof(MainModule), _parenViewModel);
+            //var view = _ioService.GetView<MonstersView>();
+            //view.Dispatcher.Invoke(() =>
+            //{
+            //    _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
+            //    //view.ViewModel = _parenViewModel;
+            //    //_ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
+            //    _ioService.ShowView(nameof(MainModule), _parenViewModel);
+            //});
         }
 
         private void OnAchievementGet(object sender, AchievementEventArgs e)
@@ -186,7 +189,7 @@ namespace RPG.ViewModel
 
         private readonly IAchievementManager _achievementManager;
         private readonly IItemManager _itemManager;
-        private readonly MonstersViewModel _parenViewModel;
+        private readonly BindableBase _parenViewModel;
         private readonly object _threadLock = new object();
         private ObservableCollection<IItem> _booties;
         private int _damage;
