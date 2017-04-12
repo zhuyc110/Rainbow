@@ -58,7 +58,7 @@ namespace RPG.Model.Monsters
             if (monsterClass == MonsterClass.Normal)
                 Class = CalculateMonsterClass();
             else
-                Class |= CalculateMonsterClass();
+                Class = monsterClass | CalculateMonsterClass();
         }
 
         public override string ToString()

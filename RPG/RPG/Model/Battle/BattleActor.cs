@@ -41,6 +41,36 @@ namespace RPG.Model.Battle
             });
         }
 
+        public async Task StartBattle(IBattleEntity userBattleState, IEnumerable<IMonster> monsters)
+        {
+            var monsterList = monsters.ToList();
+            var result = new List<BattleResult>();
+            foreach (var monster in monsterList)
+            {
+                var userBattleEntity = userBattleState.NewInstance();
+                var oneBattleResult = await Task.Run(() =>
+                {
+                    Thread.Sleep(500);
+                    var x = OneRound(userBattleEntity, monster);
+                    while (x == BattleResult.Continue)
+                        x = OneRound(userBattleEntity, monster);
+
+                    return x;
+                });
+                result.Add(oneBattleResult);
+                if (oneBattleResult == BattleResult.UserDied)
+                    break;
+            }
+            if (result.Any(x => x == BattleResult.UserDied))
+            {
+                OnBattleFinished(BattleResult.UserDied, Enumerable.Empty<IMonster>());
+            }
+            else
+            {
+                OnBattleFinished(BattleResult.MonsterDied, monsterList);
+            }
+        }
+
         #endregion
 
         #region Private methods
@@ -88,7 +118,21 @@ namespace RPG.Model.Battle
             var handle = BattleFinished;
             handle?.Invoke(null,
                 new BattleFinishedArgs(battleResult == BattleResult.MonsterDied,
-                    monster.DropList.ToDictionary(key => key, v => 1), monster.MaximumHp, monster));
+                    monster.DropList.ToDictionary(key => key, v => 1), monster.MaximumHp, new[] {monster}));
+        }
+
+        private void OnBattleFinished(BattleResult battleResult, IEnumerable<IMonster> monsters)
+        {
+            var monsterList = monsters.ToList();
+            var items = new Dictionary<string,int>();
+            foreach (var dropItem in monsterList.SelectMany(x => x.DropList).Distinct())
+            {
+                items.Add(dropItem, monsterList.Count(x => x.DropList.Contains(dropItem)));
+            }
+
+            var handle = BattleFinished;
+            handle?.Invoke(null,
+                new BattleFinishedArgs(battleResult == BattleResult.MonsterDied, items, monsterList.Sum(x => x.MaximumHp), monsterList));
         }
 
         private BattleResult OneRound(IBattleEntity userBattleState, IBattleEntity monster)

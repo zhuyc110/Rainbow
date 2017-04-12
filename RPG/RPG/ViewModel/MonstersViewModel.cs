@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -30,7 +29,7 @@ namespace RPG.ViewModel
             _itemManager = itemManager;
             _achievementManager = achievementManager;
             Monsters = new ObservableCollection<IMonster>(monsters);
-            StartBattleCommand = new DelegateCommand<string>(StartBattle);
+            StartBattleCommand = new DelegateCommand<IMonster>(StartBattle);
         }
 
         [Obsolete]
@@ -44,12 +43,13 @@ namespace RPG.ViewModel
 
         #region Private methods
 
-        private void StartBattle(string monsterName)
+        private async void StartBattle(IMonster monster)
         {
-            var view = _ioService.GetView<BattleView>();
-            view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), Monsters.Single(x => x.MonsterName == monsterName).NewInstance(), _battleActor,
-                _ioService, _itemManager, _achievementManager, this);
             _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
+            var view = _ioService.GetView<BattleView>();
+            view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), new[] {monster.NewInstance()}, _battleActor,
+                _ioService, _itemManager, _achievementManager);
+            await view.ViewModel.StartBattle();
         }
 
         #endregion

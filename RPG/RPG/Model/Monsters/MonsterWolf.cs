@@ -13,16 +13,16 @@ namespace RPG.Model.Monsters
         [ImportingConstructor]
         public MonsterWolf(IRandom random) : base("狼", 2, "INV_Stone_15", random)
         {
-            var rel = 1 + (int)Class / 10.0;
+            var rel = 1 + (int) Class / 10.0;
 
             Properties = new List<IBattleProperty>
             {
-                new PropertyHp {Basic = (int) (100*rel)},
-                new PropertyAttack {Basic = (int) (25*rel)}
+                new PropertyHp {Basic = (int) (100 * rel)},
+                new PropertyAttack {Basic = (int) (25 * rel)}
             };
             CurrentAttack = Properties.Single(x => x.Name == "攻击").FinalValue;
             CurrentHp = MaximumHp;
-            DropList = new List<string> { "石头" };
+            DropList = new List<string> {"石头"};
         }
 
         public override IMonster NewInstance()

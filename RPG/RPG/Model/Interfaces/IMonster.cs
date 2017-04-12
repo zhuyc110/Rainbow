@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 
 namespace RPG.Model.Interfaces
 {
     [InheritedExport(typeof(IMonster))]
-    public interface IMonster : IBattleEntity
+    public interface IMonster : IBattleEntity, INotifyPropertyChanged
     {
         string Title { get; }
 
@@ -16,8 +17,8 @@ namespace RPG.Model.Interfaces
 
         string IconResource { get; }
 
-        new IMonster NewInstance();
-
         IEnumerable<string> DropList { get; }
+
+        new IMonster NewInstance();
     }
 }

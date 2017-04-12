@@ -68,6 +68,11 @@ namespace RPG.Infrastructure.Implementation
             _regionManager.Regions[moduleName].RequestNavigate(view.GetType().Name);
         }
 
+        public void NavigateBack(string moduleName)
+        {
+            _regionManager.Regions[moduleName].NavigationService.Journal.GoBack();
+        }
+
         #endregion
 
             #region Private methods

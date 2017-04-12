@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -51,15 +53,13 @@ namespace RPG.ViewModel
 
         #region Private methods
 
-        private void StartDuplication(DuplicationViewModel duplication)
+        private async void StartDuplication(DuplicationViewModel duplication)
         {
-            foreach (var monster in duplication.Monsters)
-            {
-                var view = _ioService.GetView<BattleView>();
-                view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), monster.NewInstance(), _battleActor,
-                    _ioService, ItemManager, AchievementManager, this);
-                _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
-            }
+            _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
+            var view = _ioService.GetView<BattleView>();
+            view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), duplication.Monsters.Select(x => x.NewInstance()), _battleActor,
+                _ioService, ItemManager, AchievementManager);
+            await view.ViewModel.StartMultiBattle();
         }
 
         #endregion

@@ -34,7 +34,7 @@
                                      ImageSource="{Binding Path=IconResource, Converter={StaticResource ResourceKeyToImageConverter}}"
                                      TextSecondRow="{Binding MonsterName}"
                                      Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.StartBattleCommand}"
-                                     CommandParameter="{Binding MonsterName}"
+                                     CommandParameter="{Binding}"
                                      FontSize="12" />
             </DataTemplate>
         </ListView.ItemTemplate>

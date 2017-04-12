@@ -6,7 +6,7 @@ namespace RPG.Model.Battle
 {
     public class BattleFinishedArgs : EventArgs
     {
-        public IMonster Monster { get; }
+        public IEnumerable<IMonster> Monsters { get; }
 
         public bool IsUserVictoried { get; }
 
@@ -14,12 +14,12 @@ namespace RPG.Model.Battle
 
         public int Gold { get; }
 
-        public BattleFinishedArgs(bool userVitoried, Dictionary<string, int> items, int gold, IMonster monster = null)
+        public BattleFinishedArgs(bool userVitoried, Dictionary<string, int> items, int gold, IEnumerable<IMonster> monsters = null)
         {
             IsUserVictoried = userVitoried;
             Items = items;
             Gold = gold;
-            Monster = monster;
+            Monsters = monsters;
         }
     }
 }

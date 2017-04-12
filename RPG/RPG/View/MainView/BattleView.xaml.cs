@@ -19,6 +19,7 @@ namespace RPG.View.MainView
         public BattleViewModel ViewModel
         {
             set { DataContext = value; }
+            get { return DataContext as BattleViewModel; }
         }
 
         public string Title => "战斗";

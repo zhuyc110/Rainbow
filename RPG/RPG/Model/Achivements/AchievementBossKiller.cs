@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using RPG.Model.Battle;
 using RPG.Model.UserProperties;
 
@@ -22,21 +23,29 @@ namespace RPG.Model.Achivements
         {
         }
 
+        private BattleFinishedArgs BattleFinishedArgs { get; set; }
+
         public override bool CanHandleEvent<T>(T args)
         {
+            BattleFinishedArgs = null;
             if (Achived)
                 return false;
 
-            var battle = args as BattleFinishedArgs;
-            if (battle?.Monster == null)
+            BattleFinishedArgs = args as BattleFinishedArgs;
+            if (BattleFinishedArgs?.Monsters == null)
                 return false;
 
-            return battle.Monster.Class.HasFlag(MonsterClass.Boss);
+            if (!BattleFinishedArgs.IsUserVictoried)
+            {
+                return false;
+            }
+
+            return BattleFinishedArgs.Monsters.Any(x => x.Class.HasFlag(MonsterClass.Boss));
         }
 
         public override void HandleEvent()
         {
-            Current++;
+            Current += BattleFinishedArgs.Monsters.Count(x => x.Class.HasFlag(MonsterClass.Boss));
         }
     }
 }

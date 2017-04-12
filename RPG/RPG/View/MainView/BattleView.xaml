@@ -120,13 +120,13 @@
 
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Text="{Binding Damage}" Background="Transparent"
                    Foreground="Red" Visibility="{Binding IsMonsterDamaged, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        <controls:NameBoard Grid.Row="0" Grid.Column="1" BoardTitle="{Binding Monster.Title}"
-                            HpPercentage="{Binding Monster.CurrentHpPercentage}"
-                            Foreground="{Binding Monster.Class, Converter={StaticResource MonsterClassToBrushConverter}}">
+        <controls:NameBoard Grid.Row="0" Grid.Column="1" BoardTitle="{Binding BattleMonster.Title}"
+                            HpPercentage="{Binding BattleMonster.CurrentHpPercentage}"
+                            Foreground="{Binding BattleMonster.Class, Converter={StaticResource MonsterClassToBrushConverter}}">
             <controls:NameBoard.BoardName>
                 <MultiBinding StringFormat="LV{0} {1}">
-                    <Binding Path="Monster.Level" />
-                    <Binding Path="Monster.MonsterName" />
+                    <Binding Path="BattleMonster.Level" />
+                    <Binding Path="BattleMonster.MonsterName" />
                 </MultiBinding>
             </controls:NameBoard.BoardName>
         </controls:NameBoard>

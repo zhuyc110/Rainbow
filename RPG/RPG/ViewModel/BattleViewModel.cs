@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 using Prism.Commands;
@@ -17,7 +19,7 @@ using RPG.View;
 
 namespace RPG.ViewModel
 {
-    public class BattleViewModel: BindableBase
+    public class BattleViewModel : BindableBase
     {
         public ObservableCollection<IItem> Booties
         {
@@ -67,7 +69,13 @@ namespace RPG.ViewModel
 
         public bool IsUserDamaged => !IsMonsterDamaged;
 
-        public IMonster Monster { get; }
+        public IEnumerable<IMonster> Monsters { get; }
+
+        public IMonster BattleMonster
+        {
+            get { return _battleMonster; }
+            set { SetProperty(ref _battleMonster, value); }
+        }
 
         public UserBattleState UserBattleState { get; }
 
@@ -78,38 +86,48 @@ namespace RPG.ViewModel
         }
 
         public BattleViewModel(UserBattleState userBattleState,
-            IMonster monster,
+            IEnumerable<IMonster> monsters,
             IBattleActor battleActor,
             IIOService ioService,
             IItemManager itemManager,
-            IAchievementManager achievementManager,
-            BindableBase parentViewModel)
+            IAchievementManager achievementManager)
         {
             IsBattleFinished = false;
             Booties = new ObservableCollection<IItem>();
 
             FinishBattleCommand = new DelegateCommand(DisposeView);
             UserBattleState = userBattleState;
-            Monster = monster;
+            Monsters = monsters;
             _battleActor = battleActor;
             _ioService = ioService;
             _itemManager = itemManager;
             _achievementManager = achievementManager;
-            _parenViewModel = parentViewModel;
 
             SettleViewModel = new SettleViewModel(Enumerable.Empty<IAchievement>());
-            battleActor.OneRoundBattle += OnOneRoundBattle;
-            battleActor.BattleFinished += OnBattleFinished;
+            _battleActor.OneRoundBattle += OnOneRoundBattle;
+            _battleActor.BattleFinished += OnBattleFinished;
             _achievementManager.OnAchievementGet += OnAchievementGet;
-            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
-            battleActor.StartBattle(UserBattleState, Monster);
         }
 
         [Obsolete]
         public BattleViewModel()
         {
-            Monster = new MonsterSlime(new MyRandom()) { CurrentHp = 20 };
+            Monsters = new[] {new MonsterSlime(new MyRandom()) {CurrentHp = 20}};
             IsBattleFinished = true;
+        }
+
+        public async Task StartBattle()
+        {
+            BattleMonster = Monsters.Single();
+            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
+            await _battleActor.StartBattle(UserBattleState, BattleMonster);
+        }
+
+        public async Task StartMultiBattle()
+        {
+            BattleMonster = Monsters.First();
+            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
+            await _battleActor.StartBattle(UserBattleState, Monsters);
         }
 
         #region Private methods
@@ -121,15 +139,7 @@ namespace RPG.ViewModel
             SettleViewModel.Achivements.Clear();
 
             _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
-            _ioService.ShowView(nameof(MainModule), _parenViewModel);
-            //var view = _ioService.GetView<MonstersView>();
-            //view.Dispatcher.Invoke(() =>
-            //{
-            //    _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
-            //    //view.ViewModel = _parenViewModel;
-            //    //_ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
-            //    _ioService.ShowView(nameof(MainModule), _parenViewModel);
-            //});
+            _ioService.NavigateBack(nameof(MainModule));
         }
 
         private void OnAchievementGet(object sender, AchievementEventArgs e)
@@ -176,11 +186,16 @@ namespace RPG.ViewModel
             {
                 TriggeredSkill = string.Empty;
             }
+            var monster = sender as IMonster;
+            if (monster != null)
+                BattleMonster = monster;
         }
 
         #endregion
 
         #region Fields
+
+        private IMonster _battleMonster;
 
         private string _triggeredSkill;
 
@@ -189,7 +204,6 @@ namespace RPG.ViewModel
 
         private readonly IAchievementManager _achievementManager;
         private readonly IItemManager _itemManager;
-        private readonly BindableBase _parenViewModel;
         private readonly object _threadLock = new object();
         private ObservableCollection<IItem> _booties;
         private int _damage;
