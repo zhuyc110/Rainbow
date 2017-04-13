@@ -11,7 +11,7 @@ namespace RPG.Model.Monsters
     public class MonsterWolf : MonsterBase
     {
         [ImportingConstructor]
-        public MonsterWolf(IRandom random) : base("狼", 2, "INV_Stone_15", random)
+        public MonsterWolf(IRandom random) : base("狼", 2, "INV_Stone_15", random,null,MonsterClass.Boss)
         {
             var rel = 1 + (int) Class / 10.0;
 

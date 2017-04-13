@@ -33,7 +33,7 @@
             <Style x:Key="VictoryTextBlockStyle" TargetType="{x:Type TextBlock}">
                 <Setter Property="Visibility" Value="Visible" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding UserBattleState.CurrentHp}" Value="0">
+                    <DataTrigger Binding="{Binding Gold}" Value="0">
                         <Setter Property="Visibility" Value="Collapsed" />
                     </DataTrigger>
                 </Style.Triggers>
@@ -42,7 +42,7 @@
             <Style x:Key="FailedTextBlockStyle" TargetType="{x:Type TextBlock}">
                 <Setter Property="Visibility" Value="Collapsed" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding UserBattleState.CurrentHp}" Value="0">
+                    <DataTrigger Binding="{Binding Gold}" Value="0">
                         <Setter Property="Visibility" Value="Visible" />
                     </DataTrigger>
                 </Style.Triggers>
