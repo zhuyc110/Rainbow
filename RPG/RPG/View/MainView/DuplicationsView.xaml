@@ -26,7 +26,7 @@
                                                  ItemContent="{Binding Path=RequiredLevel, StringFormat={}需要等级: {0}}" PropertyList="{Binding Path=Monsters}" />
                     <Button Margin="5" Content="攻击" VerticalAlignment="Center"
                             Command="{Binding Path=DataContext.StartDuplicationCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=mainView:DuplicationsView}}"
-                            CommandParameter="{Binding}" />
+                            CommandParameter="{Binding}" IsEnabled="{Binding Path=CanStartuplication}"/>
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>

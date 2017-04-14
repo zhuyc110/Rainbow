@@ -7,6 +7,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
+using RPG.Model;
 using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.Monsters;
@@ -35,9 +36,12 @@ namespace RPG.ViewModel
             _userBattleState = userBattleState;
             _battleActor = battleActor;
             _ioService = ioService;
+
+            var monsterList = monsters.ToList();
             Duplications = new ObservableCollection<DuplicationViewModel>
             {
-                new DuplicationViewModel(monsters, 1)
+                new DuplicationViewModel(monsterList, 1, _userBattleState.UserState),
+                new DuplicationViewModel(monsterList, 8, _userBattleState.UserState)
             };
             StartDuplicationCommand = new DelegateCommand<DuplicationViewModel>(StartDuplication);
         }
@@ -46,11 +50,16 @@ namespace RPG.ViewModel
         {
             Duplications = new ObservableCollection<DuplicationViewModel>
             {
-                new DuplicationViewModel(new[] {new MonsterSlime(new MyRandom())}, 1)
+                new DuplicationViewModel(new[] {new MonsterSlime(new MyRandom())}, 1, new UserState())
             };
         }
 
         #region Private methods
+
+        private bool CanStartDuplication(DuplicationViewModel duplication)
+        {
+            return duplication.RequiredLevel <= _userBattleState.UserState.Level;
+        }
 
         private async void StartDuplication(DuplicationViewModel duplication)
         {
