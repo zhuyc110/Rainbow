@@ -5,11 +5,10 @@ using Prism.Commands;
 using Prism.Mvvm;
 using RPG.Infrastructure;
 using RPG.Infrastructure.Interfaces;
-using RPG.Module;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof (NavigationViewModel))]
+    [Export(typeof(NavigationViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class NavigationViewModel : BindableBase
     {
@@ -50,7 +49,7 @@ namespace RPG.ViewModel
 
         private void SwitchMainView(string viewName)
         {
-            _ioService.SwitchView(nameof(MainModule), viewName);
+            _ioService.SwitchView(Constants.MAIN_REGION, viewName);
         }
 
         #endregion

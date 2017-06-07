@@ -56,7 +56,7 @@ namespace RPG.ViewModel
 
         private void OpenView(string viewName)
         {
-            _ioService.SwitchView(nameof(MainModule), viewName);
+            _ioService.SwitchView(Constants.MAIN_REGION, viewName);
         }
 
         #endregion

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows;
 using Microsoft.Practices.ServiceLocation;
@@ -39,14 +38,14 @@ namespace RPG.Infrastructure.Implementation
             return _serviceLocator.GetInstance<TView>();
         }
 
+        public void NavigateBack(string moduleName)
+        {
+            _regionManager.Regions[moduleName].NavigationService.Journal.GoBack();
+        }
+
         public MessageBoxResult ShowDialog(string title, string content)
         {
             return MessageBox.Show(content, title, MessageBoxButton.YesNo);
-        }
-
-        public void ShowMessage(string title, string content)
-        {
-            MessageBox.Show(content, title);
         }
 
         public void ShowDialog<TViewModel>(TViewModel viewModel) where TViewModel : BindableBase
@@ -56,9 +55,9 @@ namespace RPG.Infrastructure.Implementation
             ShowView(view);
         }
 
-        public void SwitchView(string moduleName, string viewName)
+        public void ShowMessage(string title, string content)
         {
-            _regionManager.Regions[moduleName].RequestNavigate(viewName);
+            MessageBox.Show(content, title);
         }
 
         public void ShowView<TViewModel>(string moduleName, TViewModel viewModel) where TViewModel : BindableBase
@@ -68,14 +67,14 @@ namespace RPG.Infrastructure.Implementation
             _regionManager.Regions[moduleName].RequestNavigate(view.GetType().Name);
         }
 
-        public void NavigateBack(string moduleName)
+        public void SwitchView(string moduleName, string viewName)
         {
-            _regionManager.Regions[moduleName].NavigationService.Journal.GoBack();
+            _regionManager.Regions[moduleName].RequestNavigate(viewName);
         }
 
         #endregion
 
-            #region Private methods
+        #region Private methods
 
         private static void ShowView<TViewModel>(IView<TViewModel> view) where TViewModel : BindableBase
         {

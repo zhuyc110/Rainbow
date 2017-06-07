@@ -7,6 +7,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
+using RPG.Infrastructure;
 using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Achivements;
@@ -14,7 +15,6 @@ using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.Items;
 using RPG.Model.Monsters;
-using RPG.Module;
 using RPG.View;
 
 namespace RPG.ViewModel
@@ -119,14 +119,14 @@ namespace RPG.ViewModel
         public async Task StartBattle()
         {
             BattleMonster = Monsters.Single();
-            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
+            _ioService.DeactiveView<NavigationView>(Constants.NAVIGATION_REGION);
             await _battleActor.StartBattle(UserBattleState, BattleMonster);
         }
 
         public async Task StartMultiBattle()
         {
             BattleMonster = Monsters.First();
-            _ioService.DeactiveView<NavigationView>(nameof(NavigationModule));
+            _ioService.DeactiveView<NavigationView>(Constants.NAVIGATION_REGION);
             await _battleActor.StartBattle(UserBattleState, Monsters);
         }
 
@@ -138,8 +138,8 @@ namespace RPG.ViewModel
 
             SettleViewModel.Achivements.Clear();
 
-            _ioService.ActiveView<NavigationView>(nameof(NavigationModule));
-            _ioService.NavigateBack(nameof(MainModule));
+            _ioService.ActiveView<NavigationView>(Constants.NAVIGATION_REGION);
+            _ioService.NavigateBack(Constants.MAIN_REGION);
         }
 
         private void OnAchievementGet(object sender, AchievementEventArgs e)

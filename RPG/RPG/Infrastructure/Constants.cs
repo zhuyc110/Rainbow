@@ -17,5 +17,9 @@ namespace RPG.Infrastructure
         public const string DUPLICATIONS_VIEW = nameof(DuplicationsView);
 
         #endregion
+
+        public const string MAIN_REGION = nameof(MAIN_REGION);
+        public const string HEADER_REGION = nameof(HEADER_REGION);
+        public const string NAVIGATION_REGION = nameof(NAVIGATION_REGION);
     }
 }

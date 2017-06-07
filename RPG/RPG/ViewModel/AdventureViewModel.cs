@@ -5,16 +5,16 @@ using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
+using RPG.Infrastructure;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model;
 using RPG.Model.Battle;
 using RPG.Model.Interfaces;
-using RPG.Module;
 using RPG.View.MainView;
 
 namespace RPG.ViewModel
 {
-    [Export(typeof (AdventureViewModel))]
+    [Export(typeof(AdventureViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class AdventureViewModel : BindableBase
     {
@@ -72,7 +72,7 @@ namespace RPG.ViewModel
                 new MonstersViewModel(
                     Monsters.Where(x => x.Level <= SelectedArea.MaxLevel && x.Level >= SelectedArea.MinLevel),
                     UserBattleState, _ioService, BattleActor, ItemManager, AchievementManager);
-            _ioService.SwitchView(nameof(MainModule), nameof(MonstersView));
+            _ioService.SwitchView(Constants.MAIN_REGION, nameof(MonstersView));
         }
 
         #endregion

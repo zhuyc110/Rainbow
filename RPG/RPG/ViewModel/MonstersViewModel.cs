@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
+using RPG.Infrastructure;
 using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model.Battle;
@@ -45,7 +46,7 @@ namespace RPG.ViewModel
 
         private async void StartBattle(IMonster monster)
         {
-            _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
+            _ioService.SwitchView(Constants.MAIN_REGION, nameof(BattleView));
             var view = _ioService.GetView<BattleView>();
             view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), new[] {monster.NewInstance()}, _battleActor,
                 _ioService, _itemManager, _achievementManager);

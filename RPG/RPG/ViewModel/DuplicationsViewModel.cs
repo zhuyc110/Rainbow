@@ -5,13 +5,13 @@ using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
+using RPG.Infrastructure;
 using RPG.Infrastructure.Implementation;
 using RPG.Infrastructure.Interfaces;
 using RPG.Model;
 using RPG.Model.Battle;
 using RPG.Model.Interfaces;
 using RPG.Model.Monsters;
-using RPG.Module;
 using RPG.View.MainView;
 
 namespace RPG.ViewModel
@@ -63,7 +63,7 @@ namespace RPG.ViewModel
 
         private async void StartDuplication(DuplicationViewModel duplication)
         {
-            _ioService.SwitchView(nameof(MainModule), nameof(BattleView));
+            _ioService.SwitchView(Constants.MAIN_REGION, nameof(BattleView));
             var view = _ioService.GetView<BattleView>();
             view.ViewModel = new BattleViewModel(_userBattleState.ResetBattleState(), duplication.Monsters.Select(x => x.NewInstance()), _battleActor,
                 _ioService, ItemManager, AchievementManager);

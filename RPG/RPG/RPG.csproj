@@ -158,9 +158,7 @@
     <Compile Include="Model\UserProperties\PropertyHP.cs" />
     <Compile Include="Model\UserProperties\UserPropertyBase.cs" />
     <Compile Include="Model\UserState.cs" />
-    <Compile Include="Module\HeaderModule.cs" />
     <Compile Include="Module\MainModule.cs" />
-    <Compile Include="Module\NavigationModule.cs" />
     <Compile Include="Resource\Converters\IntToNullableIntConverter.cs" />
     <Compile Include="Resource\Converters\IsNullToCollapsedConverter.cs" />
     <Compile Include="Resource\Converters\IsNullToHiddenConverter.cs" />

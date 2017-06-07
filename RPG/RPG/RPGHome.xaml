@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://www.codeplex.com/prism"
+        xmlns:const="clr-namespace:RPG.Infrastructure"
         mc:Ignorable="d"
         Title="RPG" Height="600" Width="400" WindowStyle="ToolWindow" ResizeMode="CanMinimize">
     <Grid>
@@ -13,9 +14,9 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Image Grid.RowSpan="3" Source="Resource\Icons\Background-a.png" Stretch="Fill"  />
-        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="HeaderModule" Margin="10"/>
-        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="MainModule" Margin="5"/>
-        <ContentControl Grid.Row="2" prism:RegionManager.RegionName="NavigationModule" Margin="5"/>
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static const:Constants.HEADER_REGION}" Margin="10"/>
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static const:Constants.MAIN_REGION}" Margin="5"/>
+        <ContentControl Grid.Row="2" prism:RegionManager.RegionName="{x:Static const:Constants.NAVIGATION_REGION}" Margin="5"/>
         
     </Grid>
 </Window>
